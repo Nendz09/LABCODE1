@@ -12,7 +12,10 @@ namespace LABCODE1
 {
     public partial class LoginForm : Form
     {
+        private int test = 100000;
+
         public LoginForm()
+
         {
             InitializeComponent();
         }
