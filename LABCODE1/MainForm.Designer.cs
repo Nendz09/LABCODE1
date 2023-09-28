@@ -32,13 +32,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.userButton1 = new LABCODE1.UserButton();
-            this.userButton3 = new LABCODE1.UserButton();
             this.userButton2 = new LABCODE1.UserButton();
+            this.userButton3 = new LABCODE1.UserButton();
+            this.userButton1 = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userButton1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -51,7 +51,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(176, 591);
+            this.panel1.Size = new System.Drawing.Size(176, 606);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -69,36 +69,11 @@
             // MainPanel
             // 
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainPanel.Location = new System.Drawing.Point(176, 0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(733, 591);
+            this.MainPanel.Size = new System.Drawing.Size(841, 606);
             this.MainPanel.TabIndex = 1;
-            // 
-            // userButton1
-            // 
-            this.userButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.userButton1.Image = ((System.Drawing.Image)(resources.GetObject("userButton1.Image")));
-            this.userButton1.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton1.ImageHover")));
-            this.userButton1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton1.ImageNormal")));
-            this.userButton1.Location = new System.Drawing.Point(1, 108);
-            this.userButton1.Name = "userButton1";
-            this.userButton1.Size = new System.Drawing.Size(176, 108);
-            this.userButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.userButton1.TabIndex = 0;
-            this.userButton1.TabStop = false;
-            // 
-            // userButton3
-            // 
-            this.userButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.userButton3.Image = ((System.Drawing.Image)(resources.GetObject("userButton3.Image")));
-            this.userButton3.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton3.ImageHover")));
-            this.userButton3.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton3.ImageNormal")));
-            this.userButton3.Location = new System.Drawing.Point(1, 215);
-            this.userButton3.Name = "userButton3";
-            this.userButton3.Size = new System.Drawing.Size(176, 108);
-            this.userButton3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.userButton3.TabIndex = 2;
-            this.userButton3.TabStop = false;
             // 
             // userButton2
             // 
@@ -113,20 +88,47 @@
             this.userButton2.TabIndex = 3;
             this.userButton2.TabStop = false;
             // 
+            // userButton3
+            // 
+            this.userButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.userButton3.Image = ((System.Drawing.Image)(resources.GetObject("userButton3.Image")));
+            this.userButton3.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton3.ImageHover")));
+            this.userButton3.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton3.ImageNormal")));
+            this.userButton3.Location = new System.Drawing.Point(1, 215);
+            this.userButton3.Name = "userButton3";
+            this.userButton3.Size = new System.Drawing.Size(176, 108);
+            this.userButton3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.userButton3.TabIndex = 2;
+            this.userButton3.TabStop = false;
+            // 
+            // userButton1
+            // 
+            this.userButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.userButton1.Image = ((System.Drawing.Image)(resources.GetObject("userButton1.Image")));
+            this.userButton1.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton1.ImageHover")));
+            this.userButton1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton1.ImageNormal")));
+            this.userButton1.Location = new System.Drawing.Point(1, 108);
+            this.userButton1.Name = "userButton1";
+            this.userButton1.Size = new System.Drawing.Size(176, 108);
+            this.userButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.userButton1.TabIndex = 0;
+            this.userButton1.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 591);
+            this.ClientSize = new System.Drawing.Size(1017, 606);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userButton1)).EndInit();
             this.ResumeLayout(false);
 
         }
