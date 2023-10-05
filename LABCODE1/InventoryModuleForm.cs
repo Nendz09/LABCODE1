@@ -32,7 +32,7 @@ namespace LABCODE1
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to save this user?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes) { 
+                if (MessageBox.Show("Are you sure you want to save this Equipment data?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes) { 
                     cmd = new SqlCommand("INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size) VALUES(@eqp_name, @eqp_categ, @eqp_size)", con);
                     cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                     cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
@@ -40,7 +40,7 @@ namespace LABCODE1
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Equipment has been successfully saved");
+                    MessageBox.Show("Equipment has been saved.");
                     Clear();
                 }
             }
@@ -63,6 +63,27 @@ namespace LABCODE1
             cmbSize.SelectedIndex = -1;
         }
 
-        
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Are you sure you want to update this Equipment data?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    cmd = new SqlCommand("UPDATE lab_eqpment SET eqp_name=@eqp_name, eqp_categ=@eqp_categ, eqp_size=@eqp_size WHERE eqp_id LIKE '" + txtEqpID.Text + "' ", con);
+                    cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
+                    cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
+                    cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Equipment has been updated.");
+                    this.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

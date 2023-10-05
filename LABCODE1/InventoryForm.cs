@@ -20,16 +20,16 @@ namespace LABCODE1
         public InventoryForm()
         {
             InitializeComponent();
-            LoadUser();
+            LoadEquipment();
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
-
-        //---LOAD USER---//
-        public void LoadUser()
+         
+        //---LOAD EQUIPMENT INVENTORY---//
+        public void LoadEquipment()
         {
 
             int i = 0;
@@ -47,8 +47,17 @@ namespace LABCODE1
             con.Close();
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            InventoryModuleForm inventoryModule = new InventoryModuleForm();
+            inventoryModule.txtEqpID.Enabled = false;
+            inventoryModule.btnSave.Enabled = true;
+            inventoryModule.btnUpdate.Enabled = false;
+            inventoryModule.labelAdd.Visible = true;
+            inventoryModule.ShowDialog();
+            LoadEquipment();
+        }
 
-        
 
         private void dgvLab_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -56,11 +65,31 @@ namespace LABCODE1
             if (colName == "Edit")
             {
                 InventoryModuleForm inventoryModule = new InventoryModuleForm();
-                inventoryModule.txtEquipment.Text = dgvLab.Rows[e.RowIndex].Cells[0].ToString();
-                inventoryModule.txtEquipment.Text = dgvLab.Rows[e.RowIndex].Cells[0].ToString();
-                inventoryModule.txtEquipment.Text = dgvLab.Rows[e.RowIndex].Cells[0].ToString();
-                inventoryModule.txtEquipment.Text = dgvLab.Rows[e.RowIndex].Cells[0].ToString();
+                inventoryModule.labelUpdate.Visible = true;
+                inventoryModule.txtEqpID.Text = dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString();
+                inventoryModule.txtEquipment.Text = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+                inventoryModule.cmbCtg.Text = dgvLab.Rows[e.RowIndex].Cells[2].Value.ToString();
+                inventoryModule.cmbSize.Text = dgvLab.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+                inventoryModule.btnSave.Enabled = false;
+                inventoryModule.btnUpdate.Enabled = true;
+                inventoryModule.txtEqpID.Enabled = false;
+
+                inventoryModule.ShowDialog();
             }
+            else if (colName == "Delete")
+            {
+                if (MessageBox.Show("Are you sure you want to delete this Equipment?", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    con.Open();
+                    cmd = new SqlCommand("DELETE FROM lab_eqpment WHERE eqp_name LIKE'" + dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString() + "'", con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Equipment has been deleted successfully!");
+                }
+            }
+            LoadEquipment();
         }
+
     }
 }

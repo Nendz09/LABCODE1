@@ -41,6 +41,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtEqpID = new System.Windows.Forms.TextBox();
+            this.labelAdd = new System.Windows.Forms.Label();
+            this.labelUpdate = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +52,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Teal;
+            this.panel1.Controls.Add(this.labelUpdate);
+            this.panel1.Controls.Add(this.labelAdd);
             this.panel1.Controls.Add(this.pictureBoxClose);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -100,7 +106,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(42, 231);
+            this.label3.Location = new System.Drawing.Point(31, 227);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(140, 20);
             this.label3.TabIndex = 3;
@@ -110,7 +116,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(96, 179);
+            this.label4.Location = new System.Drawing.Point(31, 175);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 20);
             this.label4.TabIndex = 4;
@@ -176,6 +182,7 @@
             this.btnUpdate.TabIndex = 10;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnClear
             // 
@@ -193,11 +200,56 @@
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(31, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(124, 20);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Equipment ID:";
+            // 
+            // txtEqpID
+            // 
+            this.txtEqpID.Location = new System.Drawing.Point(199, 83);
+            this.txtEqpID.Name = "txtEqpID";
+            this.txtEqpID.Size = new System.Drawing.Size(97, 22);
+            this.txtEqpID.TabIndex = 13;
+            // 
+            // labelAdd
+            // 
+            this.labelAdd.AutoSize = true;
+            this.labelAdd.BackColor = System.Drawing.Color.Transparent;
+            this.labelAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdd.ForeColor = System.Drawing.Color.White;
+            this.labelAdd.Location = new System.Drawing.Point(212, 20);
+            this.labelAdd.Name = "labelAdd";
+            this.labelAdd.Size = new System.Drawing.Size(42, 18);
+            this.labelAdd.TabIndex = 13;
+            this.labelAdd.Text = "ADD";
+            this.labelAdd.Visible = false;
+            // 
+            // labelUpdate
+            // 
+            this.labelUpdate.AutoSize = true;
+            this.labelUpdate.BackColor = System.Drawing.Color.Transparent;
+            this.labelUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUpdate.ForeColor = System.Drawing.Color.White;
+            this.labelUpdate.Location = new System.Drawing.Point(212, 20);
+            this.labelUpdate.Name = "labelUpdate";
+            this.labelUpdate.Size = new System.Drawing.Size(74, 18);
+            this.labelUpdate.TabIndex = 14;
+            this.labelUpdate.Text = "UPDATE";
+            this.labelUpdate.Visible = false;
+            // 
             // InventoryModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 418);
+            this.Controls.Add(this.txtEqpID);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSave);
@@ -229,12 +281,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.PictureBox pictureBoxClose;
         public System.Windows.Forms.TextBox txtEquipment;
         public System.Windows.Forms.ComboBox cmbCtg;
         public System.Windows.Forms.ComboBox cmbSize;
+        public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Button btnUpdate;
+        public System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.TextBox txtEqpID;
+        public System.Windows.Forms.Label labelUpdate;
+        public System.Windows.Forms.Label labelAdd;
     }
 }
