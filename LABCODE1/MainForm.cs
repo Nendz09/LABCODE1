@@ -17,6 +17,24 @@ namespace LABCODE1
             InitializeComponent();
         }
 
-       
+        //show the subForm in this MainForm by clicking the btn
+        private Form activeForm = null;
+        private void openChildForm(Form childForm) { 
+            if (activeForm != null)
+                activeForm.Close();
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(childForm);
+            panelMain.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
+
+        private void btnEquipment_Click(object sender, EventArgs e)
+        {
+            openChildForm(new InventoryForm());
+        }
     }
 }
