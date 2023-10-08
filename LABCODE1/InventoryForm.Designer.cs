@@ -122,6 +122,7 @@
             this.dgvLab.Size = new System.Drawing.Size(841, 554);
             this.dgvLab.TabIndex = 1;
             this.dgvLab.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLab_CellContentClick);
+            this.dgvLab.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLab_CellMouseEnter);
             // 
             // Column1
             // 

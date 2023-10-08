@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace LABCODE1
 {
@@ -91,5 +93,20 @@ namespace LABCODE1
             LoadEquipment();
         }
 
+        private void dgvLab_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            //ToolTip toolTip1 = new ToolTip();
+            string colName = dgvLab.Columns[e.ColumnIndex].Name;
+
+            if (colName == "Delete" || colName == "Edit")
+            {
+                dgvLab.Cursor = Cursors.Hand;
+            }
+            else 
+            {
+                dgvLab.Cursor = Cursors.Default;
+            }
+
+        }
     }
 }

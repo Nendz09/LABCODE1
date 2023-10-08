@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.userButton2 = new LABCODE1.UserButton();
-            this.userButton3 = new LABCODE1.UserButton();
-            this.btnEquipment = new LABCODE1.UserButton();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.userButton2 = new LABCODE1.UserButton();
+            this.btnStudents = new LABCODE1.UserButton();
+            this.btnEquipment = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipment)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +45,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
             this.panel1.Controls.Add(this.userButton2);
-            this.panel1.Controls.Add(this.userButton3);
+            this.panel1.Controls.Add(this.btnStudents);
             this.panel1.Controls.Add(this.btnEquipment);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -53,46 +53,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(176, 606);
             this.panel1.TabIndex = 0;
-            // 
-            // userButton2
-            // 
-            this.userButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.userButton2.Image = ((System.Drawing.Image)(resources.GetObject("userButton2.Image")));
-            this.userButton2.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton2.ImageHover")));
-            this.userButton2.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton2.ImageNormal")));
-            this.userButton2.Location = new System.Drawing.Point(1, 322);
-            this.userButton2.Name = "userButton2";
-            this.userButton2.Size = new System.Drawing.Size(176, 108);
-            this.userButton2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.userButton2.TabIndex = 3;
-            this.userButton2.TabStop = false;
-            // 
-            // userButton3
-            // 
-            this.userButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.userButton3.Image = ((System.Drawing.Image)(resources.GetObject("userButton3.Image")));
-            this.userButton3.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton3.ImageHover")));
-            this.userButton3.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton3.ImageNormal")));
-            this.userButton3.Location = new System.Drawing.Point(1, 215);
-            this.userButton3.Name = "userButton3";
-            this.userButton3.Size = new System.Drawing.Size(176, 108);
-            this.userButton3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.userButton3.TabIndex = 2;
-            this.userButton3.TabStop = false;
-            // 
-            // btnEquipment
-            // 
-            this.btnEquipment.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEquipment.Image = ((System.Drawing.Image)(resources.GetObject("btnEquipment.Image")));
-            this.btnEquipment.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageHover")));
-            this.btnEquipment.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageNormal")));
-            this.btnEquipment.Location = new System.Drawing.Point(1, 108);
-            this.btnEquipment.Name = "btnEquipment";
-            this.btnEquipment.Size = new System.Drawing.Size(176, 108);
-            this.btnEquipment.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnEquipment.TabIndex = 0;
-            this.btnEquipment.TabStop = false;
-            this.btnEquipment.Click += new System.EventHandler(this.btnEquipment_Click);
             // 
             // label1
             // 
@@ -115,6 +75,46 @@
             this.panelMain.Size = new System.Drawing.Size(841, 606);
             this.panelMain.TabIndex = 1;
             // 
+            // userButton2
+            // 
+            this.userButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.userButton2.Image = ((System.Drawing.Image)(resources.GetObject("userButton2.Image")));
+            this.userButton2.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton2.ImageHover")));
+            this.userButton2.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton2.ImageNormal")));
+            this.userButton2.Location = new System.Drawing.Point(1, 322);
+            this.userButton2.Name = "userButton2";
+            this.userButton2.Size = new System.Drawing.Size(176, 108);
+            this.userButton2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.userButton2.TabIndex = 3;
+            this.userButton2.TabStop = false;
+            // 
+            // btnStudents
+            // 
+            this.btnStudents.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudents.Image = ((System.Drawing.Image)(resources.GetObject("btnStudents.Image")));
+            this.btnStudents.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnStudents.ImageHover")));
+            this.btnStudents.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnStudents.ImageNormal")));
+            this.btnStudents.Location = new System.Drawing.Point(0, 222);
+            this.btnStudents.Name = "btnStudents";
+            this.btnStudents.Size = new System.Drawing.Size(176, 94);
+            this.btnStudents.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnStudents.TabIndex = 2;
+            this.btnStudents.TabStop = false;
+            // 
+            // btnEquipment
+            // 
+            this.btnEquipment.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEquipment.Image = ((System.Drawing.Image)(resources.GetObject("btnEquipment.Image")));
+            this.btnEquipment.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageHover")));
+            this.btnEquipment.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageNormal")));
+            this.btnEquipment.Location = new System.Drawing.Point(1, 108);
+            this.btnEquipment.Name = "btnEquipment";
+            this.btnEquipment.Size = new System.Drawing.Size(176, 108);
+            this.btnEquipment.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnEquipment.TabIndex = 0;
+            this.btnEquipment.TabStop = false;
+            this.btnEquipment.Click += new System.EventHandler(this.btnEquipment_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -128,7 +128,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipment)).EndInit();
             this.ResumeLayout(false);
 
@@ -141,6 +141,6 @@
         private System.Windows.Forms.Panel panelMain;
         private UserButton btnEquipment;
         private UserButton userButton2;
-        private UserButton userButton3;
+        private UserButton btnStudents;
     }
 }

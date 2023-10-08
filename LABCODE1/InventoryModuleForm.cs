@@ -42,6 +42,7 @@ namespace LABCODE1
                     con.Close();
                     MessageBox.Show("Equipment has been saved.");
                     Clear();
+                    this.Dispose();
                 }
             }
             catch (Exception ex)

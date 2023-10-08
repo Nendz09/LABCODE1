@@ -36,5 +36,8 @@ namespace LABCODE1
         {
             openChildForm(new InventoryForm());
         }
+
+
+
     }
 }
