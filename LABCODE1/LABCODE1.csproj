@@ -116,6 +116,9 @@
     <Compile Include="InventoryForm.Designer.cs">
       <DependentUpon>InventoryForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="StudentForm.resx">
+      <DependentUpon>StudentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InventoryModuleForm.resx">
       <DependentUpon>InventoryModuleForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,9 +138,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="StudentForm.resx">
-      <DependentUpon>StudentForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserButton.resx">
       <DependentUpon>UserButton.cs</DependentUpon>
     </EmbeddedResource>

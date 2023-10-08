@@ -35,9 +35,12 @@ namespace LABCODE1
         private void btnEquipment_Click(object sender, EventArgs e)
         {
             openChildForm(new InventoryForm());
+
         }
 
-
-
+        private void btnStudents_Click(object sender, EventArgs e)
+        {
+            openChildForm(new StudentForm());
+        }
     }
 }

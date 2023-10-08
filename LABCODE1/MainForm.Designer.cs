@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelMain = new System.Windows.Forms.Panel();
             this.userButton2 = new LABCODE1.UserButton();
             this.btnStudents = new LABCODE1.UserButton();
             this.btnEquipment = new LABCODE1.UserButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudents)).BeginInit();
@@ -53,27 +53,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(176, 606);
             this.panel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(41, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 39);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ICON";
-            // 
-            // panelMain
-            // 
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelMain.Location = new System.Drawing.Point(176, 0);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(841, 606);
-            this.panelMain.TabIndex = 1;
             // 
             // userButton2
             // 
@@ -100,6 +79,7 @@
             this.btnStudents.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.btnStudents.TabIndex = 2;
             this.btnStudents.TabStop = false;
+            this.btnStudents.Click += new System.EventHandler(this.btnStudents_Click);
             // 
             // btnEquipment
             // 
@@ -107,6 +87,7 @@
             this.btnEquipment.Image = ((System.Drawing.Image)(resources.GetObject("btnEquipment.Image")));
             this.btnEquipment.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageHover")));
             this.btnEquipment.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageNormal")));
+            this.btnEquipment.InitialImage = null;
             this.btnEquipment.Location = new System.Drawing.Point(1, 108);
             this.btnEquipment.Name = "btnEquipment";
             this.btnEquipment.Size = new System.Drawing.Size(176, 108);
@@ -114,6 +95,27 @@
             this.btnEquipment.TabIndex = 0;
             this.btnEquipment.TabStop = false;
             this.btnEquipment.Click += new System.EventHandler(this.btnEquipment_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label1.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(41, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 39);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ICON";
+            // 
+            // panelMain
+            // 
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelMain.Location = new System.Drawing.Point(176, 0);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(841, 606);
+            this.panelMain.TabIndex = 1;
             // 
             // MainForm
             // 
