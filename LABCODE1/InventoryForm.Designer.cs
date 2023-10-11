@@ -58,7 +58,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+           
             // 
             // label1
             // 
@@ -70,7 +70,6 @@
             this.label1.Size = new System.Drawing.Size(243, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Laboratory Equipment";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // dgvLab
             // 

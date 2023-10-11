@@ -60,7 +60,7 @@ namespace LABCODE1
             LoadEquipment();
         }
 
-
+        //------ EDIT(UPDATE) AND DELETE BUTTON-----////
         private void dgvLab_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string colName = dgvLab.Columns[e.ColumnIndex].Name;
@@ -106,16 +106,6 @@ namespace LABCODE1
             {
                 dgvLab.Cursor = Cursors.Default;
             }
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
 
         }
     }
