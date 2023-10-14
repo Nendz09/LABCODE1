@@ -117,6 +117,7 @@
             this.login_btn.TabIndex = 5;
             this.login_btn.Text = "Login";
             this.login_btn.UseVisualStyleBackColor = false;
+            this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
             // 
             // checkBox1
             // 
@@ -161,13 +162,13 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox username_txt;
         private System.Windows.Forms.Label uname_label;
         private System.Windows.Forms.Label pass_label;
-        private System.Windows.Forms.TextBox pass_txt;
         private System.Windows.Forms.Button login_btn;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.PictureBox pictureBoxClose;
+        public System.Windows.Forms.TextBox username_txt;
+        public System.Windows.Forms.TextBox pass_txt;
     }
 }
 

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -84,7 +85,7 @@ namespace LABCODE1
                 if (MessageBox.Show("Are you sure you want to delete this Equipment?", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     con.Open();
-                    cmd = new SqlCommand("DELETE FROM lab_eqpment WHERE eqp_name LIKE'" + dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString() + "'", con);
+                    cmd = new SqlCommand("DELETE FROM lab_eqpment WHERE eqp_id LIKE'" + dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString() + "'", con);
                     cmd.ExecuteNonQuery();
                     con.Close();
                     MessageBox.Show("Equipment has been deleted successfully!");
@@ -96,16 +97,18 @@ namespace LABCODE1
         private void dgvLab_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             //ToolTip toolTip1 = new ToolTip();
-            string colName = dgvLab.Columns[e.ColumnIndex].Name;
+            //System.ArgumentOutOfRangeException: 'Index was out of range. Must be non-negative and less than the size of the collection.
+            //Parameter name: index'
+            //string colName = dgvLab.Columns[e.ColumnIndex].Name;
 
-            if (colName == "Delete" || colName == "Edit")
-            {
-                dgvLab.Cursor = Cursors.Hand;
-            }
-            else 
-            {
-                dgvLab.Cursor = Cursors.Default;
-            }
+            //if (colName == "Delete" || colName == "Edit")
+            //{
+            //    dgvLab.Cursor = Cursors.Hand;
+            //}
+            //else 
+            //{
+            //    dgvLab.Cursor = Cursors.Default;
+            //}
 
         }
     }
