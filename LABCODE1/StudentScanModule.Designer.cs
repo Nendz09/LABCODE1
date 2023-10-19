@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentScanModule));
             this.cboCam = new System.Windows.Forms.ComboBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.txt_Barcode = new System.Windows.Forms.TextBox();
             this.label_studentName = new System.Windows.Forms.Label();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label_studentSection = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCam
@@ -70,19 +75,55 @@
             this.label_studentName.TabIndex = 4;
             this.label_studentName.Text = "STUDENT NAME";
             // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(772, 6);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 13;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(130, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "SCANNER:";
+            // 
+            // label_studentSection
+            // 
+            this.label_studentSection.AutoSize = true;
+            this.label_studentSection.Location = new System.Drawing.Point(311, 165);
+            this.label_studentSection.Name = "label_studentSection";
+            this.label_studentSection.Size = new System.Drawing.Size(54, 13);
+            this.label_studentSection.TabIndex = 15;
+            this.label_studentSection.Text = "SECTION";
+            // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label_studentSection);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBoxClose);
             this.Controls.Add(this.label_studentName);
             this.Controls.Add(this.txt_Barcode);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.cboCam);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StudentScanModule";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StudentScanModule";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentScanModule_FormClosing);
             this.Load += new System.EventHandler(this.StudentScanModule_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,5 +135,8 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.TextBox txt_Barcode;
         private System.Windows.Forms.Label label_studentName;
+        private System.Windows.Forms.PictureBox pictureBoxClose;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_studentSection;
     }
 }

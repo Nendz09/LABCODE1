@@ -45,6 +45,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtPNo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label_StdExists = new System.Windows.Forms.Label();
+            this.label_PhoneFormat = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -162,9 +164,12 @@
             // txtStudID
             // 
             this.txtStudID.Location = new System.Drawing.Point(203, 93);
+            //this.txtStudID.MaxLength = 10;
             this.txtStudID.Name = "txtStudID";
             this.txtStudID.Size = new System.Drawing.Size(140, 21);
             this.txtStudID.TabIndex = 17;
+            this.txtStudID.TextChanged += new System.EventHandler(this.txtStudID_TextChanged);
+            this.txtStudID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStudID_KeyPress);
             // 
             // label5
             // 
@@ -213,9 +218,12 @@
             // txtPNo
             // 
             this.txtPNo.Location = new System.Drawing.Point(203, 231);
+            this.txtPNo.MaxLength = 11;
             this.txtPNo.Name = "txtPNo";
             this.txtPNo.Size = new System.Drawing.Size(140, 21);
             this.txtPNo.TabIndex = 23;
+            this.txtPNo.TextChanged += new System.EventHandler(this.txtPNo_TextChanged);
+            this.txtPNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPNo_KeyPress);
             // 
             // label4
             // 
@@ -227,11 +235,37 @@
             this.label4.TabIndex = 22;
             this.label4.Text = "Phone No.:";
             // 
+            // label_StdExists
+            // 
+            this.label_StdExists.AutoSize = true;
+            this.label_StdExists.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_StdExists.ForeColor = System.Drawing.Color.Red;
+            this.label_StdExists.Location = new System.Drawing.Point(363, 93);
+            this.label_StdExists.Name = "label_StdExists";
+            this.label_StdExists.Size = new System.Drawing.Size(155, 15);
+            this.label_StdExists.TabIndex = 24;
+            this.label_StdExists.Text = "*Student Already Exists";
+            this.label_StdExists.Visible = false;
+            // 
+            // label_PhoneFormat
+            // 
+            this.label_PhoneFormat.AutoSize = true;
+            this.label_PhoneFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_PhoneFormat.ForeColor = System.Drawing.Color.Red;
+            this.label_PhoneFormat.Location = new System.Drawing.Point(363, 234);
+            this.label_PhoneFormat.Name = "label_PhoneFormat";
+            this.label_PhoneFormat.Size = new System.Drawing.Size(161, 15);
+            this.label_PhoneFormat.TabIndex = 25;
+            this.label_PhoneFormat.Text = "*Wrong Format (0948**)";
+            this.label_PhoneFormat.Visible = false;
+            // 
             // StudentModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 359);
+            this.Controls.Add(this.label_PhoneFormat);
+            this.Controls.Add(this.label_StdExists);
             this.Controls.Add(this.txtPNo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtYearSec);
@@ -276,5 +310,7 @@
         public System.Windows.Forms.TextBox txtPNo;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox txtFullName;
+        public System.Windows.Forms.Label label_StdExists;
+        public System.Windows.Forms.Label label_PhoneFormat;
     }
 }

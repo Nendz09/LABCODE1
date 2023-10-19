@@ -45,6 +45,7 @@ namespace LABCODE1
         //-----ADD STUDENT (STUDENT MODULE FORM)-------//
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
             StudentModuleForm studentModule = new StudentModuleForm();
             studentModule.btnUpdate.Enabled = false;
             studentModule.labelAdd.Visible = true;
@@ -66,6 +67,8 @@ namespace LABCODE1
                 studentModule.txtYearSec.Text = dgvStudents.Rows[e.RowIndex].Cells[2].Value.ToString();
                 studentModule.txtPNo.Text = dgvStudents.Rows[e.RowIndex].Cells[3].Value.ToString();
 
+
+                studentModule.label_StdExists.Visible = false;
                 studentModule.btnSave.Enabled = false;
                 studentModule.btnUpdate.Enabled = true;
                 studentModule.txtStudID.Enabled = false;
@@ -84,6 +87,12 @@ namespace LABCODE1
                 }
             }
             LoadStudents();
+        }
+
+        private void btnBorrow_Click(object sender, EventArgs e)
+        {
+            StudentScanModule studentBorrowModule = new StudentScanModule();
+            studentBorrowModule.ShowDialog();
         }
     }
 }

@@ -125,10 +125,12 @@ namespace LABCODE1
 
                 if (dr.Read())
                 {
+                    label_studentSection.Text = dr["year_sec"].ToString();
                     label_studentName.Text = dr["full_name"].ToString();
                 }
                 else
                 {
+                    label_studentSection.Text = "...";
                     label_studentName.Text = "NO DATA FOUND";
                 }
                 dr.Close();
@@ -147,6 +149,11 @@ namespace LABCODE1
             {
                 e.Handled = true;
             }
+        }
+
+        private void pictureBoxClose_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

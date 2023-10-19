@@ -6,8 +6,10 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace LABCODE1
 {
@@ -15,11 +17,13 @@ namespace LABCODE1
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
+        SqlDataReader dr;
 
         public StudentModuleForm()
         {
             InitializeComponent();
         }
+
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
@@ -50,10 +54,10 @@ namespace LABCODE1
                 {
                     MessageBox.Show("Student ID must be numerical only");
                 }
-                else if (!IsNumeric(txtPNo.Text)) 
-                {
-                    MessageBox.Show("Phone Number must be numerical only");
-                }
+                //else if (!IsNumeric(txtPNo.Text)) 
+                //{
+                //    MessageBox.Show("Phone Number must be numerical only");
+                //}
                 else 
                 {
                     if (MessageBox.Show("Are you sure you want to save this Student data?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -122,6 +126,62 @@ namespace LABCODE1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        //NO SAME STUDENT ID ALLOWED.//
+        private void txtStudID_TextChanged(object sender, EventArgs e)
+        {
+            con.Open();
+            // Check if a student with the same ID exists
+            cmd = new SqlCommand("SELECT COUNT(*) FROM lab_students WHERE student_id = @student_id", con);
+            cmd.Parameters.AddWithValue("@student_id", txtStudID.Text);
+            int studentIdCount = (int)cmd.ExecuteScalar();
+
+            label_StdExists.Visible = studentIdCount > 0;
+            btnSave.Enabled = studentIdCount == 0;
+            con.Close();
+
+
+        }
+
+
+
+        // NO STRINGS ALLOWED //
+        private void txtPNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void txtStudID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            // Limit the length of the input to 10 characters
+            if (txtStudID.Text.Length == 9 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        //PHONE FORMAT
+        private void txtPNo_TextChanged(object sender, EventArgs e)
+        {
+            string phoneFormat = txtPNo.Text;
+            if (!Regex.IsMatch(phoneFormat, "^09[0-9]*$"))
+            {
+                label_PhoneFormat.Visible = true;
+                btnSave.Enabled = false;
+            }
+            else
+            {
+                label_PhoneFormat.Visible = false;
+                btnSave.Enabled = true;
             }
         }
     }
