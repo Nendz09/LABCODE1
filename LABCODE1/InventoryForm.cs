@@ -74,6 +74,9 @@ namespace LABCODE1
                 inventoryModule.cmbCtg.Text = dgvLab.Rows[e.RowIndex].Cells[2].Value.ToString();
                 inventoryModule.cmbSize.Text = dgvLab.Rows[e.RowIndex].Cells[3].Value.ToString();
 
+                inventoryModule.txtQuantity.Visible = false;
+                inventoryModule.label_Quantity.Visible = false;
+
                 inventoryModule.btnSave.Enabled = false;
                 inventoryModule.btnUpdate.Enabled = true;
                 inventoryModule.txtEqpID.Enabled = false;

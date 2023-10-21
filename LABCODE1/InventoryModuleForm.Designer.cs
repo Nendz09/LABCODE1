@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryModuleForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelUpdate = new System.Windows.Forms.Label();
+            this.labelAdd = new System.Windows.Forms.Label();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,8 +45,8 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtEqpID = new System.Windows.Forms.TextBox();
-            this.labelAdd = new System.Windows.Forms.Label();
-            this.labelUpdate = new System.Windows.Forms.Label();
+            this.label_Quantity = new System.Windows.Forms.Label();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +63,32 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(597, 63);
             this.panel1.TabIndex = 0;
+            // 
+            // labelUpdate
+            // 
+            this.labelUpdate.AutoSize = true;
+            this.labelUpdate.BackColor = System.Drawing.Color.Transparent;
+            this.labelUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUpdate.ForeColor = System.Drawing.Color.White;
+            this.labelUpdate.Location = new System.Drawing.Point(212, 20);
+            this.labelUpdate.Name = "labelUpdate";
+            this.labelUpdate.Size = new System.Drawing.Size(74, 18);
+            this.labelUpdate.TabIndex = 14;
+            this.labelUpdate.Text = "UPDATE";
+            this.labelUpdate.Visible = false;
+            // 
+            // labelAdd
+            // 
+            this.labelAdd.AutoSize = true;
+            this.labelAdd.BackColor = System.Drawing.Color.Transparent;
+            this.labelAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdd.ForeColor = System.Drawing.Color.White;
+            this.labelAdd.Location = new System.Drawing.Point(212, 20);
+            this.labelAdd.Name = "labelAdd";
+            this.labelAdd.Size = new System.Drawing.Size(42, 18);
+            this.labelAdd.TabIndex = 13;
+            this.labelAdd.Text = "ADD";
+            this.labelAdd.Visible = false;
             // 
             // pictureBoxClose
             // 
@@ -217,37 +245,32 @@
             this.txtEqpID.Size = new System.Drawing.Size(97, 22);
             this.txtEqpID.TabIndex = 13;
             // 
-            // labelAdd
+            // label_Quantity
             // 
-            this.labelAdd.AutoSize = true;
-            this.labelAdd.BackColor = System.Drawing.Color.Transparent;
-            this.labelAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdd.ForeColor = System.Drawing.Color.White;
-            this.labelAdd.Location = new System.Drawing.Point(212, 20);
-            this.labelAdd.Name = "labelAdd";
-            this.labelAdd.Size = new System.Drawing.Size(42, 18);
-            this.labelAdd.TabIndex = 13;
-            this.labelAdd.Text = "ADD";
-            this.labelAdd.Visible = false;
+            this.label_Quantity.AutoSize = true;
+            this.label_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Quantity.Location = new System.Drawing.Point(31, 270);
+            this.label_Quantity.Name = "label_Quantity";
+            this.label_Quantity.Size = new System.Drawing.Size(81, 20);
+            this.label_Quantity.TabIndex = 14;
+            this.label_Quantity.Text = "Quantity:";
             // 
-            // labelUpdate
+            // txtQuantity
             // 
-            this.labelUpdate.AutoSize = true;
-            this.labelUpdate.BackColor = System.Drawing.Color.Transparent;
-            this.labelUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUpdate.ForeColor = System.Drawing.Color.White;
-            this.labelUpdate.Location = new System.Drawing.Point(212, 20);
-            this.labelUpdate.Name = "labelUpdate";
-            this.labelUpdate.Size = new System.Drawing.Size(74, 18);
-            this.labelUpdate.TabIndex = 14;
-            this.labelUpdate.Text = "UPDATE";
-            this.labelUpdate.Visible = false;
+            this.txtQuantity.Location = new System.Drawing.Point(199, 270);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(97, 22);
+            this.txtQuantity.TabIndex = 15;
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
+            this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
             // InventoryModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 418);
+            this.Controls.Add(this.txtQuantity);
+            this.Controls.Add(this.label_Quantity);
             this.Controls.Add(this.txtEqpID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnClear);
@@ -292,5 +315,7 @@
         public System.Windows.Forms.TextBox txtEqpID;
         public System.Windows.Forms.Label labelUpdate;
         public System.Windows.Forms.Label labelAdd;
+        public System.Windows.Forms.TextBox txtQuantity;
+        public System.Windows.Forms.Label label_Quantity;
     }
 }

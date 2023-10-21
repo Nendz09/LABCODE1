@@ -32,17 +32,29 @@ namespace LABCODE1
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to save this Equipment data?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes) { 
-                    cmd = new SqlCommand("INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size) VALUES(@eqp_name, @eqp_categ, @eqp_size)", con);
-                    cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
-                    cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
-                    cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    MessageBox.Show("Equipment has been saved.");
-                    Clear();
-                    this.Dispose();
+                if (int.TryParse(txtQuantity.Text, out int quantity)) 
+                {
+                    if(quantity > 0) 
+                    {
+                        if (MessageBox.Show("Are you sure you want to save this Equipment data?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            con.Open();
+                            
+                            for (int i = 0; i < quantity; i++) 
+                            {
+                                cmd = new SqlCommand("INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size) VALUES(@eqp_name, @eqp_categ, @eqp_size)", con);
+                                cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
+                                cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
+                                cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
+
+                                cmd.ExecuteNonQuery();
+                            }
+                            con.Close();
+                            MessageBox.Show("Equipment has been saved.");
+                            Clear();
+                            this.Dispose();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -64,6 +76,8 @@ namespace LABCODE1
             cmbSize.SelectedIndex = -1;
         }
 
+
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -84,6 +98,29 @@ namespace LABCODE1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        
+        //NO STRING ALLOWED QUANTITY
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        //LIMIT 10 ONLEH
+        private void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtQuantity.Text, out int quantity))
+            {
+                if (quantity > 10)
+                {
+                    txtQuantity.Text = "10";
+                    txtQuantity.SelectionStart = txtQuantity.Text.Length; //makes the cursor to the right part
+                }
             }
         }
     }
