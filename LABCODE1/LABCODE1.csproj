@@ -143,6 +143,12 @@
     <Compile Include="InventoryForm.Designer.cs">
       <DependentUpon>InventoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserTextbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserTextbox.Designer.cs">
+      <DependentUpon>UserTextbox.cs</DependentUpon>
+    </Compile>
     <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryForm.resx">
       <DependentUpon>InventoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserTextbox.resx">
+      <DependentUpon>UserTextbox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeForm.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>
