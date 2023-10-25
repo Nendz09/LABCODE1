@@ -16,7 +16,7 @@ namespace LABCODE1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InventoryForm());
+            Application.Run(new MainForm());
         }
     }
 }

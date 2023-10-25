@@ -31,6 +31,7 @@ namespace LABCODE1
             this.Dispose();
         }
          
+        //METHODS
         //---LOAD EQUIPMENT INVENTORY---//
         public void LoadEquipment()
         {
@@ -97,24 +98,35 @@ namespace LABCODE1
             LoadEquipment();
         }
 
-        private void dgvLab_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        //SEARCH
+        private void userTextbox1__TextChanged(object sender, EventArgs e)
         {
-            //ToolTip toolTip1 = new ToolTip();
-            //System.ArgumentOutOfRangeException: 'Index was out of range. Must be non-negative and less than the size of the collection.
-            //Parameter name: index'
-            //string colName = dgvLab.Columns[e.ColumnIndex].Name;
+            string searchValue = userTextbox1.Texts;
 
-            //if (colName == "Delete" || colName == "Edit")
-            //{
-            //    dgvLab.Cursor = Cursors.Hand;
-            //}
-            //else 
-            //{
-            //    dgvLab.Cursor = Cursors.Default;
-            //}
+            if (string.IsNullOrWhiteSpace(searchValue))
+            {
+                LoadEquipment(); // If search box is empty, reload all equipment
+            }
+            else
+            {
+                // Filter and load equipment that match the searchValue
+                int i = 0;
+                dgvLab.Rows.Clear();
 
+                cmd = new SqlCommand("SELECT * FROM lab_eqpment WHERE eqp_name LIKE @searchValue OR eqp_categ LIKE @searchValue OR eqp_size LIKE @searchValue", con);
+                cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
+
+                con.Open();
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    ++i;
+                    dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                }
+                dr.Close();
+                con.Close();
+            }
         }
-
-       
     }
 }
