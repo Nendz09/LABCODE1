@@ -19,6 +19,7 @@ namespace LABCODE1
         public InventoryModuleForm()
         {
             InitializeComponent();
+            //txtQuantity_EventHandlers();
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
@@ -114,6 +115,7 @@ namespace LABCODE1
         //LIMIT 10 ONLEH
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
+            isFilled();
             if (int.TryParse(txtQuantity.Text, out int quantity))
             {
                 if (quantity > 10)
@@ -121,7 +123,45 @@ namespace LABCODE1
                     txtQuantity.Text = "10";
                     txtQuantity.SelectionStart = txtQuantity.Text.Length; //makes the cursor to the right part
                 }
+                else if (quantity == 0)
+                {
+                    btnSave.Enabled = false; 
+                }
             }
         }
+
+
+        private void cmbSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            isFilled();
+        }
+
+        private void cmbCtg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            isFilled();
+        }
+
+        private void txtEquipment_TextChanged(object sender, EventArgs e)
+        {
+            isFilled();
+        }
+
+        private void txtEqpID_TextChanged(object sender, EventArgs e)
+        {
+            isFilled();
+        }
+
+        //every textbox filled
+        private void isFilled()
+        {
+            bool allTextIsFilled = !string.IsNullOrEmpty(txtEquipment.Text)
+                                && !string.IsNullOrEmpty(cmbCtg.Text)
+                                && !string.IsNullOrEmpty(cmbSize.Text)
+                                && !string.IsNullOrEmpty(txtQuantity.Text);
+            btnSave.Enabled = allTextIsFilled;
+        }
+
+
+       
     }
 }

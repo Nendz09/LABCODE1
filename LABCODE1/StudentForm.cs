@@ -94,5 +94,35 @@ namespace LABCODE1
             StudentScanModule studentBorrowModule = new StudentScanModule();
             studentBorrowModule.ShowDialog();
         }
+
+        private void searchTextbox__TextChanged(object sender, EventArgs e)
+        {
+            string searchValue = searchTextbox.Texts;
+
+            if (string.IsNullOrWhiteSpace(searchValue))
+            {
+                LoadStudents(); // If search box is empty, reload all equipment
+            }
+            else
+            {
+                // Filter and load equipment that match the searchValue
+                int i = 0;
+                dgvStudents.Rows.Clear();
+
+                cmd = new SqlCommand("SELECT * FROM lab_students WHERE student_id LIKE @searchValue OR full_name LIKE @searchValue OR year_sec LIKE @searchValue OR c_number LIKE @searchValue", con);
+                cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
+
+                con.Open();
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    ++i;
+                    dgvStudents.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                }
+                dr.Close();
+                con.Close();
+            }
+        }
     }
 }

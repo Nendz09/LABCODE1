@@ -1,4 +1,6 @@
-﻿namespace LABCODE1
+﻿using System.Windows.Forms;
+
+namespace LABCODE1
 {
     partial class InventoryModuleForm
     {
@@ -129,6 +131,7 @@
             this.txtEquipment.Name = "txtEquipment";
             this.txtEquipment.Size = new System.Drawing.Size(321, 22);
             this.txtEquipment.TabIndex = 2;
+            this.txtEquipment.TextChanged += new System.EventHandler(this.txtEquipment_TextChanged);
             // 
             // label3
             // 
@@ -152,6 +155,7 @@
             // 
             // cmbCtg
             // 
+            this.cmbCtg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCtg.FormattingEnabled = true;
             this.cmbCtg.Items.AddRange(new object[] {
             "GENERAL SCIENCE",
@@ -163,9 +167,11 @@
             this.cmbCtg.Name = "cmbCtg";
             this.cmbCtg.Size = new System.Drawing.Size(321, 24);
             this.cmbCtg.TabIndex = 5;
+            this.cmbCtg.SelectedIndexChanged += new System.EventHandler(this.cmbCtg_SelectedIndexChanged);
             // 
             // cmbSize
             // 
+            this.cmbSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSize.FormattingEnabled = true;
             this.cmbSize.Items.AddRange(new object[] {
             "10 mL",
@@ -179,11 +185,13 @@
             this.cmbSize.Name = "cmbSize";
             this.cmbSize.Size = new System.Drawing.Size(210, 24);
             this.cmbSize.TabIndex = 7;
+            this.cmbSize.SelectedIndexChanged += new System.EventHandler(this.cmbSize_SelectedIndexChanged);
             // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Enabled = false;
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -244,6 +252,7 @@
             this.txtEqpID.Name = "txtEqpID";
             this.txtEqpID.Size = new System.Drawing.Size(97, 22);
             this.txtEqpID.TabIndex = 13;
+            this.txtEqpID.TextChanged += new System.EventHandler(this.txtEqpID_TextChanged);
             // 
             // label_Quantity
             // 

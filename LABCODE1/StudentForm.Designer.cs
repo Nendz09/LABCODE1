@@ -33,6 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentForm));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,9 +41,9 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.searchTextbox = new LABCODE1.UserTextbox();
             this.btnBorrow = new LABCODE1.UserButton();
             this.btnAdd = new LABCODE1.UserButton();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBorrow)).BeginInit();
@@ -63,6 +64,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
+            this.panel1.Controls.Add(this.searchTextbox);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnBorrow);
             this.panel1.Controls.Add(this.btnAdd);
@@ -72,6 +74,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(567, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 25);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Borrow";
             // 
             // dgvStudents
             // 
@@ -163,13 +176,36 @@
             this.Delete.ReadOnly = true;
             this.Delete.Width = 5;
             // 
+            // searchTextbox
+            // 
+            this.searchTextbox.BackColor = System.Drawing.SystemColors.Window;
+            this.searchTextbox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.searchTextbox.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.searchTextbox.BorderRadius = 15;
+            this.searchTextbox.BorderSize = 2;
+            this.searchTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchTextbox.ForeColor = System.Drawing.Color.Black;
+            this.searchTextbox.Location = new System.Drawing.Point(235, 11);
+            this.searchTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.searchTextbox.Multiline = false;
+            this.searchTextbox.Name = "searchTextbox";
+            this.searchTextbox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.searchTextbox.PasswordChar = false;
+            this.searchTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.searchTextbox.PlaceholderText = "Search...";
+            this.searchTextbox.Size = new System.Drawing.Size(200, 31);
+            this.searchTextbox.TabIndex = 5;
+            this.searchTextbox.Texts = "";
+            this.searchTextbox.UnderlinedStyle = false;
+            this.searchTextbox._TextChanged += new System.EventHandler(this.searchTextbox__TextChanged);
+            // 
             // btnBorrow
             // 
             this.btnBorrow.BackColor = System.Drawing.Color.DarkGreen;
             this.btnBorrow.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrow.Image")));
             this.btnBorrow.ImageHover = null;
             this.btnBorrow.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnBorrow.ImageNormal")));
-            this.btnBorrow.Location = new System.Drawing.Point(562, 0);
+            this.btnBorrow.Location = new System.Drawing.Point(658, 0);
             this.btnBorrow.Name = "btnBorrow";
             this.btnBorrow.Size = new System.Drawing.Size(60, 49);
             this.btnBorrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -190,17 +226,6 @@
             this.btnAdd.TabIndex = 2;
             this.btnAdd.TabStop = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(471, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 25);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Borrow";
             // 
             // StudentForm
             // 
@@ -238,5 +263,6 @@
         private System.Windows.Forms.DataGridViewImageColumn Delete;
         private UserButton btnBorrow;
         private System.Windows.Forms.Label label2;
+        private UserTextbox searchTextbox;
     }
 }

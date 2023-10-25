@@ -55,7 +55,7 @@ namespace LABCODE1
         {
             InventoryModuleForm inventoryModule = new InventoryModuleForm();
             inventoryModule.txtEqpID.Enabled = false;
-            inventoryModule.btnSave.Enabled = true;
+            //inventoryModule.btnSave.Enabled = true;
             inventoryModule.btnUpdate.Enabled = false;
             inventoryModule.labelAdd.Visible = true;
             inventoryModule.ShowDialog();
