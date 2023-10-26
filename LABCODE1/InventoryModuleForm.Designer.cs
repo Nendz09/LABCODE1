@@ -252,7 +252,6 @@ namespace LABCODE1
             this.txtEqpID.Name = "txtEqpID";
             this.txtEqpID.Size = new System.Drawing.Size(97, 22);
             this.txtEqpID.TabIndex = 13;
-            this.txtEqpID.TextChanged += new System.EventHandler(this.txtEqpID_TextChanged);
             // 
             // label_Quantity
             // 

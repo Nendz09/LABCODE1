@@ -113,7 +113,7 @@ namespace LABCODE1
                 int i = 0;
                 dgvLab.Rows.Clear();
 
-                cmd = new SqlCommand("SELECT * FROM lab_eqpment WHERE eqp_name LIKE @searchValue OR eqp_categ LIKE @searchValue OR eqp_size LIKE @searchValue", con);
+                cmd = new SqlCommand("SELECT * FROM lab_eqpment WHERE eqp_id LIKE @searchValue OR eqp_name LIKE @searchValue OR eqp_categ LIKE @searchValue OR eqp_size LIKE @searchValue", con);
                 cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
 
                 con.Open();

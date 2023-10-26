@@ -73,6 +73,7 @@ namespace LABCODE1
         //-------CLEAR TEXT------//
         public void Clear() {
             txtEquipment.Clear();
+            txtQuantity.Clear();
             cmbCtg.SelectedIndex = -1;
             cmbSize.SelectedIndex = -1;
         }
@@ -142,11 +143,6 @@ namespace LABCODE1
         }
 
         private void txtEquipment_TextChanged(object sender, EventArgs e)
-        {
-            isFilled();
-        }
-
-        private void txtEqpID_TextChanged(object sender, EventArgs e)
         {
             isFilled();
         }

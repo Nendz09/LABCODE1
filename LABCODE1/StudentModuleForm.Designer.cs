@@ -87,6 +87,7 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Enabled = false;
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -164,7 +165,6 @@
             // txtStudID
             // 
             this.txtStudID.Location = new System.Drawing.Point(203, 93);
-            //this.txtStudID.MaxLength = 10;
             this.txtStudID.Name = "txtStudID";
             this.txtStudID.Size = new System.Drawing.Size(140, 21);
             this.txtStudID.TabIndex = 17;
