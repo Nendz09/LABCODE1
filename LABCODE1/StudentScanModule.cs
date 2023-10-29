@@ -49,6 +49,7 @@ namespace LABCODE1
             if (filterInfoCollection.Count == 0)
             {
                 MessageBox.Show("No video capture devices found.");
+                return;
             }
             else
             {
@@ -58,20 +59,24 @@ namespace LABCODE1
                 }
                 cboCam.SelectedIndex = 0;
             }
-            
-        }
-
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            if (filterInfoCollection.Count == 0)
-            {
-                MessageBox.Show("No video capture devices found.");
-                return;
-            }
 
             videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cboCam.SelectedIndex].MonikerString);
             videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
             videoCaptureDevice.Start();
+
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            //if (filterInfoCollection.Count == 0)
+            //{
+            //    MessageBox.Show("No video capture devices found.");
+            //    return;
+            //}
+
+            //videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cboCam.SelectedIndex].MonikerString);
+            //videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+            //videoCaptureDevice.Start();
         }
 
         private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
@@ -82,9 +87,7 @@ namespace LABCODE1
             //BarcodeReader reader = new BarcodeReader(); 
 
             //THIS ONE IS PARA MAANO FORMAT NG BARCODE VVVV----------
-            
-
-
+  
             var result = reader.Decode(bitmap);
             if (result != null)
             {

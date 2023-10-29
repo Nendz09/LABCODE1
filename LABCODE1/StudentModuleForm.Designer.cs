@@ -168,6 +168,7 @@
             this.txtStudID.Name = "txtStudID";
             this.txtStudID.Size = new System.Drawing.Size(140, 21);
             this.txtStudID.TabIndex = 17;
+            //this.txtStudID.MaxLength = 9;
             this.txtStudID.TextChanged += new System.EventHandler(this.txtStudID_TextChanged);
             this.txtStudID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStudID_KeyPress);
             // 

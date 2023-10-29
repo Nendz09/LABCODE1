@@ -165,7 +165,7 @@ namespace LABCODE1
                 e.Handled = true;
             }
 
-            // Limit the length of the input to 10 characters
+            // Limit the length of the input to 9 characters
             if (txtStudID.Text.Length == 9 && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
@@ -173,14 +173,14 @@ namespace LABCODE1
 
             //if the user copies a string and paste it with a string
             //avoid error in line 141
-            if (Clipboard.ContainsText())
-            {
-                string clipboardText = Clipboard.GetText();
-                if (clipboardText.Any(c => !char.IsDigit(c))) //lambda expression
-                {
-                    e.Handled = true;
-                }
-            }
+            //if (Clipboard.ContainsText())
+            //{
+            //    string clipboardText = Clipboard.GetText();
+            //    if (clipboardText.Any(c => !char.IsDigit(c))) //lambda expression
+            //    {
+            //        e.Handled = true;
+            //    }
+            //}
         }
 
         //PHONE FORMAT
