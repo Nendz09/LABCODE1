@@ -42,5 +42,13 @@ namespace LABCODE1
         {
             openChildForm(new StudentForm());
         }
+
+
+
+        //terminate app
+        private void MainForm_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

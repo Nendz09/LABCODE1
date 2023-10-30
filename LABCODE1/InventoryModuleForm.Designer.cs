@@ -162,7 +162,8 @@ namespace LABCODE1
             "BIOLOGY",
             "PHYSICS",
             "CHEMISTRY",
-            "SUBSTANCES"});
+            "SUBSTANCES",
+            "OTHER"});
             this.cmbCtg.Location = new System.Drawing.Point(199, 175);
             this.cmbCtg.Name = "cmbCtg";
             this.cmbCtg.Size = new System.Drawing.Size(321, 24);
@@ -180,7 +181,8 @@ namespace LABCODE1
             "100 mL",
             "250 mL",
             "500 mL",
-            "1000 mL"});
+            "1000 mL",
+            "OTHER"});
             this.cmbSize.Location = new System.Drawing.Point(199, 227);
             this.cmbSize.Name = "cmbSize";
             this.cmbSize.Size = new System.Drawing.Size(210, 24);

@@ -74,6 +74,8 @@ namespace LABCODE1
         public void Clear() {
             txtEquipment.Clear();
             txtQuantity.Clear();
+            cmbCtg.ResetText();
+            cmbSize.ResetText();
             cmbCtg.SelectedIndex = -1;
             cmbSize.SelectedIndex = -1;
         }
@@ -134,11 +136,33 @@ namespace LABCODE1
 
         private void cmbSize_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmbSize.SelectedItem != null && cmbSize.SelectedItem.ToString() == "OTHER")
+            {
+                // If "OTHER" is selected, change the ComboBox to be a TextBox
+                cmbSize.DropDownStyle = ComboBoxStyle.DropDown;
+            }
+            else
+            {
+                // For other selections, set it back to DropDownList
+                cmbSize.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
+
             isFilled();
         }
 
         private void cmbCtg_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "OTHER")
+            {
+                // If "OTHER" is selected, change the ComboBox to be a TextBox
+                cmbCtg.DropDownStyle = ComboBoxStyle.DropDown;
+            }
+            else
+            {
+                // For other selections, set it back to DropDownList
+                cmbCtg.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
+
             isFilled();
         }
 
