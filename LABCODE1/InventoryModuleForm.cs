@@ -76,8 +76,8 @@ namespace LABCODE1
             txtQuantity.Clear();
             cmbCtg.ResetText();
             cmbSize.ResetText();
-            cmbCtg.SelectedIndex = -1;
-            cmbSize.SelectedIndex = -1;
+            //cmbCtg.SelectedIndex = -1;
+            //cmbSize.SelectedIndex = -1;
         }
 
 
@@ -133,6 +133,57 @@ namespace LABCODE1
             }
         }
 
+        private void cmbCtg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "OTHER")
+            {
+                // If "OTHER" is selected, change the ComboBox to be a TextBox
+                cmbCtg.DropDownStyle = ComboBoxStyle.DropDown;
+
+            }
+            else
+            {
+                // For other selections, set it back to DropDownList
+                cmbCtg.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                if (cmbCtg.SelectedItem.ToString() == "GENERAL SCIENCE") 
+                {
+                    cmbSize.Items.Clear();
+                    cmbSize.Items.Add("10 mL");
+                    cmbSize.Items.Add("25 mL");
+                    cmbSize.Items.Add("50 mL");
+                    cmbSize.Items.Add("100 mL");
+                    cmbSize.Items.Add("250 mL");
+                    cmbSize.Items.Add("500 mL");
+                    cmbSize.Items.Add("1000 mL");
+                }
+                else if (cmbCtg.SelectedItem.ToString() == "BIOLOGY")
+                {
+                    cmbSize.Items.Clear();
+                    cmbSize.Items.Add("Chromosome Studies");
+                    cmbSize.Items.Add("Elementary Life Science");
+                    cmbSize.Items.Add("General Biology");
+                    cmbSize.Items.Add("Assorted Slides");
+                    cmbSize.Items.Add("Human Pathology");
+                    cmbSize.Items.Add("Assorted Slides");
+                    cmbSize.Items.Add("Mammalian Reproductive");
+                    cmbSize.Items.Add("Microbiology");
+                }
+                else if (cmbCtg.SelectedItem.ToString() == "PHYSICS")
+                {
+                    cmbSize.Items.Clear();
+                    cmbSize.Items.Add("Simple");
+                    cmbSize.Items.Add("Advanced");
+                    cmbSize.Items.Add("Minute-second\r\nCount up/Countdown\r\n");
+                    cmbSize.Items.Add("Double Concave\r\n(50mm diameter)\r\n");
+                    cmbSize.Items.Add("Double Convex");
+                    cmbSize.Items.Add("Simple Kits");
+                }
+            }
+
+            isFilled();
+        }
 
         private void cmbSize_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -150,21 +201,6 @@ namespace LABCODE1
             isFilled();
         }
 
-        private void cmbCtg_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "OTHER")
-            {
-                // If "OTHER" is selected, change the ComboBox to be a TextBox
-                cmbCtg.DropDownStyle = ComboBoxStyle.DropDown;
-            }
-            else
-            {
-                // For other selections, set it back to DropDownList
-                cmbCtg.DropDownStyle = ComboBoxStyle.DropDownList;
-            }
-
-            isFilled();
-        }
 
         private void txtEquipment_TextChanged(object sender, EventArgs e)
         {

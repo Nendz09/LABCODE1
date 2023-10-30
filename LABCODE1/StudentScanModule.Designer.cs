@@ -1,4 +1,6 @@
-﻿namespace LABCODE1
+﻿using System.Windows.Forms;
+
+namespace LABCODE1
 {
     partial class StudentScanModule
     {
@@ -36,7 +38,12 @@
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label_studentSection = new System.Windows.Forms.Label();
+            this.dgvItemBorrow = new System.Windows.Forms.DataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCam
@@ -49,17 +56,17 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(458, 381);
+            this.btnStart.Location = new System.Drawing.Point(377, 379);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 1;
-            this.btnStart.Text = "START";
+            this.btnStart.Text = "PROCEED";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // txt_Barcode
             // 
-            this.txt_Barcode.Location = new System.Drawing.Point(170, 381);
+            this.txt_Barcode.Location = new System.Drawing.Point(69, 381);
             this.txt_Barcode.Name = "txt_Barcode";
             this.txt_Barcode.Size = new System.Drawing.Size(268, 20);
             this.txt_Barcode.TabIndex = 3;
@@ -69,7 +76,7 @@
             // label_studentName
             // 
             this.label_studentName.AutoSize = true;
-            this.label_studentName.Location = new System.Drawing.Point(142, 165);
+            this.label_studentName.Location = new System.Drawing.Point(66, 136);
             this.label_studentName.Name = "label_studentName";
             this.label_studentName.Size = new System.Drawing.Size(93, 13);
             this.label_studentName.TabIndex = 4;
@@ -99,17 +106,46 @@
             // label_studentSection
             // 
             this.label_studentSection.AutoSize = true;
-            this.label_studentSection.Location = new System.Drawing.Point(311, 165);
+            this.label_studentSection.Location = new System.Drawing.Point(223, 136);
             this.label_studentSection.Name = "label_studentSection";
             this.label_studentSection.Size = new System.Drawing.Size(54, 13);
             this.label_studentSection.TabIndex = 15;
             this.label_studentSection.Text = "SECTION";
+            // 
+            // dgvItemBorrow
+            // 
+            this.dgvItemBorrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItemBorrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column3,
+            this.Column1,
+            this.Column2});
+            this.dgvItemBorrow.EnableHeadersVisualStyles = false;
+            this.dgvItemBorrow.Location = new System.Drawing.Point(438, 95);
+            this.dgvItemBorrow.Name = "dgvItemBorrow";
+            this.dgvItemBorrow.Size = new System.Drawing.Size(297, 253);
+            this.dgvItemBorrow.TabIndex = 16;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Item ID";
+            this.Column3.Name = "Column3";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Item Name";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Size/Calibration";
+            this.Column2.Name = "Column2";
             // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgvItemBorrow);
             this.Controls.Add(this.label_studentSection);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBoxClose);
@@ -124,6 +160,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentScanModule_FormClosing);
             this.Load += new System.EventHandler(this.StudentScanModule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,5 +175,9 @@
         private System.Windows.Forms.PictureBox pictureBoxClose;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label_studentSection;
+        private System.Windows.Forms.DataGridView dgvItemBorrow;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
