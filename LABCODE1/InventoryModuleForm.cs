@@ -106,13 +106,128 @@ namespace LABCODE1
         }
 
         
+        
+
+        private void cmbCtg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "OTHER")
+            {
+                cmbCtg.DropDownStyle = ComboBoxStyle.DropDown;
+            }
+            else
+            {
+                cmbCtg.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                if (cmbCtg.SelectedItem.ToString() == "GENERAL SCIENCE") 
+                {
+                    cmbSize.Enabled = true;
+                    txtQuantity.Clear();
+                    cmbSize.Items.Clear();
+                    cmbSize.Items.Add("10 mL");
+                    cmbSize.Items.Add("25 mL");
+                    cmbSize.Items.Add("50 mL");
+                    cmbSize.Items.Add("100 mL");
+                    cmbSize.Items.Add("250 mL");
+                    cmbSize.Items.Add("500 mL");
+                    cmbSize.Items.Add("1000 mL");
+                    cmbSize.Items.Add("OTHER");
+                }
+                else if (cmbCtg.SelectedItem.ToString() == "BIOLOGY")
+                {
+                    cmbSize.Enabled = true;
+                    txtQuantity.Clear();
+                    cmbSize.Items.Clear();
+                    cmbSize.Items.Add("Chromosome Studies");
+                    cmbSize.Items.Add("Elementary Life Science");
+                    cmbSize.Items.Add("General Biology");
+                    cmbSize.Items.Add("Assorted Slides");
+                    cmbSize.Items.Add("Human Pathology");
+                    cmbSize.Items.Add("Assorted Slides");
+                    cmbSize.Items.Add("Mammalian Reproductive");
+                    cmbSize.Items.Add("Microbiology");
+                    cmbSize.Items.Add("OTHER");
+                }
+                else if (cmbCtg.SelectedItem.ToString() == "PHYSICS")
+                {
+                    cmbSize.Enabled = true;
+                    txtQuantity.Clear();
+                    cmbSize.Items.Clear();
+                    cmbSize.Items.Add("Simple");
+                    cmbSize.Items.Add("Advanced");
+                    cmbSize.Items.Add("Minute-second");
+                    cmbSize.Items.Add("Double Concave(50mm diameter)");
+                    cmbSize.Items.Add("Double Convex");
+                    cmbSize.Items.Add("Simple Kits");
+                    cmbSize.Items.Add("Toolbox Set");
+                    cmbSize.Items.Add("Wood/plastic");
+                    cmbSize.Items.Add("Steel");
+                    cmbSize.Items.Add("Bar");
+                    cmbSize.Items.Add("U-shaped");
+                    cmbSize.Items.Add("Rod");
+                    cmbSize.Items.Add("OTHER");
+                }
+                else if (cmbCtg.SelectedItem.ToString() == "CHEMISTRY")
+                {
+                    cmbSize.Enabled = true;
+                    txtQuantity.Clear();
+                    cmbSize.Items.Clear();
+                    cmbSize.Items.Add("Ceramic");
+                    cmbSize.Items.Add("Glass");
+                    cmbSize.Items.Add("OTHER");
+                }
+                else if (cmbCtg.SelectedItem.ToString() == "SUBSTANCES")
+                {
+                    txtQuantity.Clear();
+                    cmbSize.Items.Clear();
+                    cmbSize.Enabled = false;
+                    //cmbSize.Items.Add("Ceramic");
+                    //cmbSize.Items.Add("Glass");
+                    //cmbSize.Items.Add("OTHER");
+                }
+            }
+
+            isFilled();
+        }
+
+        private void cmbSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbSize.SelectedItem != null && cmbSize.SelectedItem.ToString() == "OTHER")
+            {
+               
+                cmbSize.DropDownStyle = ComboBoxStyle.DropDown;
+            }
+            else
+            {
+
+                cmbSize.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
+
+            isFilled();
+        }
+
+
         //NO STRING ALLOWED QUANTITY
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "SUBSTANCES")
             {
-                e.Handled = true;
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
             }
+            else
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            //{
+            //    e.Handled = true;
+            //}
         }
 
         //LIMIT 10 ONLEH
@@ -128,79 +243,11 @@ namespace LABCODE1
                 }
                 else if (quantity == 0)
                 {
-                    btnSave.Enabled = false; 
+                    btnSave.Enabled = false;
                 }
             }
+
         }
-
-        private void cmbCtg_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "OTHER")
-            {
-                // If "OTHER" is selected, change the ComboBox to be a TextBox
-                cmbCtg.DropDownStyle = ComboBoxStyle.DropDown;
-
-            }
-            else
-            {
-                // For other selections, set it back to DropDownList
-                cmbCtg.DropDownStyle = ComboBoxStyle.DropDownList;
-
-                if (cmbCtg.SelectedItem.ToString() == "GENERAL SCIENCE") 
-                {
-                    cmbSize.Items.Clear();
-                    cmbSize.Items.Add("10 mL");
-                    cmbSize.Items.Add("25 mL");
-                    cmbSize.Items.Add("50 mL");
-                    cmbSize.Items.Add("100 mL");
-                    cmbSize.Items.Add("250 mL");
-                    cmbSize.Items.Add("500 mL");
-                    cmbSize.Items.Add("1000 mL");
-                }
-                else if (cmbCtg.SelectedItem.ToString() == "BIOLOGY")
-                {
-                    cmbSize.Items.Clear();
-                    cmbSize.Items.Add("Chromosome Studies");
-                    cmbSize.Items.Add("Elementary Life Science");
-                    cmbSize.Items.Add("General Biology");
-                    cmbSize.Items.Add("Assorted Slides");
-                    cmbSize.Items.Add("Human Pathology");
-                    cmbSize.Items.Add("Assorted Slides");
-                    cmbSize.Items.Add("Mammalian Reproductive");
-                    cmbSize.Items.Add("Microbiology");
-                }
-                else if (cmbCtg.SelectedItem.ToString() == "PHYSICS")
-                {
-                    cmbSize.Items.Clear();
-                    cmbSize.Items.Add("Simple");
-                    cmbSize.Items.Add("Advanced");
-                    cmbSize.Items.Add("Minute-second\r\nCount up/Countdown\r\n");
-                    cmbSize.Items.Add("Double Concave\r\n(50mm diameter)\r\n");
-                    cmbSize.Items.Add("Double Convex");
-                    cmbSize.Items.Add("Simple Kits");
-                }
-            }
-
-            isFilled();
-        }
-
-        private void cmbSize_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbSize.SelectedItem != null && cmbSize.SelectedItem.ToString() == "OTHER")
-            {
-                // If "OTHER" is selected, change the ComboBox to be a TextBox
-                cmbSize.DropDownStyle = ComboBoxStyle.DropDown;
-            }
-            else
-            {
-                // For other selections, set it back to DropDownList
-                cmbSize.DropDownStyle = ComboBoxStyle.DropDownList;
-            }
-
-            isFilled();
-        }
-
 
         private void txtEquipment_TextChanged(object sender, EventArgs e)
         {
