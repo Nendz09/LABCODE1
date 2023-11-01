@@ -93,8 +93,6 @@ namespace LABCODE1
         {
             StudentScanModule studentBorrowModule = new StudentScanModule();
             studentBorrowModule.ShowDialog();
-
-
         }
 
         private void searchTextbox__TextChanged(object sender, EventArgs e)

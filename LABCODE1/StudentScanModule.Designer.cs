@@ -138,21 +138,25 @@ namespace LABCODE1
             // 
             this.Column4.HeaderText = "Date of Borrow";
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Item ID";
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Item Name";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Size/Calibration";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // dateLabel
             // 
@@ -222,7 +226,6 @@ namespace LABCODE1
 
         private System.Windows.Forms.ComboBox cboCam;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.TextBox txt_Barcode;
         private System.Windows.Forms.Label label_studentName;
         private System.Windows.Forms.PictureBox pictureBoxClose;
         private System.Windows.Forms.Label label1;
@@ -234,7 +237,8 @@ namespace LABCODE1
         private DataGridViewTextBoxColumn Column2;
         private Label dateLabel;
         private Timer timer1;
-        private TextBox txt_BarcodeItem;
         private Button button1;
+        public TextBox txt_Barcode;
+        public TextBox txt_BarcodeItem;
     }
 }

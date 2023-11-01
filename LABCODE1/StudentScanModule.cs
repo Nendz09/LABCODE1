@@ -23,12 +23,37 @@ namespace LABCODE1
         SqlCommand cmd = new SqlCommand();
         SqlDataReader dr;
         BarcodeReader reader = new BarcodeReader();
-        
+
+        /*backgroundworker - is a component in .NET that simplifies working with background threads
+        in a Windows Forms application*/
+        private BackgroundWorker videoCaptureWorker;
 
         public StudentScanModule()
         {
             InitializeComponent();
+            this.ActiveControl = txt_Barcode; //focus
+            videoCaptureWorker = new BackgroundWorker();
+            videoCaptureWorker.DoWork += VideoCaptureWorker_DoWork;
+            videoCaptureWorker.RunWorkerCompleted += VideoCaptureWorker_RunWorkerCompleted;
         }
+        private void VideoCaptureWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // Stop the video capture device
+            if (videoCaptureDevice != null && videoCaptureDevice.IsRunning)
+            {
+                videoCaptureDevice.SignalToStop();
+                videoCaptureDevice.WaitForStop();
+            }
+        }
+
+        private void VideoCaptureWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (videoCaptureDevice != null)
+            {
+                videoCaptureDevice = null; // Ensure that the device is disposed of.
+            }
+        }
+
 
         FilterInfoCollection filterInfoCollection;
         VideoCaptureDevice videoCaptureDevice;
@@ -38,7 +63,7 @@ namespace LABCODE1
             reader.Options = new ZXing.Common.DecodingOptions
             {
                 PossibleFormats = new List<BarcodeFormat>
-                {
+                { 
                     BarcodeFormat.CODABAR,  // STUDENT ID FORMAT
                     BarcodeFormat.CODE_128,  // code 128
                     BarcodeFormat.QR_CODE    // qrcode
@@ -66,6 +91,11 @@ namespace LABCODE1
 
         }
 
+        private void pictureBoxClose_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
         private void btnStart_Click(object sender, EventArgs e)
         {
             //if (filterInfoCollection.Count == 0)
@@ -87,17 +117,42 @@ namespace LABCODE1
             //BarcodeReader reader = new BarcodeReader(); 
 
             //THIS ONE IS PARA MAANO FORMAT NG BARCODE VVVV----------
-  
             var result = reader.Decode(bitmap);
-            if (result != null)
+
+
+
+            if (this.IsHandleCreated) // Check if the form's handle is created
             {
-                txt_Barcode.Invoke(new MethodInvoker(delegate ()
+                this.BeginInvoke(new Action(() =>
                 {
-                    //result.Text siya before
-                    txt_Barcode.Text = result.ToString();
+                    // Check if the focus is on txt_Barcode or txt_BarcodeItem
+                    if (txt_Barcode.Focused)
+                    {
+                        if (result != null)
+                        {
+                            txt_Barcode.Text = result.ToString();
+                        }
+                    }
+                    else if (txt_BarcodeItem.Focused)
+                    {
+                        if (result != null)
+                        {
+                            txt_BarcodeItem.Text = result.ToString();
+                        }
+                    }
                 }));
-                //BarcodeFormat barcodeFormat = result.BarcodeFormat;
             }
+
+
+            //if (result != null)
+            //{
+            //    txt_Barcode.Invoke(new MethodInvoker(delegate ()
+            //    {
+            //        //result.Text siya before
+            //        txt_Barcode.Text = result.ToString();
+            //    }));
+            //    //BarcodeFormat barcodeFormat = result.BarcodeFormat;
+            //}
             //pictureBox.Image = bitmap;
 
             //this is pag inverted
@@ -108,11 +163,20 @@ namespace LABCODE1
 
         private void StudentScanModule_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (videoCaptureDevice != null)
+            if (!videoCaptureWorker.IsBusy)
             {
-                if (videoCaptureDevice.IsRunning)
-                    videoCaptureDevice.Stop();
+                videoCaptureWorker.RunWorkerAsync();
             }
+            //if (videoCaptureDevice != null)
+            //{
+            //    if (videoCaptureDevice.IsRunning) 
+            //    {
+            //        videoCaptureDevice.Stop();
+            //    }
+            //    //BEFORE
+            //    //if (videoCaptureDevice.IsRunning)
+            //    //    videoCaptureDevice.Stop();
+            //}
         }
 
         private void txt_Barcode_TextChanged(object sender, EventArgs e)
@@ -127,17 +191,14 @@ namespace LABCODE1
 
                 if (dr.Read())
                 {
-                    isFilled();
+                    
                     label_studentSection.Text = dr["year_sec"].ToString();
                     label_studentName.Text = dr["full_name"].ToString();
+
                     txt_Barcode.Enabled = false;
+                    txt_BarcodeItem.Enabled = true;
+                    txt_BarcodeItem.Focus();
                 }
-                //else
-                //{
-                //    dgvItemBorrow.Rows.Clear();
-                //    label_studentSection.Text = "...";
-                //    label_studentName.Text = "NO DATA FOUND";
-                //}
                 dr.Close();
             }
             else
@@ -157,10 +218,7 @@ namespace LABCODE1
             }
         }
 
-        private void pictureBoxClose_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
+        
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -169,6 +227,15 @@ namespace LABCODE1
         private void txt_BarcodeItem_TextChanged(object sender, EventArgs e)
         {
             dgvBorrowed();
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            txt_Barcode.Clear();
+            txt_BarcodeItem.Clear();
+            txt_Barcode.Enabled = true;
+            txt_BarcodeItem.Enabled = false;
+            dgvItemBorrow.Rows.Clear();
+            txt_Barcode.Focus();
         }
 
         //methods
@@ -192,18 +259,6 @@ namespace LABCODE1
                 dr.Close();
                 con.Close();
             }
-
-            //cmd = new SqlCommand("SELECT * FROM lab_eqpment", con);
-            //con.Open();
-            //dr = cmd.ExecuteReader();
-
-            //while (dr.Read())
-            //{
-            //    ++i;
-            //    dgvItemBorrow.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
-            //}
-            //dr.Close();
-            //con.Close();
         }
         private void isFilled()
         {
@@ -211,13 +266,6 @@ namespace LABCODE1
             txt_BarcodeItem.Enabled = allTextIsFilled;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            txt_Barcode.Clear();
-            txt_BarcodeItem.Clear();
-            txt_Barcode.Enabled = true;
-            txt_BarcodeItem.Enabled = false;
-            dgvItemBorrow.Rows.Clear();
-        }
+        
     }
 }
