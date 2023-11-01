@@ -118,7 +118,6 @@ namespace LABCODE1
         private void txt_Barcode_TextChanged(object sender, EventArgs e)
         {
             con.Open();
-
             if (int.TryParse(txt_Barcode.Text, out int studentID))
             {
                 cmd = new SqlCommand("SELECT * FROM lab_students WHERE student_id = @studentID", con);
@@ -128,19 +127,23 @@ namespace LABCODE1
 
                 if (dr.Read())
                 {
+                    isFilled();
                     label_studentSection.Text = dr["year_sec"].ToString();
                     label_studentName.Text = dr["full_name"].ToString();
+                    txt_Barcode.Enabled = false;
                 }
-                else
-                {
-                    label_studentSection.Text = "...";
-                    label_studentName.Text = "NO DATA FOUND";
-                }
+                //else
+                //{
+                //    dgvItemBorrow.Rows.Clear();
+                //    label_studentSection.Text = "...";
+                //    label_studentName.Text = "NO DATA FOUND";
+                //}
                 dr.Close();
             }
             else
             {
                 label_studentName.Text = "Invalid Student ID or NOT a number";
+                label_studentSection.Text = "";
             }
             con.Close();
         }
@@ -157,6 +160,64 @@ namespace LABCODE1
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dateLabel.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+        private void txt_BarcodeItem_TextChanged(object sender, EventArgs e)
+        {
+            dgvBorrowed();
+        }
+
+        //methods
+        private void dgvBorrowed() 
+        {
+            con.Close();
+            int i = 0;
+            
+            if (int.TryParse(txt_BarcodeItem.Text, out int labID)) 
+            {
+                cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @labID", con);
+                cmd.Parameters.AddWithValue("@labID", labID);
+                con.Open();
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    ++i;
+                    dgvItemBorrow.Rows.Add(dateLabel.Text, dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+                }
+                dr.Close();
+                con.Close();
+            }
+
+            //cmd = new SqlCommand("SELECT * FROM lab_eqpment", con);
+            //con.Open();
+            //dr = cmd.ExecuteReader();
+
+            //while (dr.Read())
+            //{
+            //    ++i;
+            //    dgvItemBorrow.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+            //}
+            //dr.Close();
+            //con.Close();
+        }
+        private void isFilled()
+        {
+            bool allTextIsFilled = !string.IsNullOrEmpty(txt_Barcode.Text);
+            txt_BarcodeItem.Enabled = allTextIsFilled;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            txt_Barcode.Clear();
+            txt_BarcodeItem.Clear();
+            txt_Barcode.Enabled = true;
+            txt_BarcodeItem.Enabled = false;
+            dgvItemBorrow.Rows.Clear();
         }
     }
 }

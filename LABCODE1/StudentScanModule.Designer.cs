@@ -30,6 +30,7 @@ namespace LABCODE1
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentScanModule));
             this.cboCam = new System.Windows.Forms.ComboBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -39,9 +40,14 @@ namespace LABCODE1
             this.label1 = new System.Windows.Forms.Label();
             this.label_studentSection = new System.Windows.Forms.Label();
             this.dgvItemBorrow = new System.Windows.Forms.DataGridView();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateLabel = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txt_BarcodeItem = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +62,7 @@ namespace LABCODE1
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(377, 379);
+            this.btnStart.Location = new System.Drawing.Point(372, 415);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 1;
@@ -114,16 +120,24 @@ namespace LABCODE1
             // 
             // dgvItemBorrow
             // 
+            this.dgvItemBorrow.AllowUserToAddRows = false;
             this.dgvItemBorrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItemBorrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column4,
             this.Column3,
             this.Column1,
             this.Column2});
             this.dgvItemBorrow.EnableHeadersVisualStyles = false;
-            this.dgvItemBorrow.Location = new System.Drawing.Point(438, 95);
+            this.dgvItemBorrow.Location = new System.Drawing.Point(339, 91);
             this.dgvItemBorrow.Name = "dgvItemBorrow";
-            this.dgvItemBorrow.Size = new System.Drawing.Size(297, 253);
+            this.dgvItemBorrow.ReadOnly = true;
+            this.dgvItemBorrow.Size = new System.Drawing.Size(449, 268);
             this.dgvItemBorrow.TabIndex = 16;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Date of Borrow";
+            this.Column4.Name = "Column4";
             // 
             // Column3
             // 
@@ -140,11 +154,49 @@ namespace LABCODE1
             this.Column2.HeaderText = "Size/Calibration";
             this.Column2.Name = "Column2";
             // 
+            // dateLabel
+            // 
+            this.dateLabel.AutoSize = true;
+            this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateLabel.Location = new System.Drawing.Point(620, 39);
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Size = new System.Drawing.Size(20, 18);
+            this.dateLabel.TabIndex = 17;
+            this.dateLabel.Text = "...";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // txt_BarcodeItem
+            // 
+            this.txt_BarcodeItem.Enabled = false;
+            this.txt_BarcodeItem.Location = new System.Drawing.Point(69, 418);
+            this.txt_BarcodeItem.Name = "txt_BarcodeItem";
+            this.txt_BarcodeItem.Size = new System.Drawing.Size(268, 20);
+            this.txt_BarcodeItem.TabIndex = 18;
+            this.txt_BarcodeItem.TextChanged += new System.EventHandler(this.txt_BarcodeItem_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(372, 379);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "CLEAR";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.txt_BarcodeItem);
+            this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.dgvItemBorrow);
             this.Controls.Add(this.label_studentSection);
             this.Controls.Add(this.label1);
@@ -176,8 +228,13 @@ namespace LABCODE1
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label_studentSection;
         private System.Windows.Forms.DataGridView dgvItemBorrow;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private Label dateLabel;
+        private Timer timer1;
+        private TextBox txt_BarcodeItem;
+        private Button button1;
     }
 }
