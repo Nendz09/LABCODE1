@@ -222,7 +222,7 @@ namespace LABCODE1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            dateLabel.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            dateLabel.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
         private void txt_BarcodeItem_TextChanged(object sender, EventArgs e)
         {
@@ -236,6 +236,16 @@ namespace LABCODE1
             txt_BarcodeItem.Enabled = false;
             dgvItemBorrow.Rows.Clear();
             txt_Barcode.Focus();
+        }
+
+        private void dgvItemBorrow_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string colName = dgvItemBorrow.Columns[e.ColumnIndex].Name;
+            int rowIndex = dgvItemBorrow.CurrentCell.RowIndex;
+            if (colName == "Delete")
+            {
+                dgvItemBorrow.Rows.RemoveAt(rowIndex);
+            }
         }
 
         //methods
@@ -265,6 +275,7 @@ namespace LABCODE1
             bool allTextIsFilled = !string.IsNullOrEmpty(txt_Barcode.Text);
             txt_BarcodeItem.Enabled = allTextIsFilled;
         }
+
 
         
     }

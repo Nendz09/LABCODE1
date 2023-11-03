@@ -142,18 +142,23 @@
   <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Delete.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="Delete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAIASURBVEhLxVVbSsNAFI3Wx2elugEVEbqKIr5Kf9pm0tINdAX64QOsuCwr6gpqrbgCtd8+EERw
+        POfOhKQ1oWmsOHCYzMw95yT3XibOvwztOFO6UJjRzeasLhbnE8Pz5oQHvpWKH7rVmgZhWStV0K67kxiM
+        r1ZXyLdS0QPiWQTvYT4HbkDuYX03EoxjPHmGn7WSwZAUmS/YR9AD8AnoFCDvUXSoF06d5LJeX0VA2wZ+
+        AVEio0Ae+W3Rg661kDTNARs47NrgYWKcadxZV/Sgay1gwu5Qqggwx8OEd+ANGBbjmvtEeF+jRvcwKFHX
+        WsSaUIQGZyDVMPeBD4BnnPuy77qneB58iTFNSPZ0ubwA0haefaO+rM2+wvoFSGXiGz2JoGlvxnRk5rpa
+        3ZTzsAExpglh3twXrlQWZfa8XezRwE9hgBQmBIU6utFYkngamS/6aUBM7EtMfLgZAqSoiSlykKKgJkEz
+        pK4Jia8g1KSLgiKbL/O7i933i+4yJkqdgMA2DReZM7uO+8fAM5DKxAeNBt/UgGvu0yC8H2My+bvrFnqs
+        Y+ju4i3sums4vAAmcQtfwmB98Bb2/ydKHQDsFgZGiYwCeeQfwiQT+SvGQQ44Aq7xZT3JbXLwL3pl+Tkr
+        GT0QkAHyIGxjLiWGic8DGSsVPyR1rBGbgV2XFIwnLypFfz8c5xvZDms69zGJ1QAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
