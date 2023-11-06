@@ -24,6 +24,9 @@ namespace LABCODE1
         SqlDataReader dr;
         BarcodeReader reader = new BarcodeReader();
 
+        //DateTimePicker dtp = new DateTimePicker();
+        DateTimePicker dtp = new DateTimePicker();
+        Rectangle _Rectangle;
         /*backgroundworker - is a component in .NET that simplifies working with background threads
         in a Windows Forms application*/
         private BackgroundWorker videoCaptureWorker;
@@ -35,7 +38,16 @@ namespace LABCODE1
             videoCaptureWorker = new BackgroundWorker();
             videoCaptureWorker.DoWork += VideoCaptureWorker_DoWork;
             videoCaptureWorker.RunWorkerCompleted += VideoCaptureWorker_RunWorkerCompleted;
+
+            //datetimepicker initializer
+            dgvItemBorrow.Controls.Add(dtp);
+            dtp.Visible = false;
+            dtp.Format = DateTimePickerFormat.Custom;
+            dtp.CustomFormat = "yyyy-MM-dd";
         }
+
+       
+
         private void VideoCaptureWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             // Stop the video capture device
@@ -240,13 +252,30 @@ namespace LABCODE1
 
         private void dgvItemBorrow_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string colName = dgvItemBorrow.Columns[e.ColumnIndex].Name;
-            int rowIndex = dgvItemBorrow.CurrentCell.RowIndex;
-            if (colName == "Delete")
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                dgvItemBorrow.Rows.RemoveAt(rowIndex);
+                string colName = dgvItemBorrow.Columns[e.ColumnIndex].Name;
+                if (colName == "Delete")
+                {
+                    dgvItemBorrow.Rows.RemoveAt(e.RowIndex);
+                }
             }
+
+
+
+            //int rowIndex = dgvItemBorrow.CurrentCell.RowIndex;
+            //if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            //{
+            //    string colName = dgvItemBorrow.Columns[e.ColumnIndex].Name;
+            //    if (colName == "Delete")
+            //    {
+            //        dgvItemBorrow.Rows.RemoveAt(rowIndex);
+            //    }
+            //}
         }
+
+
+        
 
         //methods
         private void dgvBorrowed() 
@@ -261,22 +290,73 @@ namespace LABCODE1
                 con.Open();
                 dr = cmd.ExecuteReader();
 
+                
+
                 while (dr.Read())
                 {
                     ++i;
-                    dgvItemBorrow.Rows.Add(dateLabel.Text, dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+                    dgvItemBorrow.Rows.Add(dateLabel.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
                 }
                 dr.Close();
                 con.Close();
             }
         }
-        private void isFilled()
+        //private void isFilled()
+        //{
+        //    bool allTextIsFilled = !string.IsNullOrEmpty(txt_Barcode.Text);
+        //    txt_BarcodeItem.Enabled = allTextIsFilled;
+        //}
+
+        private void dgvItemBorrow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            bool allTextIsFilled = !string.IsNullOrEmpty(txt_Barcode.Text);
-            txt_BarcodeItem.Enabled = allTextIsFilled;
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
+            {
+                dgvItemBorrow.Controls.Add(dtp);
+                dtp.Visible = true;
+                dtp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+                // Set the location of the DateTimePicker to the clicked cell
+                _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                dtp.Location = new Point(_Rectangle.X, _Rectangle.Y);
+                dtp.TextChanged += new EventHandler(DateTimePickerChange);
+                dtp.CloseUp += new EventHandler(DateTimePickerClose);
+            }
+            else
+            {
+                dtp.Visible = false;
+            }
+        }
+        //event handler for DateTimePicker's ValueChanged event.
+        private void dtp_ValueChanged(object sender, EventArgs e)
+        {
+            // Set the selected date in the DataGridView cell.
+            dgvItemBorrow.CurrentCell.Value = dtp.Value.ToString("yyyy-MM-dd");
+            dtp.Visible = false; // Hide the DateTimePicker control.
         }
 
+        private void DateTimePickerChange(object sender, EventArgs e)
+        {
+            dgvItemBorrow.CurrentCell.Value = dtp.Text.ToString();
+            //MessageBox.Show(string.Format("Date changed to {0}", dtp.Text.ToString()));
+        }
+        private void DateTimePickerClose(object sender, EventArgs e)
+        {
+            dtp.Visible = false;
+        }
 
-        
+        //private void dgvItemBorrow_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    int column = dgvItemBorrow.CurrentCell.ColumnIndex;
+        //    string headertext = dgvItemBorrow.Columns[column].HeaderText;
+        //    for (int i = 0; i < dgvItemBorrow.Rows.Count; i++)
+        //    {
+        //        if (headertext.Equals("Date of Return")) 
+        //        {
+        //            _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+        //            dtp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+        //            dtp.Location = new Point(_Rectangle.X, _Rectangle.Y);
+        //            dtp.Visible = false;
+        //        }
+        //    }
+        //}
     }
 }
