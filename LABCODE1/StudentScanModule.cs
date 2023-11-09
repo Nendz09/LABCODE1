@@ -108,18 +108,6 @@ namespace LABCODE1
             this.Dispose();
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            //if (filterInfoCollection.Count == 0)
-            //{
-            //    MessageBox.Show("No video capture devices found.");
-            //    return;
-            //}
-
-            //videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cboCam.SelectedIndex].MonikerString);
-            //videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
-            //videoCaptureDevice.Start();
-        }
 
         private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
@@ -239,6 +227,14 @@ namespace LABCODE1
         private void txt_BarcodeItem_TextChanged(object sender, EventArgs e)
         {
             dgvBorrowed();
+            if (dgvItemBorrow.RowCount != 0)
+            {
+                btnProceed.Enabled = true;
+            }
+            else
+            {
+                btnProceed.Enabled = false;
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -246,6 +242,7 @@ namespace LABCODE1
             txt_BarcodeItem.Clear();
             txt_Barcode.Enabled = true;
             txt_BarcodeItem.Enabled = false;
+            btnProceed.Enabled = false;
             dgvItemBorrow.Rows.Clear();
             txt_Barcode.Focus();
         }
@@ -260,7 +257,10 @@ namespace LABCODE1
                     dgvItemBorrow.Rows.RemoveAt(e.RowIndex);
                 }
             }
-
+            if (dgvItemBorrow.RowCount == 0)
+            {
+                btnProceed.Enabled = false;
+            }
 
 
             //int rowIndex = dgvItemBorrow.CurrentCell.RowIndex;
@@ -342,6 +342,36 @@ namespace LABCODE1
         {
             dtp.Visible = false;
         }
+
+        private void btnProceed_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                con.Open();
+
+                for (int i = 0; i < dgvItemBorrow.RowCount; i++)
+                {
+                    cmd = new SqlCommand("INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return) VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return)", con);
+                    cmd.Parameters.AddWithValue("@date_borrow", dgvItemBorrow.Rows[i].Cells["col_dob"].Value.ToString());
+                    cmd.Parameters.AddWithValue("@student_id", txt_Barcode.Text);
+                    cmd.Parameters.AddWithValue("@name", label_studentName.Text);
+                    cmd.Parameters.AddWithValue("@year_sec", label_studentSection.Text);
+                    cmd.Parameters.AddWithValue("@eqp_id", dgvItemBorrow.Rows[i].Cells["col_itemid"].Value.ToString());
+                    cmd.Parameters.AddWithValue("@eqp_name", dgvItemBorrow.Rows[i].Cells["col_itemname"].Value.ToString());
+                    cmd.Parameters.AddWithValue("@date_return", dgvItemBorrow.Rows[i].Cells["col_dor"].Value.ToString());
+
+                    cmd.ExecuteNonQuery();
+                }
+                con.Close();
+                MessageBox.Show("Borrowed.");
+                this.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
 
         //private void dgvItemBorrow_CellClick(object sender, DataGridViewCellEventArgs e)
         //{
