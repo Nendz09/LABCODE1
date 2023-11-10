@@ -261,7 +261,7 @@
   <data name="btnBorrow.ImageNormal" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAABrESURBVHhe7d15
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAABrESURBVHhe7d15
         +H51XedxdtwwFBQ0ly7ccss0q9FyQ1wuy5iGHIGGGVJCxVJhGDHLacQUmKFBE5vRaXJcaiYaldG0yQWK
         tFDBZRBFrGwsNUwBQUXW5vVp/Bbi5/e7l+/n3Gd7PK7r+Q9y+bt/3y/nfN7n3GfZBQAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -437,6 +437,25 @@
   <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="View.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="View.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAJvSURBVDhP1ZRJa1RBFIWfQ3Ceh5ULFUnPTTuuncBhKQhCUCRC0+/lRZOYHxBQwQmHHyD4C0SD
+        4EYEI0YEjRKyMjGKSjYOiRoxicL1O9XV2LGdllpweFXnnnvr1r1VL/hfh03Z3GHT1zTbjBWtNmt90WYL
+        mouTTRov/sPosKkrD9rMRGyrMrHtyER2AVwR0pFdTIe2SzYFl9Z7/WRgzLfbnFTJsqkma8H5NngOXvwA
+        cV0EbkvGlmM+tzawzyrdZNvANUSfwAR4lorsnDbge4T1WTDobdJ0pkLbLt9JQXOhLcJpP4J+MOodetIl
+        21RftKWFFlsoJJtsSTa2DdgeeM0omQ6w2QHFcMEkxNAA+sAYgnG+g9RsIw2Yr2YkQkvkYktqLs4Hfeq1
+        Y963QbECHZMd7kKYxzA4o2wUgMA7WV8FnWqIONngT3ltxa87U7KtAZM74H2V4Q2bHF5dtAXKytU0tLfw
+        78BNNUI2uGan/e73AXQrw/tMPlYZJgdUZuVMRsCtbGh5FzCyGLwGFT/V83GQjWwPi94qwzANOlk5so4J
+        pyvUBb/bleGQLc6EdgxOWVf8+rDvC9RF6tEKoTs2QYBxMIBxXaLR5rmgkRUEzcX59ROnLXf7FWinYctc
+        pzVRVpBD4DP4Au5xbdYqGx1R0By+4JsojbRDBD6dL9lyF8wN/0owtCF4iMNX79APd4Kv6hVzkuOOw+Y1
+        PeCofGtfy16b5moT2RZEehGPwMtfoJcantc1kY98fZTaQZ3q/Kuopwx6PZfY5DrfGzyzy9yARl10aaT1
+        br8b/JZIX2K9UTVCRxI091xd+Yh/+wv7d0YQfAPWCCi5xtDaNQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="Edit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
