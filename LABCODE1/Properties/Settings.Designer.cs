@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Collections.Specialized;
+
 namespace LABCODE1.Properties
 {
 
@@ -18,6 +20,7 @@ namespace LABCODE1.Properties
     {
 
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        internal StringCollection Categories;
 
         public static Settings Default
         {

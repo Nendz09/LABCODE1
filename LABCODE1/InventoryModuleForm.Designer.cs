@@ -49,8 +49,10 @@ namespace LABCODE1
             this.txtEqpID = new System.Windows.Forms.TextBox();
             this.label_Quantity = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.userButton1 = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userButton1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -274,11 +276,25 @@ namespace LABCODE1
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
+            // userButton1
+            // 
+            this.userButton1.Image = ((System.Drawing.Image)(resources.GetObject("userButton1.Image")));
+            this.userButton1.ImageHover = null;
+            this.userButton1.ImageNormal = null;
+            this.userButton1.Location = new System.Drawing.Point(526, 175);
+            this.userButton1.Name = "userButton1";
+            this.userButton1.Size = new System.Drawing.Size(27, 24);
+            this.userButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.userButton1.TabIndex = 16;
+            this.userButton1.TabStop = false;
+            this.userButton1.Click += new System.EventHandler(this.userButton1_Click);
+            // 
             // InventoryModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 418);
+            this.Controls.Add(this.userButton1);
             this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.label_Quantity);
             this.Controls.Add(this.txtEqpID);
@@ -302,6 +318,7 @@ namespace LABCODE1
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userButton1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +344,6 @@ namespace LABCODE1
         public System.Windows.Forms.Label labelAdd;
         public System.Windows.Forms.TextBox txtQuantity;
         public System.Windows.Forms.Label label_Quantity;
+        private UserButton userButton1;
     }
 }

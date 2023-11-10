@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient; //POTANGINAAA
+using Microsoft.VisualBasic;
 
 namespace LABCODE1
 {
@@ -19,13 +20,24 @@ namespace LABCODE1
         public InventoryModuleForm()
         {
             InitializeComponent();
-            //txtQuantity_EventHandlers();
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
+
+
+        //methods
+        //private void AddNewCategory()
+        //{
+        //    // Check if the entered category is not already in the cmbCtg items
+        //    if (!cmbCtg.Items.Contains(cmbCtg.Text))
+        //    {
+        //        cmbCtg.Items.Add(cmbCtg.Text);
+        //    }
+        //}
+
 
 
         //------SAVE BUTTON--------//
@@ -52,6 +64,7 @@ namespace LABCODE1
                             }
                             con.Close();
                             MessageBox.Show("Equipment has been saved.");
+
                             Clear();
                             this.Dispose();
                         }
@@ -194,7 +207,6 @@ namespace LABCODE1
         {
             if (cmbSize.SelectedItem != null && cmbSize.SelectedItem.ToString() == "OTHER")
             {
-               
                 cmbSize.DropDownStyle = ComboBoxStyle.DropDown;
             }
             else
@@ -264,7 +276,10 @@ namespace LABCODE1
             btnSave.Enabled = allTextIsFilled;
         }
 
+        private void userButton1_Click(object sender, EventArgs e)
+        {
+           
+        }
 
-       
     }
 }
