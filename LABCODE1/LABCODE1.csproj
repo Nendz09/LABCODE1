@@ -132,6 +132,12 @@
     <Compile Include="StudentScanModule.Designer.cs">
       <DependentUpon>StudentScanModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudentViewModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentViewModule.Designer.cs">
+      <DependentUpon>StudentViewModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StudentScanModule.resx">
       <DependentUpon>StudentScanModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentViewModule.resx">
+      <DependentUpon>StudentViewModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserButton.resx">
       <DependentUpon>UserButton.cs</DependentUpon>
