@@ -37,7 +37,7 @@ namespace LABCODE1
 
             if (int.TryParse(txt_studentid.Text, out int studID))
             {
-                cmd = new SqlCommand("SELECT eqp_id, eqp_name, date_borrow, date_return FROM lab_borrows WHERE student_id = @studID", con);
+                cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size, date_borrow, date_return FROM lab_borrows WHERE student_id = @studID", con);
                 cmd.Parameters.AddWithValue("@studID", studID);
                 con.Open();
                 dr = cmd.ExecuteReader();
@@ -47,7 +47,7 @@ namespace LABCODE1
                 while (dr.Read())
                 {
                     ++i;
-                    dgvStudentView.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+                    dgvStudentView.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
                 }
                 dr.Close();
                 con.Close();

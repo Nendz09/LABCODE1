@@ -101,12 +101,24 @@ namespace LABCODE1
             {
                 if (MessageBox.Show("Are you sure you want to update this Equipment data?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    cmd = new SqlCommand("UPDATE lab_eqpment SET eqp_name=@eqp_name, eqp_categ=@eqp_categ, eqp_size=@eqp_size WHERE eqp_id LIKE '" + txtEqpID.Text + "' ", con);
+                    con.Open();
+
+                    //update sa lab_eqpment
+                    cmd = new SqlCommand("UPDATE lab_eqpment SET eqp_name=@eqp_name, eqp_categ=@eqp_categ, eqp_size=@eqp_size WHERE eqp_id=@eqp_id ", con);
+                    cmd.Parameters.AddWithValue("@eqp_id", txtEqpID.Text);
                     cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                     cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
                     cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
-                    con.Open();
                     cmd.ExecuteNonQuery();
+
+                    //update sa lab_borrows
+                    cmd = new SqlCommand("UPDATE lab_borrows SET eqp_name=@eqp_name, eqp_size=@eqp_size WHERE eqp_id=@eqp_id ", con);
+                    cmd.Parameters.AddWithValue("@eqp_id", txtEqpID.Text);
+                    cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
+                    cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
+                    cmd.ExecuteNonQuery();
+
+
                     con.Close();
                     MessageBox.Show("Equipment has been updated.");
                     this.Dispose();

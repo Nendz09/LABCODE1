@@ -103,7 +103,7 @@ namespace LABCODE1
         {
             try
             {
-                if (!IsNumeric(txtPNo.Text))
+                if (IsNumeric(txtPNo.Text))
                 {
                     MessageBox.Show("Phone Number must be numerical only");
                 }
@@ -111,13 +111,24 @@ namespace LABCODE1
                 {
                     if (MessageBox.Show("Are you sure you want to update this Student data?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
+                        con.Open();
+                        //update sa lab_students
                         cmd = new SqlCommand("UPDATE lab_students SET student_id=@student_id, full_name=@full_name, year_sec=@year_sec, c_number=@c_number WHERE student_id LIKE '" + txtStudID.Text + "' ", con);
                         cmd.Parameters.AddWithValue("@student_id", txtStudID.Text);
                         cmd.Parameters.AddWithValue("@full_name", txtFullName.Text);
                         cmd.Parameters.AddWithValue("@year_sec", txtYearSec.Text);
                         cmd.Parameters.AddWithValue("@c_number", txtPNo.Text);
-                        con.Open();
                         cmd.ExecuteNonQuery();
+
+                        //update sa lab_borrows
+                        cmd = new SqlCommand("UPDATE lab_borrows SET name=@full_name, year_sec=@year_sec WHERE student_id = @student_id", con);
+                        cmd.Parameters.AddWithValue("@student_id", txtStudID.Text);
+                        cmd.Parameters.AddWithValue("@full_name", txtFullName.Text);
+                        cmd.Parameters.AddWithValue("@year_sec", txtYearSec.Text);
+                        cmd.ExecuteNonQuery();
+
+                        
+                        
                         con.Close();
                         MessageBox.Show("Student data has been updated.");
                         this.Dispose();

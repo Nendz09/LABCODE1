@@ -351,7 +351,7 @@ namespace LABCODE1
 
                 for (int i = 0; i < dgvItemBorrow.RowCount; i++)
                 {
-                    cmd = new SqlCommand("INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return) VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return)", con);
+                    cmd = new SqlCommand("INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return, @eqp_size)", con);
                     cmd.Parameters.AddWithValue("@date_borrow", dgvItemBorrow.Rows[i].Cells["col_dob"].Value.ToString());
                     cmd.Parameters.AddWithValue("@student_id", txt_Barcode.Text);
                     cmd.Parameters.AddWithValue("@name", label_studentName.Text);
@@ -359,7 +359,7 @@ namespace LABCODE1
                     cmd.Parameters.AddWithValue("@eqp_id", dgvItemBorrow.Rows[i].Cells["col_itemid"].Value.ToString());
                     cmd.Parameters.AddWithValue("@eqp_name", dgvItemBorrow.Rows[i].Cells["col_itemname"].Value.ToString());
                     cmd.Parameters.AddWithValue("@date_return", dgvItemBorrow.Rows[i].Cells["col_dor"].Value.ToString());
-
+                    cmd.Parameters.AddWithValue("@eqp_size", dgvItemBorrow.Rows[i].Cells["col_size"].Value.ToString());
                     cmd.ExecuteNonQuery();
                 }
                 con.Close();
