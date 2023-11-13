@@ -96,7 +96,9 @@ namespace LABCODE1
                 if (MessageBox.Show("Are you sure you want to delete this Student Info?", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     con.Open();
-                    cmd = new SqlCommand("DELETE FROM lab_students WHERE student_id LIKE'" + dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString() + "'", con);
+                    cmd = new SqlCommand("DELETE FROM lab_students WHERE student_id = @StudentID", con);
+                    cmd.Parameters.AddWithValue("@StudentID", dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    //cmd = new SqlCommand("DELETE FROM lab_students WHERE student_id LIKE'" + dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString() + "'", con);
                     cmd.ExecuteNonQuery();
                     con.Close();
                     MessageBox.Show("Equipment has been deleted successfully!");
