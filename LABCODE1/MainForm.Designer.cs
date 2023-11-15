@@ -30,13 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.userButton2 = new LABCODE1.UserButton();
             this.btnStudents = new LABCODE1.UserButton();
             this.btnEquipment = new LABCODE1.UserButton();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipment)).BeginInit();
             this.SuspendLayout();
@@ -44,7 +42,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
-            this.panel1.Controls.Add(this.userButton2);
             this.panel1.Controls.Add(this.btnStudents);
             this.panel1.Controls.Add(this.btnEquipment);
             this.panel1.Controls.Add(this.label1);
@@ -53,19 +50,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(176, 606);
             this.panel1.TabIndex = 0;
-            // 
-            // userButton2
-            // 
-            this.userButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.userButton2.Image = ((System.Drawing.Image)(resources.GetObject("userButton2.Image")));
-            this.userButton2.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton2.ImageHover")));
-            this.userButton2.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton2.ImageNormal")));
-            this.userButton2.Location = new System.Drawing.Point(1, 322);
-            this.userButton2.Name = "userButton2";
-            this.userButton2.Size = new System.Drawing.Size(176, 108);
-            this.userButton2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.userButton2.TabIndex = 3;
-            this.userButton2.TabStop = false;
             // 
             // btnStudents
             // 
@@ -130,7 +114,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing_1);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipment)).EndInit();
             this.ResumeLayout(false);
@@ -143,7 +126,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelMain;
         private UserButton btnEquipment;
-        private UserButton userButton2;
         private UserButton btnStudents;
     }
 }
