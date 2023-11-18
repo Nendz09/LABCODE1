@@ -45,7 +45,7 @@ namespace LABCODE1
             while (dr.Read())
             {
                 ++i;
-                dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
             }
             dr.Close();
             con.Close();
@@ -128,6 +128,27 @@ namespace LABCODE1
                 }
                 dr.Close();
                 con.Close();
+            }
+        }
+
+        private void dgvLab_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            if (e.ColumnIndex == 4 && e.RowIndex >= 0)
+            {
+                string status = dgvLab.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                if (status == "Available")
+                {
+                    e.CellStyle.ForeColor = Color.Green;
+                    e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                }
+                else if (status == "Borrowed")
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                    e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                }
+                
             }
         }
     }

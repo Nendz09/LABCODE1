@@ -55,7 +55,7 @@ namespace LABCODE1
                             
                             for (int i = 0; i < quantity; i++) 
                             {
-                                cmd = new SqlCommand("INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size) VALUES(@eqp_name, @eqp_categ, @eqp_size)", con);
+                                cmd = new SqlCommand("INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status) VALUES(@eqp_name, @eqp_categ, @eqp_size, 'Available')", con);
                                 cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                                 cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
                                 cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
