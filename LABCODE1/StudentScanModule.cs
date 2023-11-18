@@ -14,6 +14,7 @@ using ZXing.QrCode;
 using ZXing.Common;
 using System.Data.SqlClient;
 using ZXing.PDF417.Internal;
+using System.Reflection.Emit;
 
 namespace LABCODE1
 {
@@ -226,7 +227,7 @@ namespace LABCODE1
         }
         private void txt_BarcodeItem_TextChanged(object sender, EventArgs e)
         {
-            dgvBorrowed();
+            dgvItemOnHand();
             if (dgvItemBorrow.RowCount != 0)
             {
                 btnProceed.Enabled = true;
@@ -278,7 +279,7 @@ namespace LABCODE1
         
 
         //methods
-        private void dgvBorrowed() 
+        private void dgvItemOnHand() 
         {
             con.Close();
             int i = 0;
@@ -301,6 +302,32 @@ namespace LABCODE1
                 con.Close();
             }
         }
+
+
+        //private void dgvItemBorrowedUpdate() 
+        //{
+        //    try
+        //    {
+        //        con.Open();
+
+        //        for (int i = 0; i < dgvItemBorrow.RowCount; i++)
+        //        {
+        //            cmd = new SqlCommand("UPDATE lab_eqpment SET status = 'Borrowed' WHERE eqp_id = '" + dgvItemBorrow.Rows[i].Cells["col_itemid"] + "' ", con);
+        //            cmd.ExecuteNonQuery();
+        //            con.Close();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+            
+        //}
+
+
+
+
+
         //private void isFilled()
         //{
         //    bool allTextIsFilled = !string.IsNullOrEmpty(txt_Barcode.Text);
@@ -347,23 +374,18 @@ namespace LABCODE1
         {
             try
             {
+        
                 con.Open();
 
-                for (int i = 0; i < dgvItemBorrow.RowCount; i++)
-                {
-                    cmd = new SqlCommand("INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return, @eqp_size)", con);
-                    cmd.Parameters.AddWithValue("@date_borrow", dgvItemBorrow.Rows[i].Cells["col_dob"].Value.ToString());
-                    cmd.Parameters.AddWithValue("@student_id", txt_Barcode.Text);
-                    cmd.Parameters.AddWithValue("@name", label_studentName.Text);
-                    cmd.Parameters.AddWithValue("@year_sec", label_studentSection.Text);
-                    cmd.Parameters.AddWithValue("@eqp_id", dgvItemBorrow.Rows[i].Cells["col_itemid"].Value.ToString());
-                    cmd.Parameters.AddWithValue("@eqp_name", dgvItemBorrow.Rows[i].Cells["col_itemname"].Value.ToString());
-                    cmd.Parameters.AddWithValue("@date_return", dgvItemBorrow.Rows[i].Cells["col_dor"].Value.ToString());
-                    cmd.Parameters.AddWithValue("@eqp_size", dgvItemBorrow.Rows[i].Cells["col_size"].Value.ToString());
-                    cmd.ExecuteNonQuery();
-                }
+                List<int> itemIds = dgv_GetSelectedItemIds(); //list item (int type)
+
+                
+                dgv_UpdateLabEqpmentStatus(itemIds);
+                dgv_InsertIntoLabBorrows();
+
                 con.Close();
-                MessageBox.Show("Borrowed.");
+               
+                MessageBox.Show("Borrowed");
                 this.Dispose();
             }
             catch (Exception ex)
@@ -373,20 +395,49 @@ namespace LABCODE1
         }
 
 
-        //private void dgvItemBorrow_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    int column = dgvItemBorrow.CurrentCell.ColumnIndex;
-        //    string headertext = dgvItemBorrow.Columns[column].HeaderText;
-        //    for (int i = 0; i < dgvItemBorrow.Rows.Count; i++)
-        //    {
-        //        if (headertext.Equals("Date of Return")) 
-        //        {
-        //            _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-        //            dtp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
-        //            dtp.Location = new Point(_Rectangle.X, _Rectangle.Y);
-        //            dtp.Visible = false;
-        //        }
-        //    }
-        //}
+        private List<int> dgv_GetSelectedItemIds()
+        {
+            List<int> itemIds = new List<int>();
+
+
+            for (int i = 0; i < dgvItemBorrow.Rows.Count; i++)
+            {
+                //col_itemid = dun sa dgv 
+                int itemId;
+                if (int.TryParse(dgvItemBorrow.Rows[i].Cells["col_itemid"].Value.ToString(), out itemId)) 
+                {
+                    itemIds.Add(itemId);
+                }
+            }
+
+            return itemIds;
+        }
+
+        private void dgv_UpdateLabEqpmentStatus(List<int> itemIds)
+        {
+            //string.Join(separator, values)//
+            string query = "UPDATE lab_eqpment SET status = 'Borrowed' WHERE eqp_id IN (" + string.Join(",", itemIds) + ")"; //concatenation - string.Join(",", itemIds)
+
+
+            cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+        }
+
+        private void dgv_InsertIntoLabBorrows()
+        {
+            for (int i = 0; i < dgvItemBorrow.RowCount; i++)
+            {
+                cmd = new SqlCommand("INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return, @eqp_size)", con);
+                cmd.Parameters.AddWithValue("@date_borrow", dgvItemBorrow.Rows[i].Cells["col_dob"].Value.ToString());
+                cmd.Parameters.AddWithValue("@student_id", txt_Barcode.Text);
+                cmd.Parameters.AddWithValue("@name", label_studentName.Text);
+                cmd.Parameters.AddWithValue("@year_sec", label_studentSection.Text);
+                cmd.Parameters.AddWithValue("@eqp_id", dgvItemBorrow.Rows[i].Cells["col_itemid"].Value.ToString());
+                cmd.Parameters.AddWithValue("@eqp_name", dgvItemBorrow.Rows[i].Cells["col_itemname"].Value.ToString());
+                cmd.Parameters.AddWithValue("@date_return", dgvItemBorrow.Rows[i].Cells["col_dor"].Value.ToString());
+                cmd.Parameters.AddWithValue("@eqp_size", dgvItemBorrow.Rows[i].Cells["col_size"].Value.ToString());
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

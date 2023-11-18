@@ -145,7 +145,7 @@ namespace LABCODE1
                 }
                 else if (status == "Borrowed")
                 {
-                    e.CellStyle.ForeColor = Color.Red;
+                    e.CellStyle.ForeColor = Color.DarkOrange;
                     e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
                 }
                 
