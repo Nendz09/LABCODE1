@@ -14,7 +14,7 @@ namespace LABCODE1
 {
     public partial class InventoryModuleForm : Form
     {
-        
+
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
         public InventoryModuleForm()
@@ -45,15 +45,15 @@ namespace LABCODE1
         {
             try
             {
-                if (int.TryParse(txtQuantity.Text, out int quantity)) 
+                if (int.TryParse(txtQuantity.Text, out int quantity))
                 {
-                    if(quantity > 0) 
+                    if (quantity > 0)
                     {
                         if (MessageBox.Show("Are you sure you want to save this Equipment data?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             con.Open();
-                            
-                            for (int i = 0; i < quantity; i++) 
+
+                            for (int i = 0; i < quantity; i++)
                             {
                                 cmd = new SqlCommand("INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status) VALUES(@eqp_name, @eqp_categ, @eqp_size, 'Available')", con);
                                 cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
@@ -84,7 +84,8 @@ namespace LABCODE1
         }
 
         //-------CLEAR TEXT------//
-        public void Clear() {
+        public void Clear()
+        {
             txtEquipment.Clear();
             txtQuantity.Clear();
             cmbCtg.ResetText();
@@ -130,8 +131,8 @@ namespace LABCODE1
             }
         }
 
-        
-        
+
+
 
         private void cmbCtg_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -144,7 +145,7 @@ namespace LABCODE1
             {
                 cmbCtg.DropDownStyle = ComboBoxStyle.DropDownList;
 
-                if (cmbCtg.SelectedItem.ToString() == "GENERAL SCIENCE") 
+                if (cmbCtg.SelectedItem.ToString() == "GENERAL SCIENCE")
                 {
                     cmbSize.Enabled = true;
                     txtQuantity.Clear();
@@ -203,9 +204,12 @@ namespace LABCODE1
                 }
                 else if (cmbCtg.SelectedItem.ToString() == "SUBSTANCES")
                 {
+                    cmbSize.Enabled = true;
                     txtQuantity.Clear();
                     cmbSize.Items.Clear();
-                    cmbSize.Enabled = false;
+                    cmbSize.DropDownStyle = ComboBoxStyle.DropDown;
+                    cmbSize.Text = "asdasd";
+
                     //cmbSize.Items.Add("Ceramic");
                     //cmbSize.Items.Add("Glass");
                     //cmbSize.Items.Add("OTHER");
@@ -223,7 +227,6 @@ namespace LABCODE1
             }
             else
             {
-
                 cmbSize.DropDownStyle = ComboBoxStyle.DropDownList;
             }
 
@@ -257,7 +260,38 @@ namespace LABCODE1
         //LIMIT 10 ONLEH
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
-            isFilled();
+            isFilledSubstances();
+
+            //try
+            //{
+            //    if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "SUBSTANCES")
+            //    {
+            //        cmbSize.Items.Add("AnythingIWantToPut");
+            //    }
+            //    else
+            //    {
+            //        if (int.TryParse(txtQuantity.Text, out int quantity))
+            //        {
+            //            if (quantity > 10)
+            //            {
+            //                txtQuantity.Text = "20";
+            //                txtQuantity.SelectionStart = txtQuantity.Text.Length; //makes the cursor to the right part
+            //            }
+            //            else if (quantity == 0)
+            //            {
+            //                btnSave.Enabled = false;
+            //            }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+
+
+
+
             if (int.TryParse(txtQuantity.Text, out int quantity))
             {
                 if (quantity > 10)
@@ -286,12 +320,20 @@ namespace LABCODE1
                                 && !string.IsNullOrEmpty(cmbSize.Text)
                                 && !string.IsNullOrEmpty(txtQuantity.Text);
             btnSave.Enabled = allTextIsFilled;
+            //debug
+            //MessageBox.Show($"Equipment: {!string.IsNullOrEmpty(txtEquipment.Text)}\n" +
+            //                $"Category: {!string.IsNullOrEmpty(cmbCtg.Text)}\n" +
+            //                $"Size: {!string.IsNullOrEmpty(cmbSize.Text)}\n" +
+            //                $"Quantity: {!string.IsNullOrEmpty(txtQuantity.Text)}\n" +
+            //                $"Button Enabled: {btnSave.Enabled}");
         }
 
-        private void userButton1_Click(object sender, EventArgs e)
+        private void isFilledSubstances()
         {
-           
+            bool allTextIsFilled = !string.IsNullOrEmpty(txtEquipment.Text)
+                                && !string.IsNullOrEmpty(cmbCtg.Text)
+                                && !string.IsNullOrEmpty(txtQuantity.Text);
+            btnSave.Enabled = allTextIsFilled;
         }
-
     }
 }

@@ -284,7 +284,7 @@ namespace LABCODE1
             con.Close();
             int i = 0;
             
-            if (int.TryParse(txt_BarcodeItem.Text, out int labID)) 
+            if (int.TryParse(cmbItem.Text, out int labID)) 
             {
                 cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @labID", con);
                 cmd.Parameters.AddWithValue("@labID", labID);
@@ -446,7 +446,7 @@ namespace LABCODE1
             try
             {
                 con.Open();
-                cmd = new SqlCommand("SELECT eqp_name, eqp_size FROM lab_eqpment WHERE status = 'Available' ", con);
+                cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE status = 'Available' ", con);
                 cmbItem.Items.Clear();
 
                 SqlDataReader datareader = cmd.ExecuteReader();
@@ -454,7 +454,7 @@ namespace LABCODE1
                 while (datareader.Read())
                 {
                     //cmbItem.Items.Add(datareader["eqp_name"].ToString());
-                    string itemName = $"{datareader["eqp_name"]} - {datareader["eqp_size"]}"; //concatenate
+                    string itemName = $"{datareader["eqp_id"]} - {datareader["eqp_name"]} - {datareader["eqp_size"]}"; //concatenate
 
                     cmbItem.Items.Add(itemName);
                 }
@@ -471,6 +471,24 @@ namespace LABCODE1
         private void cmbItem_DropDown(object sender, EventArgs e)
         {
             cmbItemLoad();
+        }
+
+        private void cmbItem_TextChanged(object sender, EventArgs e)
+        {
+            //dgvItemOnHand();
+            //if (dgvItemBorrow.RowCount != 0)
+            //{
+            //    btnProceed.Enabled = true;
+            //}
+            //else
+            //{
+            //    btnProceed.Enabled = false;
+            //}
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            dgvItemOnHand();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace LABCODE1
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentScanModule));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cboCam = new System.Windows.Forms.ComboBox();
             this.btnProceed = new System.Windows.Forms.Button();
             this.txt_Barcode = new System.Windows.Forms.TextBox();
@@ -52,8 +52,10 @@ namespace LABCODE1
             this.txt_BarcodeItem = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.cmbItem = new System.Windows.Forms.ComboBox();
+            this.btnAdd = new LABCODE1.UserButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCam
@@ -128,14 +130,14 @@ namespace LABCODE1
             this.dgvItemBorrow.AllowUserToAddRows = false;
             this.dgvItemBorrow.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvItemBorrow.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvItemBorrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvItemBorrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_dob,
@@ -233,17 +235,34 @@ namespace LABCODE1
             // cmbItem
             // 
             this.cmbItem.FormattingEnabled = true;
-            this.cmbItem.Location = new System.Drawing.Point(509, 415);
+            this.cmbItem.Location = new System.Drawing.Point(469, 418);
             this.cmbItem.Name = "cmbItem";
             this.cmbItem.Size = new System.Drawing.Size(199, 21);
             this.cmbItem.TabIndex = 20;
             this.cmbItem.DropDown += new System.EventHandler(this.cmbItem_DropDown);
+            this.cmbItem.TextChanged += new System.EventHandler(this.cmbItem_TextChanged);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.Chocolate;
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
+            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
+            this.btnAdd.Location = new System.Drawing.Point(674, 415);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(37, 30);
+            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnAdd.TabIndex = 21;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 450);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.cmbItem);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_BarcodeItem);
@@ -264,6 +283,7 @@ namespace LABCODE1
             this.Load += new System.EventHandler(this.StudentScanModule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,5 +310,6 @@ namespace LABCODE1
         private DataGridViewTextBoxColumn col_size;
         private DataGridViewImageColumn Delete;
         public ComboBox cmbItem;
+        private UserButton btnAdd;
     }
 }
