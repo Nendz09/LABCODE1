@@ -439,5 +439,38 @@ namespace LABCODE1
                 cmd.ExecuteNonQuery();
             }
         }
+
+        //method
+        private void cmbItemLoad() 
+        {
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand("SELECT eqp_name, eqp_size FROM lab_eqpment WHERE status = 'Available' ", con);
+                cmbItem.Items.Clear();
+
+                SqlDataReader datareader = cmd.ExecuteReader();
+
+                while (datareader.Read())
+                {
+                    //cmbItem.Items.Add(datareader["eqp_name"].ToString());
+                    string itemName = $"{datareader["eqp_name"]} - {datareader["eqp_size"]}"; //concatenate
+
+                    cmbItem.Items.Add(itemName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading items: " + ex.Message);
+            }
+            finally { con.Close(); }
+
+           
+        }
+
+        private void cmbItem_DropDown(object sender, EventArgs e)
+        {
+            cmbItemLoad();
+        }
     }
 }

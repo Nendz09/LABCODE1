@@ -41,16 +41,17 @@ namespace LABCODE1
             this.label1 = new System.Windows.Forms.Label();
             this.label_studentSection = new System.Windows.Forms.Label();
             this.dgvItemBorrow = new System.Windows.Forms.DataGridView();
-            this.dateLabel = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txt_BarcodeItem = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.col_dob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_dor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_itemid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dateLabel = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txt_BarcodeItem = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cmbItem = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             this.SuspendLayout();
@@ -153,41 +154,6 @@ namespace LABCODE1
             this.dgvItemBorrow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellClick);
             this.dgvItemBorrow.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellContentClick);
             // 
-            // dateLabel
-            // 
-            this.dateLabel.AutoSize = true;
-            this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabel.Location = new System.Drawing.Point(620, 39);
-            this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(20, 18);
-            this.dateLabel.TabIndex = 17;
-            this.dateLabel.Text = "...";
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // txt_BarcodeItem
-            // 
-            this.txt_BarcodeItem.Enabled = false;
-            this.txt_BarcodeItem.Location = new System.Drawing.Point(69, 418);
-            this.txt_BarcodeItem.Name = "txt_BarcodeItem";
-            this.txt_BarcodeItem.Size = new System.Drawing.Size(268, 20);
-            this.txt_BarcodeItem.TabIndex = 18;
-            this.txt_BarcodeItem.TextChanged += new System.EventHandler(this.txt_BarcodeItem_TextChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(372, 379);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "CLEAR";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // col_dob
             // 
             this.col_dob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -229,11 +195,56 @@ namespace LABCODE1
             this.Delete.ReadOnly = true;
             this.Delete.Width = 5;
             // 
+            // dateLabel
+            // 
+            this.dateLabel.AutoSize = true;
+            this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateLabel.Location = new System.Drawing.Point(620, 39);
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Size = new System.Drawing.Size(20, 18);
+            this.dateLabel.TabIndex = 17;
+            this.dateLabel.Text = "...";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // txt_BarcodeItem
+            // 
+            this.txt_BarcodeItem.Enabled = false;
+            this.txt_BarcodeItem.Location = new System.Drawing.Point(69, 418);
+            this.txt_BarcodeItem.Name = "txt_BarcodeItem";
+            this.txt_BarcodeItem.Size = new System.Drawing.Size(268, 20);
+            this.txt_BarcodeItem.TabIndex = 18;
+            this.txt_BarcodeItem.TextChanged += new System.EventHandler(this.txt_BarcodeItem_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(372, 379);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "CLEAR";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cmbItem
+            // 
+            this.cmbItem.FormattingEnabled = true;
+            this.cmbItem.Location = new System.Drawing.Point(509, 415);
+            this.cmbItem.Name = "cmbItem";
+            this.cmbItem.Size = new System.Drawing.Size(199, 21);
+            this.cmbItem.TabIndex = 20;
+            this.cmbItem.DropDown += new System.EventHandler(this.cmbItem_DropDown);
+            // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 450);
+            this.Controls.Add(this.cmbItem);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_BarcodeItem);
             this.Controls.Add(this.dateLabel);
@@ -278,5 +289,6 @@ namespace LABCODE1
         private DataGridViewTextBoxColumn col_itemname;
         private DataGridViewTextBoxColumn col_size;
         private DataGridViewImageColumn Delete;
+        public ComboBox cmbItem;
     }
 }
