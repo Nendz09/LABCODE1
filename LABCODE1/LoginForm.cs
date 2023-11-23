@@ -52,17 +52,15 @@ namespace LABCODE1
                 {
                     MessageBox.Show("Welcome!" + dr["fullname"].ToString() + " | ", "ACCESS GRANTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm main = new MainForm();
-                    //this.Hide();
+                    this.Hide();
                     main.ShowDialog();
-                    this.Dispose();
+                    //this.Dispose();
                 }
                 else
                 {
                     MessageBox.Show("INVALID USERNAME AND PASSWORD", "ACCESS DENIED", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 con.Close();
-
-
             }
             catch (Exception ex)
             {

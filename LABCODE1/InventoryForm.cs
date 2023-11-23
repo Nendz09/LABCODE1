@@ -111,7 +111,7 @@ namespace LABCODE1
 
             if (string.IsNullOrWhiteSpace(searchValue))
             {
-                LoadEquipment(); // If search box is empty, reload all equipment
+                LoadEquipment(); 
             }
             else
             {
@@ -119,7 +119,7 @@ namespace LABCODE1
                 int i = 0;
                 dgvLab.Rows.Clear();
 
-                cmd = new SqlCommand("SELECT * FROM lab_eqpment WHERE eqp_id LIKE @searchValue OR eqp_name LIKE @searchValue OR eqp_categ LIKE @searchValue OR eqp_size LIKE @searchValue", con);
+                cmd = new SqlCommand("SELECT * FROM lab_eqpment WHERE eqp_id LIKE @searchValue OR eqp_name LIKE @searchValue OR eqp_categ LIKE @searchValue OR eqp_size LIKE @searchValue OR status LIKE @searchValue", con);
                 cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
 
                 con.Open();
@@ -128,7 +128,7 @@ namespace LABCODE1
                 while (dr.Read())
                 {
                     ++i;
-                    dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                    dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
                 }
                 dr.Close();
                 con.Close();
