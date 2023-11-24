@@ -148,6 +148,7 @@ namespace LABCODE1
                 if (cmbCtg.SelectedItem.ToString() == "GENERAL SCIENCE")
                 {
                     cmbSize.Enabled = true;
+                    cmbGram.Enabled = false;
                     txtQuantity.Clear();
                     cmbSize.Items.Clear();
                     cmbSize.Items.Add("10 mL");
@@ -162,6 +163,7 @@ namespace LABCODE1
                 else if (cmbCtg.SelectedItem.ToString() == "BIOLOGY")
                 {
                     cmbSize.Enabled = true;
+                    cmbGram.Enabled = false;
                     txtQuantity.Clear();
                     cmbSize.Items.Clear();
                     cmbSize.Items.Add("Chromosome Studies");
@@ -177,6 +179,7 @@ namespace LABCODE1
                 else if (cmbCtg.SelectedItem.ToString() == "PHYSICS")
                 {
                     cmbSize.Enabled = true;
+                    cmbGram.Enabled = false;
                     txtQuantity.Clear();
                     cmbSize.Items.Clear();
                     cmbSize.Items.Add("Simple");
@@ -196,6 +199,7 @@ namespace LABCODE1
                 else if (cmbCtg.SelectedItem.ToString() == "CHEMISTRY")
                 {
                     cmbSize.Enabled = true;
+                    cmbGram.Enabled = false;
                     txtQuantity.Clear();
                     cmbSize.Items.Clear();
                     cmbSize.Items.Add("Ceramic");
@@ -204,11 +208,11 @@ namespace LABCODE1
                 }
                 else if (cmbCtg.SelectedItem.ToString() == "SUBSTANCES")
                 {
-                    cmbSize.Enabled = true;
+                    cmbSize.Enabled = false;
+                    cmbGram.Enabled = true;
                     txtQuantity.Clear();
                     cmbSize.Items.Clear();
-                    cmbSize.DropDownStyle = ComboBoxStyle.DropDown;
-                    cmbSize.Text = "asdasd";
+                    
 
                     //cmbSize.Items.Add("Ceramic");
                     //cmbSize.Items.Add("Glass");
@@ -294,14 +298,21 @@ namespace LABCODE1
 
             if (int.TryParse(txtQuantity.Text, out int quantity))
             {
-                if (quantity > 10)
+                if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "SUBSTANCES")
                 {
-                    txtQuantity.Text = "10";
-                    txtQuantity.SelectionStart = txtQuantity.Text.Length; //makes the cursor to the right part
+                    cmbSize.Items.Add("AnythingIWantToPut");
                 }
-                else if (quantity == 0)
+                else
                 {
-                    btnSave.Enabled = false;
+                    if (quantity > 10)
+                    {
+                        txtQuantity.Text = "10";
+                        txtQuantity.SelectionStart = txtQuantity.Text.Length; //makes the cursor to the right part
+                    }
+                    else if (quantity == 0)
+                    {
+                        btnSave.Enabled = false;
+                    }
                 }
             }
 

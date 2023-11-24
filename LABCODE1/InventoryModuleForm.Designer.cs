@@ -49,6 +49,7 @@ namespace LABCODE1
             this.txtEqpID = new System.Windows.Forms.TextBox();
             this.label_Quantity = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.cmbGram = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -274,11 +275,26 @@ namespace LABCODE1
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
+            // cmbGram
+            // 
+            this.cmbGram.Enabled = false;
+            this.cmbGram.FormattingEnabled = true;
+            this.cmbGram.Items.AddRange(new object[] {
+            "g",
+            "mg",
+            "mL",
+            "L"});
+            this.cmbGram.Location = new System.Drawing.Point(312, 270);
+            this.cmbGram.Name = "cmbGram";
+            this.cmbGram.Size = new System.Drawing.Size(97, 24);
+            this.cmbGram.TabIndex = 16;
+            // 
             // InventoryModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 418);
+            this.Controls.Add(this.cmbGram);
             this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.label_Quantity);
             this.Controls.Add(this.txtEqpID);
@@ -327,5 +343,6 @@ namespace LABCODE1
         public System.Windows.Forms.Label labelAdd;
         public System.Windows.Forms.TextBox txtQuantity;
         public System.Windows.Forms.Label label_Quantity;
+        private ComboBox cmbGram;
     }
 }
