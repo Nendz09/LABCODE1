@@ -53,14 +53,29 @@ namespace LABCODE1
                         {
                             con.Open();
 
-                            for (int i = 0; i < quantity; i++)
+                            if (cmbCtg.Text == "SUBSTANCES")
                             {
+                                //concatenate qty text + cmb gram
+                                string concatenateQtyGram = txtQuantity.Text + " " + cmbGram.Text;
+
                                 cmd = new SqlCommand("INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status) VALUES(@eqp_name, @eqp_categ, @eqp_size, 'Available')", con);
                                 cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                                 cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
-                                cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
+                                cmd.Parameters.AddWithValue("@eqp_size", concatenateQtyGram);
 
                                 cmd.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                                for (int i = 0; i < quantity; i++)
+                                {
+                                    cmd = new SqlCommand("INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status) VALUES(@eqp_name, @eqp_categ, @eqp_size, 'Available')", con);
+                                    cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
+                                    cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
+                                    cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
+
+                                    cmd.ExecuteNonQuery();
+                                }
                             }
                             con.Close();
                             MessageBox.Show("Equipment has been saved.");
@@ -90,6 +105,7 @@ namespace LABCODE1
             txtQuantity.Clear();
             cmbCtg.ResetText();
             cmbSize.ResetText();
+            cmbGram.ResetText();
             //cmbCtg.SelectedIndex = -1;
             //cmbSize.SelectedIndex = -1;
         }
@@ -245,7 +261,7 @@ namespace LABCODE1
             {
                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 {
-                    e.Handled = false;
+                    e.Handled = true;
                 }
             }
             else
@@ -304,9 +320,9 @@ namespace LABCODE1
                 }
                 else
                 {
-                    if (quantity > 10)
+                    if (quantity > 50)
                     {
-                        txtQuantity.Text = "10";
+                        txtQuantity.Text = "50";
                         txtQuantity.SelectionStart = txtQuantity.Text.Length; //makes the cursor to the right part
                     }
                     else if (quantity == 0)
