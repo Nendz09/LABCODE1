@@ -37,7 +37,7 @@ namespace LABCODE1
         public StudentScanModule()
         {
             InitializeComponent();
-            this.ActiveControl = txt_Barcode; //focus
+            this.ActiveControl = cmbItem; //first focus
             videoCaptureWorker = new BackgroundWorker();
             videoCaptureWorker.DoWork += VideoCaptureWorker_DoWork;
             videoCaptureWorker.RunWorkerCompleted += VideoCaptureWorker_RunWorkerCompleted;
@@ -123,44 +123,6 @@ namespace LABCODE1
             var result = reader.Decode(bitmap);
 
 
-
-            if (this.IsHandleCreated) // Check if the form's handle is created
-            {
-                this.BeginInvoke(new Action(() =>
-                {
-                    // Check if the focus is on txt_Barcode or txt_BarcodeItem
-                    if (txt_Barcode.Focused)
-                    {
-                        if (result != null)
-                        {
-                            txt_Barcode.Text = result.ToString();
-                        }
-                    }
-                    else if (txt_BarcodeItem.Focused)
-                    {
-                        if (result != null)
-                        {
-                            txt_BarcodeItem.Text = result.ToString();
-                        }
-                    }
-                }));
-            }
-
-
-            //if (result != null)
-            //{
-            //    txt_Barcode.Invoke(new MethodInvoker(delegate ()
-            //    {
-            //        //result.Text siya before
-            //        txt_Barcode.Text = result.ToString();
-            //    }));
-            //    //BarcodeFormat barcodeFormat = result.BarcodeFormat;
-            //}
-            //pictureBox.Image = bitmap;
-
-            //this is pag inverted
-            //reader.AutoRotate = true;
-            //reader.Options.TryInverted = true;
         }
 
 
@@ -187,6 +149,7 @@ namespace LABCODE1
             con.Open();
             if (int.TryParse(txt_Barcode.Text, out int studentID))
             {
+                
                 cmd = new SqlCommand("SELECT * FROM lab_students WHERE student_id = @studentID", con);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
 
@@ -199,8 +162,10 @@ namespace LABCODE1
                     label_studentName.Text = dr["full_name"].ToString();
 
                     txt_Barcode.Enabled = false;
-                    txt_BarcodeItem.Enabled = true;
-                    txt_BarcodeItem.Focus();
+                    btnProceed.Enabled = true;
+                    clearStudentID.Enabled = true;
+                    //txt_BarcodeItem.Enabled = true;
+                    //txt_BarcodeItem.Focus();
                 }
                 dr.Close();
             }
@@ -227,27 +192,17 @@ namespace LABCODE1
         {
             dateLabel.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
-        private void txt_BarcodeItem_TextChanged(object sender, EventArgs e)
-        {
-            dgvItemOnHand();
-            if (dgvItemBorrow.RowCount != 0)
-            {
-                btnProceed.Enabled = true;
-            }
-            else
-            {
-                btnProceed.Enabled = false;
-            }
-        }
+        
         private void button1_Click(object sender, EventArgs e)
         {
+            cmbPickCateg.SelectedIndex = -1;
             txt_Barcode.Clear();
-            txt_BarcodeItem.Clear();
-            txt_Barcode.Enabled = true;
-            txt_BarcodeItem.Enabled = false;
+            cmbItem.Text = "";
+            cmbItem.Enabled = false;
+            txt_Barcode.Enabled = false;
             btnProceed.Enabled = false;
+            clearStudentID.Enabled = false;
             dgvItemBorrow.Rows.Clear();
-            txt_Barcode.Focus();
         }
 
         private void dgvItemBorrow_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -266,44 +221,35 @@ namespace LABCODE1
             }
 
 
-            //int rowIndex = dgvItemBorrow.CurrentCell.RowIndex;
-            //if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            //{
-            //    string colName = dgvItemBorrow.Columns[e.ColumnIndex].Name;
-            //    if (colName == "Delete")
-            //    {
-            //        dgvItemBorrow.Rows.RemoveAt(rowIndex);
-            //    }
-            //}
         }
 
 
         
 
         //methods
-        private void dgvItemOnHand() 
-        {
-            con.Close();
-            int i = 0;
+        //private void dgvItemOnHand() 
+        //{
+        //    con.Close();
+        //    int i = 0;
             
-            if (int.TryParse(cmbItem.Text, out int labID)) 
-            {
-                cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @labID", con);
-                cmd.Parameters.AddWithValue("@labID", labID);
-                con.Open();
-                dr = cmd.ExecuteReader();
+        //    if (int.TryParse(cmbItem.Text, out int labID)) 
+        //    {
+        //        cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @labID", con);
+        //        cmd.Parameters.AddWithValue("@labID", labID);
+        //        con.Open();
+        //        dr = cmd.ExecuteReader();
 
                 
 
-                while (dr.Read())
-                {
-                    ++i;
-                    dgvItemBorrow.Rows.Add(dateLabel.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
-                }
-                dr.Close();
-                con.Close();
-            }
-        }
+        //        while (dr.Read())
+        //        {
+        //            ++i;
+        //            dgvItemBorrow.Rows.Add(dateLabel.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+        //        }
+        //        dr.Close();
+        //        con.Close();
+        //    }
+        //}
 
 
         //private void dgvItemBorrowedUpdate() 
@@ -380,9 +326,8 @@ namespace LABCODE1
                 con.Open();
 
                 List<int> itemIds = dgv_GetSelectedItemIds(); //list item (int type)
-
-                
                 dgv_UpdateLabEqpmentStatus(itemIds);
+
                 dgv_InsertIntoLabBorrows();
 
                 con.Close();
@@ -448,7 +393,7 @@ namespace LABCODE1
             try
             {
                 con.Open();
-                cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE status = 'Available' ", con);
+                cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE status = 'Available' AND eqp_categ = '" + cmbPickCateg.Text + "' ", con);
                 cmbItem.Items.Clear();
 
                 SqlDataReader datareader = cmd.ExecuteReader();
@@ -488,9 +433,61 @@ namespace LABCODE1
             //}
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        
+
+        private void cmbItem_SelectedIndexChanged(object sender, EventArgs e)//NO NEED BTN- REKTA INPUT SA DGV AFTER SELECTING INDEX
         {
-            dgvItemOnHand();
+            //extract the equipment ID from the selected cmbItem text
+            if (int.TryParse(cmbItem.Text.Split('-')[0].Trim(), out int equipmentID))
+            {
+                con.Open();
+                cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
+                cmd.Parameters.AddWithValue("@equipmentID", equipmentID);
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    dgvItemBorrow.Rows.Add(dateLabel.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+                }
+
+                dr.Close();
+                con.Close();
+
+                txt_Barcode.Enabled = true;
+                txt_Barcode.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Invalid equipment ID");
+            }
+        }
+
+        private void cmbPickCateg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbPickCateg.SelectedItem != null && cmbPickCateg.SelectedItem.ToString() == "OTHER")
+            {
+                cmbItem.Enabled = true;
+                cmbItem.Text = "";
+                txt_Barcode.Text = "";
+                cmbPickCateg.DropDownStyle = ComboBoxStyle.DropDown;
+            }
+            else
+            {
+                cmbItem.Enabled = true;
+                cmbItem.Text = "";
+                txt_Barcode.Text = "";
+                cmbPickCateg.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
+        }
+
+        
+
+        private void clearStudentID_Click_1(object sender, EventArgs e)
+        {
+            txt_Barcode.Text = "";
+            txt_Barcode.Enabled = true;
+            btnProceed.Enabled = false;
         }
     }
 }

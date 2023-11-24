@@ -69,5 +69,15 @@ namespace LABCODE1.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ekis_border_25px_red {
+            get {
+                object obj = ResourceManager.GetObject("ekis_border_25px_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

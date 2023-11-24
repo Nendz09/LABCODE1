@@ -31,13 +31,12 @@ namespace LABCODE1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentScanModule));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cboCam = new System.Windows.Forms.ComboBox();
             this.btnProceed = new System.Windows.Forms.Button();
             this.txt_Barcode = new System.Windows.Forms.TextBox();
             this.label_studentName = new System.Windows.Forms.Label();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label_studentSection = new System.Windows.Forms.Label();
             this.dgvItemBorrow = new System.Windows.Forms.DataGridView();
@@ -49,13 +48,16 @@ namespace LABCODE1
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.dateLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txt_BarcodeItem = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.cmbItem = new System.Windows.Forms.ComboBox();
-            this.btnAdd = new LABCODE1.UserButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
+            this.cmbPickCateg = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
+            this.clearStudentID = new LABCODE1.UserButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCam
@@ -69,7 +71,7 @@ namespace LABCODE1
             // btnProceed
             // 
             this.btnProceed.Enabled = false;
-            this.btnProceed.Location = new System.Drawing.Point(372, 415);
+            this.btnProceed.Location = new System.Drawing.Point(481, 418);
             this.btnProceed.Name = "btnProceed";
             this.btnProceed.Size = new System.Drawing.Size(75, 23);
             this.btnProceed.TabIndex = 1;
@@ -79,9 +81,10 @@ namespace LABCODE1
             // 
             // txt_Barcode
             // 
-            this.txt_Barcode.Location = new System.Drawing.Point(69, 381);
+            this.txt_Barcode.Enabled = false;
+            this.txt_Barcode.Location = new System.Drawing.Point(198, 418);
             this.txt_Barcode.Name = "txt_Barcode";
-            this.txt_Barcode.Size = new System.Drawing.Size(268, 20);
+            this.txt_Barcode.Size = new System.Drawing.Size(245, 20);
             this.txt_Barcode.TabIndex = 3;
             this.txt_Barcode.TextChanged += new System.EventHandler(this.txt_Barcode_TextChanged);
             this.txt_Barcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Barcode_KeyPress);
@@ -94,18 +97,6 @@ namespace LABCODE1
             this.label_studentName.Size = new System.Drawing.Size(93, 13);
             this.label_studentName.TabIndex = 4;
             this.label_studentName.Text = "STUDENT NAME";
-            // 
-            // pictureBoxClose
-            // 
-            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(772, 6);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
-            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxClose.TabIndex = 13;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
             // label1
             // 
@@ -130,14 +121,14 @@ namespace LABCODE1
             this.dgvItemBorrow.AllowUserToAddRows = false;
             this.dgvItemBorrow.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvItemBorrow.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvItemBorrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvItemBorrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_dob,
@@ -213,18 +204,9 @@ namespace LABCODE1
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // txt_BarcodeItem
-            // 
-            this.txt_BarcodeItem.Enabled = false;
-            this.txt_BarcodeItem.Location = new System.Drawing.Point(69, 418);
-            this.txt_BarcodeItem.Name = "txt_BarcodeItem";
-            this.txt_BarcodeItem.Size = new System.Drawing.Size(268, 20);
-            this.txt_BarcodeItem.TabIndex = 18;
-            this.txt_BarcodeItem.TextChanged += new System.EventHandler(this.txt_BarcodeItem_TextChanged);
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(372, 379);
+            this.button1.Location = new System.Drawing.Point(481, 382);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 19;
@@ -234,38 +216,85 @@ namespace LABCODE1
             // 
             // cmbItem
             // 
+            this.cmbItem.Enabled = false;
             this.cmbItem.FormattingEnabled = true;
-            this.cmbItem.Location = new System.Drawing.Point(469, 418);
+            this.cmbItem.Location = new System.Drawing.Point(198, 382);
             this.cmbItem.Name = "cmbItem";
-            this.cmbItem.Size = new System.Drawing.Size(199, 21);
+            this.cmbItem.Size = new System.Drawing.Size(268, 21);
             this.cmbItem.TabIndex = 20;
             this.cmbItem.DropDown += new System.EventHandler(this.cmbItem_DropDown);
+            this.cmbItem.SelectedIndexChanged += new System.EventHandler(this.cmbItem_SelectedIndexChanged);
             this.cmbItem.TextChanged += new System.EventHandler(this.cmbItem_TextChanged);
             // 
-            // btnAdd
+            // cmbPickCateg
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.Chocolate;
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
-            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
-            this.btnAdd.Location = new System.Drawing.Point(674, 415);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(37, 30);
-            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAdd.TabIndex = 21;
-            this.btnAdd.TabStop = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.cmbPickCateg.FormattingEnabled = true;
+            this.cmbPickCateg.Items.AddRange(new object[] {
+            "GENERAL SCIENCE",
+            "BIOLOGY",
+            "PHYSICS",
+            "CHEMISTRY",
+            "SUBSTANCES",
+            "OTHER"});
+            this.cmbPickCateg.Location = new System.Drawing.Point(60, 382);
+            this.cmbPickCateg.Name = "cmbPickCateg";
+            this.cmbPickCateg.Size = new System.Drawing.Size(121, 21);
+            this.cmbPickCateg.TabIndex = 21;
+            this.cmbPickCateg.SelectedIndexChanged += new System.EventHandler(this.cmbPickCateg_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(62, 366);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "CATEGORY";
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(772, 6);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 13;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            // 
+            // clearStudentID
+            // 
+            this.clearStudentID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.clearStudentID.Enabled = false;
+            this.clearStudentID.Image = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
+            this.clearStudentID.ImageHover = ((System.Drawing.Image)(resources.GetObject("clearStudentID.ImageHover")));
+            this.clearStudentID.ImageNormal = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
+            this.clearStudentID.Location = new System.Drawing.Point(445, 418);
+            this.clearStudentID.Name = "clearStudentID";
+            this.clearStudentID.Size = new System.Drawing.Size(21, 20);
+            this.clearStudentID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.clearStudentID.TabIndex = 24;
+            this.clearStudentID.TabStop = false;
+            this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
             // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 450);
-            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.clearStudentID);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmbPickCateg);
             this.Controls.Add(this.cmbItem);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.txt_BarcodeItem);
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.dgvItemBorrow);
             this.Controls.Add(this.label_studentSection);
@@ -281,9 +310,9 @@ namespace LABCODE1
             this.Text = "StudentScanModule";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentScanModule_FormClosing);
             this.Load += new System.EventHandler(this.StudentScanModule_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,7 +328,6 @@ namespace LABCODE1
         private Label dateLabel;
         private Timer timer1;
         public TextBox txt_Barcode;
-        public TextBox txt_BarcodeItem;
         public Button btnProceed;
         public Button button1;
         public DataGridView dgvItemBorrow;
@@ -310,6 +338,9 @@ namespace LABCODE1
         private DataGridViewTextBoxColumn col_size;
         private DataGridViewImageColumn Delete;
         public ComboBox cmbItem;
-        private UserButton btnAdd;
+        public ComboBox cmbPickCateg;
+        private Label label2;
+        private UserButton clearStudentID;
+        private DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }
