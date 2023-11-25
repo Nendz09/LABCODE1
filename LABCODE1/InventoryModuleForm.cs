@@ -81,7 +81,7 @@ namespace LABCODE1
                             MessageBox.Show("Equipment has been saved.");
 
                             Clear();
-                            this.Dispose();
+                            this.Hide();
                         }
                     }
                 }

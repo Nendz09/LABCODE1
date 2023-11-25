@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace LABCODE1
 {
@@ -34,9 +35,11 @@ namespace LABCODE1
 
         private void btnEquipment_Click(object sender, EventArgs e)
         {
+            btnEquipment.Image = Properties.Resources.ClickedImage;
             openChildForm(new InventoryForm());
 
         }
+        
 
         private void btnStudents_Click(object sender, EventArgs e)
         {

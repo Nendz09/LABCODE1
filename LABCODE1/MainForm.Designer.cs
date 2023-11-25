@@ -55,6 +55,7 @@
             // 
             this.btnStudents.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnStudents.Image = ((System.Drawing.Image)(resources.GetObject("btnStudents.Image")));
+            this.btnStudents.ImageClicked = null;
             this.btnStudents.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnStudents.ImageHover")));
             this.btnStudents.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnStudents.ImageNormal")));
             this.btnStudents.Location = new System.Drawing.Point(0, 222);
@@ -69,6 +70,7 @@
             // 
             this.btnEquipment.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEquipment.Image = ((System.Drawing.Image)(resources.GetObject("btnEquipment.Image")));
+            this.btnEquipment.ImageClicked = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageClicked")));
             this.btnEquipment.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageHover")));
             this.btnEquipment.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageNormal")));
             this.btnEquipment.InitialImage = null;

@@ -19,6 +19,9 @@ namespace LABCODE1
 
         private Image NormalImage;
         private Image HoverImage;
+        //private Image ClickedImage;
+
+        private bool isClicked = false;
 
         public Image ImageNormal {
             get { return NormalImage; }
@@ -30,15 +33,36 @@ namespace LABCODE1
             set { HoverImage = value; }
         }
 
+        //public Image ImageClicked
+        //{
+        //    get { return ClickedImage; }
+        //    set { ClickedImage = value; }
+        //}
+
+
+
         private void UserButton_MouseHover(object sender, EventArgs e)
         {
             this.Image = HoverImage;
+            //if (!isClicked)
+            //{
+            //    this.Image = HoverImage;
+            //}
         }
 
         private void UserButton_MouseLeave(object sender, EventArgs e)
         {
             this.Image = NormalImage;
+            //if (!isClicked)
+            //{
+            //    this.Image = NormalImage;
+            //}
         }
+
+        
+
+
+
 
 
         //try CODE
