@@ -112,6 +112,7 @@ namespace LABCODE1
                 if (colName == "Return")
                 {
                     ReturnRemarksForm returnRemarks = new ReturnRemarksForm();
+                    returnRemarks.txt_itemId.Text = dgvReturn.Rows[e.RowIndex].Cells[2].Value.ToString();
                     returnRemarks.ShowDialog();
                 }
 
