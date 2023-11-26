@@ -55,6 +55,7 @@ namespace LABCODE1
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.clearStudentID = new LABCODE1.UserButton();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).BeginInit();
@@ -285,11 +286,21 @@ namespace LABCODE1
             this.clearStudentID.TabStop = false;
             this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(119, 421);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 13);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "STUDENT ID";
+            // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 450);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.clearStudentID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbPickCateg);
@@ -342,5 +353,6 @@ namespace LABCODE1
         private Label label2;
         private UserButton clearStudentID;
         private DataGridViewImageColumn dataGridViewImageColumn1;
+        private Label label3;
     }
 }

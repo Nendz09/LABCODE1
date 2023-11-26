@@ -104,6 +104,12 @@
     <Compile Include="ReturnModuleForm.Designer.cs">
       <DependentUpon>ReturnModuleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReturnRemarksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReturnRemarksForm.Designer.cs">
+      <DependentUpon>ReturnRemarksForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     </Compile>
     <EmbeddedResource Include="ReturnModuleForm.resx">
       <DependentUpon>ReturnModuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReturnRemarksForm.resx">
+      <DependentUpon>ReturnRemarksForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>

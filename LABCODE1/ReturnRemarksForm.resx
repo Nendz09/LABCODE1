@@ -117,36 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Return.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="Return.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAGPSURBVDhP1ZM7SwNBFIXHByoiqGgVrAULFTR2WsdGq4CoCElnY6cQK1fEyk5QSLKbIMRCGxV8
-        VT46C0EQFUXUSiz9ARbHc3dvJAmJSbYRD3zcMHfnzJnJjPmn2kWdSWPIpDBpEujWUR8Casw6Go2DfrJH
-        Tmga0q4PiZkkcnBMXoll4ujUbpWSbXrJxOzD2FhkDRgLtfpFlXIQJAfkk9ySVTJHZvOwMcPzHeHvgBui
-        pBxEyDMnfLG+kStykUcK56yX5Iwk3PONo1UdClR5wnnWDOsdqyw0TNNmdcmRxE+ijx8e8aPfzzCNNqYL
-        s//Ous15PdopUKX/siyyiXaarZFrLj6lnQLl3kMb+6ynrKPazVcaTTSbYF+2vqCjJZR9KQ6mS74Uz1C2
-        fU9iOupTsmU5RxvL5IbGUe2UkRyBhXombvhBkomZdxcfySEJ6owy2kALJ/YyQSiHMFmhyRN5YcKx4tem
-        mFIY4KQdIkmyPLjb9K7XuNlCR+XPM4kumkY50VKWSIxE2Bt0k/l+638jY74BVKo8Q1vR8sIAAAAASUVO
-        RK5CYII=
-</value>
-  </data>
 </root>
