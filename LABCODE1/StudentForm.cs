@@ -143,5 +143,11 @@ namespace LABCODE1
                 con.Close();
             }
         }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            ReturnModuleForm returnModule = new ReturnModuleForm();
+            returnModule.ShowDialog();
+        }
     }
 }

@@ -35,9 +35,7 @@ namespace LABCODE1
 
         private void btnEquipment_Click(object sender, EventArgs e)
         {
-            btnEquipment.Image = Properties.Resources.ClickedImage;
             openChildForm(new InventoryForm());
-
         }
         
 

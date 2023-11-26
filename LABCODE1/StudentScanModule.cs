@@ -227,60 +227,7 @@ namespace LABCODE1
         
 
         //methods
-        //private void dgvItemOnHand() 
-        //{
-        //    con.Close();
-        //    int i = 0;
-            
-        //    if (int.TryParse(cmbItem.Text, out int labID)) 
-        //    {
-        //        cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @labID", con);
-        //        cmd.Parameters.AddWithValue("@labID", labID);
-        //        con.Open();
-        //        dr = cmd.ExecuteReader();
-
-                
-
-        //        while (dr.Read())
-        //        {
-        //            ++i;
-        //            dgvItemBorrow.Rows.Add(dateLabel.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
-        //        }
-        //        dr.Close();
-        //        con.Close();
-        //    }
-        //}
-
-
-        //private void dgvItemBorrowedUpdate() 
-        //{
-        //    try
-        //    {
-        //        con.Open();
-
-        //        for (int i = 0; i < dgvItemBorrow.RowCount; i++)
-        //        {
-        //            cmd = new SqlCommand("UPDATE lab_eqpment SET status = 'Borrowed' WHERE eqp_id = '" + dgvItemBorrow.Rows[i].Cells["col_itemid"] + "' ", con);
-        //            cmd.ExecuteNonQuery();
-        //            con.Close();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-            
-        //}
-
-
-
-
-
-        //private void isFilled()
-        //{
-        //    bool allTextIsFilled = !string.IsNullOrEmpty(txt_Barcode.Text);
-        //    txt_BarcodeItem.Enabled = allTextIsFilled;
-        //}
+        
 
         private void dgvItemBorrow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -322,15 +269,19 @@ namespace LABCODE1
         {
             try
             {
-        
                 con.Open();
+
+                if (HasDuplicateItemIds())
+                {
+                    MessageBox.Show("Please remove the DUPLICATE item ID before proceeding. Thank you.");
+                    return; //exit the method if duplicates are found
+                }
 
                 List<int> itemIds = dgv_GetSelectedItemIds(); //list item (int type)
                 dgv_UpdateLabEqpmentStatus(itemIds);
-
                 dgv_InsertIntoLabBorrows();
 
-                con.Close();
+                //con.Close();
                
                 MessageBox.Show("Borrowed");
                 this.Dispose();
@@ -339,12 +290,20 @@ namespace LABCODE1
             {
                 MessageBox.Show(ex.Message);
             }
+            finally 
+            { 
+                con.Close(); 
+            }
+            //if (con.State == ConnectionState.Open)
+            //{
+            //    con.Close(); // Ensure that the connection is closed even if an exception occurs
+            //}
         }
 
 
         private List<int> dgv_GetSelectedItemIds()
         {
-            List<int> itemIds = new List<int>();
+            List<int> itemIds = new List<int>(); //list item int type
 
 
             for (int i = 0; i < dgvItemBorrow.Rows.Count; i++)
@@ -481,7 +440,28 @@ namespace LABCODE1
             }
         }
 
-        
+
+        private bool HasDuplicateItemIds()//this is a BOOLEAN
+        {
+            HashSet<int> HashItemId = new HashSet<int>(); //collection of unique elements, meaning it cannot contain duplicate items.
+
+            for (int i = 0; i < dgvItemBorrow.Rows.Count; i++)
+            {
+                int itemId;
+                if (int.TryParse(dgvItemBorrow.Rows[i].Cells["col_itemid"].Value.ToString(), out itemId))
+                {
+                    if (!HashItemId.Add(itemId))
+                    {
+                        //duplicate item ID found
+                        return true;
+                    }
+                }
+            }
+
+            //no duplicate item IDs found
+            return false;
+        }
+
 
         private void clearStudentID_Click_1(object sender, EventArgs e)
         {
