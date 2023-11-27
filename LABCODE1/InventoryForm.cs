@@ -152,7 +152,12 @@ namespace LABCODE1
                     e.CellStyle.ForeColor = Color.DarkOrange;
                     e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
                 }
-                
+                else if (status == "Unavailable")
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                    e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                }
+
             }
         }
     }

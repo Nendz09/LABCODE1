@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,14 +30,55 @@ namespace LABCODE1
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            if (rb_Yes.Checked)
+            try
             {
-                MessageBox.Show("GOOD");
+                con.Open();
+                if (rb_Yes.Checked)//if need replacement
+                {
+                    QueryUnavailable();
+                    MessageBox.Show("returned");
+                }
+                else if (rb_No.Checked)//no need replacement
+                {
+                    QueryAvailable();
+                    MessageBox.Show("RETURNED");
+                }
+
             }
-            else if (rb_No.Checked)
+            catch (Exception ex)
             {
-                MessageBox.Show("BAD");
+                MessageBox.Show(ex.Message);
             }
+            finally { con.Close(); }
         }
+
+        private void pictureBoxClose_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            currentDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+        }
+
+
+        //methods
+        private void QueryUnavailable() 
+        {
+            string queryUnavailable = "UPDATE lab_eqpment SET status = 'Unavailable' WHERE eqp_id = '" + txt_itemId.Text + "' ";
+            cmd = new SqlCommand(queryUnavailable, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        private void QueryAvailable()
+        {
+            string queryAvailable = "UPDATE lab_eqpment SET status = 'Available' WHERE eqp_id = '" + txt_itemId.Text + "' ";
+            cmd = new SqlCommand(queryAvailable, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
     }
 }

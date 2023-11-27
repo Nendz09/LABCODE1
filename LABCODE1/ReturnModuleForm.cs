@@ -113,6 +113,7 @@ namespace LABCODE1
                 {
                     ReturnRemarksForm returnRemarks = new ReturnRemarksForm();
                     returnRemarks.txt_itemId.Text = dgvReturn.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    returnRemarks.txt_itemName.Text = dgvReturn.Rows[e.RowIndex].Cells[3].Value.ToString(); ;
                     returnRemarks.ShowDialog();
                 }
 
