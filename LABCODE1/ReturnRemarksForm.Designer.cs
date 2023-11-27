@@ -37,11 +37,14 @@
             this.rb_Yes = new System.Windows.Forms.RadioButton();
             this.rb_No = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.currentDate = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txt_remarks = new LABCODE1.UserTextbox();
             this.labelDate = new System.Windows.Forms.Label();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
+            this.txt_studId = new System.Windows.Forms.Label();
+            this.txt_studName = new System.Windows.Forms.Label();
+            this.txt_remarks = new LABCODE1.UserTextbox();
+            this.txt_studSec = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +62,7 @@
             // txt_itemName
             // 
             this.txt_itemName.AutoSize = true;
-            this.txt_itemName.Location = new System.Drawing.Point(187, 212);
+            this.txt_itemName.Location = new System.Drawing.Point(140, 562);
             this.txt_itemName.Name = "txt_itemName";
             this.txt_itemName.Size = new System.Drawing.Size(67, 13);
             this.txt_itemName.TabIndex = 21;
@@ -68,7 +71,7 @@
             // txt_itemId
             // 
             this.txt_itemId.AutoSize = true;
-            this.txt_itemId.Location = new System.Drawing.Point(207, 163);
+            this.txt_itemId.Location = new System.Drawing.Point(12, 562);
             this.txt_itemId.Name = "txt_itemId";
             this.txt_itemId.Size = new System.Drawing.Size(47, 13);
             this.txt_itemId.TabIndex = 22;
@@ -108,12 +111,39 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Green;
+            this.panel1.Controls.Add(this.txt_studSec);
+            this.panel1.Controls.Add(this.txt_studName);
+            this.panel1.Controls.Add(this.txt_studId);
             this.panel1.Controls.Add(this.pictureBoxClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(419, 65);
             this.panel1.TabIndex = 29;
+            // 
+            // currentDate
+            // 
+            this.currentDate.AutoSize = true;
+            this.currentDate.Location = new System.Drawing.Point(46, 107);
+            this.currentDate.Name = "currentDate";
+            this.currentDate.Size = new System.Drawing.Size(16, 13);
+            this.currentDate.TabIndex = 30;
+            this.currentDate.Text = "...";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // labelDate
+            // 
+            this.labelDate.AutoSize = true;
+            this.labelDate.Location = new System.Drawing.Point(12, 81);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(92, 13);
+            this.labelDate.TabIndex = 31;
+            this.labelDate.Text = "CURRENT DATE";
             // 
             // pictureBoxClose
             // 
@@ -127,20 +157,27 @@
             this.pictureBoxClose.TabStop = false;
             this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
-            // currentDate
+            // txt_studId
             // 
-            this.currentDate.AutoSize = true;
-            this.currentDate.Location = new System.Drawing.Point(59, 109);
-            this.currentDate.Name = "currentDate";
-            this.currentDate.Size = new System.Drawing.Size(16, 13);
-            this.currentDate.TabIndex = 30;
-            this.currentDate.Text = "...";
+            this.txt_studId.AutoSize = true;
+            this.txt_studId.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_studId.ForeColor = System.Drawing.Color.White;
+            this.txt_studId.Location = new System.Drawing.Point(11, 36);
+            this.txt_studId.Name = "txt_studId";
+            this.txt_studId.Size = new System.Drawing.Size(101, 19);
+            this.txt_studId.TabIndex = 32;
+            this.txt_studId.Text = "STUDENT ID";
             // 
-            // timer1
+            // txt_studName
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.txt_studName.AutoSize = true;
+            this.txt_studName.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_studName.ForeColor = System.Drawing.Color.White;
+            this.txt_studName.Location = new System.Drawing.Point(12, 10);
+            this.txt_studName.Name = "txt_studName";
+            this.txt_studName.Size = new System.Drawing.Size(129, 19);
+            this.txt_studName.TabIndex = 33;
+            this.txt_studName.Text = "STUDENT NAME";
             // 
             // txt_remarks
             // 
@@ -164,14 +201,16 @@
             this.txt_remarks.Texts = "";
             this.txt_remarks.UnderlinedStyle = false;
             // 
-            // labelDate
+            // txt_studSec
             // 
-            this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(49, 81);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(92, 13);
-            this.labelDate.TabIndex = 31;
-            this.labelDate.Text = "CURRENT DATE";
+            this.txt_studSec.AutoSize = true;
+            this.txt_studSec.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_studSec.ForeColor = System.Drawing.Color.White;
+            this.txt_studSec.Location = new System.Drawing.Point(244, 9);
+            this.txt_studSec.Name = "txt_studSec";
+            this.txt_studSec.Size = new System.Drawing.Size(114, 19);
+            this.txt_studSec.TabIndex = 34;
+            this.txt_studSec.Text = "STUDENT SEC";
             // 
             // ReturnRemarksForm
             // 
@@ -193,6 +232,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReturnRemarksForm";
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -213,5 +253,8 @@
         private System.Windows.Forms.Label currentDate;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label labelDate;
+        public System.Windows.Forms.Label txt_studId;
+        public System.Windows.Forms.Label txt_studName;
+        public System.Windows.Forms.Label txt_studSec;
     }
 }

@@ -269,6 +269,9 @@
     <Content Include="Inventory_Labcode_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\return_20px_highlight_REVERSED.png" />
+    <None Include="Resources\return_120px_REVERSED.png" />
+    <None Include="Resources\replacement_20pixels.png" />
     <None Include="Resources\ekis_border_25px_red.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

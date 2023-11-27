@@ -10,9 +10,8 @@
 
 namespace LABCODE1.Properties {
     using System;
-    using System.Drawing;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -32,10 +31,7 @@ namespace LABCODE1.Properties {
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-
-        public static Image ClickedImage { get; internal set; }
-        public static Image NormalImage { get; internal set; }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -80,6 +76,36 @@ namespace LABCODE1.Properties {
         internal static System.Drawing.Bitmap ekis_border_25px_red {
             get {
                 object obj = ResourceManager.GetObject("ekis_border_25px_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap replacement_20pixels {
+            get {
+                object obj = ResourceManager.GetObject("replacement_20pixels", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap return_120px_REVERSED {
+            get {
+                object obj = ResourceManager.GetObject("return_120px_REVERSED", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap return_20px_highlight_REVERSED {
+            get {
+                object obj = ResourceManager.GetObject("return_20px_highlight_REVERSED", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

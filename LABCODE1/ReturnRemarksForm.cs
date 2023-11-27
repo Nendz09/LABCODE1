@@ -35,15 +35,15 @@ namespace LABCODE1
                 con.Open();
                 if (rb_Yes.Checked)//if need replacement
                 {
-                    QueryUnavailable();
+                    QueryUpdateStatusUnavailable();
                     MessageBox.Show("returned");
                 }
                 else if (rb_No.Checked)//no need replacement
                 {
-                    QueryAvailable();
+                    QueryUpdateStatusAvailable();
                     MessageBox.Show("RETURNED");
                 }
-
+                this.Dispose();
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace LABCODE1
 
 
         //methods
-        private void QueryUnavailable() 
+        private void QueryUpdateStatusUnavailable() 
         {
             string queryUnavailable = "UPDATE lab_eqpment SET status = 'Unavailable' WHERE eqp_id = '" + txt_itemId.Text + "' ";
             cmd = new SqlCommand(queryUnavailable, con);
@@ -72,10 +72,25 @@ namespace LABCODE1
             con.Close();
         }
 
-        private void QueryAvailable()
+        private void QueryUpdateStatusAvailable()
         {
             string queryAvailable = "UPDATE lab_eqpment SET status = 'Available' WHERE eqp_id = '" + txt_itemId.Text + "' ";
             cmd = new SqlCommand(queryAvailable, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        private void QueryInsert() 
+        {
+            string queryInsert= "INSERT INTO lab_log (date_borrow, date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks) " +
+                                "VALUES (@date_borrow, @date_return, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @eqp_size, @remarks)";
+            cmd = new SqlCommand(queryInsert, con);
+            cmd.Parameters.AddWithValue("@date_return", currentDate.Text);
+
+
+
+
+            
             cmd.ExecuteNonQuery();
             con.Close();
         }

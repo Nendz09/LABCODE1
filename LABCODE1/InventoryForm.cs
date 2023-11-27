@@ -28,6 +28,8 @@ namespace LABCODE1
         {
             InitializeComponent();
             LoadEquipment();
+
+            
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
@@ -46,10 +48,18 @@ namespace LABCODE1
             con.Open();
             dr = cmd.ExecuteReader();
 
+            
+
             while (dr.Read())
             {
                 ++i;
+               
+
                 dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+
+                
+                //int rowIndex = dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+                //checkIfUnavailable(rowIndex, status);
             }
             dr.Close();
             con.Close();
@@ -99,6 +109,19 @@ namespace LABCODE1
                     cmd.ExecuteNonQuery();
                     con.Close();
                     MessageBox.Show("Equipment has been deleted successfully!");
+                }
+            }
+            else if (colName == "Replacement")
+            {
+                string status = dgvLab.Rows[e.RowIndex].Cells["col_status"].Value.ToString();
+
+                if (status != "Unavailable")
+                {
+                    MessageBox.Show("cannot be replace");
+                }
+                else
+                {
+                    MessageBox.Show("replaced");
                 }
             }
             LoadEquipment();
@@ -157,8 +180,35 @@ namespace LABCODE1
                     e.CellStyle.ForeColor = Color.Red;
                     e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
                 }
-
             }
+
+            //else if (e.ColumnIndex == dgvLab.Columns["Replacement"].Index && e.RowIndex >= 0)
+            //{
+            //    string status = dgvLab.Rows[e.RowIndex].Cells["col_status"].Value.ToString();
+
+            //    if (status == "Unavailable")
+            //    {
+            //        e.Value = Properties.Resources.replacement_20pixels;
+            //        //dgvLab.Rows[e.RowIndex].Cells["Replacement"].Visible = true;
+            //    }
+            //    else
+            //    {
+            //        // Set the value to null to hide the image
+            //        e.Value = null;
+            //        //dgvLab.Rows[e.RowIndex].Cells["Replacement"].Visible = false;
+            //    }
+            //}
         }
+
+
+        private void checkIfUnavailable(int rowIndex, string status) 
+        {
+            //if (status == "Unavailable")
+            //{
+                
+            //}
+        }
+
+       
     }
 }
