@@ -24,6 +24,7 @@ namespace LABCODE1
         public ReturnModuleForm()
         {
             InitializeComponent();
+            dgvBorrowedItems();
         }
 
 
@@ -112,12 +113,15 @@ namespace LABCODE1
                 if (colName == "Return")
                 {
                     ReturnRemarksForm returnRemarks = new ReturnRemarksForm();
+                    returnRemarks.borrowDate.Text = dgvReturn.Rows[e.RowIndex].Cells[0].Value.ToString();
                     returnRemarks.txt_itemId.Text = dgvReturn.Rows[e.RowIndex].Cells[2].Value.ToString();
                     returnRemarks.txt_itemName.Text = dgvReturn.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    returnRemarks.txt_itemSize.Text = dgvReturn.Rows[e.RowIndex].Cells[4].Value.ToString();
                     returnRemarks.txt_studId.Text = txt_Barcode.Text;
                     returnRemarks.txt_studName.Text = label_studentName.Text;
                     returnRemarks.txt_studSec.Text = label_studentSection.Text;
                     returnRemarks.ShowDialog();
+                    dgvBorrowedItems();
                 }
 
             }

@@ -344,7 +344,7 @@ namespace LABCODE1
 
 
 
-        //TextBox-> TextChanged event
+        
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (_TextChanged != null)

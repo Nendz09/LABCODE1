@@ -32,7 +32,7 @@ namespace LABCODE1
 
 
         //methods
-        public void LoadStudentView()
+        public void LoadStudentView(/*string scannedBarcode*/)
         {
             con.Close();
             int i = 0;

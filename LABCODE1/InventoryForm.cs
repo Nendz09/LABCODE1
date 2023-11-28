@@ -28,8 +28,6 @@ namespace LABCODE1
         {
             InitializeComponent();
             LoadEquipment();
-
-            
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)

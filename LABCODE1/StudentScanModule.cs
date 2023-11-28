@@ -27,8 +27,12 @@ namespace LABCODE1
         SqlDataReader dr;
         BarcodeReader reader = new BarcodeReader();
 
-        //DateTimePicker dtp = new DateTimePicker();
+        //DateTimePicker dtp = new DateTimePicker(); //current date??
         DateTimePicker dtp = new DateTimePicker();
+
+
+
+
         Rectangle _Rectangle;
         /*backgroundworker - is a component in .NET that simplifies working with background threads
         in a Windows Forms application*/
@@ -47,6 +51,7 @@ namespace LABCODE1
             dtp.Visible = false;
             dtp.Format = DateTimePickerFormat.Custom;
             dtp.CustomFormat = "yyyy-MM-dd";
+            dtp.MinDate = DateTime.Now;
         }
 
        
@@ -248,7 +253,7 @@ namespace LABCODE1
         //event handler for DateTimePicker's ValueChanged event.
         private void dtp_ValueChanged(object sender, EventArgs e)
         {
-            // Set the selected date in the DataGridView cell.
+            //set the selected date in the DataGridView cell.
             dgvItemBorrow.CurrentCell.Value = dtp.Value.ToString("yyyy-MM-dd");
             dtp.Visible = false; // Hide the DateTimePicker control.
         }
@@ -267,11 +272,22 @@ namespace LABCODE1
         {
             try
             {
+                //check empty cells
+                foreach (DataGridViewRow row in dgvItemBorrow.Rows)
+                {
+                    if (string.IsNullOrEmpty(Convert.ToString(row.Cells["col_dor"].Value)))
+                    {
+                        MessageBox.Show("Please set a value for the 'Date of Return' before proceeding.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
+
                 con.Open();
 
                 if (HasDuplicateItemIds())
                 {
-                    MessageBox.Show("Please remove the DUPLICATE item ID before proceeding. Thank you.");
+                    MessageBox.Show("Please remove the DUPLICATE item ID before proceeding. Thank you.", "Duplicate Item ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return; //exit the method if duplicates are found
                 }
 
@@ -281,7 +297,7 @@ namespace LABCODE1
 
                 //con.Close();
                
-                MessageBox.Show("Borrowed");
+                MessageBox.Show("Borrowed Successfully!");
                 this.Dispose();
             }
             catch (Exception ex)

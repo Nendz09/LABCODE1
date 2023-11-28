@@ -19,10 +19,13 @@ namespace LABCODE1
         SqlCommand cmd = new SqlCommand();
         SqlDataReader dr;
 
+        private StringBuilder barcodeBuffer = new StringBuilder();
         public StudentForm()
         {
             InitializeComponent();
             LoadStudents();
+            // Attach the KeyPress event handler
+            this.KeyPress += StudentForm_KeyPress;
         }
 
 
@@ -81,7 +84,7 @@ namespace LABCODE1
 
                 studentModule.ShowDialog();
             }
-            else if (colName == "View") 
+            else if (colName == "View")
             {
                 StudentViewModule studentView = new StudentViewModule();
 
@@ -105,6 +108,10 @@ namespace LABCODE1
                     con.Close();
                     MessageBox.Show("Equipment has been deleted successfully!");
                 }
+            }
+            else if (colName == "col_studentid") 
+            {
+                MessageBox.Show("HELLO");
             }
             LoadStudents();
         }
@@ -148,6 +155,62 @@ namespace LABCODE1
         {
             ReturnModuleForm returnModule = new ReturnModuleForm();
             returnModule.ShowDialog();
+        }
+
+
+
+
+
+
+
+        private void StudentForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the pressed key is a valid character in your barcode
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == '-' || e.KeyChar == ' ')
+            {
+                // Append the character to a buffer until a delimiter is encountered
+                if (e.KeyChar == '\r') // Assuming Enter key is used as a delimiter
+                {
+                    // Process the complete barcode data
+                    string barcode = GetBarcodeFromBuffer();
+                    ProcessBarcode(barcode);
+
+                    // Clear the buffer for the next barcode
+                    ClearBuffer();
+                }
+                else
+                {
+                    // Append the character to the buffer
+                    AppendToBuffer(e.KeyChar);
+                }
+
+                // Consume the key event to prevent it from being handled elsewhere
+                e.Handled = true;
+            }
+        }
+        // Buffer to store the scanned characters until a delimiter is encountered
+
+        
+
+        private void AppendToBuffer(char character)
+        {
+            barcodeBuffer.Append(character);
+        }
+
+        private string GetBarcodeFromBuffer()
+        {
+            return barcodeBuffer.ToString();
+        }
+
+        private void ClearBuffer()
+        {
+            barcodeBuffer.Clear();
+        }
+        private void ProcessBarcode(string barcode)
+        {
+            // Here, you can implement the logic to handle the scanned barcode
+            // For example, you can display a message, search for the student, or perform any other action.
+            MessageBox.Show($"Scanned Barcode: {barcode}");
         }
     }
 }

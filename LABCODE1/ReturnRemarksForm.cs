@@ -32,16 +32,24 @@ namespace LABCODE1
         {
             try
             {
-                con.Open();
-                if (rb_Yes.Checked)//if need replacement
+                if (rb_Yes.Checked)//if need replacement - status = unavailable
                 {
+                    //int eqpId = int.Parse(txt_itemId.Text);
+                    //DateTime returnDate = DateTime.Now;
+                    //string remarks = txt_remarks.Text;
+
+                    //ReturnItem(eqpId, returnDate, remarks);
+                    QueryInsertLabLogs();
+                    QueryDeleteToBorrowTable();
                     QueryUpdateStatusUnavailable();
-                    MessageBox.Show("returned");
+                    MessageBox.Show("Returned Successfully. Replacement is needed.");
                 }
                 else if (rb_No.Checked)//no need replacement
                 {
+                    QueryInsertLabLogs();
+                    QueryDeleteToBorrowTable();
                     QueryUpdateStatusAvailable();
-                    MessageBox.Show("RETURNED");
+                    MessageBox.Show("Returned Successfully. Replacement is NOT needed.");
                 }
                 this.Dispose();
             }
@@ -66,6 +74,7 @@ namespace LABCODE1
         //methods
         private void QueryUpdateStatusUnavailable() 
         {
+            con.Open();
             string queryUnavailable = "UPDATE lab_eqpment SET status = 'Unavailable' WHERE eqp_id = '" + txt_itemId.Text + "' ";
             cmd = new SqlCommand(queryUnavailable, con);
             cmd.ExecuteNonQuery();
@@ -74,26 +83,44 @@ namespace LABCODE1
 
         private void QueryUpdateStatusAvailable()
         {
+            con.Open();
             string queryAvailable = "UPDATE lab_eqpment SET status = 'Available' WHERE eqp_id = '" + txt_itemId.Text + "' ";
             cmd = new SqlCommand(queryAvailable, con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
 
-        private void QueryInsert() 
+        private void QueryInsertLabLogs()
         {
-            string queryInsert= "INSERT INTO lab_log (date_borrow, date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks) " +
-                                "VALUES (@date_borrow, @date_return, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @eqp_size, @remarks)";
+            con.Open();
+            //string textRemarksValue = UserTextbox.txt_remarks1.Text;
+            string queryInsert = "INSERT INTO lab_logs (date_borrow, actual_date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks) " +
+                                "VALUES (@date_borrow, @actual_date_return, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @eqp_size, @remarks)";
             cmd = new SqlCommand(queryInsert, con);
-            cmd.Parameters.AddWithValue("@date_return", currentDate.Text);
+            cmd.Parameters.AddWithValue("@date_borrow", borrowDate.Text);
+            cmd.Parameters.AddWithValue("@actual_date_return", currentDate.Text);
+            cmd.Parameters.AddWithValue("@student_id", txt_studId.Text);
+            cmd.Parameters.AddWithValue("@name", txt_studName.Text);
+            cmd.Parameters.AddWithValue("@year_sec", txt_studSec.Text);
+            cmd.Parameters.AddWithValue("@eqp_id", txt_itemId.Text);
+            cmd.Parameters.AddWithValue("@eqp_name", txt_itemName.Text);
+            cmd.Parameters.AddWithValue("@eqp_size", txt_itemSize.Text);
+            cmd.Parameters.AddWithValue("@remarks", txt_remarks1.Texts);
 
-
-
-
-            
             cmd.ExecuteNonQuery();
             con.Close();
         }
 
+        private void QueryDeleteToBorrowTable() 
+        {
+            con.Open();
+            int eqpId = int.Parse(txt_itemId.Text);
+            string queryDeleteBorrows = "DELETE FROM lab_borrows WHERE eqp_id = @eqpId";
+
+            cmd = new SqlCommand(queryDeleteBorrows, con);
+            cmd.Parameters.AddWithValue("@eqpId", eqpId); // use borrow_id here
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
     }
 }

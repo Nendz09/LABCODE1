@@ -37,14 +37,17 @@
             this.rb_Yes = new System.Windows.Forms.RadioButton();
             this.rb_No = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_studSec = new System.Windows.Forms.Label();
+            this.txt_studName = new System.Windows.Forms.Label();
+            this.txt_studId = new System.Windows.Forms.Label();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.currentDate = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.labelDate = new System.Windows.Forms.Label();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.txt_studId = new System.Windows.Forms.Label();
-            this.txt_studName = new System.Windows.Forms.Label();
-            this.txt_remarks = new LABCODE1.UserTextbox();
-            this.txt_studSec = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.borrowDate = new System.Windows.Forms.Label();
+            this.txt_itemSize = new System.Windows.Forms.Label();
+            this.txt_remarks1 = new LABCODE1.UserTextbox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +65,7 @@
             // txt_itemName
             // 
             this.txt_itemName.AutoSize = true;
-            this.txt_itemName.Location = new System.Drawing.Point(140, 562);
+            this.txt_itemName.Location = new System.Drawing.Point(176, 562);
             this.txt_itemName.Name = "txt_itemName";
             this.txt_itemName.Size = new System.Drawing.Size(67, 13);
             this.txt_itemName.TabIndex = 21;
@@ -121,10 +124,55 @@
             this.panel1.Size = new System.Drawing.Size(419, 65);
             this.panel1.TabIndex = 29;
             // 
+            // txt_studSec
+            // 
+            this.txt_studSec.AutoSize = true;
+            this.txt_studSec.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_studSec.ForeColor = System.Drawing.Color.White;
+            this.txt_studSec.Location = new System.Drawing.Point(244, 9);
+            this.txt_studSec.Name = "txt_studSec";
+            this.txt_studSec.Size = new System.Drawing.Size(114, 19);
+            this.txt_studSec.TabIndex = 34;
+            this.txt_studSec.Text = "STUDENT SEC";
+            // 
+            // txt_studName
+            // 
+            this.txt_studName.AutoSize = true;
+            this.txt_studName.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_studName.ForeColor = System.Drawing.Color.White;
+            this.txt_studName.Location = new System.Drawing.Point(12, 10);
+            this.txt_studName.Name = "txt_studName";
+            this.txt_studName.Size = new System.Drawing.Size(129, 19);
+            this.txt_studName.TabIndex = 33;
+            this.txt_studName.Text = "STUDENT NAME";
+            // 
+            // txt_studId
+            // 
+            this.txt_studId.AutoSize = true;
+            this.txt_studId.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_studId.ForeColor = System.Drawing.Color.White;
+            this.txt_studId.Location = new System.Drawing.Point(11, 36);
+            this.txt_studId.Name = "txt_studId";
+            this.txt_studId.Size = new System.Drawing.Size(101, 19);
+            this.txt_studId.TabIndex = 32;
+            this.txt_studId.Text = "STUDENT ID";
+            // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(393, 3);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 30;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            // 
             // currentDate
             // 
             this.currentDate.AutoSize = true;
-            this.currentDate.Location = new System.Drawing.Point(46, 107);
+            this.currentDate.Location = new System.Drawing.Point(245, 105);
             this.currentDate.Name = "currentDate";
             this.currentDate.Size = new System.Drawing.Size(16, 13);
             this.currentDate.TabIndex = 30;
@@ -139,84 +187,69 @@
             // labelDate
             // 
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(12, 81);
+            this.labelDate.Location = new System.Drawing.Point(245, 79);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(92, 13);
             this.labelDate.TabIndex = 31;
             this.labelDate.Text = "CURRENT DATE";
             // 
-            // pictureBoxClose
+            // label1
             // 
-            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(393, 3);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
-            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxClose.TabIndex = 30;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 13);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "DATE BORROWED";
             // 
-            // txt_studId
+            // borrowDate
             // 
-            this.txt_studId.AutoSize = true;
-            this.txt_studId.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_studId.ForeColor = System.Drawing.Color.White;
-            this.txt_studId.Location = new System.Drawing.Point(11, 36);
-            this.txt_studId.Name = "txt_studId";
-            this.txt_studId.Size = new System.Drawing.Size(101, 19);
-            this.txt_studId.TabIndex = 32;
-            this.txt_studId.Text = "STUDENT ID";
+            this.borrowDate.AutoSize = true;
+            this.borrowDate.Location = new System.Drawing.Point(13, 105);
+            this.borrowDate.Name = "borrowDate";
+            this.borrowDate.Size = new System.Drawing.Size(16, 13);
+            this.borrowDate.TabIndex = 33;
+            this.borrowDate.Text = "...";
             // 
-            // txt_studName
+            // txt_itemSize
             // 
-            this.txt_studName.AutoSize = true;
-            this.txt_studName.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_studName.ForeColor = System.Drawing.Color.White;
-            this.txt_studName.Location = new System.Drawing.Point(12, 10);
-            this.txt_studName.Name = "txt_studName";
-            this.txt_studName.Size = new System.Drawing.Size(129, 19);
-            this.txt_studName.TabIndex = 33;
-            this.txt_studName.Text = "STUDENT NAME";
+            this.txt_itemSize.AutoSize = true;
+            this.txt_itemSize.Location = new System.Drawing.Point(323, 562);
+            this.txt_itemSize.Name = "txt_itemSize";
+            this.txt_itemSize.Size = new System.Drawing.Size(60, 13);
+            this.txt_itemSize.TabIndex = 34;
+            this.txt_itemSize.Text = "ITEM SIZE";
             // 
-            // txt_remarks
+            // txt_remarks1
             // 
-            this.txt_remarks.BackColor = System.Drawing.SystemColors.Window;
-            this.txt_remarks.BorderColor = System.Drawing.Color.Green;
-            this.txt_remarks.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.txt_remarks.BorderRadius = 15;
-            this.txt_remarks.BorderSize = 3;
-            this.txt_remarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_remarks.ForeColor = System.Drawing.Color.Black;
-            this.txt_remarks.Location = new System.Drawing.Point(139, 269);
-            this.txt_remarks.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_remarks.Multiline = true;
-            this.txt_remarks.Name = "txt_remarks";
-            this.txt_remarks.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txt_remarks.PasswordChar = false;
-            this.txt_remarks.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txt_remarks.PlaceholderText = "Remarks";
-            this.txt_remarks.Size = new System.Drawing.Size(200, 127);
-            this.txt_remarks.TabIndex = 20;
-            this.txt_remarks.Texts = "";
-            this.txt_remarks.UnderlinedStyle = false;
-            // 
-            // txt_studSec
-            // 
-            this.txt_studSec.AutoSize = true;
-            this.txt_studSec.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_studSec.ForeColor = System.Drawing.Color.White;
-            this.txt_studSec.Location = new System.Drawing.Point(244, 9);
-            this.txt_studSec.Name = "txt_studSec";
-            this.txt_studSec.Size = new System.Drawing.Size(114, 19);
-            this.txt_studSec.TabIndex = 34;
-            this.txt_studSec.Text = "STUDENT SEC";
+            this.txt_remarks1.BackColor = System.Drawing.SystemColors.Window;
+            this.txt_remarks1.BorderColor = System.Drawing.Color.Green;
+            this.txt_remarks1.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txt_remarks1.BorderRadius = 15;
+            this.txt_remarks1.BorderSize = 3;
+            this.txt_remarks1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_remarks1.ForeColor = System.Drawing.Color.Black;
+            this.txt_remarks1.Location = new System.Drawing.Point(139, 269);
+            this.txt_remarks1.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_remarks1.Multiline = true;
+            this.txt_remarks1.Name = "txt_remarks1";
+            this.txt_remarks1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txt_remarks1.PasswordChar = false;
+            this.txt_remarks1.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txt_remarks1.PlaceholderText = "Remarks";
+            this.txt_remarks1.Size = new System.Drawing.Size(200, 127);
+            this.txt_remarks1.TabIndex = 20;
+            this.txt_remarks1.Texts = "";
+            this.txt_remarks1.UnderlinedStyle = false;
             // 
             // ReturnRemarksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 584);
+            this.Controls.Add(this.txt_itemSize);
+            this.Controls.Add(this.borrowDate);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.labelDate);
             this.Controls.Add(this.currentDate);
             this.Controls.Add(this.panel1);
@@ -225,7 +258,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt_itemId);
             this.Controls.Add(this.txt_itemName);
-            this.Controls.Add(this.txt_remarks);
+            this.Controls.Add(this.txt_remarks1);
             this.Controls.Add(this.btnReturn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ReturnRemarksForm";
@@ -242,7 +275,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnReturn;
-        private UserTextbox txt_remarks;
         public System.Windows.Forms.Label txt_itemName;
         public System.Windows.Forms.Label txt_itemId;
         private System.Windows.Forms.Label label2;
@@ -256,5 +288,9 @@
         public System.Windows.Forms.Label txt_studId;
         public System.Windows.Forms.Label txt_studName;
         public System.Windows.Forms.Label txt_studSec;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label txt_itemSize;
+        public System.Windows.Forms.Label borrowDate;
+        public UserTextbox txt_remarks1;
     }
 }
