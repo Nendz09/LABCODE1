@@ -50,6 +50,8 @@ namespace LABCODE1
             this.label_Quantity = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.cmbGram = new System.Windows.Forms.ComboBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.label_Status = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -289,11 +291,37 @@ namespace LABCODE1
             this.cmbGram.Size = new System.Drawing.Size(97, 24);
             this.cmbGram.TabIndex = 16;
             // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "Available",
+            "Unavailable",
+            "Borrowed"});
+            this.cmbStatus.Location = new System.Drawing.Point(199, 270);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(154, 24);
+            this.cmbStatus.TabIndex = 17;
+            this.cmbStatus.Visible = false;
+            // 
+            // label_Status
+            // 
+            this.label_Status.AutoSize = true;
+            this.label_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Status.Location = new System.Drawing.Point(31, 272);
+            this.label_Status.Name = "label_Status";
+            this.label_Status.Size = new System.Drawing.Size(67, 20);
+            this.label_Status.TabIndex = 18;
+            this.label_Status.Text = "Status:";
+            this.label_Status.Visible = false;
+            // 
             // InventoryModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 418);
+            this.Controls.Add(this.label_Status);
+            this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.cmbGram);
             this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.label_Quantity);
@@ -343,6 +371,8 @@ namespace LABCODE1
         public System.Windows.Forms.Label labelAdd;
         public System.Windows.Forms.TextBox txtQuantity;
         public System.Windows.Forms.Label label_Quantity;
-        private ComboBox cmbGram;
+        public ComboBox cmbGram;
+        public ComboBox cmbStatus;
+        public Label label_Status;
     }
 }

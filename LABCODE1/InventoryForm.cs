@@ -87,8 +87,14 @@ namespace LABCODE1
                 inventoryModule.cmbCtg.Text = dgvLab.Rows[e.RowIndex].Cells[2].Value.ToString();
                 inventoryModule.cmbSize.Text = dgvLab.Rows[e.RowIndex].Cells[3].Value.ToString();
 
+                //quantity for substances
                 inventoryModule.txtQuantity.Visible = false;
                 inventoryModule.label_Quantity.Visible = false;
+                inventoryModule.cmbGram.Visible = false;
+
+                //dun sa status for updates
+                inventoryModule.cmbStatus.Visible = false;
+                inventoryModule.label_Status.Visible = false;
 
                 inventoryModule.btnSave.Enabled = false;
                 inventoryModule.btnUpdate.Enabled = true;
@@ -158,7 +164,6 @@ namespace LABCODE1
 
         private void dgvLab_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
             if (e.ColumnIndex == 4 && e.RowIndex >= 0)
             {
                 string status = dgvLab.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();

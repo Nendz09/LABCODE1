@@ -206,6 +206,7 @@
             // col_status
             // 
             this.col_status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.col_status.FillWeight = 55F;
             this.col_status.HeaderText = "Status";
             this.col_status.Name = "col_status";
             this.col_status.ReadOnly = true;

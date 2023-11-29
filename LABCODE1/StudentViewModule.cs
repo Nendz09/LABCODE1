@@ -49,10 +49,10 @@ namespace LABCODE1
                 while (dr.Read())
                 {
                     ++i;
-                    dgvStudentView.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                    dgvStudentView.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
                 }
                 dr.Close();
-                con.Close();
+                con.Close(); 
             }
         }
     }

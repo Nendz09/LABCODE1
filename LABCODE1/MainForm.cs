@@ -43,7 +43,10 @@ namespace LABCODE1
         {
             openChildForm(new StudentForm());
         }
-
+        private void userButton1_Click(object sender, EventArgs e)
+        {
+            openChildForm(new LogsForm());
+        }
 
 
         //terminate app
