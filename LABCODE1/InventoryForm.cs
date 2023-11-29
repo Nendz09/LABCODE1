@@ -24,6 +24,7 @@ namespace LABCODE1
         SqlCommand cmd = new SqlCommand();
         SqlDataReader dr;
 
+        
         public InventoryForm()
         {
             InitializeComponent();
@@ -65,7 +66,7 @@ namespace LABCODE1
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            InventoryModuleForm inventoryModule = new InventoryModuleForm();
+            InventoryModuleForm inventoryModule = new InventoryModuleForm();//pass the reference
             inventoryModule.txtEqpID.Enabled = false;
             //inventoryModule.btnSave.Enabled = true;
             inventoryModule.btnUpdate.Enabled = false;

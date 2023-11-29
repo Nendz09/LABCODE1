@@ -17,6 +17,10 @@ namespace LABCODE1
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
         //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
+
+        DashboardForm dbForm;
+        DateTime currentDateTime = DateTime.Now;
+
         public InventoryModuleForm()
         {
             InitializeComponent();
@@ -43,6 +47,10 @@ namespace LABCODE1
         //------SAVE BUTTON--------//
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //DateTime currentDateTime = DateTime.Now;
+            //DashboardForm dbForm = new DashboardForm();
+            //string dateFormat = currentDateTime.ToString("MM-dd-yyyy");
+            //string timeFormat = currentDateTime.ToString("hh:mm tt");
             try
             {
                 if (int.TryParse(txtQuantity.Text, out int quantity))
@@ -73,13 +81,15 @@ namespace LABCODE1
                                     cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                                     cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
                                     cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
-
                                     cmd.ExecuteNonQuery();
                                 }
                             }
                             con.Close();
                             MessageBox.Show("Equipment has been saved.");
 
+                            //txtEquipment.Font = new Font(txtEquipment.Font, FontStyle.Bold);
+                            //string msg = "You added a new equipment " + txtEquipment.Text + ".";
+                            //DashboardRecentActivities(msg);
                             Clear();
                             this.Hide();
                         }
@@ -363,6 +373,18 @@ namespace LABCODE1
                                 && !string.IsNullOrEmpty(cmbCtg.Text)
                                 && !string.IsNullOrEmpty(txtQuantity.Text);
             btnSave.Enabled = allTextIsFilled;
+        }
+
+        private void DashboardRecentActivities(string message) 
+        {
+            //dbForm.UpdateRecentActivities(message);
+            string dateFormat = currentDateTime.ToString("MM-dd-yyyy");
+            string timeFormat = currentDateTime.ToString("hh:mm tt");
+
+            int n = dbForm.dgvRecentActivities.Rows.Add();
+            dbForm.dgvRecentActivities.Rows[n].Cells[0].Value = dateFormat;
+            dbForm.dgvRecentActivities.Rows[n].Cells[1].Value = message;
+            dbForm.dgvRecentActivities.Rows[n].Cells[2].Value = timeFormat;
         }
     }
 }

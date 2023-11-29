@@ -47,7 +47,10 @@ namespace LABCODE1
         {
             openChildForm(new LogsForm());
         }
-
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            openChildForm(new DashboardForm());
+        }
 
         //terminate app
         private void MainForm_FormClosing_1(object sender, FormClosingEventArgs e)

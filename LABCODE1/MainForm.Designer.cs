@@ -32,10 +32,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.btnDashboard = new LABCODE1.UserButton();
             this.userButton1 = new LABCODE1.UserButton();
             this.btnStudents = new LABCODE1.UserButton();
             this.btnEquipment = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDashboard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipment)).BeginInit();
@@ -44,6 +46,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
+            this.panel1.Controls.Add(this.btnDashboard);
             this.panel1.Controls.Add(this.userButton1);
             this.panel1.Controls.Add(this.btnStudents);
             this.panel1.Controls.Add(this.btnEquipment);
@@ -51,7 +54,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(176, 606);
+            this.panel1.Size = new System.Drawing.Size(207, 606);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -70,10 +73,24 @@
             // 
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelMain.Location = new System.Drawing.Point(176, 0);
+            this.panelMain.Location = new System.Drawing.Point(207, 0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(841, 606);
+            this.panelMain.Size = new System.Drawing.Size(839, 606);
             this.panelMain.TabIndex = 1;
+            // 
+            // btnDashboard
+            // 
+            this.btnDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("btnDashboard.Image")));
+            this.btnDashboard.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnDashboard.ImageHover")));
+            this.btnDashboard.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnDashboard.ImageNormal")));
+            this.btnDashboard.Location = new System.Drawing.Point(0, 88);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Size = new System.Drawing.Size(206, 94);
+            this.btnDashboard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnDashboard.TabIndex = 3;
+            this.btnDashboard.TabStop = false;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // userButton1
             // 
@@ -81,9 +98,9 @@
             this.userButton1.Image = ((System.Drawing.Image)(resources.GetObject("userButton1.Image")));
             this.userButton1.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton1.ImageHover")));
             this.userButton1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton1.ImageNormal")));
-            this.userButton1.Location = new System.Drawing.Point(0, 322);
+            this.userButton1.Location = new System.Drawing.Point(0, 388);
             this.userButton1.Name = "userButton1";
-            this.userButton1.Size = new System.Drawing.Size(176, 94);
+            this.userButton1.Size = new System.Drawing.Size(206, 94);
             this.userButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.userButton1.TabIndex = 0;
             this.userButton1.TabStop = false;
@@ -95,9 +112,9 @@
             this.btnStudents.Image = ((System.Drawing.Image)(resources.GetObject("btnStudents.Image")));
             this.btnStudents.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnStudents.ImageHover")));
             this.btnStudents.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnStudents.ImageNormal")));
-            this.btnStudents.Location = new System.Drawing.Point(0, 222);
+            this.btnStudents.Location = new System.Drawing.Point(0, 288);
             this.btnStudents.Name = "btnStudents";
-            this.btnStudents.Size = new System.Drawing.Size(176, 94);
+            this.btnStudents.Size = new System.Drawing.Size(206, 94);
             this.btnStudents.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.btnStudents.TabIndex = 2;
             this.btnStudents.TabStop = false;
@@ -110,10 +127,10 @@
             this.btnEquipment.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageHover")));
             this.btnEquipment.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageNormal")));
             this.btnEquipment.InitialImage = null;
-            this.btnEquipment.Location = new System.Drawing.Point(1, 108);
+            this.btnEquipment.Location = new System.Drawing.Point(0, 188);
             this.btnEquipment.Name = "btnEquipment";
-            this.btnEquipment.Size = new System.Drawing.Size(176, 108);
-            this.btnEquipment.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnEquipment.Size = new System.Drawing.Size(206, 94);
+            this.btnEquipment.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.btnEquipment.TabIndex = 0;
             this.btnEquipment.TabStop = false;
             this.btnEquipment.Click += new System.EventHandler(this.btnEquipment_Click);
@@ -122,7 +139,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1017, 606);
+            this.ClientSize = new System.Drawing.Size(1046, 606);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
@@ -131,6 +148,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing_1);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDashboard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipment)).EndInit();
@@ -146,5 +164,6 @@
         private UserButton btnEquipment;
         private UserButton btnStudents;
         private UserButton userButton1;
+        private UserButton btnDashboard;
     }
 }
