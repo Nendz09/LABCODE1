@@ -18,8 +18,11 @@ namespace LABCODE1
         //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
 
-        DashboardForm dbForm;
-        DateTime currentDateTime = DateTime.Now;
+
+
+        DashboardForm dbForm = new DashboardForm();
+        //DashboardForm dbForm;
+        //DateTime currentDateTime = DateTime.Now;
 
         public InventoryModuleForm()
         {
@@ -42,11 +45,13 @@ namespace LABCODE1
         //    }
         //}
 
-
+        //------EVENT MODIFIER-----//
+        public event Action<string> SaveClicked; //modified event name SaveClicked
 
         //------SAVE BUTTON--------//
         private void btnSave_Click(object sender, EventArgs e)
         {
+            
             //DateTime currentDateTime = DateTime.Now;
             //DashboardForm dbForm = new DashboardForm();
             //string dateFormat = currentDateTime.ToString("MM-dd-yyyy");
@@ -86,6 +91,12 @@ namespace LABCODE1
                             }
                             con.Close();
                             MessageBox.Show("Equipment has been saved.");
+
+                            //string msg = $"You added a new item {txtEquipment.Text}.";
+                            // txtEquipment.Font = new Font(txtEquipment.Font, FontStyle.Bold);
+                            string msg = "You added " + txtQuantity.Text + " new item " + txtEquipment.Text + "!";
+                            dbForm.InsertRecentActivities(msg);
+
 
                             //txtEquipment.Font = new Font(txtEquipment.Font, FontStyle.Bold);
                             //string msg = "You added a new equipment " + txtEquipment.Text + ".";
@@ -375,16 +386,16 @@ namespace LABCODE1
             btnSave.Enabled = allTextIsFilled;
         }
 
-        private void DashboardRecentActivities(string message) 
-        {
-            //dbForm.UpdateRecentActivities(message);
-            string dateFormat = currentDateTime.ToString("MM-dd-yyyy");
-            string timeFormat = currentDateTime.ToString("hh:mm tt");
+        //private void DashboardRecentActivities(string message) 
+        //{
+        //    //dbForm.UpdateRecentActivities(message);
+        //    string dateFormat = currentDateTime.ToString("MM-dd-yyyy");
+        //    string timeFormat = currentDateTime.ToString("hh:mm tt");
 
-            int n = dbForm.dgvRecentActivities.Rows.Add();
-            dbForm.dgvRecentActivities.Rows[n].Cells[0].Value = dateFormat;
-            dbForm.dgvRecentActivities.Rows[n].Cells[1].Value = message;
-            dbForm.dgvRecentActivities.Rows[n].Cells[2].Value = timeFormat;
-        }
+        //    int n = dbForm.dgvRecentActivities.Rows.Add();
+        //    dbForm.dgvRecentActivities.Rows[n].Cells[0].Value = dateFormat;
+        //    dbForm.dgvRecentActivities.Rows[n].Cells[1].Value = message;
+        //    dbForm.dgvRecentActivities.Rows[n].Cells[2].Value = timeFormat;
+        //}
     }
 }

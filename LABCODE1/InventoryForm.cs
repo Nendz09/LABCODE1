@@ -52,11 +52,7 @@ namespace LABCODE1
             while (dr.Read())
             {
                 ++i;
-               
-
                 dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
-
-                
                 //int rowIndex = dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
                 //checkIfUnavailable(rowIndex, status);
             }
@@ -66,7 +62,8 @@ namespace LABCODE1
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            InventoryModuleForm inventoryModule = new InventoryModuleForm();//pass the reference
+            InventoryModuleForm inventoryModule = new InventoryModuleForm();
+            /*inventoryModule.SaveClicked += InventoryModule_SaveClicked;*/ //subscribe to the event
             inventoryModule.txtEqpID.Enabled = false;
             //inventoryModule.btnSave.Enabled = true;
             inventoryModule.btnUpdate.Enabled = false;

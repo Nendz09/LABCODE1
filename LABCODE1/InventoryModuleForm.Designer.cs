@@ -130,6 +130,7 @@ namespace LABCODE1
             // 
             // txtEquipment
             // 
+            this.txtEquipment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEquipment.Location = new System.Drawing.Point(199, 125);
             this.txtEquipment.Name = "txtEquipment";
             this.txtEquipment.Size = new System.Drawing.Size(321, 22);
