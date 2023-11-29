@@ -40,7 +40,6 @@ namespace LABCODE1
         //---LOAD EQUIPMENT INVENTORY---//
         public void LoadEquipment()
         {
-
             int i = 0;
             dgvLab.Rows.Clear();
             cmd = new SqlCommand("SELECT * FROM lab_eqpment", con);
@@ -210,6 +209,6 @@ namespace LABCODE1
             //}
         }
 
-       
+        
     }
 }

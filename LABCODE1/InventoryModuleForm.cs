@@ -161,6 +161,8 @@ namespace LABCODE1
 
                     con.Close();
                     MessageBox.Show("Equipment has been updated.");
+                    string msg = "You updated your " + txtEquipment.Text + " with ID " + txtEqpID.Text;
+                    dbForm.InsertRecentActivities(msg);
                     this.Dispose();
                 }
             }

@@ -39,8 +39,10 @@
             // 
             this.dgvRecentActivities.AllowUserToAddRows = false;
             this.dgvRecentActivities.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvRecentActivities.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRecentActivities.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvRecentActivities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvRecentActivities.ColumnHeadersVisible = false;
             this.dgvRecentActivities.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_date,
             this.col_message,
