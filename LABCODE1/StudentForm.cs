@@ -19,6 +19,8 @@ namespace LABCODE1
         SqlCommand cmd = new SqlCommand();
         SqlDataReader dr;
 
+        DashboardForm dbForm = new DashboardForm();
+
         private StringBuilder barcodeBuffer = new StringBuilder();
         public StudentForm()
         {
@@ -105,8 +107,15 @@ namespace LABCODE1
                     cmd.Parameters.AddWithValue("@StudentID", dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString());
                     //cmd = new SqlCommand("DELETE FROM lab_students WHERE student_id LIKE'" + dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString() + "'", con);
                     cmd.ExecuteNonQuery();
+
+                    string studID = dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string studName = dgvStudents.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    //dashboard
+                    string msg = "You deleted student info: " + studID + " - " + studName + ".";
+                    dbForm.InsertRecentActivities(msg);
+
                     con.Close();
-                    MessageBox.Show("Equipment has been deleted successfully!");
+                    MessageBox.Show("Student info has been deleted successfully!");
                 }
             }
             else if (colName == "col_studentid") 

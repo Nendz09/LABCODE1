@@ -123,6 +123,7 @@ namespace LABCODE1
                 else
                 {
                     MessageBox.Show("replaced");
+
                 }
             }
             LoadEquipment();

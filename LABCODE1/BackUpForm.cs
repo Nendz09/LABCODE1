@@ -19,6 +19,7 @@ namespace LABCODE1
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
 
+        DashboardForm dbForm = new DashboardForm();
 
         public BackUpForm()
         {
@@ -41,7 +42,9 @@ namespace LABCODE1
         }
 
 
-        private void btnBackup_Click(object sender, EventArgs e)
+       
+
+        private void btnBackup1_Click(object sender, EventArgs e)
         {
             if (txtBackupPath.Text == string.Empty)
             {
@@ -67,12 +70,22 @@ namespace LABCODE1
                     }
                 }
                 MessageBox.Show($"Backup completed successfully.", "Backup Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //dashboard
+                string msg = "You added a backup file at path: " + txtBackupPath.Text;
+                dbForm.InsertRecentActivities(msg);
+
+                txtBackupPath.Text = "";
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+
+
 
 
 
@@ -93,7 +106,11 @@ namespace LABCODE1
 
         }
         
-        private void btnRestore_Click(object sender, EventArgs e)
+        
+
+
+
+        private void btnRestore1_Click(object sender, EventArgs e)
         {
             if (txtRestorePath.Text == string.Empty)
             {
@@ -104,7 +121,7 @@ namespace LABCODE1
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True")) 
+                using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
                 {
                     connection.Open();
 

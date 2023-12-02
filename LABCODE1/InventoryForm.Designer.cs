@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.userTextbox1 = new LABCODE1.UserTextbox();
-            this.btnAdd = new LABCODE1.UserButton();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvLab = new System.Windows.Forms.DataGridView();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.userTextbox1 = new LABCODE1.UserTextbox();
+            this.btnAdd = new LABCODE1.UserButton();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,12 +46,9 @@
             this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.Replacement = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -62,43 +62,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 0;
-            // 
-            // userTextbox1
-            // 
-            this.userTextbox1.BackColor = System.Drawing.SystemColors.Window;
-            this.userTextbox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.userTextbox1.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.userTextbox1.BorderRadius = 15;
-            this.userTextbox1.BorderSize = 2;
-            this.userTextbox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userTextbox1.ForeColor = System.Drawing.Color.Black;
-            this.userTextbox1.Location = new System.Drawing.Point(261, 12);
-            this.userTextbox1.Margin = new System.Windows.Forms.Padding(4);
-            this.userTextbox1.Multiline = false;
-            this.userTextbox1.Name = "userTextbox1";
-            this.userTextbox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.userTextbox1.PasswordChar = false;
-            this.userTextbox1.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.userTextbox1.PlaceholderText = "Search...";
-            this.userTextbox1.Size = new System.Drawing.Size(200, 31);
-            this.userTextbox1.TabIndex = 3;
-            this.userTextbox1.Texts = "";
-            this.userTextbox1.UnderlinedStyle = false;
-            this.userTextbox1._TextChanged += new System.EventHandler(this.userTextbox1__TextChanged);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
-            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
-            this.btnAdd.Location = new System.Drawing.Point(793, 12);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(37, 30);
-            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.TabStop = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label1
             // 
@@ -147,6 +110,66 @@
             this.dgvLab.TabIndex = 1;
             this.dgvLab.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLab_CellContentClick);
             this.dgvLab.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvLab_CellFormatting);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn2.HeaderText = "";
+            this.dataGridViewImageColumn2.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn2.Image")));
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.ReadOnly = true;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn3.HeaderText = "Replacement";
+            this.dataGridViewImageColumn3.Image = global::LABCODE1.Properties.Resources.replacement_20pixels;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            // 
+            // userTextbox1
+            // 
+            this.userTextbox1.BackColor = System.Drawing.SystemColors.Window;
+            this.userTextbox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.userTextbox1.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.userTextbox1.BorderRadius = 15;
+            this.userTextbox1.BorderSize = 2;
+            this.userTextbox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userTextbox1.ForeColor = System.Drawing.Color.Black;
+            this.userTextbox1.Location = new System.Drawing.Point(261, 12);
+            this.userTextbox1.Margin = new System.Windows.Forms.Padding(4);
+            this.userTextbox1.Multiline = false;
+            this.userTextbox1.Name = "userTextbox1";
+            this.userTextbox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.userTextbox1.PasswordChar = false;
+            this.userTextbox1.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.userTextbox1.PlaceholderText = "Search...";
+            this.userTextbox1.Size = new System.Drawing.Size(200, 31);
+            this.userTextbox1.TabIndex = 3;
+            this.userTextbox1.Texts = "";
+            this.userTextbox1.UnderlinedStyle = false;
+            this.userTextbox1._TextChanged += new System.EventHandler(this.userTextbox1__TextChanged);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
+            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
+            this.btnAdd.Location = new System.Drawing.Point(793, 12);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(37, 30);
+            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // Column1
             // 
@@ -210,33 +233,10 @@
             // 
             this.Replacement.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Replacement.HeaderText = "Replacement";
-            this.Replacement.Image = global::LABCODE1.Properties.Resources.replacement_20pixels;
+            this.Replacement.Image = ((System.Drawing.Image)(resources.GetObject("Replacement.Image")));
             this.Replacement.Name = "Replacement";
             this.Replacement.ReadOnly = true;
             this.Replacement.Width = 85;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewImageColumn2.HeaderText = "";
-            this.dataGridViewImageColumn2.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn2.Image")));
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.ReadOnly = true;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewImageColumn3.HeaderText = "Replacement";
-            this.dataGridViewImageColumn3.Image = global::LABCODE1.Properties.Resources.replacement_20pixels;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
             // 
             // InventoryForm
             // 
@@ -254,8 +254,8 @@
             this.Text = "UserForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -269,6 +269,7 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private UserTextbox userTextbox1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -277,6 +278,5 @@
         private System.Windows.Forms.DataGridViewImageColumn Edit;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
         private System.Windows.Forms.DataGridViewImageColumn Replacement;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
     }
 }

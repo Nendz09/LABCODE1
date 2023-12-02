@@ -135,11 +135,13 @@ namespace LABCODE1
                         cmd.Parameters.AddWithValue("@full_name", txtFullName.Text);
                         cmd.Parameters.AddWithValue("@year_sec", txtYearSec.Text);
                         cmd.ExecuteNonQuery();
-
-                        
-                        
                         con.Close();
                         MessageBox.Show("Student data has been updated.");
+
+                        //dashboard
+                        string msg = "You updated " + txtFullName.Text + "'s student information";
+                        dbForm.InsertRecentActivities(msg);
+
                         this.Dispose();
                     }
                 }
