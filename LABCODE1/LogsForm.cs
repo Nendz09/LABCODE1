@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -130,6 +131,36 @@ namespace LABCODE1
         private void dgvReturned_SelectionChanged(object sender, EventArgs e)
         {
             this.dgvReturned.ClearSelection();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BackUpForm backUp = new BackUpForm();
+            backUp.ShowDialog();
+            //try
+            //{
+            //    //EXPORT
+            //    // Specify the connection string to your database
+            //    string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True";
+            //    string backupPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Backup", "Inventory_Labcode.bak");
+
+            //    using (SqlConnection connection = new SqlConnection(connectionString))
+            //    {
+            //        connection.Open();
+
+            //        // Create a backup command
+            //        string backupCommand = $"BACKUP DATABASE [{connection.Database}] TO DISK = '{backupPath}'";
+            //        using (SqlCommand command = new SqlCommand(backupCommand, connection))
+            //        {
+            //            command.ExecuteNonQuery();
+            //            MessageBox.Show("Database exported successfully!");
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error exporting database: {ex.Message}");
+            //}
         }
     }
 }

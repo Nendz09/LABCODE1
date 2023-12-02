@@ -13,9 +13,12 @@ namespace LABCODE1
 {
     public partial class MainForm : Form
     {
+        
+
         public MainForm()
         {
             InitializeComponent();
+            
         }
 
         //show the subForm in this MainForm by clicking the btn
@@ -32,6 +35,8 @@ namespace LABCODE1
             childForm.BringToFront();
             childForm.Show();
         }
+
+      
 
         private void btnEquipment_Click(object sender, EventArgs e)
         {
@@ -52,10 +57,14 @@ namespace LABCODE1
             openChildForm(new DashboardForm());
         }
 
+        
+
         //terminate app
         private void MainForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
+
+        
     }
 }

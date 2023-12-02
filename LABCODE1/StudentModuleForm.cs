@@ -22,6 +22,8 @@ namespace LABCODE1
         SqlCommand cmd = new SqlCommand();
         SqlDataReader dr;
 
+        DashboardForm dbForm = new DashboardForm();
+
         public StudentModuleForm()
         {
             InitializeComponent();
@@ -74,6 +76,11 @@ namespace LABCODE1
                         cmd.ExecuteNonQuery();
                         con.Close();
                         MessageBox.Show("Student data has been saved.");
+
+                        //dashboard
+                        string msg = "You added a new student: " + txtFullName.Text + " - " + txtYearSec.Text + ".";
+                        dbForm.InsertRecentActivities(msg);
+
                         Clear();
                         this.Dispose();
                     }
