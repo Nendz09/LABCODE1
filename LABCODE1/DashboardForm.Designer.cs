@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.dgvRecentActivities = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.col_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecentActivities)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,6 +59,18 @@
             this.dgvRecentActivities.TabIndex = 0;
             this.dgvRecentActivities.SelectionChanged += new System.EventHandler(this.dgvActivities_SelectionChanged);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 361);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(189, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Recent Activities";
+            // 
             // col_date
             // 
             this.col_date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -70,6 +82,7 @@
             // col_message
             // 
             this.col_message.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.col_message.FillWeight = 150F;
             this.col_message.HeaderText = "";
             this.col_message.Name = "col_message";
             this.col_message.ReadOnly = true;
@@ -77,21 +90,10 @@
             // col_time
             // 
             this.col_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.col_time.FillWeight = 20F;
+            this.col_time.FillWeight = 10F;
             this.col_time.HeaderText = "";
             this.col_time.Name = "col_time";
             this.col_time.ReadOnly = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 361);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(189, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Recent Activities";
             // 
             // DashboardForm
             // 
@@ -115,9 +117,9 @@
 
         #endregion
         public System.Windows.Forms.DataGridView dgvRecentActivities;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_message;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_time;
-        private System.Windows.Forms.Label label1;
     }
 }

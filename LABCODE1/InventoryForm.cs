@@ -24,11 +24,18 @@ namespace LABCODE1
         SqlCommand cmd = new SqlCommand();
         SqlDataReader dr;
 
-        
+        DashboardForm dbForm = new DashboardForm();
+
+        //for clickable pages
+        private int currentPage = 1;
+        private int recordsPerPage = 20; //limit per page
+        private int totalRecords;
+
         public InventoryForm()
         {
             InitializeComponent();
             LoadEquipment();
+            //LoadPageButtons();
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
@@ -40,24 +47,125 @@ namespace LABCODE1
         //---LOAD EQUIPMENT INVENTORY---//
         public void LoadEquipment()
         {
-            int i = 0;
-            dgvLab.Rows.Clear();
-            cmd = new SqlCommand("SELECT * FROM lab_eqpment", con);
+            //int i = 0;
+            //dgvLab.Rows.Clear();
+            //cmd = new SqlCommand("SELECT * FROM lab_eqpment", con);
+            //con.Open();
+            //dr = cmd.ExecuteReader();
+
+            //while (dr.Read())
+            //{
+            //    ++i;
+            //    dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+            //}
+            //dr.Close();
+            //con.Close();
+
+
+
+            //CLICKABLE PAGE
+            cmd = new SqlCommand("SELECT COUNT(*) FROM lab_eqpment", con);
+            con.Open();
+            totalRecords = (int)cmd.ExecuteScalar();
+            con.Close();
+
+            UpdatePageInfo();
+
+            //Load data for the current page
+            LoadData();
+        }
+        private void LoadData()
+        {
+            dgvLab.Rows.Clear();//clear current row para di pumatong
+
+            int startIndex = (currentPage - 1) * recordsPerPage + 1;
+            int endIndex = currentPage * recordsPerPage;
+
+           
+            string query = $@"SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY eqp_id) AS RowNum FROM lab_eqpment) 
+                              AS Temp WHERE RowNum BETWEEN {startIndex} AND {endIndex};";
+            cmd = new SqlCommand(query, con);
             con.Open();
             dr = cmd.ExecuteReader();
 
-            
-
             while (dr.Read())
             {
-                ++i;
                 dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
-                //int rowIndex = dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
-                //checkIfUnavailable(rowIndex, status);
             }
+
             dr.Close();
             con.Close();
+
+            UpdatePageInfo();
         }
+
+        private void UpdatePageInfo()
+        {
+            /*The Math.Ceiling method is used to round up the result to the nearest whole number. 
+             * This ensures that even if there is a fraction of a page, it is counted as a whole page.*/
+            int totalPages = (int)Math.Ceiling((double)totalRecords / recordsPerPage);
+            labelPage.Text = $"Page {currentPage} of {totalPages}";
+        }
+
+        //private void LoadPageButtons()
+        //{
+        //    //dynamically create buttons for each page
+        //    int totalPages = (int)Math.Ceiling((double)totalRecords / recordsPerPage);
+
+        //    for (int i = 1; i <= totalPages; i++)
+        //    {
+        //        Button pageButton = new Button();
+        //        pageButton.Text = i.ToString();
+        //        pageButton.Tag = i;
+        //        pageButton.Click += PageButton_Click;
+
+        //        flowLayoutPanel1.Controls.Add(pageButton);
+        //    }
+        //}
+
+        //private void PageButton_Click(object sender, EventArgs e)
+        //{
+        //    Button clickedButton = (Button)sender;
+        //    currentPage = (int)clickedButton.Tag;
+        //    LoadData();
+        //}
+
+       
+
+        private void btnNext1_Click(object sender, EventArgs e)
+        {
+            /*The Math.Ceiling method is used to round up the result to the nearest whole number. 
+             * This ensures that even if there is a fraction of a page, it is counted as a whole page.*/
+            if (currentPage < (int)Math.Ceiling((double)totalRecords / recordsPerPage))
+            {
+                currentPage++;
+                LoadData();
+            }
+        }
+
+        private void btnPrev1_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                LoadData();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -118,12 +226,24 @@ namespace LABCODE1
 
                 if (status != "Unavailable")
                 {
-                    MessageBox.Show("cannot be replace");
+                    MessageBox.Show("cannot be replaced");
                 }
-                else
+                else if (status == "Unavailable")
                 {
-                    MessageBox.Show("replaced");
+                    con.Open();
+                    cmd = new SqlCommand("UPDATE lab_eqpment SET status = 'Available' WHERE eqp_id = @EquipmentID", con);
+                    cmd.Parameters.AddWithValue("@EquipmentID", dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
 
+                    string eqpID = dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string eqpName = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+                    //dashboard
+                    string msg = "The item " + eqpName + " with ID: " + eqpID ;
+                    dbForm.InsertRecentActivities(msg);
+
+                    MessageBox.Show("Done!");
                 }
             }
             LoadEquipment();
@@ -144,7 +264,11 @@ namespace LABCODE1
                 int i = 0;
                 dgvLab.Rows.Clear();
 
-                cmd = new SqlCommand("SELECT * FROM lab_eqpment WHERE eqp_id LIKE @searchValue OR eqp_name LIKE @searchValue OR eqp_categ LIKE @searchValue OR eqp_size LIKE @searchValue OR status LIKE @searchValue", con);
+                cmd = new SqlCommand($@"SELECT * FROM lab_eqpment WHERE eqp_id LIKE @searchValue 
+                                    OR eqp_name LIKE @searchValue 
+                                    OR eqp_categ LIKE @searchValue 
+                                    OR eqp_size LIKE @searchValue 
+                                    OR status LIKE @searchValue", con);
                 cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
 
                 con.Open();
