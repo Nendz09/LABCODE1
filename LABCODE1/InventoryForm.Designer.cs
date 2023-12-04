@@ -40,11 +40,6 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.labelPage = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnPrev1 = new LABCODE1.UserButton();
-            this.btnNext1 = new LABCODE1.UserButton();
-            this.btnExport = new LABCODE1.UserButton();
-            this.userTextbox1 = new LABCODE1.UserTextbox();
-            this.btnAdd = new LABCODE1.UserButton();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +48,11 @@
             this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.Replacement = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnPrev1 = new LABCODE1.UserButton();
+            this.btnNext1 = new LABCODE1.UserButton();
+            this.btnExport = new LABCODE1.UserButton();
+            this.userTextbox1 = new LABCODE1.UserTextbox();
+            this.btnAdd = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLab)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -187,6 +187,80 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(383, 54);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column1.HeaderText = "ID";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 42;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.FillWeight = 36.2891F;
+            this.Column2.HeaderText = "Name";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.FillWeight = 30.90991F;
+            this.Column3.HeaderText = "Category";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.FillWeight = 25.10812F;
+            this.Column4.HeaderText = "Size/Calibration";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // col_status
+            // 
+            this.col_status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.col_status.FillWeight = 30.70361F;
+            this.col_status.HeaderText = "Status";
+            this.col_status.Name = "col_status";
+            this.col_status.ReadOnly = true;
+            // 
+            // Edit
+            // 
+            this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Edit.FillWeight = 285.1613F;
+            this.Edit.HeaderText = "";
+            this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
+            this.Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Edit.Name = "Edit";
+            this.Edit.ReadOnly = true;
+            this.Edit.Width = 11;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Delete.FillWeight = 55.91398F;
+            this.Delete.HeaderText = "";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Delete.Width = 11;
+            // 
+            // Replacement
+            // 
+            this.Replacement.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Replacement.FillWeight = 55.91398F;
+            this.Replacement.HeaderText = "";
+            this.Replacement.Image = ((System.Drawing.Image)(resources.GetObject("Replacement.Image")));
+            this.Replacement.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Replacement.Name = "Replacement";
+            this.Replacement.ReadOnly = true;
+            this.Replacement.Width = 11;
+            // 
             // btnPrev1
             // 
             this.btnPrev1.BackColor = System.Drawing.Color.White;
@@ -269,80 +343,6 @@
             this.btnAdd.TabIndex = 2;
             this.btnAdd.TabStop = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 42;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.FillWeight = 36.2891F;
-            this.Column2.HeaderText = "Name";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.FillWeight = 30.90991F;
-            this.Column3.HeaderText = "Category";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.FillWeight = 25.10812F;
-            this.Column4.HeaderText = "Size/Calibration";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // col_status
-            // 
-            this.col_status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.col_status.FillWeight = 30.70361F;
-            this.col_status.HeaderText = "Status";
-            this.col_status.Name = "col_status";
-            this.col_status.ReadOnly = true;
-            // 
-            // Edit
-            // 
-            this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Edit.FillWeight = 285.1613F;
-            this.Edit.HeaderText = "";
-            this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
-            this.Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Edit.Name = "Edit";
-            this.Edit.ReadOnly = true;
-            this.Edit.Width = 11;
-            // 
-            // Delete
-            // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Delete.FillWeight = 55.91398F;
-            this.Delete.HeaderText = "";
-            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
-            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Delete.Width = 11;
-            // 
-            // Replacement
-            // 
-            this.Replacement.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Replacement.FillWeight = 55.91398F;
-            this.Replacement.HeaderText = "";
-            this.Replacement.Image = ((System.Drawing.Image)(resources.GetObject("Replacement.Image")));
-            this.Replacement.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Replacement.Name = "Replacement";
-            this.Replacement.ReadOnly = true;
-            this.Replacement.Width = 11;
             // 
             // InventoryForm
             // 

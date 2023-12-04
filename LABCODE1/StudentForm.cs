@@ -174,7 +174,7 @@ namespace LABCODE1
 
         private void StudentForm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Check if the pressed key is a valid character in your barcode
+            //check if the pressed key is a valid character in your barcode
             if (char.IsDigit(e.KeyChar) || e.KeyChar == '-' || e.KeyChar == ' ')
             {
                 // Append the character to a buffer until a delimiter is encountered

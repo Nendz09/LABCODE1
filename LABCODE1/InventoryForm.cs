@@ -113,28 +113,7 @@ namespace LABCODE1
             labelPage.Text = $"Page {currentPage} of {totalPages}";
         }
 
-        //private void LoadPageButtons()
-        //{
-        //    //dynamically create buttons for each page
-        //    int totalPages = (int)Math.Ceiling((double)totalRecords / recordsPerPage);
-
-        //    for (int i = 1; i <= totalPages; i++)
-        //    {
-        //        Button pageButton = new Button();
-        //        pageButton.Text = i.ToString();
-        //        pageButton.Tag = i;
-        //        pageButton.Click += PageButton_Click;
-
-        //        flowLayoutPanel1.Controls.Add(pageButton);
-        //    }
-        //}
-
-        //private void PageButton_Click(object sender, EventArgs e)
-        //{
-        //    Button clickedButton = (Button)sender;
-        //    currentPage = (int)clickedButton.Tag;
-        //    LoadData();
-        //}
+        
 
        
 
