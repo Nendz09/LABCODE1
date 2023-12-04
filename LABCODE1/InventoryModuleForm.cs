@@ -66,42 +66,49 @@ namespace LABCODE1
                         {
                             con.Open();
 
-                            if (cmbCtg.Text == "SUBSTANCES")
+                            if (cbMass.Checked) 
                             {
                                 //concatenate qty text + cmb gram
                                 string concatenateQtyGram = txtQuantity.Text + " " + cmbGram.Text;
+                                string eqpName = txtEquipment.Text;
 
-                                cmd = new SqlCommand("INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status) VALUES(@eqp_name, @eqp_categ, @eqp_size, 'Available')", con);
+                                cmd = new SqlCommand($@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
+                                                        VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks)", con);
                                 cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                                 cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
                                 cmd.Parameters.AddWithValue("@eqp_size", concatenateQtyGram);
+                                cmd.Parameters.AddWithValue("@acq_remarks", txtRemarks.Text);
 
                                 cmd.ExecuteNonQuery();
+                                //dashboard
+                                string msg = $"You added {concatenateQtyGram} new item {eqpName}.";
+                                dbForm.InsertRecentActivities(msg);
                             }
-                            else
+                            else if (!cbMass.Checked)
                             {
                                 for (int i = 0; i < quantity; i++)
                                 {
-                                    cmd = new SqlCommand("INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status) VALUES(@eqp_name, @eqp_categ, @eqp_size, 'Available')", con);
+                                    cmd = new SqlCommand($@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
+                                                            VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks)", con);
                                     cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                                     cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
                                     cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
+                                    cmd.Parameters.AddWithValue("@acq_remarks", txtRemarks.Text);
+
                                     cmd.ExecuteNonQuery();
                                 }
+                                //dashboard
+                                string msg = "You added " + txtQuantity.Text + " new item " + txtEquipment.Text + "!";
+                                dbForm.InsertRecentActivities(msg);
                             }
+
                             con.Close();
                             MessageBox.Show("Equipment has been saved.");
 
                             //string msg = $"You added a new item {txtEquipment.Text}.";
                             // txtEquipment.Font = new Font(txtEquipment.Font, FontStyle.Bold);
-                            //dashboard
-                            string msg = "You added " + txtQuantity.Text + " new item " + txtEquipment.Text + "!";
-                            dbForm.InsertRecentActivities(msg);
+                            
 
-
-                            //txtEquipment.Font = new Font(txtEquipment.Font, FontStyle.Bold);
-                            //string msg = "You added a new equipment " + txtEquipment.Text + ".";
-                            //DashboardRecentActivities(msg);
                             Clear();
                             this.Hide();
                         }
@@ -125,6 +132,7 @@ namespace LABCODE1
         {
             txtEquipment.Clear();
             txtQuantity.Clear();
+            txtRemarks.Clear();
             cmbCtg.ResetText();
             cmbSize.ResetText();
             cmbGram.ResetText();
@@ -251,11 +259,12 @@ namespace LABCODE1
                 }
                 else if (cmbCtg.SelectedItem.ToString() == "SUBSTANCES")
                 {
-                    cmbSize.Enabled = false;
-                    cmbGram.Enabled = true;
+                    cmbSize.Enabled = true;
+                    cmbGram.Enabled = false;
                     txtQuantity.Clear();
                     cmbSize.Items.Clear();
-                    
+                    cmbSize.Items.Add("OTHER");
+
 
                     //cmbSize.Items.Add("Ceramic");
                     //cmbSize.Items.Add("Glass");
@@ -284,24 +293,11 @@ namespace LABCODE1
         //NO STRING ALLOWED QUANTITY
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "SUBSTANCES")
+            
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
+                e.Handled = true;
             }
-            else
-            {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
-            }
-            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            //{
-            //    e.Handled = true;
-            //}
         }
 
         //LIMIT 10 ONLEH
@@ -309,43 +305,9 @@ namespace LABCODE1
         {
             isFilledSubstances();
 
-            //try
-            //{
-            //    if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "SUBSTANCES")
-            //    {
-            //        cmbSize.Items.Add("AnythingIWantToPut");
-            //    }
-            //    else
-            //    {
-            //        if (int.TryParse(txtQuantity.Text, out int quantity))
-            //        {
-            //            if (quantity > 10)
-            //            {
-            //                txtQuantity.Text = "20";
-            //                txtQuantity.SelectionStart = txtQuantity.Text.Length; //makes the cursor to the right part
-            //            }
-            //            else if (quantity == 0)
-            //            {
-            //                btnSave.Enabled = false;
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-
-
-
             if (int.TryParse(txtQuantity.Text, out int quantity))
             {
-                if (cmbCtg.SelectedItem != null && cmbCtg.SelectedItem.ToString() == "SUBSTANCES")
-                {
-                    cmbSize.Items.Add("AnythingIWantToPut");
-                }
-                else
+                if (!cbMass.Checked)
                 {
                     if (quantity > 50)
                     {
@@ -358,13 +320,13 @@ namespace LABCODE1
                     }
                 }
             }
-
         }
 
         private void txtEquipment_TextChanged(object sender, EventArgs e)
         {
             isFilled();
         }
+
 
         //every textbox filled
         private void isFilled()
@@ -373,6 +335,7 @@ namespace LABCODE1
                                 && !string.IsNullOrEmpty(cmbCtg.Text)
                                 && !string.IsNullOrEmpty(cmbSize.Text)
                                 && !string.IsNullOrEmpty(txtQuantity.Text);
+
             btnSave.Enabled = allTextIsFilled;
             //debug
             //MessageBox.Show($"Equipment: {!string.IsNullOrEmpty(txtEquipment.Text)}\n" +
@@ -390,18 +353,23 @@ namespace LABCODE1
             btnSave.Enabled = allTextIsFilled;
         }
 
+        private void cbMass_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbMass.Checked)
+            {
+                txtQuantity.Clear();
+                cmbSize.SelectedItem = null;
+                cmbSize.Enabled = false;
+                cmbGram.Enabled = true;
+            }
+            else //cbMass unchecked - normal state, not mass qty
+            {
+                txtQuantity.Clear();
+                cmbGram.SelectedItem = null;
+                cmbGram.Enabled = false;
+                cmbSize.Enabled = true;
+            }
+        }
 
-
-        //private void DashboardRecentActivities(string message) 
-        //{
-        //    //dbForm.UpdateRecentActivities(message);
-        //    string dateFormat = currentDateTime.ToString("MM-dd-yyyy");
-        //    string timeFormat = currentDateTime.ToString("hh:mm tt");
-
-        //    int n = dbForm.dgvRecentActivities.Rows.Add();
-        //    dbForm.dgvRecentActivities.Rows[n].Cells[0].Value = dateFormat;
-        //    dbForm.dgvRecentActivities.Rows[n].Cells[1].Value = message;
-        //    dbForm.dgvRecentActivities.Rows[n].Cells[2].Value = timeFormat;
-        //}
     }
 }

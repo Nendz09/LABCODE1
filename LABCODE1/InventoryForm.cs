@@ -94,7 +94,8 @@ namespace LABCODE1
 
             while (dr.Read())
             {
-                dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+                dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), 
+                    dr[3].ToString(), dr[4].ToString(), dr[5].ToString());
             }
 
             dr.Close();
@@ -163,11 +164,13 @@ namespace LABCODE1
                 inventoryModule.txtEquipment.Text = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
                 inventoryModule.cmbCtg.Text = dgvLab.Rows[e.RowIndex].Cells[2].Value.ToString();
                 inventoryModule.cmbSize.Text = dgvLab.Rows[e.RowIndex].Cells[3].Value.ToString();
+                inventoryModule.txtRemarks.Text = dgvLab.Rows[e.RowIndex].Cells[5].Value.ToString();
 
                 //quantity for substances
                 inventoryModule.txtQuantity.Visible = false;
                 inventoryModule.label_Quantity.Visible = false;
                 inventoryModule.cmbGram.Visible = false;
+                inventoryModule.cbMass.Visible = false;
 
                 //dun sa status for updates
                 inventoryModule.cmbStatus.Visible = false;
@@ -250,7 +253,8 @@ namespace LABCODE1
                                     OR eqp_name LIKE @searchValue 
                                     OR eqp_categ LIKE @searchValue 
                                     OR eqp_size LIKE @searchValue 
-                                    OR status LIKE @searchValue", con);
+                                    OR status LIKE @searchValue
+                                    OR acq_remarks LIKE @searchValue", con);
                 cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
 
                 con.Open();
@@ -330,7 +334,8 @@ namespace LABCODE1
 
                 while (dr.Read())
                 {
-                    dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+                    dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), 
+                        dr[3].ToString(), dr[4].ToString(), dr[5].ToString());
                 }
             }
             catch (Exception ex)
@@ -373,7 +378,7 @@ namespace LABCODE1
                         using (XLWorkbook workbook = new XLWorkbook())
                         {
                             var worksheet = workbook.Worksheets.Add("EquipmentData");
-                            int column = 5;
+                            int column = 6;
 
                             //add headers
                             for (int i = 0; i < column; i++)

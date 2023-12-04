@@ -54,6 +54,9 @@ namespace LABCODE1
             this.label_Status = new System.Windows.Forms.Label();
             this.btnSavePanel = new System.Windows.Forms.Panel();
             this.btnUpdatePanel = new System.Windows.Forms.Panel();
+            this.txtRemarks = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbMass = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -204,7 +207,7 @@ namespace LABCODE1
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(199, 346);
+            this.btnSave.Location = new System.Drawing.Point(199, 431);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(97, 40);
             this.btnSave.TabIndex = 9;
@@ -220,7 +223,7 @@ namespace LABCODE1
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(312, 346);
+            this.btnUpdate.Location = new System.Drawing.Point(312, 431);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(97, 40);
             this.btnUpdate.TabIndex = 10;
@@ -236,7 +239,7 @@ namespace LABCODE1
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(423, 346);
+            this.btnClear.Location = new System.Drawing.Point(423, 431);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(97, 40);
             this.btnClear.TabIndex = 11;
@@ -322,7 +325,7 @@ namespace LABCODE1
             // 
             this.btnSavePanel.BackColor = System.Drawing.Color.Transparent;
             this.btnSavePanel.Cursor = System.Windows.Forms.Cursors.No;
-            this.btnSavePanel.Location = new System.Drawing.Point(199, 346);
+            this.btnSavePanel.Location = new System.Drawing.Point(199, 431);
             this.btnSavePanel.Name = "btnSavePanel";
             this.btnSavePanel.Size = new System.Drawing.Size(97, 40);
             this.btnSavePanel.TabIndex = 19;
@@ -332,17 +335,50 @@ namespace LABCODE1
             // 
             this.btnUpdatePanel.BackColor = System.Drawing.Color.Transparent;
             this.btnUpdatePanel.Cursor = System.Windows.Forms.Cursors.No;
-            this.btnUpdatePanel.Location = new System.Drawing.Point(312, 346);
+            this.btnUpdatePanel.Location = new System.Drawing.Point(312, 431);
             this.btnUpdatePanel.Name = "btnUpdatePanel";
             this.btnUpdatePanel.Size = new System.Drawing.Size(97, 40);
             this.btnUpdatePanel.TabIndex = 20;
             this.btnUpdatePanel.Visible = false;
             // 
+            // txtRemarks
+            // 
+            this.txtRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemarks.Location = new System.Drawing.Point(199, 314);
+            this.txtRemarks.Multiline = true;
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(321, 94);
+            this.txtRemarks.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(31, 314);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(85, 20);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Remarks:";
+            // 
+            // cbMass
+            // 
+            this.cbMass.AutoSize = true;
+            this.cbMass.Location = new System.Drawing.Point(441, 276);
+            this.cbMass.Name = "cbMass";
+            this.cbMass.Size = new System.Drawing.Size(59, 20);
+            this.cbMass.TabIndex = 23;
+            this.cbMass.Text = "Mass";
+            this.cbMass.UseVisualStyleBackColor = true;
+            this.cbMass.CheckedChanged += new System.EventHandler(this.cbMass_CheckedChanged);
+            // 
             // InventoryModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(597, 418);
+            this.ClientSize = new System.Drawing.Size(597, 501);
+            this.Controls.Add(this.cbMass);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtRemarks);
             this.Controls.Add(this.label_Status);
             this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.cmbGram);
@@ -401,5 +437,8 @@ namespace LABCODE1
         public Label label_Status;
         public Panel btnSavePanel;
         public Panel btnUpdatePanel;
+        public TextBox txtRemarks;
+        private Label label6;
+        public CheckBox cbMass;
     }
 }
