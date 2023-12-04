@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExport = new LABCODE1.UserButton();
+            this.userTextbox1 = new LABCODE1.UserTextbox();
+            this.btnAdd = new LABCODE1.UserButton();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvLab = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,19 +53,19 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnPrev1 = new LABCODE1.UserButton();
             this.btnNext1 = new LABCODE1.UserButton();
-            this.userTextbox1 = new LABCODE1.UserTextbox();
-            this.btnAdd = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLab)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
+            this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.userTextbox1);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.label1);
@@ -71,6 +74,58 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 0;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
+            this.btnExport.ImageHover = null;
+            this.btnExport.ImageNormal = null;
+            this.btnExport.Location = new System.Drawing.Point(700, 0);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(87, 47);
+            this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnExport.TabIndex = 4;
+            this.btnExport.TabStop = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // userTextbox1
+            // 
+            this.userTextbox1.BackColor = System.Drawing.SystemColors.Window;
+            this.userTextbox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.userTextbox1.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.userTextbox1.BorderRadius = 15;
+            this.userTextbox1.BorderSize = 2;
+            this.userTextbox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userTextbox1.ForeColor = System.Drawing.Color.Black;
+            this.userTextbox1.Location = new System.Drawing.Point(261, 12);
+            this.userTextbox1.Margin = new System.Windows.Forms.Padding(4);
+            this.userTextbox1.Multiline = false;
+            this.userTextbox1.Name = "userTextbox1";
+            this.userTextbox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.userTextbox1.PasswordChar = false;
+            this.userTextbox1.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.userTextbox1.PlaceholderText = "Search...";
+            this.userTextbox1.Size = new System.Drawing.Size(200, 31);
+            this.userTextbox1.TabIndex = 3;
+            this.userTextbox1.Texts = "";
+            this.userTextbox1.UnderlinedStyle = false;
+            this.userTextbox1._TextChanged += new System.EventHandler(this.userTextbox1__TextChanged);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
+            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
+            this.btnAdd.Location = new System.Drawing.Point(793, 12);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(37, 30);
+            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label1
             // 
@@ -127,7 +182,7 @@
             this.dgvLab.ReadOnly = true;
             this.dgvLab.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvLab.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Honeydew;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.PaleGreen;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvLab.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvLab.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -281,44 +336,6 @@
             this.btnNext1.TabStop = false;
             this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
             // 
-            // userTextbox1
-            // 
-            this.userTextbox1.BackColor = System.Drawing.SystemColors.Window;
-            this.userTextbox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.userTextbox1.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.userTextbox1.BorderRadius = 15;
-            this.userTextbox1.BorderSize = 2;
-            this.userTextbox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userTextbox1.ForeColor = System.Drawing.Color.Black;
-            this.userTextbox1.Location = new System.Drawing.Point(261, 12);
-            this.userTextbox1.Margin = new System.Windows.Forms.Padding(4);
-            this.userTextbox1.Multiline = false;
-            this.userTextbox1.Name = "userTextbox1";
-            this.userTextbox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.userTextbox1.PasswordChar = false;
-            this.userTextbox1.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.userTextbox1.PlaceholderText = "Search...";
-            this.userTextbox1.Size = new System.Drawing.Size(200, 31);
-            this.userTextbox1.TabIndex = 3;
-            this.userTextbox1.Texts = "";
-            this.userTextbox1.UnderlinedStyle = false;
-            this.userTextbox1._TextChanged += new System.EventHandler(this.userTextbox1__TextChanged);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
-            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
-            this.btnAdd.Location = new System.Drawing.Point(793, 12);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(37, 30);
-            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.TabStop = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // InventoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -337,12 +354,13 @@
             this.Text = "UserForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLab)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -369,5 +387,6 @@
         private UserButton btnNext1;
         private UserButton btnPrev1;
         public System.Windows.Forms.DataGridView dgvLab;
+        private UserButton btnExport;
     }
 }

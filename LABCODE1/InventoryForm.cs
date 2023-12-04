@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using ClosedXML;
+using ClosedXML.Excel;
 
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 //using ToolTip = System.Windows.Forms.ToolTip;
@@ -35,6 +37,8 @@ namespace LABCODE1
         {
             InitializeComponent();
             LoadEquipment();
+            //LoadAllDataDGV();
+
             //LoadPageButtons();
         }
 
@@ -98,6 +102,8 @@ namespace LABCODE1
 
             UpdatePageInfo();
         }
+
+        
 
         private void UpdatePageInfo()
         {
@@ -334,6 +340,80 @@ namespace LABCODE1
             //}
         }
 
-        
+        private void LoadAllDataDGV()
+        {
+            //dgvLab.Rows.Clear();
+
+            string query = "SELECT * FROM lab_eqpment ORDER BY eqp_id;";
+            cmd = new SqlCommand(query, con);
+
+            try
+            {
+                con.Open();
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dr.Close();
+                con.Close();
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            //need ng messagebox otherwise na eexport lang yung current page
+            if (MessageBox.Show("Do you want to export to excel file?", "Exporting Record", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) 
+            {
+                LoadAllDataDGV();
+                ExportToExcel();
+            }
+        }
+
+        private void ExportToExcel()
+        {
+            try
+            {
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                {
+                    saveDialog.Filter = "Excel Workbook|*.xlsx";
+                    saveDialog.ValidateNames = true;
+
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (XLWorkbook workbook = new XLWorkbook())
+                        {
+                            var worksheet = workbook.Worksheets.Add("EquipmentData");
+
+                            // Add headers
+                            for (int i = 0; i < dgvLab.Columns.Count; i++)
+                                worksheet.Cell(1, i + 1).Value = dgvLab.Columns[i].HeaderText;
+
+                            // Add data
+                            for (int i = 0; i < dgvLab.Rows.Count; i++)
+                                for (int j = 0; j < dgvLab.Columns.Count; j++)
+                                    worksheet.Cell(i + 2, j + 1).Value = dgvLab.Rows[i].Cells[j].Value.ToString();
+
+                            workbook.SaveAs(saveDialog.FileName);
+                        }
+
+                        MessageBox.Show("Export successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
