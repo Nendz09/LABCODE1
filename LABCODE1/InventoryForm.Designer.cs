@@ -78,12 +78,13 @@
             // btnExport
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
-            this.btnExport.ImageHover = null;
+            this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
             this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
-            this.btnExport.Location = new System.Drawing.Point(700, 0);
+            this.btnExport.Location = new System.Drawing.Point(565, -3);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(87, 47);
+            this.btnExport.Size = new System.Drawing.Size(126, 56);
             this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnExport.TabIndex = 4;
             this.btnExport.TabStop = false;
@@ -119,9 +120,9 @@
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
             this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
-            this.btnAdd.Location = new System.Drawing.Point(793, 12);
+            this.btnAdd.Location = new System.Drawing.Point(702, -3);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(37, 30);
+            this.btnAdd.Size = new System.Drawing.Size(126, 56);
             this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnAdd.TabIndex = 2;
             this.btnAdd.TabStop = false;
