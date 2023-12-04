@@ -393,16 +393,22 @@ namespace LABCODE1
                         using (XLWorkbook workbook = new XLWorkbook())
                         {
                             var worksheet = workbook.Worksheets.Add("EquipmentData");
+                            int column = 5;
 
-                            // Add headers
-                            for (int i = 0; i < dgvLab.Columns.Count; i++)
+                            //add headers
+                            for (int i = 0; i < column; i++)
+                            {
                                 worksheet.Cell(1, i + 1).Value = dgvLab.Columns[i].HeaderText;
+                            }
 
-                            // Add data
-                            for (int i = 0; i < dgvLab.Rows.Count; i++)
-                                for (int j = 0; j < dgvLab.Columns.Count; j++)
+                            //add data
+                            for (int i = 0; i < dgvLab.Rows.Count; i++)// this is row, so bale lahat from 0 to hanggang saan yung nasa data
+                            {
+                                for (int j = 0; j < column; j++)//j sa column cell na nasa row
+                                {
                                     worksheet.Cell(i + 2, j + 1).Value = dgvLab.Rows[i].Cells[j].Value.ToString();
-
+                                }
+                            }
                             workbook.SaveAs(saveDialog.FileName);
                         }
 
