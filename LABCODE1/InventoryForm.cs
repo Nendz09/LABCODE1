@@ -342,7 +342,7 @@ namespace LABCODE1
 
         private void LoadAllDataDGV()
         {
-            //dgvLab.Rows.Clear();
+            dgvLab.Rows.Clear();
 
             string query = "SELECT * FROM lab_eqpment ORDER BY eqp_id;";
             cmd = new SqlCommand(query, con);

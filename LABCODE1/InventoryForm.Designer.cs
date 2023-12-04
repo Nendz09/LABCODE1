@@ -80,7 +80,7 @@
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
             this.btnExport.ImageHover = null;
-            this.btnExport.ImageNormal = null;
+            this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
             this.btnExport.Location = new System.Drawing.Point(700, 0);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(87, 47);
