@@ -159,20 +159,6 @@ namespace LABCODE1
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             InventoryModuleForm inventoryModule = new InventoryModuleForm();
@@ -181,6 +167,7 @@ namespace LABCODE1
             //inventoryModule.btnSave.Enabled = true;
             inventoryModule.btnUpdate.Enabled = false;
             inventoryModule.labelAdd.Visible = true;
+            inventoryModule.btnUpdatePanel.Visible = true;
             inventoryModule.ShowDialog();
             LoadEquipment();
         }
@@ -207,6 +194,9 @@ namespace LABCODE1
                 inventoryModule.cmbStatus.Visible = false;
                 inventoryModule.label_Status.Visible = false;
 
+                //change cursor sa save button
+                inventoryModule.btnSavePanel.Visible = true;
+
                 inventoryModule.btnSave.Enabled = false;
                 inventoryModule.btnUpdate.Enabled = true;
                 inventoryModule.txtEqpID.Enabled = false;
@@ -215,15 +205,22 @@ namespace LABCODE1
             }
             else if (colName == "Delete")
             {
-                if (MessageBox.Show("Are you sure you want to delete this Equipment?", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you want to delete this Equipment? Deleting this equipment might affect the records", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     con.Open();
                     //cmd = new SqlCommand("DELETE FROM lab_eqpment WHERE eqp_id LIKE'" + dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString() + "'", con);
                     cmd = new SqlCommand("DELETE FROM lab_eqpment WHERE eqp_id = @EquipmentID", con);
                     cmd.Parameters.AddWithValue("@EquipmentID", dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+                    //dashboard
+                    string eqpName = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string eqpID = dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string msg = $"You have successfully removed the item named {eqpName} with the ID {eqpID}";
+                    dbForm.InsertRecentActivities(msg);
+
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Equipment has been deleted successfully!");
+                    MessageBox.Show("Equipment has been deleted successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else if (colName == "Replacement")
@@ -249,7 +246,7 @@ namespace LABCODE1
                     string msg = "The item " + eqpName + " with ID: " + eqpID ;
                     dbForm.InsertRecentActivities(msg);
 
-                    MessageBox.Show("Done!");
+                    MessageBox.Show("Status updated to Available!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             LoadEquipment();
@@ -376,6 +373,10 @@ namespace LABCODE1
             {
                 LoadAllDataDGV();
                 ExportToExcel();
+
+                //dashboard
+                string msg = "You exported the laboratory equipments data in excel file.";
+                dbForm.InsertRecentActivities(msg);
             }
         }
 

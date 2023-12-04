@@ -94,6 +94,7 @@ namespace LABCODE1
 
                             //string msg = $"You added a new item {txtEquipment.Text}.";
                             // txtEquipment.Font = new Font(txtEquipment.Font, FontStyle.Bold);
+                            //dashboard
                             string msg = "You added " + txtQuantity.Text + " new item " + txtEquipment.Text + "!";
                             dbForm.InsertRecentActivities(msg);
 
@@ -161,6 +162,7 @@ namespace LABCODE1
 
                     con.Close();
                     MessageBox.Show("Equipment has been updated.");
+                    //dashboard
                     string msg = "You updated your " + txtEquipment.Text + " with ID " + txtEqpID.Text;
                     dbForm.InsertRecentActivities(msg);
                     this.Dispose();
@@ -387,6 +389,8 @@ namespace LABCODE1
                                 && !string.IsNullOrEmpty(txtQuantity.Text);
             btnSave.Enabled = allTextIsFilled;
         }
+
+
 
         //private void DashboardRecentActivities(string message) 
         //{
