@@ -57,8 +57,10 @@ namespace LABCODE1
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbMass = new System.Windows.Forms.CheckBox();
+            this.btnAddCateg = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddCateg)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -285,11 +287,13 @@ namespace LABCODE1
             // 
             // cmbGram
             // 
+            this.cmbGram.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGram.Enabled = false;
             this.cmbGram.FormattingEnabled = true;
             this.cmbGram.Items.AddRange(new object[] {
             "g",
             "mg",
+            "kg",
             "mL",
             "L"});
             this.cmbGram.Location = new System.Drawing.Point(312, 270);
@@ -365,17 +369,32 @@ namespace LABCODE1
             this.cbMass.AutoSize = true;
             this.cbMass.Location = new System.Drawing.Point(441, 276);
             this.cbMass.Name = "cbMass";
-            this.cbMass.Size = new System.Drawing.Size(59, 20);
+            this.cbMass.Size = new System.Drawing.Size(122, 20);
             this.cbMass.TabIndex = 23;
-            this.cbMass.Text = "Mass";
+            this.cbMass.Text = "Mass / Capacity";
             this.cbMass.UseVisualStyleBackColor = true;
             this.cbMass.CheckedChanged += new System.EventHandler(this.cbMass_CheckedChanged);
+            // 
+            // btnAddCateg
+            // 
+            this.btnAddCateg.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddCateg.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.Image")));
+            this.btnAddCateg.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.ImageHover")));
+            this.btnAddCateg.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.ImageNormal")));
+            this.btnAddCateg.Location = new System.Drawing.Point(540, 175);
+            this.btnAddCateg.Name = "btnAddCateg";
+            this.btnAddCateg.Size = new System.Drawing.Size(45, 36);
+            this.btnAddCateg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnAddCateg.TabIndex = 24;
+            this.btnAddCateg.TabStop = false;
+            this.btnAddCateg.Click += new System.EventHandler(this.btnAddCateg_Click);
             // 
             // InventoryModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 501);
+            this.Controls.Add(this.btnAddCateg);
             this.Controls.Add(this.cbMass);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtRemarks);
@@ -407,6 +426,7 @@ namespace LABCODE1
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddCateg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,5 +460,6 @@ namespace LABCODE1
         public TextBox txtRemarks;
         private Label label6;
         public CheckBox cbMass;
+        private UserButton btnAddCateg;
     }
 }

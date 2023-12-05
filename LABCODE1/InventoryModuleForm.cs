@@ -125,6 +125,7 @@ namespace LABCODE1
         private void btnClear_Click(object sender, EventArgs e)
         {
             Clear();
+            btnSave.Enabled = false;
         }
 
         //-------CLEAR TEXT------//
@@ -133,9 +134,17 @@ namespace LABCODE1
             txtEquipment.Clear();
             txtQuantity.Clear();
             txtRemarks.Clear();
+
+            cmbCtg.Text = string.Empty;
+            cmbSize.Text = string.Empty;
+            cmbGram.Text = string.Empty;
+
+
             cmbCtg.ResetText();
             cmbSize.ResetText();
             cmbGram.ResetText();
+
+
             //cmbCtg.SelectedIndex = -1;
             //cmbSize.SelectedIndex = -1;
         }
@@ -279,10 +288,12 @@ namespace LABCODE1
         {
             if (cmbSize.SelectedItem != null && cmbSize.SelectedItem.ToString() == "OTHER")
             {
+                txtQuantity.Clear();
                 cmbSize.DropDownStyle = ComboBoxStyle.DropDown;
             }
             else
             {
+                txtQuantity.Clear();
                 cmbSize.DropDownStyle = ComboBoxStyle.DropDownList;
             }
 
@@ -329,14 +340,16 @@ namespace LABCODE1
 
 
         //every textbox filled
-        private void isFilled()
+        private bool isFilled()
         {
             bool allTextIsFilled = !string.IsNullOrEmpty(txtEquipment.Text)
                                 && !string.IsNullOrEmpty(cmbCtg.Text)
                                 && !string.IsNullOrEmpty(cmbSize.Text)
-                                && !string.IsNullOrEmpty(txtQuantity.Text);
+                                && !string.IsNullOrEmpty(txtQuantity.Text)
+                                && !string.IsNullOrEmpty(cmbGram.Text);
 
             btnSave.Enabled = allTextIsFilled;
+            return allTextIsFilled;
             //debug
             //MessageBox.Show($"Equipment: {!string.IsNullOrEmpty(txtEquipment.Text)}\n" +
             //                $"Category: {!string.IsNullOrEmpty(cmbCtg.Text)}\n" +
@@ -358,9 +371,11 @@ namespace LABCODE1
             if (cbMass.Checked)
             {
                 txtQuantity.Clear();
+                cmbSize.ResetText();
                 cmbSize.SelectedItem = null;
                 cmbSize.Enabled = false;
                 cmbGram.Enabled = true;
+                cmbGram.SelectedIndex = 0;
             }
             else //cbMass unchecked - normal state, not mass qty
             {
@@ -371,5 +386,13 @@ namespace LABCODE1
             }
         }
 
+        private void btnAddCateg_Click(object sender, EventArgs e)
+        {
+            AddCategory addCateg = new AddCategory();
+            //addCateg.btnAdd.Enabled = false;
+            addCateg.ShowDialog();
+        }
+
+      
     }
 }

@@ -115,7 +115,7 @@ namespace LABCODE1
                     dbForm.InsertRecentActivities(msg);
 
                     con.Close();
-                    MessageBox.Show("Student info has been deleted successfully!");
+                    MessageBox.Show("Student info has been deleted successfully!", "Deleting Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else if (colName == "col_studentid") 

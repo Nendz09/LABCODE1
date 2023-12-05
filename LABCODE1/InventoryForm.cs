@@ -148,6 +148,7 @@ namespace LABCODE1
             inventoryModule.btnUpdate.Enabled = false;
             inventoryModule.labelAdd.Visible = true;
             inventoryModule.btnUpdatePanel.Visible = true;
+
             inventoryModule.ShowDialog();
             LoadEquipment();
         }
@@ -175,6 +176,10 @@ namespace LABCODE1
                 //dun sa status for updates
                 inventoryModule.cmbStatus.Visible = false;
                 inventoryModule.label_Status.Visible = false;
+
+                //edit status
+                //inventoryModule.cmbStatus.Visible = true;
+                //inventoryModule.label_Status.Visible = true;
 
                 //change cursor sa save button
                 inventoryModule.btnSavePanel.Visible = true;

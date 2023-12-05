@@ -342,9 +342,15 @@ namespace LABCODE1
             }
         }
 
+        public void Clear()
+        {
+            textBox1.Text = string.Empty;
+            SetPlaceholder(); //reset placeholder
+        }
 
 
-        
+
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (_TextChanged != null)
