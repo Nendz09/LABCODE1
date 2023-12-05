@@ -345,7 +345,6 @@ namespace LABCODE1
         public void Clear()
         {
             textBox1.Text = string.Empty;
-            SetPlaceholder(); //reset placeholder
         }
 
 

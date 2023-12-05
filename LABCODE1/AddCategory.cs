@@ -58,7 +58,6 @@ namespace LABCODE1
                 con.Close(); 
             }
 
-            
             LoadCateg();
         }
 
@@ -107,6 +106,34 @@ namespace LABCODE1
         private void txtCategName__TextChanged(object sender, EventArgs e)
         {
             IsFilled();
+        }
+
+        private void dgvCateg_SelectionChanged(object sender, EventArgs e)
+        {
+            this.dgvCateg.ClearSelection();
+        }
+
+        private void dgvCateg_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string colName = dgvCateg.Columns[e.ColumnIndex].Name;
+            if (colName == "Delete") 
+            {
+                if (MessageBox.Show("Are you sure you want to delete this category?", "Deleting Category", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    con.Open();
+                    cmd = new SqlCommand("DELETE FROM lab_categ WHERE categ_name = @categName", con);
+                    cmd.Parameters.AddWithValue("@categName", dgvCateg.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+                    //dashboard
+                    string categName = dgvCateg.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string msg = $"You have successfully removed the category '{categName}'";
+                    dbForm.InsertRecentActivities(msg);
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                LoadCateg();
+            }
         }
     }
 }

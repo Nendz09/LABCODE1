@@ -35,6 +35,7 @@
             this.txtCategName = new LABCODE1.UserTextbox();
             this.btnAdd = new LABCODE1.UserButton();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCateg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             this.SuspendLayout();
@@ -43,7 +44,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(57, 118);
+            this.label1.Location = new System.Drawing.Point(47, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 20);
             this.label1.TabIndex = 3;
@@ -53,7 +54,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(57, 192);
+            this.label3.Location = new System.Drawing.Point(47, 151);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(151, 20);
             this.label3.TabIndex = 4;
@@ -61,14 +62,26 @@
             // 
             // dgvCateg
             // 
-            this.dgvCateg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCateg.AllowUserToAddRows = false;
+            this.dgvCateg.BackgroundColor = System.Drawing.Color.White;
+            this.dgvCateg.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvCateg.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvCateg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvCateg.ColumnHeadersVisible = false;
             this.dgvCateg.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column2});
-            this.dgvCateg.Location = new System.Drawing.Point(61, 215);
+            this.Column2,
+            this.Delete});
+            this.dgvCateg.EnableHeadersVisualStyles = false;
+            this.dgvCateg.GridColor = System.Drawing.Color.White;
+            this.dgvCateg.Location = new System.Drawing.Point(51, 174);
             this.dgvCateg.Name = "dgvCateg";
+            this.dgvCateg.ReadOnly = true;
+            this.dgvCateg.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvCateg.RowHeadersVisible = false;
-            this.dgvCateg.Size = new System.Drawing.Size(469, 150);
+            this.dgvCateg.Size = new System.Drawing.Size(200, 150);
             this.dgvCateg.TabIndex = 5;
+            this.dgvCateg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCateg_CellContentClick);
+            this.dgvCateg.SelectionChanged += new System.EventHandler(this.dgvCateg_SelectionChanged);
             // 
             // txtCategName
             // 
@@ -79,7 +92,7 @@
             this.txtCategName.BorderSize = 2;
             this.txtCategName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCategName.ForeColor = System.Drawing.Color.Gray;
-            this.txtCategName.Location = new System.Drawing.Point(232, 118);
+            this.txtCategName.Location = new System.Drawing.Point(51, 74);
             this.txtCategName.Margin = new System.Windows.Forms.Padding(4);
             this.txtCategName.Multiline = false;
             this.txtCategName.Name = "txtCategName";
@@ -100,7 +113,7 @@
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
             this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
-            this.btnAdd.Location = new System.Drawing.Point(503, 382);
+            this.btnAdd.Location = new System.Drawing.Point(66, 341);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(176, 56);
             this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -113,12 +126,20 @@
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column2.HeaderText = "Category Name";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "";
+            this.Delete.Image = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
             // 
             // AddCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(307, 425);
             this.Controls.Add(this.txtCategName);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dgvCateg);
@@ -137,9 +158,10 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dgvCateg;
         public UserButton btnAdd;
         public UserTextbox txtCategName;
+        public System.Windows.Forms.DataGridView dgvCateg;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewImageColumn Delete;
     }
 }
