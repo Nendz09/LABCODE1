@@ -179,6 +179,7 @@ namespace LABCODE1
             this.cmbCtg.Name = "cmbCtg";
             this.cmbCtg.Size = new System.Drawing.Size(321, 24);
             this.cmbCtg.TabIndex = 5;
+            this.cmbCtg.DropDown += new System.EventHandler(this.cmbCtg_DropDown);
             this.cmbCtg.SelectedIndexChanged += new System.EventHandler(this.cmbCtg_SelectedIndexChanged);
             // 
             // cmbSize

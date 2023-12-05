@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient; //POTANGINAAA
 using Microsoft.VisualBasic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace LABCODE1
 {
@@ -18,7 +19,7 @@ namespace LABCODE1
         //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
 
-
+        SqlDataReader dr;
 
         DashboardForm dbForm = new DashboardForm();
         //DashboardForm dbForm;
@@ -393,6 +394,35 @@ namespace LABCODE1
             addCateg.ShowDialog();
         }
 
-      
+        private void cmbCategLoad() 
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                {
+                    string selectQuery = "SELECT categ_name FROM lab_categ";
+                    con.Open();
+                    cmbCtg.Items.Clear();//clear to prevent loop
+
+                    cmd = new SqlCommand(selectQuery, con);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        string categName = $"{dr["categ_name"]}";
+                        cmbCtg.Items.Add(categName);
+                    }
+                    dr.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading items: " + ex.Message);
+            }
+        }
+
+        private void cmbCtg_DropDown(object sender, EventArgs e)
+        {
+            cmbCategLoad();
+        }
     }
 }

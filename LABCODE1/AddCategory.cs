@@ -29,12 +29,11 @@ namespace LABCODE1
         {
             try
             {
-                string insertQuery = $@"INSERT INTO lab_categ (categ_id, categ_name)
-                                    VALUES (@categ_id, @categ_name)";
+                string insertQuery = $@"INSERT INTO lab_categ (categ_name)
+                                    VALUES (@categ_name)";
 
                 con.Open();
                 cmd = new SqlCommand(insertQuery, con);
-                cmd.Parameters.AddWithValue("@categ_id", txtCategID.Texts);
                 cmd.Parameters.AddWithValue("@categ_name", txtCategName.Texts);
                 
 
@@ -43,9 +42,9 @@ namespace LABCODE1
 
 
                 string category = txtCategName.Texts;
-                string categoryID = txtCategID.Texts;
+                
                 //dashboard
-                string msg = $"You added {category} (ID: {categoryID}) as a new Category!";
+                string msg = $"You added {category} as a new Category!";
                 dbForm.InsertRecentActivities(msg);
 
                 Clear();
@@ -78,7 +77,7 @@ namespace LABCODE1
                 while (dr.Read())
                 {
                     ++i;
-                    dgvCateg.Rows.Add(dr[0].ToString(), dr[1].ToString());
+                    dgvCateg.Rows.Add(dr[1].ToString());
                 }
                 dr.Close();
             }
@@ -91,7 +90,6 @@ namespace LABCODE1
 
         private void Clear() 
         {
-            txtCategID.Clear();
             txtCategName.Clear();
         }
 
@@ -99,34 +97,12 @@ namespace LABCODE1
 
         private bool IsFilled() 
         {
-            bool allTextIsFilled = !string.IsNullOrEmpty(txtCategID.Texts)
-                                && !string.IsNullOrEmpty(txtCategName.Texts);
+            bool allTextIsFilled = !string.IsNullOrEmpty(txtCategName.Texts);
             btnAdd.Enabled = allTextIsFilled;
             return allTextIsFilled;
         }
 
-        private void txtCategID__TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
-                {
-                    con.Open();
-                    //check if same ID exists
-                    cmd = new SqlCommand("SELECT COUNT(*) FROM lab_categ WHERE categ_id = @categ_id", con);
-                    cmd.Parameters.AddWithValue("@categ_id", txtCategID.Texts);
-                    int categIdCount = (int)cmd.ExecuteScalar();
-
-                    label_idExist.Visible = categIdCount > 0;
-                    btnAdd.Enabled = categIdCount == 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally{ con.Close(); }
-        }
+        
 
         private void txtCategName__TextChanged(object sender, EventArgs e)
         {
