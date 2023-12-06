@@ -83,6 +83,26 @@ namespace LABCODE1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap general_add_btn {
+            get {
+                object obj = ResourceManager.GetObject("general_add_btn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap general_add_btn_highlight {
+            get {
+                object obj = ResourceManager.GetObject("general_add_btn_highlight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap replacement_20pixels {
             get {
                 object obj = ResourceManager.GetObject("replacement_20pixels", resourceCulture);

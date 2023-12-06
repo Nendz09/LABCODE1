@@ -568,6 +568,8 @@
     <Content Include="Inventory_Labcode_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\general_add_btn_highlight.png" />
+    <None Include="Resources\general_add_btn.png" />
     <None Include="Resources\return_20px_highlight_REVERSED.png" />
     <None Include="Resources\return_120px_REVERSED.png" />
     <None Include="Resources\replacement_20pixels.png" />

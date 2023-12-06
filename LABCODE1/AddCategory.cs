@@ -25,39 +25,47 @@ namespace LABCODE1
             LoadCateg();
         }
 
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
+            bool textWhiteSpace = string.IsNullOrWhiteSpace(txtCategName.Texts);
+
+            if (textWhiteSpace)
             {
-                string insertQuery = $@"INSERT INTO lab_categ (categ_name)
+                MessageBox.Show("Unable to input that contains only whitespace", "No whitespace please", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                string categName = txtCategName.Texts;
+                string trimmedInput = categName.Trim();
+                try
+                {
+                    string insertQuery = $@"INSERT INTO lab_categ (categ_name)
                                     VALUES (@categ_name)";
 
-                con.Open();
-                cmd = new SqlCommand(insertQuery, con);
-                cmd.Parameters.AddWithValue("@categ_name", txtCategName.Texts);
-                
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Added a new Category!", "Add Category", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    con.Open();
+                    cmd = new SqlCommand(insertQuery, con);
+                    cmd.Parameters.AddWithValue("@categ_name", trimmedInput);
 
 
-                string category = txtCategName.Texts;
-                
-                //dashboard
-                string msg = $"You added {category} as a new Category!";
-                dbForm.InsertRecentActivities(msg);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Added a new Category!", "Add Category", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                Clear();
+                    //dashboard
+                    string msg = $"You added {trimmedInput} as a new Category!";
+                    dbForm.InsertRecentActivities(msg);
+
+                    Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred. Please remove your Duplicate ID", "REMOVE DUPLICATE ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred. Please remove your Duplicate ID", "REMOVE DUPLICATE ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally 
-            { 
-                con.Close(); 
-            }
-
             LoadCateg();
         }
 
@@ -135,5 +143,6 @@ namespace LABCODE1
                 LoadCateg();
             }
         }
+        
     }
 }

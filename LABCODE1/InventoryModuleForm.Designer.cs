@@ -177,7 +177,7 @@ namespace LABCODE1
             "OTHER"});
             this.cmbCtg.Location = new System.Drawing.Point(199, 175);
             this.cmbCtg.Name = "cmbCtg";
-            this.cmbCtg.Size = new System.Drawing.Size(321, 24);
+            this.cmbCtg.Size = new System.Drawing.Size(210, 24);
             this.cmbCtg.TabIndex = 5;
             this.cmbCtg.DropDown += new System.EventHandler(this.cmbCtg_DropDown);
             this.cmbCtg.SelectedIndexChanged += new System.EventHandler(this.cmbCtg_SelectedIndexChanged);
@@ -379,13 +379,14 @@ namespace LABCODE1
             // 
             // btnAddCateg
             // 
+            this.btnAddCateg.BackColor = System.Drawing.Color.Transparent;
             this.btnAddCateg.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddCateg.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.Image")));
             this.btnAddCateg.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.ImageHover")));
             this.btnAddCateg.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.ImageNormal")));
-            this.btnAddCateg.Location = new System.Drawing.Point(540, 175);
+            this.btnAddCateg.Location = new System.Drawing.Point(433, 160);
             this.btnAddCateg.Name = "btnAddCateg";
-            this.btnAddCateg.Size = new System.Drawing.Size(45, 36);
+            this.btnAddCateg.Size = new System.Drawing.Size(75, 56);
             this.btnAddCateg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnAddCateg.TabIndex = 24;
             this.btnAddCateg.TabStop = false;
