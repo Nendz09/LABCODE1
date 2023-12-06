@@ -424,5 +424,12 @@ namespace LABCODE1
         {
             cmbCategLoad();
         }
+
+        private void cmbCtg_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        
     }
 }

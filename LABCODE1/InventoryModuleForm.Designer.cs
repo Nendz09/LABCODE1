@@ -181,6 +181,7 @@ namespace LABCODE1
             this.cmbCtg.TabIndex = 5;
             this.cmbCtg.DropDown += new System.EventHandler(this.cmbCtg_DropDown);
             this.cmbCtg.SelectedIndexChanged += new System.EventHandler(this.cmbCtg_SelectedIndexChanged);
+            this.cmbCtg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCtg_KeyPress);
             // 
             // cmbSize
             // 

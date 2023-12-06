@@ -159,12 +159,18 @@ namespace LABCODE1
             string colName = dgvLab.Columns[e.ColumnIndex].Name;
             if (colName == "Edit")
             {
+                //dgvLab.Rows[e.RowIndex].Cells[3].Value.ToString();
                 InventoryModuleForm inventoryModule = new InventoryModuleForm();
                 inventoryModule.labelUpdate.Visible = true;
                 inventoryModule.txtEqpID.Text = dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString();
                 inventoryModule.txtEquipment.Text = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+                inventoryModule.cmbCtg.DropDownStyle = ComboBoxStyle.DropDown;
                 inventoryModule.cmbCtg.Text = dgvLab.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+                inventoryModule.cmbSize.DropDownStyle = ComboBoxStyle.DropDown;
                 inventoryModule.cmbSize.Text = dgvLab.Rows[e.RowIndex].Cells[3].Value.ToString();
+
                 inventoryModule.txtRemarks.Text = dgvLab.Rows[e.RowIndex].Cells[5].Value.ToString();
 
                 //quantity for substances
