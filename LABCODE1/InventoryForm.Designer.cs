@@ -38,13 +38,6 @@
             this.btnAdd = new LABCODE1.UserButton();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvLab = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.labelPage = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnPrev1 = new LABCODE1.UserButton();
-            this.btnNext1 = new LABCODE1.UserButton();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +47,13 @@
             this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.Replacement = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.labelPage = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnPrev1 = new LABCODE1.UserButton();
+            this.btnNext1 = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
@@ -195,83 +195,6 @@
             this.dgvLab.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLab_CellContentClick);
             this.dgvLab.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvLab_CellFormatting);
             // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewImageColumn2.HeaderText = "";
-            this.dataGridViewImageColumn2.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn2.Image")));
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.ReadOnly = true;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewImageColumn3.HeaderText = "Replacement";
-            this.dataGridViewImageColumn3.Image = global::LABCODE1.Properties.Resources.replacement_20pixels;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            // 
-            // labelPage
-            // 
-            this.labelPage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelPage.AutoSize = true;
-            this.labelPage.BackColor = System.Drawing.Color.White;
-            this.labelPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPage.Location = new System.Drawing.Point(114, 18);
-            this.labelPage.Name = "labelPage";
-            this.labelPage.Size = new System.Drawing.Size(40, 16);
-            this.labelPage.TabIndex = 2;
-            this.labelPage.Text = "Page";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel1.Controls.Add(this.btnPrev1);
-            this.flowLayoutPanel1.Controls.Add(this.labelPage);
-            this.flowLayoutPanel1.Controls.Add(this.btnNext1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(261, 498);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(383, 54);
-            this.flowLayoutPanel1.TabIndex = 5;
-            // 
-            // btnPrev1
-            // 
-            this.btnPrev1.BackColor = System.Drawing.Color.White;
-            this.btnPrev1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrev1.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev1.Image")));
-            this.btnPrev1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageHover")));
-            this.btnPrev1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageNormal")));
-            this.btnPrev1.Location = new System.Drawing.Point(3, 3);
-            this.btnPrev1.Name = "btnPrev1";
-            this.btnPrev1.Size = new System.Drawing.Size(105, 47);
-            this.btnPrev1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnPrev1.TabIndex = 7;
-            this.btnPrev1.TabStop = false;
-            this.btnPrev1.Click += new System.EventHandler(this.btnPrev1_Click);
-            // 
-            // btnNext1
-            // 
-            this.btnNext1.BackColor = System.Drawing.Color.White;
-            this.btnNext1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext1.Image = ((System.Drawing.Image)(resources.GetObject("btnNext1.Image")));
-            this.btnNext1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageHover")));
-            this.btnNext1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageNormal")));
-            this.btnNext1.Location = new System.Drawing.Point(160, 3);
-            this.btnNext1.Name = "btnNext1";
-            this.btnNext1.Size = new System.Drawing.Size(105, 47);
-            this.btnNext1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnNext1.TabIndex = 6;
-            this.btnNext1.TabStop = false;
-            this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
-            // 
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -354,6 +277,83 @@
             this.Replacement.ReadOnly = true;
             this.Replacement.Width = 11;
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn2.HeaderText = "";
+            this.dataGridViewImageColumn2.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn2.Image")));
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.ReadOnly = true;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn3.HeaderText = "Replacement";
+            this.dataGridViewImageColumn3.Image = global::LABCODE1.Properties.Resources.replacement_20pixels;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            // 
+            // labelPage
+            // 
+            this.labelPage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelPage.AutoSize = true;
+            this.labelPage.BackColor = System.Drawing.Color.White;
+            this.labelPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPage.Location = new System.Drawing.Point(114, 18);
+            this.labelPage.Name = "labelPage";
+            this.labelPage.Size = new System.Drawing.Size(40, 16);
+            this.labelPage.TabIndex = 2;
+            this.labelPage.Text = "Page";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel1.Controls.Add(this.btnPrev1);
+            this.flowLayoutPanel1.Controls.Add(this.labelPage);
+            this.flowLayoutPanel1.Controls.Add(this.btnNext1);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(261, 498);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(383, 54);
+            this.flowLayoutPanel1.TabIndex = 5;
+            // 
+            // btnPrev1
+            // 
+            this.btnPrev1.BackColor = System.Drawing.Color.White;
+            this.btnPrev1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrev1.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev1.Image")));
+            this.btnPrev1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageHover")));
+            this.btnPrev1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageNormal")));
+            this.btnPrev1.Location = new System.Drawing.Point(3, 3);
+            this.btnPrev1.Name = "btnPrev1";
+            this.btnPrev1.Size = new System.Drawing.Size(105, 47);
+            this.btnPrev1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnPrev1.TabIndex = 7;
+            this.btnPrev1.TabStop = false;
+            this.btnPrev1.Click += new System.EventHandler(this.btnPrev1_Click);
+            // 
+            // btnNext1
+            // 
+            this.btnNext1.BackColor = System.Drawing.Color.White;
+            this.btnNext1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNext1.Image = ((System.Drawing.Image)(resources.GetObject("btnNext1.Image")));
+            this.btnNext1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageHover")));
+            this.btnNext1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageNormal")));
+            this.btnNext1.Location = new System.Drawing.Point(160, 3);
+            this.btnNext1.Name = "btnNext1";
+            this.btnNext1.Size = new System.Drawing.Size(105, 47);
+            this.btnNext1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnNext1.TabIndex = 6;
+            this.btnNext1.TabStop = false;
+            this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
+            // 
             // InventoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -397,7 +397,6 @@
         private UserButton btnNext1;
         private UserButton btnPrev1;
         public System.Windows.Forms.DataGridView dgvLab;
-        private UserButton btnExport;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -407,5 +406,6 @@
         private System.Windows.Forms.DataGridViewImageColumn Edit;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
         private System.Windows.Forms.DataGridViewImageColumn Replacement;
+        public UserButton btnExport;
     }
 }
