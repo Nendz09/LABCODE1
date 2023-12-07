@@ -31,7 +31,7 @@ namespace LABCODE1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentScanModule));
             this.cboCam = new System.Windows.Forms.ComboBox();
             this.btnProceed = new System.Windows.Forms.Button();
@@ -42,6 +42,7 @@ namespace LABCODE1
             this.dgvItemBorrow = new System.Windows.Forms.DataGridView();
             this.col_dob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_dor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_duetime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_itemid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +57,7 @@ namespace LABCODE1
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.clearStudentID = new LABCODE1.UserButton();
             this.label3 = new System.Windows.Forms.Label();
+            this.dateLabelDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).BeginInit();
@@ -122,31 +124,33 @@ namespace LABCODE1
             this.dgvItemBorrow.AllowUserToAddRows = false;
             this.dgvItemBorrow.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvItemBorrow.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvItemBorrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvItemBorrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_dob,
             this.col_dor,
+            this.col_duetime,
             this.col_itemid,
             this.col_itemname,
             this.col_size,
             this.Delete});
             this.dgvItemBorrow.EnableHeadersVisualStyles = false;
-            this.dgvItemBorrow.Location = new System.Drawing.Point(198, 91);
+            this.dgvItemBorrow.Location = new System.Drawing.Point(134, 89);
             this.dgvItemBorrow.Name = "dgvItemBorrow";
             this.dgvItemBorrow.ReadOnly = true;
             this.dgvItemBorrow.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.dgvItemBorrow.Size = new System.Drawing.Size(579, 268);
+            this.dgvItemBorrow.Size = new System.Drawing.Size(661, 268);
             this.dgvItemBorrow.TabIndex = 16;
             this.dgvItemBorrow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellClick);
             this.dgvItemBorrow.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellContentClick);
+            this.dgvItemBorrow.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellLeave);
             // 
             // col_dob
             // 
@@ -161,6 +165,12 @@ namespace LABCODE1
             this.col_dor.HeaderText = "Date of Return";
             this.col_dor.Name = "col_dor";
             this.col_dor.ReadOnly = true;
+            // 
+            // col_duetime
+            // 
+            this.col_duetime.HeaderText = "Due Time";
+            this.col_duetime.Name = "col_duetime";
+            this.col_duetime.ReadOnly = true;
             // 
             // col_itemid
             // 
@@ -299,11 +309,23 @@ namespace LABCODE1
             this.label3.TabIndex = 25;
             this.label3.Text = "STUDENT ID";
             // 
+            // dateLabelDate
+            // 
+            this.dateLabelDate.AutoSize = true;
+            this.dateLabelDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateLabelDate.Location = new System.Drawing.Point(663, 407);
+            this.dateLabelDate.Name = "dateLabelDate";
+            this.dateLabelDate.Size = new System.Drawing.Size(20, 18);
+            this.dateLabelDate.TabIndex = 26;
+            this.dateLabelDate.Text = "...";
+            this.dateLabelDate.Visible = false;
+            // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 450);
+            this.Controls.Add(this.dateLabelDate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.clearStudentID);
             this.Controls.Add(this.label2);
@@ -346,17 +368,19 @@ namespace LABCODE1
         public Button btnProceed;
         public Button button1;
         public DataGridView dgvItemBorrow;
-        private DataGridViewTextBoxColumn col_dob;
-        private DataGridViewTextBoxColumn col_dor;
-        private DataGridViewTextBoxColumn col_itemid;
-        private DataGridViewTextBoxColumn col_itemname;
-        private DataGridViewTextBoxColumn col_size;
-        private DataGridViewImageColumn Delete;
         public ComboBox cmbItem;
         public ComboBox cmbPickCateg;
         private Label label2;
         private UserButton clearStudentID;
         private DataGridViewImageColumn dataGridViewImageColumn1;
         private Label label3;
+        private DataGridViewTextBoxColumn col_dob;
+        private DataGridViewTextBoxColumn col_dor;
+        private DataGridViewTextBoxColumn col_duetime;
+        private DataGridViewTextBoxColumn col_itemid;
+        private DataGridViewTextBoxColumn col_itemname;
+        private DataGridViewTextBoxColumn col_size;
+        private DataGridViewImageColumn Delete;
+        private Label dateLabelDate;
     }
 }

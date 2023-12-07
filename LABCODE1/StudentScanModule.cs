@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using ZXing.PDF417.Internal;
 using System.Reflection.Emit;
 using DocumentFormat.OpenXml.Spreadsheet;
+using static System.Net.WebRequestMethods;
 
 namespace LABCODE1
 {
@@ -29,8 +30,10 @@ namespace LABCODE1
         BarcodeReader reader = new BarcodeReader();
 
         //DateTimePicker dtp = new DateTimePicker(); //current date??
-        DateTimePicker dtp = new DateTimePicker();
+        //DateTimePicker dtp = new DateTimePicker();
 
+        //DateTimePicker dtp;
+        //DateTimePicker atp;
 
         DashboardForm dbForm = new DashboardForm();
 
@@ -38,7 +41,8 @@ namespace LABCODE1
         /*backgroundworker - is a component in .NET that simplifies working with background threads
         in a Windows Forms application*/
         private BackgroundWorker videoCaptureWorker;
-
+        private DateTimePicker dtpDate;
+        private DateTimePicker dtpTime;
         public StudentScanModule()
         {
             InitializeComponent();
@@ -47,14 +51,37 @@ namespace LABCODE1
             videoCaptureWorker.DoWork += VideoCaptureWorker_DoWork;
             videoCaptureWorker.RunWorkerCompleted += VideoCaptureWorker_RunWorkerCompleted;
 
-            //datetimepicker initializer
-            dgvItemBorrow.Controls.Add(dtp);
-            dtp.Visible = false;
-            dtp.Format = DateTimePickerFormat.Custom;
-            dtp.CustomFormat = "yyyy-MM-dd";
-            //dtp.ShowUpDown = true;
-            dtp.MinDate = DateTime.Now;
 
+
+            // Initialize DateTimePicker controls
+            dtpDate = new DateTimePicker();
+            dtpDate.Format = DateTimePickerFormat.Custom;
+            dtpDate.MinDate = DateTime.Now;
+            dtpDate.CustomFormat = "yyyy-MM-dd";
+
+
+            dtpTime = new DateTimePicker();
+            dtpTime.Format = DateTimePickerFormat.Custom;
+            dtpTime.MinDate = DateTime.Now;
+            dtpTime.CustomFormat = "HH:mm";
+            dtpTime.ShowUpDown = true;
+
+            dtpDate.TextChanged += new EventHandler(DateTimePickerChange);
+            dtpDate.CloseUp += new EventHandler(DateTimePickerClose);
+
+            dtpTime.TextChanged += new EventHandler(DateTimePickerChange);
+            dtpTime.CloseUp += new EventHandler(DateTimePickerClose);
+
+
+
+            //datetimepicker initializer
+            //dgvItemBorrow.Controls.Add(dtp);
+            //dtp.Visible = false;
+            //dtp.Format = DateTimePickerFormat.Custom;
+            //dtp.CustomFormat = "yyyy-MM-dd";
+            //dtp.MinDate = DateTime.Now;
+
+            //dtp.ShowUpDown = true;
             //dtp.CloseUp += DateTimePickerClose;
         }
 
@@ -198,6 +225,7 @@ namespace LABCODE1
         private void timer1_Tick(object sender, EventArgs e)
         {
             dateLabel.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            dateLabelDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); ;
         }
         
         private void button1_Click(object sender, EventArgs e)
@@ -210,7 +238,8 @@ namespace LABCODE1
             btnProceed.Enabled = false;
             clearStudentID.Enabled = false;
             dgvItemBorrow.Rows.Clear();
-            dtp.Visible = false;
+            dtpDate.Visible = false;
+            dtpTime.Visible = false;
             label_studentName.Text = "STUDENT NAME";
             label_studentSection.Text = "SECTION";
         }
@@ -241,22 +270,86 @@ namespace LABCODE1
 
         private void dgvItemBorrow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            //if (e.ColumnIndex == 1 && e.RowIndex >= 0)
+            //{
+            //    dgvItemBorrow.Controls.Add(dtpDate);
+            //    SetDateTimePickerLocation(e.ColumnIndex, e.RowIndex, dtpDate);
+            //    dtpDate.Visible = true;
+            //}
+            //else if (e.ColumnIndex == 2 && e.RowIndex >= 0)
+            //{
+            //    dgvItemBorrow.Controls.Add(dtpTime);
+            //    SetDateTimePickerLocation(e.ColumnIndex, e.RowIndex, dtpTime);
+            //    dtpTime.Visible = true;
+            //}
+
+
             if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
-                dgvItemBorrow.Controls.Add(dtp);
-                //set the location of the DateTimePicker to the clicked cell
+                dgvItemBorrow.Controls.Add(dtpDate);
                 _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-                dtp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
-                dtp.Location = new Point(_Rectangle.X, _Rectangle.Y);
-                dtp.Visible = true;
-                dtp.TextChanged += new EventHandler(DateTimePickerChange);
-                dtp.CloseUp += new EventHandler(DateTimePickerClose);
+                dtpDate.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+                dtpDate.Location = new Point(_Rectangle.X, _Rectangle.Y);
+                dtpDate.Visible = true;
             }
-            else
+            else if (e.ColumnIndex == 2 && e.RowIndex >= 0)
             {
-                dtp.Visible = false;
+                dgvItemBorrow.Controls.Add(dtpTime);
+                _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                dtpTime.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+                dtpTime.Location = new Point(_Rectangle.X, _Rectangle.Y);
+                dtpTime.Visible = true;
             }
+
+
+            //if (e.ColumnIndex == 1 && e.RowIndex >= 0)
+            //{
+            //    DateTimePicker dtp = new DateTimePicker();
+            //    dgvItemBorrow.Controls.Add(dtp);
+
+            //    dtp.Format = DateTimePickerFormat.Custom;
+            //    dtp.CustomFormat = "yyyy-MM-dd";
+
+            //    //set the location of the DateTimePicker to the clicked cell
+            //    _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+            //    dtp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+            //    dtp.Location = new Point(_Rectangle.X, _Rectangle.Y);
+            //    dtp.TextChanged += new EventHandler(DateTimePickerChange);
+            //    dtp.CloseUp += new EventHandler(DateTimePickerClose);
+            //    dtp.Visible = true;
+            //}
+            //else if (e.ColumnIndex == 2 && e.RowIndex >= 0)
+            //{
+            //    DateTimePicker atp = new DateTimePicker();
+            //    dgvItemBorrow.Controls.Add(atp);
+            //    _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+            //    atp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+            //    atp.Location = new Point(_Rectangle.X, _Rectangle.Y);
+            //    atp.Visible = false;
+            //    atp.Format = DateTimePickerFormat.Custom;
+            //    atp.CustomFormat = "HH:mm";
+            //    //dtp.ShowUpDown = true;
+            //    atp.TextChanged += new EventHandler(DateTimePickerChange);
+            //    atp.CloseUp += new EventHandler(DateTimePickerClose);
+            //    atp.ShowUpDown = true; // Show the DateTimePicker with UpDown control
+            //    atp.Visible = true;
+            //}
+
+
+            //else
+            //{
+            //    dtp.Visible = false;
+            //}
         }
+
+        //private void SetDateTimePickerLocation(int columnIndex, int rowIndex, DateTimePicker dateTimePicker)
+        //{
+        //    _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(columnIndex, rowIndex, true);
+        //    dateTimePicker.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+        //    dateTimePicker.Location = new Point(_Rectangle.X, _Rectangle.Y);
+        //}
+
         //event handler for DateTimePicker's ValueChanged event.
         //private void dtp_ValueChanged(object sender, EventArgs e)
         //{
@@ -284,21 +377,33 @@ namespace LABCODE1
             //dtp.Visible = false;
 
 
+            if (sender == dtpDate)
+            {
+                dgvItemBorrow.CurrentCell.Value = dtpDate.Text;
+            }
+            else if (sender == dtpTime)
+            {
+                dgvItemBorrow.CurrentCell.Value = dtpTime.Text;
+            }
+
 
             //WORKING
-            dgvItemBorrow.CurrentCell.Value = dtp.Text.ToString();
+            //dgvItemBorrow.CurrentCell.Value = dtp.Text.ToString();
+            //dgvItemBorrow.CurrentCell.Value = atp.Text.ToString();
 
 
             //MessageBox.Show(string.Format("Date changed to {0}", dtp.Text.ToString()));
         }
         private void DateTimePickerClose(object sender, EventArgs e)
         {
-            if (sender is DateTimePicker)
-            {
-                DateTimePicker dateTimePicker = (DateTimePicker)sender;
-                dateTimePicker.Value = DateTime.Now; // Set the Value to the current date
-                dateTimePicker.Visible = false;
-            }
+            //if (sender is DateTimePicker)
+            //{
+            //    DateTimePicker dateTimePicker = (DateTimePicker)sender;
+            //    dateTimePicker.Value = DateTime.Now; //set the Value to the current date
+            //    dateTimePicker.Visible = false;
+            //}
+
+
 
             //if (sender is DateTimePicker)
             //{
@@ -307,14 +412,32 @@ namespace LABCODE1
             //    // Get the current date from the DateTimePicker
             //    DateTime selectedDate = dateTimePicker.Value;
 
-            //    // Set the time to a specific value (e.g., 12:00 PM)
-            //    DateTime selectedDateTimeWithTime = selectedDate.Date.Add(new TimeSpan(12, 0, 0)); // Adjust the time as needed
-
-            //    // Update the Value property of the DateTimePicker
-            //    dateTimePicker.Value = selectedDateTimeWithTime;
 
             //    dateTimePicker.Visible = false;
             //}
+            if (sender == dtpDate)
+            {
+                dtpDate.Visible = false;
+            }
+            else if (sender == dtpTime)
+            {
+                dtpTime.Visible = false;
+            }
+        }
+
+
+        private void dgvItemBorrow_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
+            {
+                // Hide the DateTimePicker control when leaving the cell
+                dtpDate.Visible = false;
+            }
+            else if (e.ColumnIndex == 2 && e.RowIndex >= 0)
+            {
+                // Hide the DateTimePicker control when leaving the cell
+                dtpTime.Visible = false;
+            }
         }
 
         private void btnProceed_Click(object sender, EventArgs e)
@@ -486,7 +609,7 @@ namespace LABCODE1
 
                 while (dr.Read())
                 {
-                    dgvItemBorrow.Rows.Add(dateLabel.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+                    dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
                 }
 
                 dr.Close();
