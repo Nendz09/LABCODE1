@@ -15,6 +15,7 @@ using ZXing.Common;
 using System.Data.SqlClient;
 using ZXing.PDF417.Internal;
 using System.Reflection.Emit;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace LABCODE1
 {
@@ -31,7 +32,7 @@ namespace LABCODE1
         DateTimePicker dtp = new DateTimePicker();
 
 
-
+        DashboardForm dbForm = new DashboardForm();
 
         Rectangle _Rectangle;
         /*backgroundworker - is a component in .NET that simplifies working with background threads
@@ -51,10 +52,13 @@ namespace LABCODE1
             dtp.Visible = false;
             dtp.Format = DateTimePickerFormat.Custom;
             dtp.CustomFormat = "yyyy-MM-dd";
+            //dtp.ShowUpDown = true;
             dtp.MinDate = DateTime.Now;
+
+            //dtp.CloseUp += DateTimePickerClose;
         }
 
-       
+
 
         private void VideoCaptureWorker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -176,7 +180,7 @@ namespace LABCODE1
             }
             else
             {
-                label_studentName.Text = "Invalid Student ID or NOT a number";
+                label_studentName.Text = "Invalid Student ID \n or NOT a number";
                 label_studentSection.Text = "";
             }
             con.Close();
@@ -193,19 +197,22 @@ namespace LABCODE1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            dateLabel.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            dateLabel.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
         }
         
         private void button1_Click(object sender, EventArgs e)
         {
             cmbPickCateg.SelectedIndex = -1;
             txt_Barcode.Clear();
-            cmbItem.Text = "";
+            cmbItem.Items.Clear();
             cmbItem.Enabled = false;
             txt_Barcode.Enabled = false;
             btnProceed.Enabled = false;
             clearStudentID.Enabled = false;
             dgvItemBorrow.Rows.Clear();
+            dtp.Visible = false;
+            label_studentName.Text = "STUDENT NAME";
+            label_studentSection.Text = "SECTION";
         }
 
         private void dgvItemBorrow_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -237,11 +244,11 @@ namespace LABCODE1
             if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
                 dgvItemBorrow.Controls.Add(dtp);
-                dtp.Visible = true;
-                dtp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
-                // Set the location of the DateTimePicker to the clicked cell
+                //set the location of the DateTimePicker to the clicked cell
                 _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                dtp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
                 dtp.Location = new Point(_Rectangle.X, _Rectangle.Y);
+                dtp.Visible = true;
                 dtp.TextChanged += new EventHandler(DateTimePickerChange);
                 dtp.CloseUp += new EventHandler(DateTimePickerClose);
             }
@@ -251,21 +258,63 @@ namespace LABCODE1
             }
         }
         //event handler for DateTimePicker's ValueChanged event.
-        private void dtp_ValueChanged(object sender, EventArgs e)
-        {
-            //set the selected date in the DataGridView cell.
-            dgvItemBorrow.CurrentCell.Value = dtp.Value.ToString("yyyy-MM-dd");
-            dtp.Visible = false; // Hide the DateTimePicker control.
-        }
+        //private void dtp_ValueChanged(object sender, EventArgs e)
+        //{
+        //    //set the selected date in the DataGridView cell.
+        //    dgvItemBorrow.CurrentCell.Value = dtp.Value.ToString("yyyy-MM-dd");
+        //    dtp.Visible = false; // Hide the DateTimePicker control.
+        //}
 
         private void DateTimePickerChange(object sender, EventArgs e)
         {
+            //string newDateText = dtp.Text.ToString();
+
+            //// Check if the value has actually changed
+            //if (dtp.Tag == null || !newDateText.Equals(dtp.Tag.ToString()))
+            //{
+            //    dgvItemBorrow.CurrentCell.Value = newDateText;
+
+            //    // Show the message only if the value has changed
+            //    MessageBox.Show(string.Format("Date changed to {0}", newDateText));
+
+            //    // Store the current value in the Tag property to compare with future changes
+            //    dtp.Tag = newDateText;
+            //}
+
+            //dtp.Visible = false;
+
+
+
+            //WORKING
             dgvItemBorrow.CurrentCell.Value = dtp.Text.ToString();
+
+
             //MessageBox.Show(string.Format("Date changed to {0}", dtp.Text.ToString()));
         }
         private void DateTimePickerClose(object sender, EventArgs e)
         {
-            dtp.Visible = false;
+            if (sender is DateTimePicker)
+            {
+                DateTimePicker dateTimePicker = (DateTimePicker)sender;
+                dateTimePicker.Value = DateTime.Now; // Set the Value to the current date
+                dateTimePicker.Visible = false;
+            }
+
+            //if (sender is DateTimePicker)
+            //{
+            //    DateTimePicker dateTimePicker = (DateTimePicker)sender;
+
+            //    // Get the current date from the DateTimePicker
+            //    DateTime selectedDate = dateTimePicker.Value;
+
+            //    // Set the time to a specific value (e.g., 12:00 PM)
+            //    DateTime selectedDateTimeWithTime = selectedDate.Date.Add(new TimeSpan(12, 0, 0)); // Adjust the time as needed
+
+            //    // Update the Value property of the DateTimePicker
+            //    dateTimePicker.Value = selectedDateTimeWithTime;
+
+            //    dateTimePicker.Visible = false;
+            //}
         }
 
         private void btnProceed_Click(object sender, EventArgs e)
@@ -292,11 +341,18 @@ namespace LABCODE1
                 }
 
                 List<int> itemIds = dgv_GetSelectedItemIds(); //list item (int type)
+                List<string> itemNames = dgv_ItemNames(); //list item names
                 dgv_UpdateLabEqpmentStatus(itemIds);
                 dgv_InsertIntoLabBorrows();
 
+                //DASHBOARD
+                string studentName = label_studentName.Text;
+                string studentSec = label_studentSection.Text;
+                string itemNamesList = string.Join(", ", itemNames);
+                string msg = $"{studentName} from {studentSec} borrowed the items: {itemNamesList}.";
+                dbForm.InsertRecentActivities(msg);
+
                 //con.Close();
-               
                 MessageBox.Show("Borrowed Successfully!");
                 this.Dispose();
             }
@@ -314,6 +370,20 @@ namespace LABCODE1
             //}
         }
 
+        private List<string> dgv_ItemNames() //list ng mga item names
+        {
+            List<string> itemNames = new List<string>();
+
+            for (int i = 0; i < dgvItemBorrow.Rows.Count; i++)
+            {
+                if (dgvItemBorrow.Rows[i].Cells["col_itemname"].Value != null)
+                {
+                    string itemName = dgvItemBorrow.Rows[i].Cells["col_itemname"].Value.ToString();
+                    itemNames.Add(itemName);
+                }
+            }
+            return itemNames;
+        }
 
         private List<int> dgv_GetSelectedItemIds()
         {
@@ -347,7 +417,8 @@ namespace LABCODE1
         {
             for (int i = 0; i < dgvItemBorrow.RowCount; i++)
             {
-                cmd = new SqlCommand("INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return, @eqp_size)", con);
+                cmd = new SqlCommand(@"INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) 
+                                    VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return, @eqp_size)", con);
                 cmd.Parameters.AddWithValue("@date_borrow", dgvItemBorrow.Rows[i].Cells["col_dob"].Value.ToString());
                 cmd.Parameters.AddWithValue("@student_id", txt_Barcode.Text);
                 cmd.Parameters.AddWithValue("@name", label_studentName.Text);
@@ -361,6 +432,8 @@ namespace LABCODE1
         }
 
         //method
+
+        //CMB ITEM 
         private void cmbItemLoad() 
         {
             try
@@ -387,24 +460,16 @@ namespace LABCODE1
 
            
         }
-
+        private void cmbItem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
         private void cmbItem_DropDown(object sender, EventArgs e)
         {
             cmbItemLoad();
         }
 
-        private void cmbItem_TextChanged(object sender, EventArgs e)
-        {
-            //dgvItemOnHand();
-            //if (dgvItemBorrow.RowCount != 0)
-            //{
-            //    btnProceed.Enabled = true;
-            //}
-            //else
-            //{
-            //    btnProceed.Enabled = false;
-            //}
-        }
+        
 
         
 
@@ -435,25 +500,18 @@ namespace LABCODE1
                 MessageBox.Show("Invalid equipment ID");
             }
         }
-
         private void cmbPickCateg_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbPickCateg.SelectedItem != null && cmbPickCateg.SelectedItem.ToString() == "OTHER")
+            if (cmbPickCateg.SelectedItem != null)
             {
                 cmbItem.Enabled = true;
                 cmbItem.Text = "";
                 txt_Barcode.Text = "";
-                cmbPickCateg.DropDownStyle = ComboBoxStyle.DropDown;
-            }
-            else
-            {
-                cmbItem.Enabled = true;
-                cmbItem.Text = "";
-                txt_Barcode.Text = "";
-                cmbPickCateg.DropDownStyle = ComboBoxStyle.DropDownList;
+                //cmbPickCateg.DropDownStyle = ComboBoxStyle.DropDownList;
             }
         }
 
+        
 
         private bool HasDuplicateItemIds()//this is a BOOLEAN
         {
@@ -483,5 +541,44 @@ namespace LABCODE1
             txt_Barcode.Enabled = true;
             btnProceed.Enabled = false;
         }
+
+
+
+        //categ combo box
+        private void cmbCategLoad()
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                {
+                    string selectQuery = "SELECT categ_name FROM lab_categ";
+                    con.Open();
+                    cmbPickCateg.Items.Clear();//clear to prevent loop
+
+                    cmd = new SqlCommand(selectQuery, con);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        string categName = $"{dr["categ_name"]}";
+                        cmbPickCateg.Items.Add(categName);
+                    }
+                    dr.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading items: " + ex.Message);
+            }
+        }
+        private void cmbPickCateg_DropDown(object sender, EventArgs e)
+        {
+            cmbCategLoad();
+        }
+        private void cmbPickCateg_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        
     }
 }

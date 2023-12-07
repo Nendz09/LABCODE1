@@ -31,7 +31,7 @@ namespace LABCODE1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentScanModule));
             this.cboCam = new System.Windows.Forms.ComboBox();
             this.btnProceed = new System.Windows.Forms.Button();
@@ -122,14 +122,14 @@ namespace LABCODE1
             this.dgvItemBorrow.AllowUserToAddRows = false;
             this.dgvItemBorrow.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvItemBorrow.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvItemBorrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvItemBorrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_dob,
@@ -217,6 +217,7 @@ namespace LABCODE1
             // 
             // cmbItem
             // 
+            this.cmbItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbItem.Enabled = false;
             this.cmbItem.FormattingEnabled = true;
             this.cmbItem.Location = new System.Drawing.Point(198, 382);
@@ -225,10 +226,11 @@ namespace LABCODE1
             this.cmbItem.TabIndex = 20;
             this.cmbItem.DropDown += new System.EventHandler(this.cmbItem_DropDown);
             this.cmbItem.SelectedIndexChanged += new System.EventHandler(this.cmbItem_SelectedIndexChanged);
-            this.cmbItem.TextChanged += new System.EventHandler(this.cmbItem_TextChanged);
+            this.cmbItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbItem_KeyPress);
             // 
             // cmbPickCateg
             // 
+            this.cmbPickCateg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPickCateg.FormattingEnabled = true;
             this.cmbPickCateg.Items.AddRange(new object[] {
             "GENERAL SCIENCE",
@@ -241,7 +243,9 @@ namespace LABCODE1
             this.cmbPickCateg.Name = "cmbPickCateg";
             this.cmbPickCateg.Size = new System.Drawing.Size(121, 21);
             this.cmbPickCateg.TabIndex = 21;
+            this.cmbPickCateg.DropDown += new System.EventHandler(this.cmbPickCateg_DropDown);
             this.cmbPickCateg.SelectedIndexChanged += new System.EventHandler(this.cmbPickCateg_SelectedIndexChanged);
+            this.cmbPickCateg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPickCateg_KeyPress);
             // 
             // label2
             // 

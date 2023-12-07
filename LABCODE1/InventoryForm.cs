@@ -236,7 +236,7 @@ namespace LABCODE1
                     string eqpName = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
 
                     //dashboard
-                    string msg = "The item " + eqpName + " with ID: " + eqpID ;
+                    string msg = "The item " + eqpName + " with ID: " + eqpID + " has been replaced.";
                     dbForm.InsertRecentActivities(msg);
 
                     MessageBox.Show("Status updated to Available!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);

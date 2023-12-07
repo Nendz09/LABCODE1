@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentForm));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -47,21 +47,21 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelPage = new System.Windows.Forms.Label();
+            this.btnReturn = new LABCODE1.UserButton();
+            this.btnBorrow = new LABCODE1.UserButton();
             this.btnPrev1 = new LABCODE1.UserButton();
             this.btnNext1 = new LABCODE1.UserButton();
-            this.btnReturn = new LABCODE1.UserButton();
             this.searchTextbox = new LABCODE1.UserTextbox();
             this.btnExport = new LABCODE1.UserButton();
-            this.btnBorrow = new LABCODE1.UserButton();
             this.btnAdd = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnReturn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBorrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnReturn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBorrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,10 +79,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
-            this.panel1.Controls.Add(this.btnReturn);
             this.panel1.Controls.Add(this.searchTextbox);
             this.panel1.Controls.Add(this.btnExport);
-            this.panel1.Controls.Add(this.btnBorrow);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -100,14 +98,14 @@
             this.dgvStudents.BackgroundColor = System.Drawing.Color.White;
             this.dgvStudents.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkGreen;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Green;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGreen;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Green;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvStudents.ColumnHeadersHeight = 35;
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -118,14 +116,14 @@
             this.View,
             this.Edit,
             this.Delete});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvStudents.EnableHeadersVisualStyles = false;
             this.dgvStudents.GridColor = System.Drawing.Color.White;
             this.dgvStudents.Location = new System.Drawing.Point(0, 0);
@@ -133,12 +131,12 @@
             this.dgvStudents.ReadOnly = true;
             this.dgvStudents.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvStudents.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvStudents.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvStudents.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvStudents.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvStudents.RowTemplate.Height = 40;
-            this.dgvStudents.Size = new System.Drawing.Size(841, 488);
+            this.dgvStudents.Size = new System.Drawing.Size(841, 455);
             this.dgvStudents.TabIndex = 1;
             this.dgvStudents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudents_CellContentClick);
             // 
@@ -230,7 +228,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnNext1);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(269, 494);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(383, 54);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(309, 54);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // labelPage
@@ -244,6 +242,38 @@
             this.labelPage.Size = new System.Drawing.Size(40, 16);
             this.labelPage.TabIndex = 2;
             this.labelPage.Text = "Page";
+            // 
+            // btnReturn
+            // 
+            this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReturn.BackColor = System.Drawing.Color.White;
+            this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReturn.Image = ((System.Drawing.Image)(resources.GetObject("btnReturn.Image")));
+            this.btnReturn.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnReturn.ImageHover")));
+            this.btnReturn.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnReturn.ImageNormal")));
+            this.btnReturn.Location = new System.Drawing.Point(693, 507);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(136, 45);
+            this.btnReturn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnReturn.TabIndex = 6;
+            this.btnReturn.TabStop = false;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            // 
+            // btnBorrow
+            // 
+            this.btnBorrow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBorrow.BackColor = System.Drawing.Color.White;
+            this.btnBorrow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBorrow.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrow.Image")));
+            this.btnBorrow.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnBorrow.ImageHover")));
+            this.btnBorrow.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnBorrow.ImageNormal")));
+            this.btnBorrow.Location = new System.Drawing.Point(693, 461);
+            this.btnBorrow.Name = "btnBorrow";
+            this.btnBorrow.Size = new System.Drawing.Size(136, 45);
+            this.btnBorrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnBorrow.TabIndex = 3;
+            this.btnBorrow.TabStop = false;
+            this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
             // 
             // btnPrev1
             // 
@@ -275,21 +305,6 @@
             this.btnNext1.TabStop = false;
             this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
             // 
-            // btnReturn
-            // 
-            this.btnReturn.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReturn.Image = ((System.Drawing.Image)(resources.GetObject("btnReturn.Image")));
-            this.btnReturn.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnReturn.ImageHover")));
-            this.btnReturn.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnReturn.ImageNormal")));
-            this.btnReturn.Location = new System.Drawing.Point(484, 7);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(49, 46);
-            this.btnReturn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnReturn.TabIndex = 6;
-            this.btnReturn.TabStop = false;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
-            // 
             // searchTextbox
             // 
             this.searchTextbox.BackColor = System.Drawing.SystemColors.Window;
@@ -315,12 +330,12 @@
             // 
             // btnExport
             // 
-            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
             this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
             this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
-            this.btnExport.Location = new System.Drawing.Point(521, -3);
+            this.btnExport.Location = new System.Drawing.Point(446, -3);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(126, 56);
             this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -328,30 +343,16 @@
             this.btnExport.TabStop = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // btnBorrow
-            // 
-            this.btnBorrow.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnBorrow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBorrow.Image = global::LABCODE1.Properties.Resources.return_120px_REVERSED;
-            this.btnBorrow.ImageHover = global::LABCODE1.Properties.Resources.return_20px_highlight_REVERSED;
-            this.btnBorrow.ImageNormal = global::LABCODE1.Properties.Resources.return_120px_REVERSED;
-            this.btnBorrow.Location = new System.Drawing.Point(429, 7);
-            this.btnBorrow.Name = "btnBorrow";
-            this.btnBorrow.Size = new System.Drawing.Size(49, 46);
-            this.btnBorrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnBorrow.TabIndex = 3;
-            this.btnBorrow.TabStop = false;
-            this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
-            // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Image = global::LABCODE1.Properties.Resources.general_add_btn;
-            this.btnAdd.ImageHover = global::LABCODE1.Properties.Resources.general_add_btn_highlight;
-            this.btnAdd.ImageNormal = global::LABCODE1.Properties.Resources.general_add_btn;
-            this.btnAdd.Location = new System.Drawing.Point(718, 5);
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
+            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
+            this.btnAdd.Location = new System.Drawing.Point(693, -1);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(111, 43);
+            this.btnAdd.Size = new System.Drawing.Size(136, 54);
             this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnAdd.TabIndex = 2;
             this.btnAdd.TabStop = false;
@@ -363,6 +364,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(841, 606);
+            this.Controls.Add(this.btnReturn);
+            this.Controls.Add(this.btnBorrow);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvStudents);
@@ -378,11 +381,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnReturn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBorrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnReturn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBorrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             this.ResumeLayout(false);
 
