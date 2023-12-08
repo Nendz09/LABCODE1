@@ -127,6 +127,9 @@
             // dgvBorrowed
             // 
             this.dgvBorrowed.AllowUserToAddRows = false;
+            this.dgvBorrowed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvBorrowed.BackgroundColor = System.Drawing.Color.White;
             this.dgvBorrowed.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -156,7 +159,6 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvBorrowed.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvBorrowed.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvBorrowed.EnableHeadersVisualStyles = false;
             this.dgvBorrowed.GridColor = System.Drawing.Color.Black;
             this.dgvBorrowed.Location = new System.Drawing.Point(0, 0);
@@ -229,7 +231,8 @@
             // dgvReturned
             // 
             this.dgvReturned.AllowUserToAddRows = false;
-            this.dgvReturned.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvReturned.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvReturned.BackgroundColor = System.Drawing.Color.White;
             this.dgvReturned.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;

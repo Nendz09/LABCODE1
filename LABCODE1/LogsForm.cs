@@ -95,19 +95,32 @@ namespace LABCODE1
                 if (DateTime.TryParse(e.Value.ToString(), out DateTime returnDate))
                 {
                     TimeSpan daysDifference = returnDate - DateTime.Now;
+                    TimeSpan timeDifference = returnDate - DateTime.Now;
 
-                    if (daysDifference.Days < 0) //overdue
+
+                    if (timeDifference.TotalHours < 0) // overdue
                     {
-                        //e.CellStyle.ForeColor = Color.Black;
-                        //e.CellStyle.BackColor = Color.LightCoral; 
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
                     }
-                    else if (daysDifference.Days <= 3)
+                    else if (timeDifference.TotalHours <= 3) // within 3 days
                     {
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
                     }
+
+                    //if (daysDifference.Days < 0) //overdue
+                    //{
+                    //    //e.CellStyle.ForeColor = Color.Black;
+                    //    //e.CellStyle.BackColor = Color.LightCoral; 
+                    //    dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                    //    dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+                    //}
+                    //else if (daysDifference.Days <= 3)
+                    //{
+                    //    dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                    //    dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
+                    //}
                     else
                     {
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dgvBorrowed.DefaultCellStyle.ForeColor;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CircularProgressBar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +25,7 @@ namespace LABCODE1
         {
             InitializeComponent();
             dgvDashboardLoad();
+           
         }
 
         public void dgvDashboardLoad() 
@@ -79,6 +81,64 @@ namespace LABCODE1
                 MessageBox.Show(ex.Message);
             }
             finally { con.Close(); }
+        }
+
+
+        private void totalBorrowedItems() 
+        {
+           
+
+            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+            {
+                chart1.Series["Series1"].IsValueShownAsLabel = true;
+                string totalBorrowedQuery = "SELECT COUNT(*) AS total_rows FROM lab_eqpment WHERE status = 'Borrowed'";
+                string totalAvailableQuery = "SELECT COUNT(*) AS total_rows FROM lab_eqpment WHERE status = 'Available'";
+                string totalUnavailableQuery = "SELECT COUNT(*) AS total_rows FROM lab_eqpment WHERE status = 'Unavailable'";
+                con.Open();
+
+                cmd = new SqlCommand(totalBorrowedQuery, con);
+                int totalBorrowed = (int)cmd.ExecuteScalar();
+                chart1.Series["Series1"].Points.AddXY("Borrowed", totalBorrowed);
+
+                cmd = new SqlCommand(totalAvailableQuery, con);
+                int totalAvailable = (int)cmd.ExecuteScalar();
+                chart1.Series["Series1"].Points.AddXY("Available", totalAvailable);
+
+                cmd = new SqlCommand(totalUnavailableQuery, con);
+                int totalUnavailable = (int)cmd.ExecuteScalar();
+
+                // Show or hide label for "Unavailable" based on count
+                //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = (totalUnavailable == 0);
+
+                chart1.Series["Series1"].Points.AddXY("Unavailable", totalUnavailable);
+
+                if (totalUnavailable == 0)
+                {
+                    //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = false;
+                    chart1.Series["Series1"].Points[2].Label = " ";
+                }
+                else if (totalBorrowed == 0)
+                {
+                    chart1.Series["Series1"].Points[0].Label = " ";
+                }
+                else if (totalAvailable == 0)
+                {
+                    chart1.Series["Series1"].Points[1].Label = " ";
+                }
+
+
+                //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = (totalUnavailable > 0);
+            }
+
+           
+            chart1.Series["Series1"].Points[0].Color = Color.LightYellow;
+            chart1.Series["Series1"].Points[1].Color = Color.LightGreen;
+            chart1.Series["Series1"].Points[2].Color = Color.LightCoral;
+        }
+
+        private void DashboardForm_Load(object sender, EventArgs e)
+        {
+            totalBorrowedItems();
         }
 
 
