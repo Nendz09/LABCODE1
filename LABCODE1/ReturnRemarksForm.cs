@@ -20,7 +20,7 @@ namespace LABCODE1
         SqlCommand cmd = new SqlCommand();
         SqlDataReader dr;
 
-       
+        DashboardForm dbForm = new DashboardForm();
 
         public ReturnRemarksForm()
         {
@@ -30,6 +30,9 @@ namespace LABCODE1
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
+            string studentName = txt_studName.Text;
+            string studentSec = txt_studSec.Text;
+            string itemName = txt_itemName.Text;
             try
             {
                 if (rb_Yes.Checked)//if need replacement - status = unavailable
@@ -43,6 +46,10 @@ namespace LABCODE1
                     QueryDeleteToBorrowTable();
                     QueryUpdateStatusUnavailable();
                     MessageBox.Show("Returned Successfully. Replacement is needed.");
+
+                    //dashboard
+                    string msg = $"{studentName} from {studentSec} returned the item '{itemName}' with a replacement.";
+                    dbForm.InsertRecentActivities(msg);
                 }
                 else if (rb_No.Checked)//no need replacement
                 {
@@ -50,6 +57,10 @@ namespace LABCODE1
                     QueryDeleteToBorrowTable();
                     QueryUpdateStatusAvailable();
                     MessageBox.Show("Returned Successfully. Replacement is NOT needed.");
+
+                    //dashboard
+                    string msg = $"{studentName} from {studentSec} returned the item '{itemName}' with no replacement.";
+                    dbForm.InsertRecentActivities(msg);
                 }
                 this.Dispose();
             }
@@ -67,7 +78,7 @@ namespace LABCODE1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            currentDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            currentDateAndTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
         }
 
 
@@ -98,7 +109,7 @@ namespace LABCODE1
                                 "VALUES (@date_borrow, @actual_date_return, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @eqp_size, @remarks)";
             cmd = new SqlCommand(queryInsert, con);
             cmd.Parameters.AddWithValue("@date_borrow", borrowDate.Text);
-            cmd.Parameters.AddWithValue("@actual_date_return", currentDate.Text);
+            cmd.Parameters.AddWithValue("@actual_date_return", currentDateAndTime.Text);
             cmd.Parameters.AddWithValue("@student_id", txt_studId.Text);
             cmd.Parameters.AddWithValue("@name", txt_studName.Text);
             cmd.Parameters.AddWithValue("@year_sec", txt_studSec.Text);

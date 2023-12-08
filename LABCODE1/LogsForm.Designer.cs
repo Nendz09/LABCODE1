@@ -156,14 +156,14 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvBorrowed.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvBorrowed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBorrowed.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvBorrowed.EnableHeadersVisualStyles = false;
             this.dgvBorrowed.GridColor = System.Drawing.Color.Black;
             this.dgvBorrowed.Location = new System.Drawing.Point(0, 0);
             this.dgvBorrowed.Name = "dgvBorrowed";
             this.dgvBorrowed.ReadOnly = true;
             this.dgvBorrowed.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.dgvBorrowed.Size = new System.Drawing.Size(841, 606);
+            this.dgvBorrowed.Size = new System.Drawing.Size(841, 512);
             this.dgvBorrowed.TabIndex = 2;
             this.dgvBorrowed.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBorrowed_CellFormatting);
             this.dgvBorrowed.SelectionChanged += new System.EventHandler(this.dgvBorrowed_SelectionChanged);
@@ -229,6 +229,8 @@
             // dgvReturned
             // 
             this.dgvReturned.AllowUserToAddRows = false;
+            this.dgvReturned.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvReturned.BackgroundColor = System.Drawing.Color.White;
             this.dgvReturned.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -259,14 +261,13 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvReturned.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvReturned.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvReturned.EnableHeadersVisualStyles = false;
             this.dgvReturned.GridColor = System.Drawing.Color.Black;
             this.dgvReturned.Location = new System.Drawing.Point(0, 0);
             this.dgvReturned.Name = "dgvReturned";
             this.dgvReturned.ReadOnly = true;
             this.dgvReturned.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.dgvReturned.Size = new System.Drawing.Size(841, 606);
+            this.dgvReturned.Size = new System.Drawing.Size(841, 512);
             this.dgvReturned.TabIndex = 3;
             this.dgvReturned.Visible = false;
             this.dgvReturned.SelectionChanged += new System.EventHandler(this.dgvReturned_SelectionChanged);

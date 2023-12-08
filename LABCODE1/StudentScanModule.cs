@@ -447,9 +447,10 @@ namespace LABCODE1
                 //check empty cells
                 foreach (DataGridViewRow row in dgvItemBorrow.Rows)
                 {
-                    if (string.IsNullOrEmpty(Convert.ToString(row.Cells["col_dor"].Value)))
+                    if (string.IsNullOrEmpty(Convert.ToString(row.Cells["col_dor"].Value)) || 
+                        string.IsNullOrEmpty(Convert.ToString(row.Cells["col_duetime"].Value)))
                     {
-                        MessageBox.Show("Please set a value for the 'Date of Return' before proceeding.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Please set a value for the 'Date of Return' or 'Due Time' before proceeding.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
@@ -540,6 +541,7 @@ namespace LABCODE1
         {
             for (int i = 0; i < dgvItemBorrow.RowCount; i++)
             {
+                string concatenateReturnDateAndTime = (string.Concat(dgvItemBorrow.Rows[i].Cells["col_dor"].Value.ToString() + " " + dgvItemBorrow.Rows[i].Cells["col_duetime"].Value.ToString()));
                 cmd = new SqlCommand(@"INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) 
                                     VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return, @eqp_size)", con);
                 cmd.Parameters.AddWithValue("@date_borrow", dgvItemBorrow.Rows[i].Cells["col_dob"].Value.ToString());
@@ -548,7 +550,7 @@ namespace LABCODE1
                 cmd.Parameters.AddWithValue("@year_sec", label_studentSection.Text);
                 cmd.Parameters.AddWithValue("@eqp_id", dgvItemBorrow.Rows[i].Cells["col_itemid"].Value.ToString());
                 cmd.Parameters.AddWithValue("@eqp_name", dgvItemBorrow.Rows[i].Cells["col_itemname"].Value.ToString());
-                cmd.Parameters.AddWithValue("@date_return", dgvItemBorrow.Rows[i].Cells["col_dor"].Value.ToString());
+                cmd.Parameters.AddWithValue("@date_return", concatenateReturnDateAndTime);
                 cmd.Parameters.AddWithValue("@eqp_size", dgvItemBorrow.Rows[i].Cells["col_size"].Value.ToString());
                 cmd.ExecuteNonQuery();
             }

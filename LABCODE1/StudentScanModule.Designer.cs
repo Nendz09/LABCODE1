@@ -313,11 +313,11 @@ namespace LABCODE1
             // 
             this.dateLabelDate.AutoSize = true;
             this.dateLabelDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabelDate.Location = new System.Drawing.Point(663, 407);
+            this.dateLabelDate.Location = new System.Drawing.Point(738, 405);
             this.dateLabelDate.Name = "dateLabelDate";
-            this.dateLabelDate.Size = new System.Drawing.Size(20, 18);
+            this.dateLabelDate.Size = new System.Drawing.Size(55, 18);
             this.dateLabelDate.TabIndex = 26;
-            this.dateLabelDate.Text = "...";
+            this.dateLabelDate.Text = "...HIDE";
             this.dateLabelDate.Visible = false;
             // 
             // StudentScanModule

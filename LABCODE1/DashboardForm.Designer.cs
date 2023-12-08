@@ -55,6 +55,8 @@
             this.dgvRecentActivities.ReadOnly = true;
             this.dgvRecentActivities.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvRecentActivities.RowHeadersVisible = false;
+            this.dgvRecentActivities.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvRecentActivities.RowTemplate.Height = 40;
             this.dgvRecentActivities.Size = new System.Drawing.Size(841, 218);
             this.dgvRecentActivities.TabIndex = 0;
             this.dgvRecentActivities.SelectionChanged += new System.EventHandler(this.dgvActivities_SelectionChanged);
@@ -90,7 +92,7 @@
             // col_time
             // 
             this.col_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.col_time.FillWeight = 10F;
+            this.col_time.FillWeight = 20F;
             this.col_time.HeaderText = "";
             this.col_time.Name = "col_time";
             this.col_time.ReadOnly = true;

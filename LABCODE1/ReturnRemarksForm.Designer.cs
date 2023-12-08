@@ -41,7 +41,7 @@
             this.txt_studName = new System.Windows.Forms.Label();
             this.txt_studId = new System.Windows.Forms.Label();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.currentDate = new System.Windows.Forms.Label();
+            this.currentDateAndTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.labelDate = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -169,14 +169,14 @@
             this.pictureBoxClose.TabStop = false;
             this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
-            // currentDate
+            // currentDateAndTime
             // 
-            this.currentDate.AutoSize = true;
-            this.currentDate.Location = new System.Drawing.Point(245, 105);
-            this.currentDate.Name = "currentDate";
-            this.currentDate.Size = new System.Drawing.Size(16, 13);
-            this.currentDate.TabIndex = 30;
-            this.currentDate.Text = "...";
+            this.currentDateAndTime.AutoSize = true;
+            this.currentDateAndTime.Location = new System.Drawing.Point(245, 105);
+            this.currentDateAndTime.Name = "currentDateAndTime";
+            this.currentDateAndTime.Size = new System.Drawing.Size(16, 13);
+            this.currentDateAndTime.TabIndex = 30;
+            this.currentDateAndTime.Text = "...";
             // 
             // timer1
             // 
@@ -251,7 +251,7 @@
             this.Controls.Add(this.borrowDate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelDate);
-            this.Controls.Add(this.currentDate);
+            this.Controls.Add(this.currentDateAndTime);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.rb_No);
             this.Controls.Add(this.rb_Yes);
@@ -282,7 +282,7 @@
         public System.Windows.Forms.RadioButton rb_No;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBoxClose;
-        private System.Windows.Forms.Label currentDate;
+        private System.Windows.Forms.Label currentDateAndTime;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label labelDate;
         public System.Windows.Forms.Label txt_studId;
