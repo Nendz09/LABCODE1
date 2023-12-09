@@ -27,7 +27,8 @@ namespace LABCODE1
             InitializeComponent();
             dgvDashboardLoad();
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "yyyy-MM";
+            dateTimePicker1.CustomFormat = "MMMM yyyy";
+            dateTimePicker1.ShowUpDown = true;
 
         }
 
@@ -142,55 +143,209 @@ namespace LABCODE1
         private void DashboardForm_Load(object sender, EventArgs e)
         {
             totalBorrowedItems();
+            chart2.Legends.Clear();
+            chart2TopItems();
 
+            //chart2.Series["topEqp"].Points.AddXY("asdasd", 70);
+            //chart2.Series["topEqp"].Points.AddXY("qweqwe", 100);
+            //chart2.Series["topEqp"].Points.AddXY("zxczxc", 20);
 
-            chart2.Series["topEqp"].Points.AddXY("asdasd", 70);
-            chart2.Series["topEqp"].Points.AddXY("qweqwe", 100);
-            chart2.Series["topEqp"].Points.AddXY("zxczxc", 20);
+            //chart2.Series["topEqp"].Points[2].Color = Color.LightCoral;
+            //chart2.Series["topEqp"].Points[1].Color = Color.LightGreen;
+            //chart2.Series["topEqp"].Points[0].Color = Color.LightYellow;
 
-            chart2.Series["topEqp"].Points[0].Color = Color.LightYellow;
-            chart2.Series["topEqp"].Points[1].Color = Color.LightGreen;
-            chart2.Series["topEqp"].Points[2].Color = Color.LightCoral;
+            //chart2.Series["topEqp"].Points.Add(1000);
+            //chart2.Series["topEqp"].Points[0].Color = Color.Orange;
+            //chart2.Series["topEqp"].Points[0].AxisLabel = "Equipment2";
+            ////chart2.Series["topEqp"].Points[0].LegendText = "top 2";
+            //chart2.Series["topEqp"].Points[0].Label = "1000";
+
+            //chart2.Series["topEqp"].Points.Add(1500);
+            //chart2.Series["topEqp"].Points[1].Color = Color.LightGreen;
+            //chart2.Series["topEqp"].Points[1].AxisLabel = "Equipment1";
+            ////chart2.Series["topEqp"].Points[1].LegendText = "top 1";
+            //chart2.Series["topEqp"].Points[1].Label = "1500";
+
+            //chart2.Series["topEqp"].Points.Add(500);
+            //chart2.Series["topEqp"].Points[2].Color = Color.LightCoral;
+            //chart2.Series["topEqp"].Points[2].AxisLabel = "Equipment3";
+            ////chart2.Series["topEqp"].Points[2].LegendText = "top 3";
+            //chart2.Series["topEqp"].Points[2].Label = "500";
 
 
         }
 
+        private void chart2TopItems()
+        {
+            try
+            {
+                chart2.Series["topEqp"].Points.Clear();
+
+                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                {
+                    con.Open();
+
+                    DateTime selectedDate = dateTimePicker1.Value;
+                    DateTime startDate = new DateTime(selectedDate.Year, selectedDate.Month, 1);
+                    DateTime endDate = startDate.AddMonths(1).AddDays(-1); // End of the selected month
+
+                    string query = @"SELECT TOP 3 eqp_name, COUNT(eqp_name) AS eqp_count
+                            FROM lab_logs
+                            WHERE actual_date_return >= @StartDate AND actual_date_return <= @EndDate
+                            GROUP BY eqp_name
+                            ORDER BY eqp_count DESC";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@StartDate", startDate);
+                        cmd.Parameters.AddWithValue("@EndDate", endDate);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            int index = 0;
+
+                            while (reader.Read() && index < 3)
+                            {
+                                string eqpName = reader["eqp_name"].ToString();
+                                int eqpCount = Convert.ToInt32(reader["eqp_count"]);
+
+                                chart2.Series["topEqp"].Points.Add(eqpCount);
+                                chart2.Series["topEqp"].Points[index].AxisLabel = eqpName;
+                                chart2.Series["topEqp"].Points[index].Label = eqpCount.ToString();
+                                chart2.Series["topEqp"].Points[index].Color = GetColorByIndex(index);
+
+                                index++;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions (for debugging purposes, you can show a message box)
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private Color GetColorByIndex(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    return Color.Orange;
+                case 1:
+                    return Color.LightGreen;
+                case 2:
+                    return Color.LightCoral;
+                default:
+                    return Color.Black; // Set a default color if needed
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            chart2TopItems();
+        }
 
 
-        
-        //private void InventoryModule_SaveClicked(string message)
+        //private void chart2TopItems()
         //{
-        //    string dateFormat = DateTime.Now.ToString("MM-dd-yyyy");
-        //    string timeFormat = DateTime.Now.ToString("hh:mm tt");
+        //    using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+        //    {
+        //        con.Open();
 
-        //    int n = dgvRecentActivities.Rows.Add();
-        //    dgvRecentActivities.Rows[n].Cells[0].Value = dateFormat;
-        //    dgvRecentActivities.Rows[n].Cells[1].Value = message;
-        //    dgvRecentActivities.Rows[n].Cells[2].Value = timeFormat;
+        //        // Assuming dateTimePicker1 is your datetimepicker
+        //        DateTime selectedDate = dateTimePicker1.Value;
+
+        //        string query = @"SELECT TOP 3 eqp_name, COUNT(eqp_name) AS eqp_count
+        //                FROM lab_logs
+        //                WHERE actual_date_return >= @StartDate AND actual_date_return < @EndDate
+        //                GROUP BY eqp_name
+        //                ORDER BY eqp_count DESC";
+
+        //        using (SqlCommand cmd = new SqlCommand(query, con))
+        //        {
+        //            // Adjust the parameters based on your date column's data type
+        //            cmd.Parameters.AddWithValue("@StartDate", selectedDate);
+        //            cmd.Parameters.AddWithValue("@EndDate", selectedDate.AddMonths(1)); // Assuming you want data for the whole month
+
+        //            using (SqlDataReader reader = cmd.ExecuteReader())
+        //            {
+        //                int index = 0;
+
+        //                while (reader.Read() && index < 3)
+        //                {
+        //                    string eqpName = reader["eqp_name"].ToString();
+        //                    int eqpCount = Convert.ToInt32(reader["eqp_count"]);
+
+        //                    // Add data points to the series
+        //                    chart2.Series["topEqp"].Points.Add(eqpCount);
+        //                    chart2.Series["topEqp"].Points[index].AxisLabel = eqpName;
+        //                    chart2.Series["topEqp"].Points[index].Label = eqpCount.ToString();
+
+        //                    // Set color based on the index
+        //                    chart2.Series["topEqp"].Points[index].Color = GetColorByIndex(index);
+
+        //                    index++;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private Color GetColorByIndex(int index)
+        //{
+        //    switch (index)
+        //    {
+        //        case 0:
+        //            return Color.Orange;
+        //        case 1:
+        //            return Color.LightGreen;
+        //        case 2:
+        //            return Color.LightCoral;
+        //        default:
+        //            return Color.Black; // Set a default color if needed
+        //    }
+        //}
+
+        //private void chart2TopItems()
+        //{
+        //    using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+        //    {
+        //        string selectTopThree = @"SELECT TOP 3 eqp_name, COUNT(eqp_name) AS eqp_count
+        //                FROM lab_logs
+        //                WHERE actual_date_return >= '2023-12-01' AND actual_date_return < '2024-01-01'
+        //                GROUP BY eqp_name
+        //                ORDER BY eqp_count DESC";
+
+        //        con.Open();
+        //        cmd = new SqlCommand(selectTopThree, con);
+
+
+
+        //        chart2.Series["topEqp"].Points.Add(1000);
+        //        chart2.Series["topEqp"].Points[0].Color = Color.Orange;
+        //        chart2.Series["topEqp"].Points[0].AxisLabel = "Equipment2";
+        //        //chart2.Series["topEqp"].Points[0].LegendText = "top 2";
+        //        chart2.Series["topEqp"].Points[0].Label = "1000";
+
+        //        chart2.Series["topEqp"].Points.Add(1500);
+        //        chart2.Series["topEqp"].Points[1].Color = Color.LightGreen;
+        //        chart2.Series["topEqp"].Points[1].AxisLabel = "Equipment1";
+        //        //chart2.Series["topEqp"].Points[1].LegendText = "top 1";
+        //        chart2.Series["topEqp"].Points[1].Label = "1500";
+
+        //        chart2.Series["topEqp"].Points.Add(500);
+        //        chart2.Series["topEqp"].Points[2].Color = Color.LightCoral;
+        //        chart2.Series["topEqp"].Points[2].AxisLabel = "Equipment3";
+        //        //chart2.Series["topEqp"].Points[2].LegendText = "top 3";
+        //        chart2.Series["topEqp"].Points[2].Label = "500";
+        //    }
+
+
         //}
 
 
-        //public void AddRecentActivity(string message)
-        //{
-        //    string dateFormat = DateTime.Now.ToString("MM-dd-yyyy");
-        //    string timeFormat = DateTime.Now.ToString("hh:mm tt");
 
-        //    int n = dgvRecentActivities.Rows.Add();
-        //    dgvRecentActivities.Rows[n].Cells[0].Value = dateFormat;
-        //    dgvRecentActivities.Rows[n].Cells[1].Value = message;
-        //    dgvRecentActivities.Rows[n].Cells[2].Value = timeFormat;
-        //}
-
-        //public void UpdateRecentActivities(string message)
-        //{
-        //    //inventoryModuleForm.Dashboard
-        //    //string dateFormat = DateTime.Now.ToString("MM-dd-yyyy");
-        //    //string timeFormat = DateTime.Now.ToString("hh:mm tt");
-
-        //    //int n = dgvRecentActivities.Rows.Add();
-        //    //dgvRecentActivities.Rows[n].Cells[0].Value = dateFormat;
-        //    //dgvRecentActivities.Rows[n].Cells[1].Value = message;
-        //    //dgvRecentActivities.Rows[n].Cells[2].Value = timeFormat;
-        //}
     }
 }
