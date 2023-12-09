@@ -103,7 +103,7 @@ namespace LABCODE1
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
                     }
-                    else if (timeDifference.TotalHours <= 3) // within 3 days
+                    else if (timeDifference.TotalHours <= 5) // within 3 days
                     {
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;

@@ -162,11 +162,12 @@ namespace LABCODE1
 
                     //update sa lab_eqpment
                     //cmd = new SqlCommand("UPDATE lab_eqpment SET eqp_name=@eqp_name, eqp_categ=@eqp_categ, eqp_size=@eqp_size, status=@status WHERE eqp_id=@eqp_id ", con);
-                    cmd = new SqlCommand("UPDATE lab_eqpment SET eqp_name=@eqp_name, eqp_categ=@eqp_categ, eqp_size=@eqp_size WHERE eqp_id=@eqp_id ", con);
+                    cmd = new SqlCommand("UPDATE lab_eqpment SET eqp_name=@eqp_name, eqp_categ=@eqp_categ, eqp_size=@eqp_size, acq_remarks=@acq_remarks WHERE eqp_id=@eqp_id ", con);
                     cmd.Parameters.AddWithValue("@eqp_id", txtEqpID.Text);
                     cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                     cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
                     cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
+                    cmd.Parameters.AddWithValue("@acq_remarks", txtRemarks.Text);
                     //cmd.Parameters.AddWithValue("@status", cmbStatus.Text);
                     cmd.ExecuteNonQuery();
 
