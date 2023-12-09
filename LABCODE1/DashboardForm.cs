@@ -21,11 +21,14 @@ namespace LABCODE1
         SqlDataReader dr;
 
 
+
         public DashboardForm()
         {
             InitializeComponent();
             dgvDashboardLoad();
-           
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "yyyy-MM";
+
         }
 
         public void dgvDashboardLoad() 
@@ -86,7 +89,7 @@ namespace LABCODE1
 
         private void totalBorrowedItems() 
         {
-           
+
 
             using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
             {
@@ -117,20 +120,20 @@ namespace LABCODE1
                     //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = false;
                     chart1.Series["Series1"].Points[2].Label = " ";
                 }
-                else if (totalBorrowed == 0)
+                if (totalBorrowed == 0)
                 {
                     chart1.Series["Series1"].Points[0].Label = " ";
                 }
-                else if (totalAvailable == 0)
+                if (totalAvailable == 0)
                 {
                     chart1.Series["Series1"].Points[1].Label = " ";
                 }
 
 
-                //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = (totalUnavailable > 0);
+                chart1.Series["Series1"].Points[2].IsValueShownAsLabel = (totalUnavailable > 0);
             }
 
-           
+
             chart1.Series["Series1"].Points[0].Color = Color.LightYellow;
             chart1.Series["Series1"].Points[1].Color = Color.LightGreen;
             chart1.Series["Series1"].Points[2].Color = Color.LightCoral;
@@ -139,14 +142,22 @@ namespace LABCODE1
         private void DashboardForm_Load(object sender, EventArgs e)
         {
             totalBorrowedItems();
+
+
+            chart2.Series["topEqp"].Points.AddXY("asdasd", 70);
+            chart2.Series["topEqp"].Points.AddXY("qweqwe", 100);
+            chart2.Series["topEqp"].Points.AddXY("zxczxc", 20);
+
+            chart2.Series["topEqp"].Points[0].Color = Color.LightYellow;
+            chart2.Series["topEqp"].Points[1].Color = Color.LightGreen;
+            chart2.Series["topEqp"].Points[2].Color = Color.LightCoral;
+
+
         }
 
 
 
-
-
-
-
+        
         //private void InventoryModule_SaveClicked(string message)
         //{
         //    string dateFormat = DateTime.Now.ToString("MM-dd-yyyy");

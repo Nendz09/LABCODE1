@@ -37,10 +37,43 @@ namespace LABCODE1
         {
             InitializeComponent();
             LoadEquipment();
+
+            //SetupPictureBox();
             //LoadAllDataDGV();
 
-            //LoadPageButtons();
+
+            //LoadPageButtons();transparent not feasible putanginaaaaa
         }
+
+        //private void SetupPictureBox()
+        //{
+        //    //// Create a PictureBox
+        //    //PictureBox pictureBox = new PictureBox();
+        //    //pictureBox.Size = new Size(300, 200);
+        //    //pictureBox.Location = new Point(50, 50);
+
+        //    //// Set the image for the PictureBox
+        //    //pictureBox.Image = Properties.Resources.bg_cvsu; // Replace with your actual image
+
+        //    // Subscribe to the Paint event
+        //    pictureBox1.Paint += PictureBox_Paint;
+
+        //    // Add the PictureBox to the form
+        //    Controls.Add(pictureBox1);
+        //}
+
+        //private void PictureBox_Paint(object sender, PaintEventArgs e)
+        //{
+        //    // Draw the image with a semi-transparent background
+        //    using (var brush = new SolidBrush(Color.FromArgb(90, Color.White)))
+        //    {
+        //        e.Graphics.FillRectangle(brush, ((PictureBox)sender).ClientRectangle);
+        //    }
+
+        //    e.Graphics.DrawImage(((PictureBox)sender).Image, Point.Empty);
+        //}
+
+        
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
@@ -416,5 +449,7 @@ namespace LABCODE1
                 MessageBox.Show($"Error exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
     }
 }

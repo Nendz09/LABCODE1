@@ -13,8 +13,8 @@ namespace LABCODE1
 {
     public partial class MainForm : Form
     {
-        
 
+       
         public MainForm()
         {
             InitializeComponent();
@@ -55,6 +55,7 @@ namespace LABCODE1
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             openChildForm(new DashboardForm());
+            
         }
 
         
