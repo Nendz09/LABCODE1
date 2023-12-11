@@ -37,33 +37,34 @@ namespace LABCODE1
         }
 
       
-
-        private void btnEquipment_Click(object sender, EventArgs e)
+        private void btnDashboardMainPanel_Click(object sender, EventArgs e)
+        {
+            openChildForm(new DashboardForm());
+        }
+        private void btnInventoryMainPanel_Click(object sender, EventArgs e)
         {
             openChildForm(new InventoryForm());
         }
-        
-
-        private void btnStudents_Click(object sender, EventArgs e)
+        private void btnStudentsMainPanel_Click(object sender, EventArgs e)
         {
             openChildForm(new StudentForm());
         }
-        private void userButton1_Click(object sender, EventArgs e)
+        private void btnLogsMainPanel_Click(object sender, EventArgs e)
         {
             openChildForm(new LogsForm());
         }
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
-            openChildForm(new DashboardForm());
-            
-        }
 
-        
+
 
         //terminate app
         private void MainForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
         }
 
         

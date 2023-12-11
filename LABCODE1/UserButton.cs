@@ -12,14 +12,13 @@ namespace LABCODE1
 {
     public partial class UserButton : PictureBox
     {
-        private static UserButton currentClickedButton;
+        //private static UserButton currentClickedButton;
         private Image NormalImage;
         private Image HoverImage;
 
         public UserButton()
         {
             InitializeComponent();
-            InitializeEvents();
         }
 
         public Image ImageNormal
@@ -34,44 +33,41 @@ namespace LABCODE1
             set { HoverImage = value; }
         }
 
-        private void InitializeEvents()
-        {
-            MouseHover += UserButton_MouseHover;
-            MouseLeave += UserButton_MouseLeave;
-            Click += UserButton_Click;
-        }
+        
 
         private void UserButton_MouseHover(object sender, EventArgs e)
         {
-            if (this != currentClickedButton)
-            {
-                this.Image = HoverImage;
-            }
+            this.Image = HoverImage;
+            //if (this != currentClickedButton)
+            //{
+            //    this.Image = HoverImage;
+            //}
         }
 
         private void UserButton_MouseLeave(object sender, EventArgs e)
         {
-            if (this != currentClickedButton)
-            {
-                this.Image = NormalImage;
-            }
-        }
-
-        private void UserButton_Click(object sender, EventArgs e)
-        {
-            if (currentClickedButton != null && currentClickedButton != this)
-            {
-                currentClickedButton.normalState();
-            }
-
-            currentClickedButton = this;
-            this.Image = HoverImage;
-        }
-
-        private void normalState()
-        {
             this.Image = NormalImage;
+            //if (this != currentClickedButton)
+            //{
+            //    this.Image = NormalImage;
+            //}
         }
+
+        //private void normalState()
+        //{
+        //    this.Image = NormalImage;
+        //}
+
+        //private void UserButton_Click_1(object sender, EventArgs e)
+        //{
+        //    if (currentClickedButton != null && currentClickedButton != this)
+        //    {
+        //        currentClickedButton.normalState();
+        //    }
+
+        //    currentClickedButton = this;
+        //    this.Image = HoverImage;
+        //}
     }
 
     //public partial class UserButton : PictureBox
@@ -174,8 +170,6 @@ namespace LABCODE1
 
 
 
-
-    //    //try CODE
 
 
 

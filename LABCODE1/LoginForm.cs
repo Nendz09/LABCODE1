@@ -50,7 +50,7 @@ namespace LABCODE1
                 dr.Read();
                 if (dr.HasRows)
                 {
-                    MessageBox.Show("Welcome!" + dr["fullname"].ToString() + " | ", "ACCESS GRANTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Welcome!", "ACCESS GRANTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm main = new MainForm();
                     this.Hide();
                     main.ShowDialog();

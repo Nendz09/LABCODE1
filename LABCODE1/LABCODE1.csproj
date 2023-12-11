@@ -449,6 +449,12 @@
     <Compile Include="InventoryForm.Designer.cs">
       <DependentUpon>InventoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserButtonMainPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserButtonMainPanel.Designer.cs">
+      <DependentUpon>UserButtonMainPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserTextbox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -516,6 +522,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryForm.resx">
       <DependentUpon>InventoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserButtonMainPanel.resx">
+      <DependentUpon>UserButtonMainPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserTextbox.resx">
       <DependentUpon>UserTextbox.cs</DependentUpon>

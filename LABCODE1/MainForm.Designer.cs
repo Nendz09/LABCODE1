@@ -35,33 +35,33 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnEquipment = new LABCODE1.UserButton();
-            this.btnDashboard = new LABCODE1.UserButton();
-            this.userButton1 = new LABCODE1.UserButton();
-            this.btnStudents = new LABCODE1.UserButton();
+            this.btnStudentsMainPanel = new LABCODE1.UserButtonMainPanel();
+            this.btnInventoryMainPanel = new LABCODE1.UserButtonMainPanel();
+            this.btnDashboardMainPanel = new LABCODE1.UserButtonMainPanel();
+            this.btnLogsMainPanel = new LABCODE1.UserButtonMainPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelMain.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEquipment)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDashboard)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStudents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStudentsMainPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInventoryMainPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDashboardMainPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
-            this.panel1.Controls.Add(this.btnEquipment);
+            this.panel1.Controls.Add(this.btnLogsMainPanel);
+            this.panel1.Controls.Add(this.btnStudentsMainPanel);
+            this.panel1.Controls.Add(this.btnInventoryMainPanel);
+            this.panel1.Controls.Add(this.btnDashboardMainPanel);
             this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.btnDashboard);
-            this.panel1.Controls.Add(this.userButton1);
-            this.panel1.Controls.Add(this.btnStudents);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(207, 606);
+            this.panel1.Size = new System.Drawing.Size(207, 736);
             this.panel1.TabIndex = 0;
             // 
             // pictureBox2
@@ -83,7 +83,7 @@
             this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelMain.Location = new System.Drawing.Point(207, 0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(839, 606);
+            this.panelMain.Size = new System.Drawing.Size(1113, 736);
             this.panelMain.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -91,7 +91,7 @@
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(359, 209);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(359, 274);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(432, 274);
             this.flowLayoutPanel1.TabIndex = 9;
@@ -111,91 +111,91 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(6, 122);
+            this.pictureBox1.Location = new System.Drawing.Point(6, 187);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(379, 370);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // btnEquipment
+            // btnStudentsMainPanel
             // 
-            this.btnEquipment.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEquipment.Image = ((System.Drawing.Image)(resources.GetObject("btnEquipment.Image")));
-            this.btnEquipment.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageHover")));
-            this.btnEquipment.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnEquipment.ImageNormal")));
-            this.btnEquipment.InitialImage = null;
-            this.btnEquipment.Location = new System.Drawing.Point(0, 209);
-            this.btnEquipment.Name = "btnEquipment";
-            this.btnEquipment.Size = new System.Drawing.Size(206, 94);
-            this.btnEquipment.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.btnEquipment.TabIndex = 0;
-            this.btnEquipment.TabStop = false;
-            this.btnEquipment.Click += new System.EventHandler(this.btnEquipment_Click);
+            this.btnStudentsMainPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentsMainPanel.Image = ((System.Drawing.Image)(resources.GetObject("btnStudentsMainPanel.Image")));
+            this.btnStudentsMainPanel.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnStudentsMainPanel.ImageHover")));
+            this.btnStudentsMainPanel.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnStudentsMainPanel.ImageNormal")));
+            this.btnStudentsMainPanel.Location = new System.Drawing.Point(0, 309);
+            this.btnStudentsMainPanel.Name = "btnStudentsMainPanel";
+            this.btnStudentsMainPanel.Size = new System.Drawing.Size(206, 94);
+            this.btnStudentsMainPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnStudentsMainPanel.TabIndex = 12;
+            this.btnStudentsMainPanel.TabStop = false;
+            this.btnStudentsMainPanel.Click += new System.EventHandler(this.btnStudentsMainPanel_Click);
             // 
-            // btnDashboard
+            // btnInventoryMainPanel
             // 
-            this.btnDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("btnDashboard.Image")));
-            this.btnDashboard.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnDashboard.ImageHover")));
-            this.btnDashboard.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnDashboard.ImageNormal")));
-            this.btnDashboard.Location = new System.Drawing.Point(0, 109);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(206, 94);
-            this.btnDashboard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.btnDashboard.TabIndex = 3;
-            this.btnDashboard.TabStop = false;
-            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
+            this.btnInventoryMainPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInventoryMainPanel.Image = ((System.Drawing.Image)(resources.GetObject("btnInventoryMainPanel.Image")));
+            this.btnInventoryMainPanel.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnInventoryMainPanel.ImageHover")));
+            this.btnInventoryMainPanel.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnInventoryMainPanel.ImageNormal")));
+            this.btnInventoryMainPanel.Location = new System.Drawing.Point(0, 209);
+            this.btnInventoryMainPanel.Name = "btnInventoryMainPanel";
+            this.btnInventoryMainPanel.Size = new System.Drawing.Size(206, 94);
+            this.btnInventoryMainPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnInventoryMainPanel.TabIndex = 11;
+            this.btnInventoryMainPanel.TabStop = false;
+            this.btnInventoryMainPanel.Click += new System.EventHandler(this.btnInventoryMainPanel_Click);
             // 
-            // userButton1
+            // btnDashboardMainPanel
             // 
-            this.userButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.userButton1.Image = ((System.Drawing.Image)(resources.GetObject("userButton1.Image")));
-            this.userButton1.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton1.ImageHover")));
-            this.userButton1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton1.ImageNormal")));
-            this.userButton1.Location = new System.Drawing.Point(0, 409);
-            this.userButton1.Name = "userButton1";
-            this.userButton1.Size = new System.Drawing.Size(206, 94);
-            this.userButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.userButton1.TabIndex = 0;
-            this.userButton1.TabStop = false;
-            this.userButton1.Click += new System.EventHandler(this.userButton1_Click);
+            this.btnDashboardMainPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDashboardMainPanel.Image = ((System.Drawing.Image)(resources.GetObject("btnDashboardMainPanel.Image")));
+            this.btnDashboardMainPanel.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnDashboardMainPanel.ImageHover")));
+            this.btnDashboardMainPanel.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnDashboardMainPanel.ImageNormal")));
+            this.btnDashboardMainPanel.Location = new System.Drawing.Point(0, 109);
+            this.btnDashboardMainPanel.Name = "btnDashboardMainPanel";
+            this.btnDashboardMainPanel.Size = new System.Drawing.Size(206, 94);
+            this.btnDashboardMainPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnDashboardMainPanel.TabIndex = 10;
+            this.btnDashboardMainPanel.TabStop = false;
+            this.btnDashboardMainPanel.Click += new System.EventHandler(this.btnDashboardMainPanel_Click);
             // 
-            // btnStudents
+            // btnLogsMainPanel
             // 
-            this.btnStudents.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStudents.Image = ((System.Drawing.Image)(resources.GetObject("btnStudents.Image")));
-            this.btnStudents.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnStudents.ImageHover")));
-            this.btnStudents.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnStudents.ImageNormal")));
-            this.btnStudents.Location = new System.Drawing.Point(0, 309);
-            this.btnStudents.Name = "btnStudents";
-            this.btnStudents.Size = new System.Drawing.Size(206, 94);
-            this.btnStudents.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.btnStudents.TabIndex = 2;
-            this.btnStudents.TabStop = false;
-            this.btnStudents.Click += new System.EventHandler(this.btnStudents_Click);
+            this.btnLogsMainPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogsMainPanel.Image = ((System.Drawing.Image)(resources.GetObject("btnLogsMainPanel.Image")));
+            this.btnLogsMainPanel.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnLogsMainPanel.ImageHover")));
+            this.btnLogsMainPanel.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnLogsMainPanel.ImageNormal")));
+            this.btnLogsMainPanel.Location = new System.Drawing.Point(0, 409);
+            this.btnLogsMainPanel.Name = "btnLogsMainPanel";
+            this.btnLogsMainPanel.Size = new System.Drawing.Size(206, 94);
+            this.btnLogsMainPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnLogsMainPanel.TabIndex = 13;
+            this.btnLogsMainPanel.TabStop = false;
+            this.btnLogsMainPanel.Click += new System.EventHandler(this.btnLogsMainPanel_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1046, 606);
+            this.ClientSize = new System.Drawing.Size(1320, 736);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing_1);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelMain.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEquipment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDashboard)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStudents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStudentsMainPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnInventoryMainPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDashboardMainPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -204,13 +204,13 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panelMain;
-        private UserButton btnEquipment;
-        private UserButton btnStudents;
-        private UserButton userButton1;
-        private UserButton btnDashboard;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private UserButtonMainPanel btnDashboardMainPanel;
+        private UserButtonMainPanel btnInventoryMainPanel;
+        private UserButtonMainPanel btnStudentsMainPanel;
+        private UserButtonMainPanel btnLogsMainPanel;
     }
 }
