@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace LABCODE1
         public ReturnRemarksForm()
         {
             InitializeComponent();
+            
         }
 
 
@@ -42,7 +44,7 @@ namespace LABCODE1
                     //string remarks = txt_remarks.Text;
 
                     //ReturnItem(eqpId, returnDate, remarks);
-                    QueryInsertLabLogs();
+                    QueryInsertLabLogs_YesReplacement();
                     QueryDeleteToBorrowTable();
                     QueryUpdateStatusUnavailable();
                     MessageBox.Show("Returned Successfully. Replacement is needed.");
@@ -53,7 +55,7 @@ namespace LABCODE1
                 }
                 else if (rb_No.Checked)//no need replacement
                 {
-                    QueryInsertLabLogs();
+                    QueryInsertLabLogs_NoReplacement();
                     QueryDeleteToBorrowTable();
                     QueryUpdateStatusAvailable();
                     MessageBox.Show("Returned Successfully. Replacement is NOT needed.");
@@ -81,12 +83,12 @@ namespace LABCODE1
             currentDateAndTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
         }
 
-
+        
         //methods
         private void QueryUpdateStatusUnavailable() 
         {
             con.Open();
-            string queryUnavailable = "UPDATE lab_eqpment SET status = 'Unavailable' WHERE eqp_id = '" + txt_itemId.Text + "' ";
+            string queryUnavailable = $"UPDATE lab_eqpment SET status = 'Unavailable' WHERE eqp_id = '" + txt_itemId.Text + "' ";
             cmd = new SqlCommand(queryUnavailable, con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -101,12 +103,15 @@ namespace LABCODE1
             con.Close();
         }
 
-        private void QueryInsertLabLogs()
+        private void QueryInsertLabLogs_YesReplacement()
         {
             con.Open();
             //string textRemarksValue = UserTextbox.txt_remarks1.Text;
-            string queryInsert = "INSERT INTO lab_logs (date_borrow, actual_date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks) " +
-                                "VALUES (@date_borrow, @actual_date_return, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @eqp_size, @remarks)";
+            string queryInsert = @"INSERT INTO 
+                                lab_logs (date_borrow, actual_date_return, student_id, name, year_sec, 
+                                            eqp_id, eqp_name, eqp_size, remarks, replacement) 
+                                VALUES (@date_borrow, @actual_date_return, @student_id, @name, @year_sec, 
+                                            @eqp_id, @eqp_name, @eqp_size, @remarks, 'Yes')";
             cmd = new SqlCommand(queryInsert, con);
             cmd.Parameters.AddWithValue("@date_borrow", borrowDate.Text);
             cmd.Parameters.AddWithValue("@actual_date_return", currentDateAndTime.Text);
@@ -121,6 +126,33 @@ namespace LABCODE1
             cmd.ExecuteNonQuery();
             con.Close();
         }
+        private void QueryInsertLabLogs_NoReplacement()
+        {
+            con.Open();
+            //string textRemarksValue = UserTextbox.txt_remarks1.Text;
+            string queryInsert = @"INSERT INTO 
+                                lab_logs (date_borrow, actual_date_return, student_id, name, year_sec, 
+                                            eqp_id, eqp_name, eqp_size, remarks, replacement) 
+                                VALUES (@date_borrow, @actual_date_return, @student_id, @name, @year_sec, 
+                                            @eqp_id, @eqp_name, @eqp_size, @remarks, 'No')";
+            cmd = new SqlCommand(queryInsert, con);
+            cmd.Parameters.AddWithValue("@date_borrow", borrowDate.Text);
+            cmd.Parameters.AddWithValue("@actual_date_return", currentDateAndTime.Text);
+            cmd.Parameters.AddWithValue("@student_id", txt_studId.Text);
+            cmd.Parameters.AddWithValue("@name", txt_studName.Text);
+            cmd.Parameters.AddWithValue("@year_sec", txt_studSec.Text);
+            cmd.Parameters.AddWithValue("@eqp_id", txt_itemId.Text);
+            cmd.Parameters.AddWithValue("@eqp_name", txt_itemName.Text);
+            cmd.Parameters.AddWithValue("@eqp_size", txt_itemSize.Text);
+            cmd.Parameters.AddWithValue("@remarks", txt_remarks1.Texts);
+
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+
+
+
 
         private void QueryDeleteToBorrowTable() 
         {

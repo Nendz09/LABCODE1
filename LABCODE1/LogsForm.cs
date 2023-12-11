@@ -73,7 +73,7 @@ namespace LABCODE1
             con.Open();
             int i = 0;
             dgvReturned.Rows.Clear();
-            string querySelectReturns = "SELECT date_borrow, actual_date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks FROM lab_logs";
+            string querySelectReturns = "SELECT date_borrow, actual_date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks, replacement FROM lab_logs";
             cmd = new SqlCommand(querySelectReturns, con);
             dr = cmd.ExecuteReader();
 
@@ -82,7 +82,7 @@ namespace LABCODE1
                 ++i;
 
                 dgvReturned.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
-                    dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString());
+                    dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString(), dr[9].ToString());
             }
             dr.Close();
             con.Close();

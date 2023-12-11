@@ -180,7 +180,7 @@
             this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvStudents.EnableHeadersVisualStyles = false;
             this.dgvStudents.GridColor = System.Drawing.Color.White;
-            this.dgvStudents.Location = new System.Drawing.Point(0, 0);
+            this.dgvStudents.Location = new System.Drawing.Point(82, 92);
             this.dgvStudents.Name = "dgvStudents";
             this.dgvStudents.ReadOnly = true;
             this.dgvStudents.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
@@ -190,7 +190,8 @@
             this.dgvStudents.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvStudents.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvStudents.RowTemplate.Height = 40;
-            this.dgvStudents.Size = new System.Drawing.Size(841, 455);
+            this.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvStudents.Size = new System.Drawing.Size(694, 365);
             this.dgvStudents.TabIndex = 1;
             this.dgvStudents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudents_CellContentClick);
             // 
@@ -279,7 +280,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.flowLayoutPanel1.Controls.Add(this.btnPrev1);
             this.flowLayoutPanel1.Controls.Add(this.labelPage);
             this.flowLayoutPanel1.Controls.Add(this.btnNext1);
@@ -290,7 +291,7 @@
             // 
             // btnPrev1
             // 
-            this.btnPrev1.BackColor = System.Drawing.Color.White;
+            this.btnPrev1.BackColor = System.Drawing.Color.Transparent;
             this.btnPrev1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrev1.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev1.Image")));
             this.btnPrev1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageHover")));
@@ -317,7 +318,7 @@
             // 
             // btnNext1
             // 
-            this.btnNext1.BackColor = System.Drawing.Color.White;
+            this.btnNext1.BackColor = System.Drawing.Color.Transparent;
             this.btnNext1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNext1.Image = ((System.Drawing.Image)(resources.GetObject("btnNext1.Image")));
             this.btnNext1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageHover")));
@@ -333,7 +334,7 @@
             // btnReturn
             // 
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReturn.BackColor = System.Drawing.Color.White;
+            this.btnReturn.BackColor = System.Drawing.Color.Transparent;
             this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReturn.Image = ((System.Drawing.Image)(resources.GetObject("btnReturn.Image")));
             this.btnReturn.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnReturn.ImageHover")));
@@ -349,7 +350,7 @@
             // btnBorrow
             // 
             this.btnBorrow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBorrow.BackColor = System.Drawing.Color.White;
+            this.btnBorrow.BackColor = System.Drawing.Color.Transparent;
             this.btnBorrow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBorrow.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrow.Image")));
             this.btnBorrow.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnBorrow.ImageHover")));
@@ -367,12 +368,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(841, 606);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnBorrow);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvStudents);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);

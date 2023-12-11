@@ -231,7 +231,9 @@ namespace LABCODE1
             }
             else if (colName == "Delete")
             {
-                if (MessageBox.Show("Are you sure you want to delete this Equipment? Deleting this equipment might affect the records", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (MessageBox.Show(@"Are you sure you want to delete this Equipment? 
+                            Deleting this equipment might affect the records", 
+                            "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     con.Open();
                     //cmd = new SqlCommand("DELETE FROM lab_eqpment WHERE eqp_id LIKE'" + dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString() + "'", con);
@@ -253,30 +255,168 @@ namespace LABCODE1
             {
                 string status = dgvLab.Rows[e.RowIndex].Cells["col_status"].Value.ToString();
 
-                if (status != "Unavailable")
+                if (status == "Borrowed")
                 {
-                    MessageBox.Show("cannot be replaced");
+                    string eqpID = dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string eqpName = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string nameBorrower, yearSec;
+                    WhoBorrowed(eqpID, out nameBorrower, out yearSec);
+
+                    MessageBox.Show($"The item {eqpName} is currently using by {nameBorrower} from {yearSec}. Cannot be replaced.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //con.Open();
+                    //cmd = new SqlCommand("SELECT full_name FROM lab_students WHERE eqp_id = @EquipmentID", con);
+                    //cmd.Parameters.AddWithValue("@EquipmentID", dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    //cmd.ExecuteNonQuery();
+                    //con.Close();
+
+
+                    //if (MessageBox.Show("The student '' will replace this item. Proceed?", "Item Replacement",  MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) 
+                    //{
+
+                    //}
+                    //MessageBox.Show("cannot be replaced");
+                }
+                else if (status == "Available") 
+                {
+                    MessageBox.Show("The item cannot be replaced");
                 }
                 else if (status == "Unavailable")
                 {
-                    con.Open();
-                    cmd = new SqlCommand("UPDATE lab_eqpment SET status = 'Available' WHERE eqp_id = @EquipmentID", con);
-                    cmd.Parameters.AddWithValue("@EquipmentID", dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-
                     string eqpID = dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString();
                     string eqpName = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string nameReplacer, yearSec;
+                    WhoWillReplace(eqpID, out nameReplacer, out yearSec);
 
-                    //dashboard
-                    string msg = "The item " + eqpName + " with ID: " + eqpID + " has been replaced.";
-                    dbForm.InsertRecentActivities(msg);
+                    if (MessageBox.Show($@"The item {eqpName} will be replaced by {nameReplacer} from {yearSec}. Proceed?", 
+                        "Item Replacement", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) 
+                    {
+                        returnedItemReplacement(eqpID);
+                        returnItem_EquipmentStatus(eqpID);
+
+                        //dashboard
+                        string msg = $"{nameReplacer} from {yearSec} replaced the item: {eqpName}.";
+                        dbForm.InsertRecentActivities(msg);
+                    }
+
+                    //con.Open();
+                    //cmd = new SqlCommand("UPDATE lab_eqpment SET status = 'Available' WHERE eqp_id = @EquipmentID", con);
+                    //cmd.Parameters.AddWithValue("@EquipmentID", eqpID);
+                    //cmd.ExecuteNonQuery();
+                    //con.Close();
+
+                    
+                    
+
+                    
 
                     MessageBox.Show("Status updated to Available!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             LoadEquipment();
         }
+        
+
+
+        //Replacement
+        private void returnedItemReplacement(string eqpID) 
+        {
+            string new_date;
+            new_date = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            try
+            {
+                con.Open();
+                string updateQuery = $@"UPDATE lab_logs SET replacement = 'Replaced', 
+                                                            actual_date_return = @newDate 
+                                    WHERE eqp_id = @EquipmentID";
+                cmd = new SqlCommand(updateQuery, con);
+                cmd.Parameters.AddWithValue("@EquipmentID", eqpID);
+                cmd.Parameters.AddWithValue("@newDate", new_date);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally { con.Close(); }
+        }
+        //update equipments status for replacement
+        public void returnItem_EquipmentStatus(string eqpID) 
+        {
+            try
+            {
+                string updateQuery = "UPDATE lab_eqpment SET status = 'Available' WHERE eqp_id = @EquipmentID";
+                con.Open();
+                cmd = new SqlCommand(updateQuery, con);
+                cmd.Parameters.AddWithValue("@EquipmentID", eqpID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally { con.Close(); };
+        }
+
+
+        //show sino nanghiram
+        private void WhoBorrowed(string eqpID, out string nameBorrower, out string yearSec)
+        {
+            nameBorrower = "";
+            yearSec = "";
+            
+            try
+            {
+                con.Open();
+                string selectQuery = @"SELECT name, year_sec FROM lab_borrows WHERE eqp_id = @eqp_id";
+                cmd = new SqlCommand(selectQuery, con);
+                cmd.Parameters.AddWithValue("@eqp_id", eqpID);
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    nameBorrower = dr["name"].ToString();
+                    yearSec = dr["year_sec"].ToString();
+                }
+                dr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            finally { con.Close(); }
+        }
+
+        //show sino mag rreplace
+        private void WhoWillReplace(string eqpID, out string nameBorrower, out string yearSec)
+        {
+            nameBorrower = "";
+            yearSec = "";
+
+            try
+            {
+                con.Open();
+                string selectQuery = @"SELECT name, year_sec FROM lab_logs WHERE eqp_id = @eqp_id";
+                cmd = new SqlCommand(selectQuery, con);
+                cmd.Parameters.AddWithValue("@eqp_id", eqpID);
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    nameBorrower = dr["name"].ToString();
+                    yearSec = dr["year_sec"].ToString();
+                }
+                dr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            finally { con.Close(); }
+        }
+
+
 
         //SEARCH
         private void userTextbox1__TextChanged(object sender, EventArgs e)
@@ -393,6 +533,10 @@ namespace LABCODE1
             }
         }
 
+
+
+
+        //EXPORT
         private void btnExport_Click(object sender, EventArgs e)
         {
             //need ng messagebox otherwise na eexport lang yung current page
@@ -431,7 +575,7 @@ namespace LABCODE1
                             }
 
                             //add data
-                            for (int i = 0; i < dgvLab.Rows.Count; i++)// this is row, so bale lahat from 0 to hanggang saan yung nasa data
+                            for (int i = 0; i < dgvLab.Rows.Count; i++)//this is row, so bale lahat from 0 to hanggang saan yung nasa data
                             {
                                 for (int j = 0; j < column; j++)//j sa column cell na nasa row
                                 {

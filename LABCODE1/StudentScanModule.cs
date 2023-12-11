@@ -271,18 +271,7 @@ namespace LABCODE1
         private void dgvItemBorrow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            //if (e.ColumnIndex == 1 && e.RowIndex >= 0)
-            //{
-            //    dgvItemBorrow.Controls.Add(dtpDate);
-            //    SetDateTimePickerLocation(e.ColumnIndex, e.RowIndex, dtpDate);
-            //    dtpDate.Visible = true;
-            //}
-            //else if (e.ColumnIndex == 2 && e.RowIndex >= 0)
-            //{
-            //    dgvItemBorrow.Controls.Add(dtpTime);
-            //    SetDateTimePickerLocation(e.ColumnIndex, e.RowIndex, dtpTime);
-            //    dtpTime.Visible = true;
-            //}
+            
 
 
             if (e.ColumnIndex == 1 && e.RowIndex >= 0)
@@ -303,60 +292,9 @@ namespace LABCODE1
             }
 
 
-            //if (e.ColumnIndex == 1 && e.RowIndex >= 0)
-            //{
-            //    DateTimePicker dtp = new DateTimePicker();
-            //    dgvItemBorrow.Controls.Add(dtp);
-
-            //    dtp.Format = DateTimePickerFormat.Custom;
-            //    dtp.CustomFormat = "yyyy-MM-dd";
-
-            //    //set the location of the DateTimePicker to the clicked cell
-            //    _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-            //    dtp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
-            //    dtp.Location = new Point(_Rectangle.X, _Rectangle.Y);
-            //    dtp.TextChanged += new EventHandler(DateTimePickerChange);
-            //    dtp.CloseUp += new EventHandler(DateTimePickerClose);
-            //    dtp.Visible = true;
-            //}
-            //else if (e.ColumnIndex == 2 && e.RowIndex >= 0)
-            //{
-            //    DateTimePicker atp = new DateTimePicker();
-            //    dgvItemBorrow.Controls.Add(atp);
-            //    _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-            //    atp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
-            //    atp.Location = new Point(_Rectangle.X, _Rectangle.Y);
-            //    atp.Visible = false;
-            //    atp.Format = DateTimePickerFormat.Custom;
-            //    atp.CustomFormat = "HH:mm";
-            //    //dtp.ShowUpDown = true;
-            //    atp.TextChanged += new EventHandler(DateTimePickerChange);
-            //    atp.CloseUp += new EventHandler(DateTimePickerClose);
-            //    atp.ShowUpDown = true; // Show the DateTimePicker with UpDown control
-            //    atp.Visible = true;
-            //}
-
-
-            //else
-            //{
-            //    dtp.Visible = false;
-            //}
         }
 
-        //private void SetDateTimePickerLocation(int columnIndex, int rowIndex, DateTimePicker dateTimePicker)
-        //{
-        //    _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(columnIndex, rowIndex, true);
-        //    dateTimePicker.Size = new Size(_Rectangle.Width, _Rectangle.Height);
-        //    dateTimePicker.Location = new Point(_Rectangle.X, _Rectangle.Y);
-        //}
-
-        //event handler for DateTimePicker's ValueChanged event.
-        //private void dtp_ValueChanged(object sender, EventArgs e)
-        //{
-        //    //set the selected date in the DataGridView cell.
-        //    dgvItemBorrow.CurrentCell.Value = dtp.Value.ToString("yyyy-MM-dd");
-        //    dtp.Visible = false; // Hide the DateTimePicker control.
-        //}
+        
 
         private void DateTimePickerChange(object sender, EventArgs e)
         {

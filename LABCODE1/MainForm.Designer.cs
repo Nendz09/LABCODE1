@@ -32,22 +32,22 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnLogsMainPanel = new LABCODE1.UserButtonMainPanel();
             this.btnStudentsMainPanel = new LABCODE1.UserButtonMainPanel();
             this.btnInventoryMainPanel = new LABCODE1.UserButtonMainPanel();
             this.btnDashboardMainPanel = new LABCODE1.UserButtonMainPanel();
-            this.btnLogsMainPanel = new LABCODE1.UserButtonMainPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelMain.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudentsMainPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInventoryMainPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDashboardMainPanel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,8 +77,7 @@
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.Color.White;
-            this.panelMain.Controls.Add(this.flowLayoutPanel1);
-            this.panelMain.Controls.Add(this.pictureBox1);
+            this.panelMain.Controls.Add(this.panel2);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelMain.Location = new System.Drawing.Point(207, 0);
@@ -86,37 +85,53 @@
             this.panelMain.Size = new System.Drawing.Size(1113, 736);
             this.panelMain.TabIndex = 1;
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(359, 274);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(432, 274);
-            this.flowLayoutPanel1.TabIndex = 9;
-            // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Montserrat SemiBold", 32F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(353, 132);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(413, 177);
+            this.label1.Size = new System.Drawing.Size(751, 146);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Depatment of Biological and Physical Sciences";
+            this.label1.Text = "Depatment of Biological \r\nand Physical Sciences";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(6, 187);
+            this.pictureBox1.Location = new System.Drawing.Point(-51, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(379, 370);
+            this.pictureBox1.Size = new System.Drawing.Size(461, 411);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Location = new System.Drawing.Point(6, 109);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1084, 448);
+            this.panel2.TabIndex = 8;
+            // 
+            // btnLogsMainPanel
+            // 
+            this.btnLogsMainPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogsMainPanel.Image = ((System.Drawing.Image)(resources.GetObject("btnLogsMainPanel.Image")));
+            this.btnLogsMainPanel.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnLogsMainPanel.ImageHover")));
+            this.btnLogsMainPanel.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnLogsMainPanel.ImageNormal")));
+            this.btnLogsMainPanel.Location = new System.Drawing.Point(0, 409);
+            this.btnLogsMainPanel.Name = "btnLogsMainPanel";
+            this.btnLogsMainPanel.Size = new System.Drawing.Size(206, 94);
+            this.btnLogsMainPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnLogsMainPanel.TabIndex = 13;
+            this.btnLogsMainPanel.TabStop = false;
+            this.btnLogsMainPanel.Click += new System.EventHandler(this.btnLogsMainPanel_Click);
             // 
             // btnStudentsMainPanel
             // 
@@ -160,20 +175,6 @@
             this.btnDashboardMainPanel.TabStop = false;
             this.btnDashboardMainPanel.Click += new System.EventHandler(this.btnDashboardMainPanel_Click);
             // 
-            // btnLogsMainPanel
-            // 
-            this.btnLogsMainPanel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLogsMainPanel.Image = ((System.Drawing.Image)(resources.GetObject("btnLogsMainPanel.Image")));
-            this.btnLogsMainPanel.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnLogsMainPanel.ImageHover")));
-            this.btnLogsMainPanel.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnLogsMainPanel.ImageNormal")));
-            this.btnLogsMainPanel.Location = new System.Drawing.Point(0, 409);
-            this.btnLogsMainPanel.Name = "btnLogsMainPanel";
-            this.btnLogsMainPanel.Size = new System.Drawing.Size(206, 94);
-            this.btnLogsMainPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.btnLogsMainPanel.TabIndex = 13;
-            this.btnLogsMainPanel.TabStop = false;
-            this.btnLogsMainPanel.Click += new System.EventHandler(this.btnLogsMainPanel_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,13 +190,13 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelMain.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudentsMainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInventoryMainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDashboardMainPanel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -205,12 +206,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private UserButtonMainPanel btnDashboardMainPanel;
         private UserButtonMainPanel btnInventoryMainPanel;
         private UserButtonMainPanel btnStudentsMainPanel;
         private UserButtonMainPanel btnLogsMainPanel;
+        private System.Windows.Forms.Panel panel2;
     }
 }
