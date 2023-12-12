@@ -34,9 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.searchTextbox = new LABCODE1.UserTextbox();
             this.btnExport = new LABCODE1.UserButton();
             this.btnAdd = new LABCODE1.UserButton();
+            this.searchTextbox = new LABCODE1.UserTextbox();
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.col_studentid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,7 +79,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
-            this.panel1.Controls.Add(this.searchTextbox);
             this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.label1);
@@ -89,29 +88,6 @@
             this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 2;
             // 
-            // searchTextbox
-            // 
-            this.searchTextbox.BackColor = System.Drawing.SystemColors.Window;
-            this.searchTextbox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.searchTextbox.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.searchTextbox.BorderRadius = 15;
-            this.searchTextbox.BorderSize = 2;
-            this.searchTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchTextbox.ForeColor = System.Drawing.Color.Black;
-            this.searchTextbox.Location = new System.Drawing.Point(235, 11);
-            this.searchTextbox.Margin = new System.Windows.Forms.Padding(4);
-            this.searchTextbox.Multiline = false;
-            this.searchTextbox.Name = "searchTextbox";
-            this.searchTextbox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.searchTextbox.PasswordChar = false;
-            this.searchTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.searchTextbox.PlaceholderText = "Search...";
-            this.searchTextbox.Size = new System.Drawing.Size(200, 31);
-            this.searchTextbox.TabIndex = 5;
-            this.searchTextbox.Texts = "";
-            this.searchTextbox.UnderlinedStyle = false;
-            this.searchTextbox._TextChanged += new System.EventHandler(this.searchTextbox__TextChanged);
-            // 
             // btnExport
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -119,7 +95,7 @@
             this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
             this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
             this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
-            this.btnExport.Location = new System.Drawing.Point(446, -3);
+            this.btnExport.Location = new System.Drawing.Point(234, -4);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(126, 56);
             this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -142,6 +118,29 @@
             this.btnAdd.TabStop = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // searchTextbox
+            // 
+            this.searchTextbox.BackColor = System.Drawing.SystemColors.Window;
+            this.searchTextbox.BorderColor = System.Drawing.Color.Green;
+            this.searchTextbox.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.searchTextbox.BorderRadius = 15;
+            this.searchTextbox.BorderSize = 2;
+            this.searchTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchTextbox.ForeColor = System.Drawing.Color.Black;
+            this.searchTextbox.Location = new System.Drawing.Point(82, 54);
+            this.searchTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.searchTextbox.Multiline = false;
+            this.searchTextbox.Name = "searchTextbox";
+            this.searchTextbox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.searchTextbox.PasswordChar = false;
+            this.searchTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.searchTextbox.PlaceholderText = "Search...";
+            this.searchTextbox.Size = new System.Drawing.Size(295, 31);
+            this.searchTextbox.TabIndex = 5;
+            this.searchTextbox.Texts = "";
+            this.searchTextbox.UnderlinedStyle = false;
+            this.searchTextbox._TextChanged += new System.EventHandler(this.searchTextbox__TextChanged);
+            // 
             // dgvStudents
             // 
             this.dgvStudents.AllowUserToAddRows = false;
@@ -150,6 +149,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvStudents.BackgroundColor = System.Drawing.Color.White;
             this.dgvStudents.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvStudents.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGreen;
@@ -371,6 +371,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(841, 606);
+            this.Controls.Add(this.searchTextbox);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnBorrow);
             this.Controls.Add(this.flowLayoutPanel1);

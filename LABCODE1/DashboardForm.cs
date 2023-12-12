@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZXing;
 
 namespace LABCODE1
 {
@@ -187,7 +188,7 @@ namespace LABCODE1
 
                     DateTime selectedDate = dateTimePicker1.Value;
                     DateTime startDate = new DateTime(selectedDate.Year, selectedDate.Month, 1);
-                    DateTime endDate = startDate.AddMonths(1).AddDays(-1); // End of the selected month
+                    DateTime endDate = startDate.AddMonths(1).AddDays(-1); //end of month
 
                     string query = @"SELECT TOP 3 eqp_name, COUNT(eqp_name) AS eqp_count
                             FROM lab_logs
@@ -195,35 +196,32 @@ namespace LABCODE1
                             GROUP BY eqp_name
                             ORDER BY eqp_count DESC";
 
-                    using (SqlCommand cmd = new SqlCommand(query, con))
+
+                    cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@StartDate", startDate);
+                    cmd.Parameters.AddWithValue("@EndDate", endDate);
+
+                    dr = cmd.ExecuteReader();
+                    int index = 0;
+                    while (dr.Read() && index < 3)
                     {
-                        cmd.Parameters.AddWithValue("@StartDate", startDate);
-                        cmd.Parameters.AddWithValue("@EndDate", endDate);
+                        string eqpName = dr["eqp_name"].ToString();
+                        int eqpCount = Convert.ToInt32(dr["eqp_count"]);
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            int index = 0;
+                        chart2.Series["topEqp"].Points.Add(eqpCount);
+                        chart2.Series["topEqp"].Points[index].AxisLabel = eqpName;
+                        chart2.Series["topEqp"].Points[index].Label = eqpCount.ToString();
+                        chart2.Series["topEqp"].Points[index].Color = GetColorByIndex(index);
 
-                            while (reader.Read() && index < 3)
-                            {
-                                string eqpName = reader["eqp_name"].ToString();
-                                int eqpCount = Convert.ToInt32(reader["eqp_count"]);
-
-                                chart2.Series["topEqp"].Points.Add(eqpCount);
-                                chart2.Series["topEqp"].Points[index].AxisLabel = eqpName;
-                                chart2.Series["topEqp"].Points[index].Label = eqpCount.ToString();
-                                chart2.Series["topEqp"].Points[index].Color = GetColorByIndex(index);
-
-                                index++;
-                            }
-                        }
+                        index++;
                     }
+
+                    dr.Close();
                 }
             }
             catch (Exception ex)
             {
-                // Handle exceptions (for debugging purposes, you can show a message box)
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -238,7 +236,7 @@ namespace LABCODE1
                 case 2:
                     return Color.LightCoral;
                 default:
-                    return Color.Black; // Set a default color if needed
+                    return Color.Black; 
             }
         }
 
@@ -247,103 +245,6 @@ namespace LABCODE1
             chart2TopItems();
         }
 
-
-        //private void chart2TopItems()
-        //{
-        //    using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
-        //    {
-        //        con.Open();
-
-        //        // Assuming dateTimePicker1 is your datetimepicker
-        //        DateTime selectedDate = dateTimePicker1.Value;
-
-        //        string query = @"SELECT TOP 3 eqp_name, COUNT(eqp_name) AS eqp_count
-        //                FROM lab_logs
-        //                WHERE actual_date_return >= @StartDate AND actual_date_return < @EndDate
-        //                GROUP BY eqp_name
-        //                ORDER BY eqp_count DESC";
-
-        //        using (SqlCommand cmd = new SqlCommand(query, con))
-        //        {
-        //            // Adjust the parameters based on your date column's data type
-        //            cmd.Parameters.AddWithValue("@StartDate", selectedDate);
-        //            cmd.Parameters.AddWithValue("@EndDate", selectedDate.AddMonths(1)); // Assuming you want data for the whole month
-
-        //            using (SqlDataReader reader = cmd.ExecuteReader())
-        //            {
-        //                int index = 0;
-
-        //                while (reader.Read() && index < 3)
-        //                {
-        //                    string eqpName = reader["eqp_name"].ToString();
-        //                    int eqpCount = Convert.ToInt32(reader["eqp_count"]);
-
-        //                    // Add data points to the series
-        //                    chart2.Series["topEqp"].Points.Add(eqpCount);
-        //                    chart2.Series["topEqp"].Points[index].AxisLabel = eqpName;
-        //                    chart2.Series["topEqp"].Points[index].Label = eqpCount.ToString();
-
-        //                    // Set color based on the index
-        //                    chart2.Series["topEqp"].Points[index].Color = GetColorByIndex(index);
-
-        //                    index++;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private Color GetColorByIndex(int index)
-        //{
-        //    switch (index)
-        //    {
-        //        case 0:
-        //            return Color.Orange;
-        //        case 1:
-        //            return Color.LightGreen;
-        //        case 2:
-        //            return Color.LightCoral;
-        //        default:
-        //            return Color.Black; // Set a default color if needed
-        //    }
-        //}
-
-        //private void chart2TopItems()
-        //{
-        //    using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
-        //    {
-        //        string selectTopThree = @"SELECT TOP 3 eqp_name, COUNT(eqp_name) AS eqp_count
-        //                FROM lab_logs
-        //                WHERE actual_date_return >= '2023-12-01' AND actual_date_return < '2024-01-01'
-        //                GROUP BY eqp_name
-        //                ORDER BY eqp_count DESC";
-
-        //        con.Open();
-        //        cmd = new SqlCommand(selectTopThree, con);
-
-
-
-        //        chart2.Series["topEqp"].Points.Add(1000);
-        //        chart2.Series["topEqp"].Points[0].Color = Color.Orange;
-        //        chart2.Series["topEqp"].Points[0].AxisLabel = "Equipment2";
-        //        //chart2.Series["topEqp"].Points[0].LegendText = "top 2";
-        //        chart2.Series["topEqp"].Points[0].Label = "1000";
-
-        //        chart2.Series["topEqp"].Points.Add(1500);
-        //        chart2.Series["topEqp"].Points[1].Color = Color.LightGreen;
-        //        chart2.Series["topEqp"].Points[1].AxisLabel = "Equipment1";
-        //        //chart2.Series["topEqp"].Points[1].LegendText = "top 1";
-        //        chart2.Series["topEqp"].Points[1].Label = "1500";
-
-        //        chart2.Series["topEqp"].Points.Add(500);
-        //        chart2.Series["topEqp"].Points[2].Color = Color.LightCoral;
-        //        chart2.Series["topEqp"].Points[2].AxisLabel = "Equipment3";
-        //        //chart2.Series["topEqp"].Points[2].LegendText = "top 3";
-        //        chart2.Series["topEqp"].Points[2].Label = "500";
-        //    }
-
-
-        //}
 
 
 

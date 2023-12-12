@@ -35,22 +35,24 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.dgvRecentActivities = new System.Windows.Forms.DataGridView();
             this.col_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.txt_totalBorrowed = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecentActivities)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvRecentActivities
@@ -67,14 +69,14 @@
             this.col_time});
             this.dgvRecentActivities.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvRecentActivities.EnableHeadersVisualStyles = false;
-            this.dgvRecentActivities.Location = new System.Drawing.Point(0, 388);
+            this.dgvRecentActivities.Location = new System.Drawing.Point(0, 547);
             this.dgvRecentActivities.Name = "dgvRecentActivities";
             this.dgvRecentActivities.ReadOnly = true;
             this.dgvRecentActivities.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvRecentActivities.RowHeadersVisible = false;
             this.dgvRecentActivities.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvRecentActivities.RowTemplate.Height = 40;
-            this.dgvRecentActivities.Size = new System.Drawing.Size(841, 218);
+            this.dgvRecentActivities.Size = new System.Drawing.Size(1124, 218);
             this.dgvRecentActivities.TabIndex = 0;
             this.dgvRecentActivities.SelectionChanged += new System.EventHandler(this.dgvActivities_SelectionChanged);
             // 
@@ -108,21 +110,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 361);
+            this.label1.Location = new System.Drawing.Point(3, 520);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(189, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Recent Activities";
-            // 
-            // txt_totalBorrowed
-            // 
-            this.txt_totalBorrowed.AutoSize = true;
-            this.txt_totalBorrowed.Font = new System.Drawing.Font("LEMON MILK", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_totalBorrowed.Location = new System.Drawing.Point(771, 342);
-            this.txt_totalBorrowed.Name = "txt_totalBorrowed";
-            this.txt_totalBorrowed.Size = new System.Drawing.Size(42, 50);
-            this.txt_totalBorrowed.TabIndex = 2;
-            this.txt_totalBorrowed.Text = "..";
             // 
             // chart1
             // 
@@ -139,25 +131,27 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(224, 197);
+            this.chart1.Size = new System.Drawing.Size(487, 419);
             this.chart1.TabIndex = 4;
             this.chart1.Text = "chart1";
             // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel2.Controls.Add(this.chart1);
             this.flowLayoutPanel2.Controls.Add(this.pictureBox1);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(38, 41);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(8, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(389, 320);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(621, 482);
             this.flowLayoutPanel2.TabIndex = 7;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(233, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(496, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(141, 86);
+            this.pictureBox1.Size = new System.Drawing.Size(118, 64);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
@@ -172,36 +166,51 @@
             this.chart2.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(433, 44);
+            this.chart2.Location = new System.Drawing.Point(3, 3);
             this.chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "topEqp";
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(387, 298);
+            this.chart2.Size = new System.Drawing.Size(500, 500);
             this.chart2.TabIndex = 8;
             this.chart2.Text = "chart2";
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "TOP 3 MOST USED ITEM";
+            title1.Text = "TOP 3 MOST USED";
+            this.chart2.Titles.Add(title1);
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(529, 362);
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(3, 509);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 21);
+            this.dateTimePicker1.Size = new System.Drawing.Size(355, 29);
             this.dateTimePicker1.TabIndex = 9;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.Controls.Add(this.chart2);
+            this.flowLayoutPanel1.Controls.Add(this.dateTimePicker1);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(574, 6);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(538, 541);
+            this.flowLayoutPanel1.TabIndex = 10;
             // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(841, 606);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.chart2);
-            this.Controls.Add(this.flowLayoutPanel2);
-            this.Controls.Add(this.txt_totalBorrowed);
+            this.ClientSize = new System.Drawing.Size(1124, 765);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvRecentActivities);
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -214,6 +223,7 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,11 +235,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_message;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_time;
-        public System.Windows.Forms.Label txt_totalBorrowed;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

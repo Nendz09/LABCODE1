@@ -30,7 +30,7 @@ namespace LABCODE1
 
         //for clickable pages
         private int currentPage = 1;
-        private int recordsPerPage = 20; //limit per page
+        private int recordsPerPage = 15; //limit per page
         private int totalRecords;
 
         public InventoryForm()
