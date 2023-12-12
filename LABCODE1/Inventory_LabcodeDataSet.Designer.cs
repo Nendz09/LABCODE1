@@ -26,6 +26,8 @@ namespace LABCODE1 {
         
         private lab_borrowsDataTable tablelab_borrows;
         
+        private lab_categDataTable tablelab_categ;
+        
         private lab_eqpmentDataTable tablelab_eqpment;
         
         private lab_logsDataTable tablelab_logs;
@@ -77,6 +79,9 @@ namespace LABCODE1 {
                 if ((ds.Tables["lab_borrows"] != null)) {
                     base.Tables.Add(new lab_borrowsDataTable(ds.Tables["lab_borrows"]));
                 }
+                if ((ds.Tables["lab_categ"] != null)) {
+                    base.Tables.Add(new lab_categDataTable(ds.Tables["lab_categ"]));
+                }
                 if ((ds.Tables["lab_eqpment"] != null)) {
                     base.Tables.Add(new lab_eqpmentDataTable(ds.Tables["lab_eqpment"]));
                 }
@@ -120,6 +125,16 @@ namespace LABCODE1 {
         public lab_borrowsDataTable lab_borrows {
             get {
                 return this.tablelab_borrows;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public lab_categDataTable lab_categ {
+            get {
+                return this.tablelab_categ;
             }
         }
         
@@ -253,6 +268,9 @@ namespace LABCODE1 {
                 if ((ds.Tables["lab_borrows"] != null)) {
                     base.Tables.Add(new lab_borrowsDataTable(ds.Tables["lab_borrows"]));
                 }
+                if ((ds.Tables["lab_categ"] != null)) {
+                    base.Tables.Add(new lab_categDataTable(ds.Tables["lab_categ"]));
+                }
                 if ((ds.Tables["lab_eqpment"] != null)) {
                     base.Tables.Add(new lab_eqpmentDataTable(ds.Tables["lab_eqpment"]));
                 }
@@ -310,6 +328,12 @@ namespace LABCODE1 {
                     this.tablelab_borrows.InitVars();
                 }
             }
+            this.tablelab_categ = ((lab_categDataTable)(base.Tables["lab_categ"]));
+            if ((initTable == true)) {
+                if ((this.tablelab_categ != null)) {
+                    this.tablelab_categ.InitVars();
+                }
+            }
             this.tablelab_eqpment = ((lab_eqpmentDataTable)(base.Tables["lab_eqpment"]));
             if ((initTable == true)) {
                 if ((this.tablelab_eqpment != null)) {
@@ -362,6 +386,8 @@ namespace LABCODE1 {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tablelab_borrows = new lab_borrowsDataTable();
             base.Tables.Add(this.tablelab_borrows);
+            this.tablelab_categ = new lab_categDataTable();
+            base.Tables.Add(this.tablelab_categ);
             this.tablelab_eqpment = new lab_eqpmentDataTable();
             base.Tables.Add(this.tablelab_eqpment);
             this.tablelab_logs = new lab_logsDataTable();
@@ -395,6 +421,12 @@ namespace LABCODE1 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializelab_borrows() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializelab_categ() {
             return false;
         }
         
@@ -491,6 +523,9 @@ namespace LABCODE1 {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void lab_borrowsRowChangeEventHandler(object sender, lab_borrowsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void lab_categRowChangeEventHandler(object sender, lab_categRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void lab_eqpmentRowChangeEventHandler(object sender, lab_eqpmentRowChangeEvent e);
@@ -907,6 +942,284 @@ namespace LABCODE1 {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class lab_categDataTable : global::System.Data.TypedTableBase<lab_categRow> {
+            
+            private global::System.Data.DataColumn columncateg_id;
+            
+            private global::System.Data.DataColumn columncateg_name;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public lab_categDataTable() {
+                this.TableName = "lab_categ";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal lab_categDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected lab_categDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn categ_idColumn {
+                get {
+                    return this.columncateg_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn categ_nameColumn {
+                get {
+                    return this.columncateg_name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public lab_categRow this[int index] {
+                get {
+                    return ((lab_categRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event lab_categRowChangeEventHandler lab_categRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event lab_categRowChangeEventHandler lab_categRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event lab_categRowChangeEventHandler lab_categRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event lab_categRowChangeEventHandler lab_categRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Addlab_categRow(lab_categRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public lab_categRow Addlab_categRow(string categ_name) {
+                lab_categRow rowlab_categRow = ((lab_categRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        categ_name};
+                rowlab_categRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowlab_categRow);
+                return rowlab_categRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public lab_categRow FindBycateg_id(int categ_id) {
+                return ((lab_categRow)(this.Rows.Find(new object[] {
+                            categ_id})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                lab_categDataTable cln = ((lab_categDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new lab_categDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columncateg_id = base.Columns["categ_id"];
+                this.columncateg_name = base.Columns["categ_name"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columncateg_id = new global::System.Data.DataColumn("categ_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncateg_id);
+                this.columncateg_name = new global::System.Data.DataColumn("categ_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncateg_name);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columncateg_id}, true));
+                this.columncateg_id.AutoIncrement = true;
+                this.columncateg_id.AutoIncrementSeed = -1;
+                this.columncateg_id.AutoIncrementStep = -1;
+                this.columncateg_id.AllowDBNull = false;
+                this.columncateg_id.ReadOnly = true;
+                this.columncateg_id.Unique = true;
+                this.columncateg_name.AllowDBNull = false;
+                this.columncateg_name.MaxLength = 255;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public lab_categRow Newlab_categRow() {
+                return ((lab_categRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new lab_categRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(lab_categRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.lab_categRowChanged != null)) {
+                    this.lab_categRowChanged(this, new lab_categRowChangeEvent(((lab_categRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.lab_categRowChanging != null)) {
+                    this.lab_categRowChanging(this, new lab_categRowChangeEvent(((lab_categRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.lab_categRowDeleted != null)) {
+                    this.lab_categRowDeleted(this, new lab_categRowChangeEvent(((lab_categRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.lab_categRowDeleting != null)) {
+                    this.lab_categRowDeleting(this, new lab_categRowChangeEvent(((lab_categRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Removelab_categRow(lab_categRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Inventory_LabcodeDataSet ds = new Inventory_LabcodeDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "lab_categDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class lab_eqpmentDataTable : global::System.Data.TypedTableBase<lab_eqpmentRow> {
             
             private global::System.Data.DataColumn columneqp_id;
@@ -918,6 +1231,8 @@ namespace LABCODE1 {
             private global::System.Data.DataColumn columneqp_size;
             
             private global::System.Data.DataColumn columnstatus;
+            
+            private global::System.Data.DataColumn columnacq_remarks;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -994,6 +1309,14 @@ namespace LABCODE1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn acq_remarksColumn {
+                get {
+                    return this.columnacq_remarks;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1029,14 +1352,15 @@ namespace LABCODE1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public lab_eqpmentRow Addlab_eqpmentRow(string eqp_name, string eqp_categ, string eqp_size, string status) {
+            public lab_eqpmentRow Addlab_eqpmentRow(string eqp_name, string eqp_categ, string eqp_size, string status, string acq_remarks) {
                 lab_eqpmentRow rowlab_eqpmentRow = ((lab_eqpmentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         eqp_name,
                         eqp_categ,
                         eqp_size,
-                        status};
+                        status,
+                        acq_remarks};
                 rowlab_eqpmentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowlab_eqpmentRow);
                 return rowlab_eqpmentRow;
@@ -1071,6 +1395,7 @@ namespace LABCODE1 {
                 this.columneqp_categ = base.Columns["eqp_categ"];
                 this.columneqp_size = base.Columns["eqp_size"];
                 this.columnstatus = base.Columns["status"];
+                this.columnacq_remarks = base.Columns["acq_remarks"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1086,6 +1411,8 @@ namespace LABCODE1 {
                 base.Columns.Add(this.columneqp_size);
                 this.columnstatus = new global::System.Data.DataColumn("status", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstatus);
+                this.columnacq_remarks = new global::System.Data.DataColumn("acq_remarks", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnacq_remarks);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columneqp_id}, true));
                 this.columneqp_id.AutoIncrement = true;
@@ -1102,6 +1429,7 @@ namespace LABCODE1 {
                 this.columneqp_size.MaxLength = 255;
                 this.columnstatus.AllowDBNull = false;
                 this.columnstatus.MaxLength = 255;
+                this.columnacq_remarks.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1255,6 +1583,8 @@ namespace LABCODE1 {
             
             private global::System.Data.DataColumn columnremarks;
             
+            private global::System.Data.DataColumn columnreplacement;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public lab_logsDataTable() {
@@ -1370,6 +1700,14 @@ namespace LABCODE1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn replacementColumn {
+                get {
+                    return this.columnreplacement;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1405,7 +1743,7 @@ namespace LABCODE1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public lab_logsRow Addlab_logsRow(string date_borrow, string actual_date_return, lab_studentsRow parentlab_studentsRowByFK__lab_logs__studen__1D7B6025, string name, string year_sec, lab_eqpmentRow parentlab_eqpmentRowByFK__lab_logs__eqp_id__1E6F845E, string eqp_name, string eqp_size, string remarks) {
+            public lab_logsRow Addlab_logsRow(string date_borrow, string actual_date_return, lab_studentsRow parentlab_studentsRowByFK__lab_logs__studen__1D7B6025, string name, string year_sec, lab_eqpmentRow parentlab_eqpmentRowByFK__lab_logs__eqp_id__1E6F845E, string eqp_name, string eqp_size, string remarks, string replacement) {
                 lab_logsRow rowlab_logsRow = ((lab_logsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1417,7 +1755,8 @@ namespace LABCODE1 {
                         null,
                         eqp_name,
                         eqp_size,
-                        remarks};
+                        remarks,
+                        replacement};
                 if ((parentlab_studentsRowByFK__lab_logs__studen__1D7B6025 != null)) {
                     columnValuesArray[3] = parentlab_studentsRowByFK__lab_logs__studen__1D7B6025[0];
                 }
@@ -1463,6 +1802,7 @@ namespace LABCODE1 {
                 this.columneqp_name = base.Columns["eqp_name"];
                 this.columneqp_size = base.Columns["eqp_size"];
                 this.columnremarks = base.Columns["remarks"];
+                this.columnreplacement = base.Columns["replacement"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1488,6 +1828,8 @@ namespace LABCODE1 {
                 base.Columns.Add(this.columneqp_size);
                 this.columnremarks = new global::System.Data.DataColumn("remarks", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnremarks);
+                this.columnreplacement = new global::System.Data.DataColumn("replacement", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreplacement);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnlog_id}, true));
                 this.columnlog_id.AutoIncrement = true;
@@ -1509,6 +1851,7 @@ namespace LABCODE1 {
                 this.columneqp_name.MaxLength = 255;
                 this.columneqp_size.MaxLength = 255;
                 this.columnremarks.MaxLength = 2147483647;
+                this.columnreplacement.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3024,6 +3367,43 @@ namespace LABCODE1 {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class lab_categRow : global::System.Data.DataRow {
+            
+            private lab_categDataTable tablelab_categ;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal lab_categRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablelab_categ = ((lab_categDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int categ_id {
+                get {
+                    return ((int)(this[this.tablelab_categ.categ_idColumn]));
+                }
+                set {
+                    this[this.tablelab_categ.categ_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string categ_name {
+                get {
+                    return ((string)(this[this.tablelab_categ.categ_nameColumn]));
+                }
+                set {
+                    this[this.tablelab_categ.categ_nameColumn] = value;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class lab_eqpmentRow : global::System.Data.DataRow {
             
             private lab_eqpmentDataTable tablelab_eqpment;
@@ -3088,6 +3468,34 @@ namespace LABCODE1 {
                 set {
                     this[this.tablelab_eqpment.statusColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string acq_remarks {
+                get {
+                    try {
+                        return ((string)(this[this.tablelab_eqpment.acq_remarksColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'acq_remarks\' in table \'lab_eqpment\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablelab_eqpment.acq_remarksColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Isacq_remarksNull() {
+                return this.IsNull(this.tablelab_eqpment.acq_remarksColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setacq_remarksNull() {
+                this[this.tablelab_eqpment.acq_remarksColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3254,6 +3662,22 @@ namespace LABCODE1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string replacement {
+                get {
+                    try {
+                        return ((string)(this[this.tablelab_logs.replacementColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'replacement\' in table \'lab_logs\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablelab_logs.replacementColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public lab_eqpmentRow lab_eqpmentRow {
                 get {
                     return ((lab_eqpmentRow)(this.GetParentRow(this.Table.ParentRelations["FK__lab_logs__eqp_id__1E6F845E"])));
@@ -3308,6 +3732,18 @@ namespace LABCODE1 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetremarksNull() {
                 this[this.tablelab_logs.remarksColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsreplacementNull() {
+                return this.IsNull(this.tablelab_logs.replacementColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetreplacementNull() {
+                this[this.tablelab_logs.replacementColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3595,6 +4031,40 @@ namespace LABCODE1 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public lab_borrowsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class lab_categRowChangeEvent : global::System.EventArgs {
+            
+            private lab_categRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public lab_categRowChangeEvent(lab_categRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public lab_categRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4007,7 +4477,7 @@ SELECT borrow_id, date_borrow, student_id, name, year_sec, eqp_id, eqp_name, eqp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString;
+            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4353,6 +4823,324 @@ SELECT borrow_id, date_borrow, student_id, name, year_sec, eqp_id, eqp_name, eqp
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class lab_categTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public lab_categTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "lab_categ";
+            tableMapping.ColumnMappings.Add("categ_id", "categ_id");
+            tableMapping.ColumnMappings.Add("categ_name", "categ_name");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[lab_categ] WHERE (([categ_id] = @Original_categ_id) AND ([cate" +
+                "g_name] = @Original_categ_name))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_categ_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "categ_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_categ_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "categ_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[lab_categ] ([categ_name]) VALUES (@categ_name);\r\nSELECT categ_" +
+                "id, categ_name FROM lab_categ WHERE (categ_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@categ_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "categ_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[lab_categ] SET [categ_name] = @categ_name WHERE (([categ_id] = @Ori" +
+                "ginal_categ_id) AND ([categ_name] = @Original_categ_name));\r\nSELECT categ_id, ca" +
+                "teg_name FROM lab_categ WHERE (categ_id = @categ_id)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@categ_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "categ_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_categ_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "categ_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_categ_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "categ_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@categ_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "categ_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString1;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT categ_id, categ_name FROM dbo.lab_categ";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(Inventory_LabcodeDataSet.lab_categDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual Inventory_LabcodeDataSet.lab_categDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            Inventory_LabcodeDataSet.lab_categDataTable dataTable = new Inventory_LabcodeDataSet.lab_categDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(Inventory_LabcodeDataSet.lab_categDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(Inventory_LabcodeDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "lab_categ");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_categ_id, string Original_categ_name) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_categ_id));
+            if ((Original_categ_name == null)) {
+                throw new global::System.ArgumentNullException("Original_categ_name");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_categ_name));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string categ_name) {
+            if ((categ_name == null)) {
+                throw new global::System.ArgumentNullException("categ_name");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(categ_name));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string categ_name, int Original_categ_id, string Original_categ_name, int categ_id) {
+            if ((categ_name == null)) {
+                throw new global::System.ArgumentNullException("categ_name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(categ_name));
+            }
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_categ_id));
+            if ((Original_categ_name == null)) {
+                throw new global::System.ArgumentNullException("Original_categ_name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_categ_name));
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(categ_id));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string categ_name, int Original_categ_id, string Original_categ_name) {
+            return this.Update(categ_name, Original_categ_id, Original_categ_name, Original_categ_id);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class lab_eqpmentTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -4470,6 +5258,7 @@ SELECT borrow_id, date_borrow, student_id, name, year_sec, eqp_id, eqp_name, eqp
             tableMapping.ColumnMappings.Add("eqp_categ", "eqp_categ");
             tableMapping.ColumnMappings.Add("eqp_size", "eqp_size");
             tableMapping.ColumnMappings.Add("status", "status");
+            tableMapping.ColumnMappings.Add("acq_remarks", "acq_remarks");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -4484,23 +5273,24 @@ SELECT borrow_id, date_borrow, student_id, name, year_sec, eqp_id, eqp_name, eqp
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_status", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[lab_eqpment] ([eqp_name], [eqp_categ], [eqp_size], [status]) V" +
-                "ALUES (@eqp_name, @eqp_categ, @eqp_size, @status);\r\nSELECT eqp_id, eqp_name, eqp" +
-                "_categ, eqp_size, status FROM lab_eqpment WHERE (eqp_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[lab_eqpment] ([eqp_name], [eqp_categ], [eqp_size], [status], [acq_remarks]) VALUES (@eqp_name, @eqp_categ, @eqp_size, @status, @acq_remarks);
+SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status, acq_remarks FROM lab_eqpment WHERE (eqp_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eqp_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eqp_categ", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_categ", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eqp_size", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_size", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@status", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@acq_remarks", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "acq_remarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[lab_eqpment] SET [eqp_name] = @eqp_name, [eqp_categ] = @eqp_categ, [eqp_size] = @eqp_size, [status] = @status WHERE (([eqp_id] = @Original_eqp_id) AND ([eqp_name] = @Original_eqp_name) AND ([eqp_categ] = @Original_eqp_categ) AND ([eqp_size] = @Original_eqp_size) AND ([status] = @Original_status));
-SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM lab_eqpment WHERE (eqp_id = @eqp_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[lab_eqpment] SET [eqp_name] = @eqp_name, [eqp_categ] = @eqp_categ, [eqp_size] = @eqp_size, [status] = @status, [acq_remarks] = @acq_remarks WHERE (([eqp_id] = @Original_eqp_id) AND ([eqp_name] = @Original_eqp_name) AND ([eqp_categ] = @Original_eqp_categ) AND ([eqp_size] = @Original_eqp_size) AND ([status] = @Original_status));
+SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status, acq_remarks FROM lab_eqpment WHERE (eqp_id = @eqp_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eqp_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eqp_categ", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_categ", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eqp_size", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_size", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@status", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@acq_remarks", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "acq_remarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_eqp_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_eqp_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_eqp_categ", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_categ", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -4513,7 +5303,7 @@ SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM lab_eqpment WHERE (eqp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString;
+            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4522,7 +5312,8 @@ SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM lab_eqpment WHERE (eqp
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM dbo.lab_eqpment";
+            this._commandCollection[0].CommandText = "SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status, acq_remarks FROM dbo.lab_eq" +
+                "pment";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4629,7 +5420,7 @@ SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM lab_eqpment WHERE (eqp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string eqp_name, string eqp_categ, string eqp_size, string status) {
+        public virtual int Insert(string eqp_name, string eqp_categ, string eqp_size, string status, string acq_remarks) {
             if ((eqp_name == null)) {
                 throw new global::System.ArgumentNullException("eqp_name");
             }
@@ -4654,6 +5445,12 @@ SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM lab_eqpment WHERE (eqp
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(status));
             }
+            if ((acq_remarks == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(acq_remarks));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4674,7 +5471,7 @@ SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM lab_eqpment WHERE (eqp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string eqp_name, string eqp_categ, string eqp_size, string status, int Original_eqp_id, string Original_eqp_name, string Original_eqp_categ, string Original_eqp_size, string Original_status, int eqp_id) {
+        public virtual int Update(string eqp_name, string eqp_categ, string eqp_size, string status, string acq_remarks, int Original_eqp_id, string Original_eqp_name, string Original_eqp_categ, string Original_eqp_size, string Original_status, int eqp_id) {
             if ((eqp_name == null)) {
                 throw new global::System.ArgumentNullException("eqp_name");
             }
@@ -4699,32 +5496,38 @@ SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM lab_eqpment WHERE (eqp
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(status));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_eqp_id));
+            if ((acq_remarks == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(acq_remarks));
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_eqp_id));
             if ((Original_eqp_name == null)) {
                 throw new global::System.ArgumentNullException("Original_eqp_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_eqp_name));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_eqp_name));
             }
             if ((Original_eqp_categ == null)) {
                 throw new global::System.ArgumentNullException("Original_eqp_categ");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_eqp_categ));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_eqp_categ));
             }
             if ((Original_eqp_size == null)) {
                 throw new global::System.ArgumentNullException("Original_eqp_size");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_eqp_size));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_eqp_size));
             }
             if ((Original_status == null)) {
                 throw new global::System.ArgumentNullException("Original_status");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_status));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_status));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(eqp_id));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(eqp_id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4745,8 +5548,8 @@ SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM lab_eqpment WHERE (eqp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string eqp_name, string eqp_categ, string eqp_size, string status, int Original_eqp_id, string Original_eqp_name, string Original_eqp_categ, string Original_eqp_size, string Original_status) {
-            return this.Update(eqp_name, eqp_categ, eqp_size, status, Original_eqp_id, Original_eqp_name, Original_eqp_categ, Original_eqp_size, Original_status, Original_eqp_id);
+        public virtual int Update(string eqp_name, string eqp_categ, string eqp_size, string status, string acq_remarks, int Original_eqp_id, string Original_eqp_name, string Original_eqp_categ, string Original_eqp_size, string Original_status) {
+            return this.Update(eqp_name, eqp_categ, eqp_size, status, acq_remarks, Original_eqp_id, Original_eqp_name, Original_eqp_categ, Original_eqp_size, Original_status, Original_eqp_id);
         }
     }
     
@@ -4881,10 +5684,11 @@ SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM lab_eqpment WHERE (eqp
             tableMapping.ColumnMappings.Add("eqp_name", "eqp_name");
             tableMapping.ColumnMappings.Add("eqp_size", "eqp_size");
             tableMapping.ColumnMappings.Add("remarks", "remarks");
+            tableMapping.ColumnMappings.Add("replacement", "replacement");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[lab_logs] WHERE (([log_id] = @Original_log_id) AND ([date_borrow] = @Original_date_borrow) AND ([actual_date_return] = @Original_actual_date_return) AND ([student_id] = @Original_student_id) AND ([name] = @Original_name) AND ((@IsNull_year_sec = 1 AND [year_sec] IS NULL) OR ([year_sec] = @Original_year_sec)) AND ([eqp_id] = @Original_eqp_id) AND ([eqp_name] = @Original_eqp_name) AND ((@IsNull_eqp_size = 1 AND [eqp_size] IS NULL) OR ([eqp_size] = @Original_eqp_size)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[lab_logs] WHERE (([log_id] = @Original_log_id) AND ([date_borrow] = @Original_date_borrow) AND ([actual_date_return] = @Original_actual_date_return) AND ([student_id] = @Original_student_id) AND ([name] = @Original_name) AND ((@IsNull_year_sec = 1 AND [year_sec] IS NULL) OR ([year_sec] = @Original_year_sec)) AND ([eqp_id] = @Original_eqp_id) AND ([eqp_name] = @Original_eqp_name) AND ((@IsNull_eqp_size = 1 AND [eqp_size] IS NULL) OR ([eqp_size] = @Original_eqp_size)) AND ((@IsNull_replacement = 1 AND [replacement] IS NULL) OR ([replacement] = @Original_replacement)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_log_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "log_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_date_borrow", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date_borrow", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -4897,10 +5701,12 @@ SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status FROM lab_eqpment WHERE (eqp
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_eqp_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_eqp_size", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_size", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_eqp_size", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_size", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_replacement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "replacement", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_replacement", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "replacement", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[lab_logs] ([date_borrow], [actual_date_return], [student_id], [name], [year_sec], [eqp_id], [eqp_name], [eqp_size], [remarks]) VALUES (@date_borrow, @actual_date_return, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @eqp_size, @remarks);
-SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks FROM lab_logs WHERE (log_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[lab_logs] ([date_borrow], [actual_date_return], [student_id], [name], [year_sec], [eqp_id], [eqp_name], [eqp_size], [remarks], [replacement]) VALUES (@date_borrow, @actual_date_return, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @eqp_size, @remarks, @replacement);
+SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks, replacement FROM lab_logs WHERE (log_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date_borrow", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date_borrow", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actual_date_return", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "actual_date_return", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4911,10 +5717,11 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eqp_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eqp_size", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_size", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@remarks", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "remarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@replacement", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "replacement", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[lab_logs] SET [date_borrow] = @date_borrow, [actual_date_return] = @actual_date_return, [student_id] = @student_id, [name] = @name, [year_sec] = @year_sec, [eqp_id] = @eqp_id, [eqp_name] = @eqp_name, [eqp_size] = @eqp_size, [remarks] = @remarks WHERE (([log_id] = @Original_log_id) AND ([date_borrow] = @Original_date_borrow) AND ([actual_date_return] = @Original_actual_date_return) AND ([student_id] = @Original_student_id) AND ([name] = @Original_name) AND ((@IsNull_year_sec = 1 AND [year_sec] IS NULL) OR ([year_sec] = @Original_year_sec)) AND ([eqp_id] = @Original_eqp_id) AND ([eqp_name] = @Original_eqp_name) AND ((@IsNull_eqp_size = 1 AND [eqp_size] IS NULL) OR ([eqp_size] = @Original_eqp_size)));
-SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks FROM lab_logs WHERE (log_id = @log_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[lab_logs] SET [date_borrow] = @date_borrow, [actual_date_return] = @actual_date_return, [student_id] = @student_id, [name] = @name, [year_sec] = @year_sec, [eqp_id] = @eqp_id, [eqp_name] = @eqp_name, [eqp_size] = @eqp_size, [remarks] = @remarks, [replacement] = @replacement WHERE (([log_id] = @Original_log_id) AND ([date_borrow] = @Original_date_borrow) AND ([actual_date_return] = @Original_actual_date_return) AND ([student_id] = @Original_student_id) AND ([name] = @Original_name) AND ((@IsNull_year_sec = 1 AND [year_sec] IS NULL) OR ([year_sec] = @Original_year_sec)) AND ([eqp_id] = @Original_eqp_id) AND ([eqp_name] = @Original_eqp_name) AND ((@IsNull_eqp_size = 1 AND [eqp_size] IS NULL) OR ([eqp_size] = @Original_eqp_size)) AND ((@IsNull_replacement = 1 AND [replacement] IS NULL) OR ([replacement] = @Original_replacement)));
+SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks, replacement FROM lab_logs WHERE (log_id = @log_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date_borrow", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date_borrow", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actual_date_return", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "actual_date_return", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4925,6 +5732,7 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eqp_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eqp_size", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_size", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@remarks", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "remarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@replacement", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "replacement", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_log_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "log_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_date_borrow", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date_borrow", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_actual_date_return", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "actual_date_return", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -4936,6 +5744,8 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_eqp_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_eqp_size", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_size", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_eqp_size", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "eqp_size", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_replacement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "replacement", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_replacement", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "replacement", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@log_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "log_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -4943,7 +5753,7 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString;
+            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4953,7 +5763,7 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_i" +
-                "d, eqp_name, eqp_size, remarks FROM dbo.lab_logs";
+                "d, eqp_name, eqp_size, remarks, replacement FROM dbo.lab_logs";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5014,7 +5824,7 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_log_id, string Original_date_borrow, string Original_actual_date_return, int Original_student_id, string Original_name, string Original_year_sec, int Original_eqp_id, string Original_eqp_name, string Original_eqp_size) {
+        public virtual int Delete(int Original_log_id, string Original_date_borrow, string Original_actual_date_return, int Original_student_id, string Original_name, string Original_year_sec, int Original_eqp_id, string Original_eqp_name, string Original_eqp_size, string Original_replacement) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_log_id));
             if ((Original_date_borrow == null)) {
                 throw new global::System.ArgumentNullException("Original_date_borrow");
@@ -5058,6 +5868,14 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_eqp_size));
             }
+            if ((Original_replacement == null)) {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_replacement));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5078,7 +5896,7 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string date_borrow, string actual_date_return, int student_id, string name, string year_sec, int eqp_id, string eqp_name, string eqp_size, string remarks) {
+        public virtual int Insert(string date_borrow, string actual_date_return, int student_id, string name, string year_sec, int eqp_id, string eqp_name, string eqp_size, string remarks, string replacement) {
             if ((date_borrow == null)) {
                 throw new global::System.ArgumentNullException("date_borrow");
             }
@@ -5123,6 +5941,12 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = ((string)(remarks));
             }
+            if ((replacement == null)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(replacement));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5153,6 +5977,7 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
                     string eqp_name, 
                     string eqp_size, 
                     string remarks, 
+                    string replacement, 
                     int Original_log_id, 
                     string Original_date_borrow, 
                     string Original_actual_date_return, 
@@ -5162,6 +5987,7 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
                     int Original_eqp_id, 
                     string Original_eqp_name, 
                     string Original_eqp_size, 
+                    string Original_replacement, 
                     int log_id) {
             if ((date_borrow == null)) {
                 throw new global::System.ArgumentNullException("date_borrow");
@@ -5207,50 +6033,64 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(remarks));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_log_id));
+            if ((replacement == null)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(replacement));
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_log_id));
             if ((Original_date_borrow == null)) {
                 throw new global::System.ArgumentNullException("Original_date_borrow");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_date_borrow));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_date_borrow));
             }
             if ((Original_actual_date_return == null)) {
                 throw new global::System.ArgumentNullException("Original_actual_date_return");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_actual_date_return));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_actual_date_return));
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_student_id));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_student_id));
             if ((Original_name == null)) {
                 throw new global::System.ArgumentNullException("Original_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_name));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_name));
             }
             if ((Original_year_sec == null)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_year_sec));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_year_sec));
             }
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_eqp_id));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_eqp_id));
             if ((Original_eqp_name == null)) {
                 throw new global::System.ArgumentNullException("Original_eqp_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_eqp_name));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_eqp_name));
             }
             if ((Original_eqp_size == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_eqp_size));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_eqp_size));
             }
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(log_id));
+            if ((Original_replacement == null)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_replacement));
+            }
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(log_id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5281,6 +6121,7 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
                     string eqp_name, 
                     string eqp_size, 
                     string remarks, 
+                    string replacement, 
                     int Original_log_id, 
                     string Original_date_borrow, 
                     string Original_actual_date_return, 
@@ -5289,8 +6130,9 @@ SELECT log_id, date_borrow, actual_date_return, student_id, name, year_sec, eqp_
                     string Original_year_sec, 
                     int Original_eqp_id, 
                     string Original_eqp_name, 
-                    string Original_eqp_size) {
-            return this.Update(date_borrow, actual_date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks, Original_log_id, Original_date_borrow, Original_actual_date_return, Original_student_id, Original_name, Original_year_sec, Original_eqp_id, Original_eqp_name, Original_eqp_size, Original_log_id);
+                    string Original_eqp_size, 
+                    string Original_replacement) {
+            return this.Update(date_borrow, actual_date_return, student_id, name, year_sec, eqp_id, eqp_name, eqp_size, remarks, replacement, Original_log_id, Original_date_borrow, Original_actual_date_return, Original_student_id, Original_name, Original_year_sec, Original_eqp_id, Original_eqp_name, Original_eqp_size, Original_replacement, Original_log_id);
         }
     }
     
@@ -5457,7 +6299,7 @@ SELECT activityId, activityDate, activityMessage, activityTime FROM lab_recent_a
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString;
+            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5840,7 +6682,7 @@ SELECT student_id, full_name, year_sec, c_number FROM lab_students WHERE (studen
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString;
+            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6222,7 +7064,7 @@ SELECT sub_id, sub_name, sub_qty, sub_expdate FROM lab_substances WHERE (sub_id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString;
+            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6594,7 +7436,7 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString;
+            this._connection.ConnectionString = global::LABCODE1.Properties.Settings.Default.Inventory_LabcodeConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6818,6 +7660,8 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
         
         private lab_borrowsTableAdapter _lab_borrowsTableAdapter;
         
+        private lab_categTableAdapter _lab_categTableAdapter;
+        
         private lab_eqpmentTableAdapter _lab_eqpmentTableAdapter;
         
         private lab_logsTableAdapter _lab_logsTableAdapter;
@@ -6856,6 +7700,20 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
             }
             set {
                 this._lab_borrowsTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public lab_categTableAdapter lab_categTableAdapter {
+            get {
+                return this._lab_categTableAdapter;
+            }
+            set {
+                this._lab_categTableAdapter = value;
             }
         }
         
@@ -6966,6 +7824,10 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
                             && (this._lab_borrowsTableAdapter.Connection != null))) {
                     return this._lab_borrowsTableAdapter.Connection;
                 }
+                if (((this._lab_categTableAdapter != null) 
+                            && (this._lab_categTableAdapter.Connection != null))) {
+                    return this._lab_categTableAdapter.Connection;
+                }
                 if (((this._lab_eqpmentTableAdapter != null) 
                             && (this._lab_eqpmentTableAdapter.Connection != null))) {
                     return this._lab_eqpmentTableAdapter.Connection;
@@ -7004,6 +7866,9 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
             get {
                 int count = 0;
                 if ((this._lab_borrowsTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._lab_categTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._lab_eqpmentTableAdapter != null)) {
@@ -7059,6 +7924,15 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._lab_borrowsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._lab_categTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.lab_categ.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._lab_categTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7129,6 +8003,14 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._lab_borrowsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._lab_categTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.lab_categ.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._lab_categTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7206,6 +8088,14 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._lab_categTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.lab_categ.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._lab_categTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._lab_borrowsTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.lab_borrows.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -7271,6 +8161,11 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
             }
             if (((this._lab_borrowsTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._lab_borrowsTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._lab_categTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._lab_categTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -7343,6 +8238,15 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
                     if (this._lab_borrowsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._lab_borrowsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._lab_borrowsTableAdapter.Adapter);
+                    }
+                }
+                if ((this._lab_categTableAdapter != null)) {
+                    revertConnections.Add(this._lab_categTableAdapter, this._lab_categTableAdapter.Connection);
+                    this._lab_categTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._lab_categTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._lab_categTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._lab_categTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._lab_categTableAdapter.Adapter);
                     }
                 }
                 if ((this._lab_eqpmentTableAdapter != null)) {
@@ -7460,6 +8364,10 @@ SELECT username, password, fullname FROM lab_user WHERE (username = @username)";
                 if ((this._lab_borrowsTableAdapter != null)) {
                     this._lab_borrowsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._lab_borrowsTableAdapter]));
                     this._lab_borrowsTableAdapter.Transaction = null;
+                }
+                if ((this._lab_categTableAdapter != null)) {
+                    this._lab_categTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._lab_categTableAdapter]));
+                    this._lab_categTableAdapter.Transaction = null;
                 }
                 if ((this._lab_eqpmentTableAdapter != null)) {
                     this._lab_eqpmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._lab_eqpmentTableAdapter]));

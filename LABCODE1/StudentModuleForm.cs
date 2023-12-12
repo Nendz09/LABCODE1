@@ -118,6 +118,7 @@ namespace LABCODE1
                 }
                 else
                 {
+                    string studName = txtFullName.Text;
                     if (MessageBox.Show("Are you sure you want to update this Student data?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         con.Open();
@@ -138,12 +139,13 @@ namespace LABCODE1
                         con.Close();
                         MessageBox.Show("Student data has been updated.");
 
-                        //dashboard
-                        string msg = "You updated " + txtFullName.Text + "'s student information";
-                        dbForm.InsertRecentActivities(msg);
+                        
 
                         this.Dispose();
                     }
+                    //dashboard
+                    string msg = $"You updated {studName}'s student information";
+                    dbForm.InsertRecentActivities(msg);
                 }
             }
             catch (Exception ex)

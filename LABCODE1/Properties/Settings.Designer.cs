@@ -33,5 +33,16 @@ namespace LABCODE1.Properties {
                 return ((string)(this["Inventory_LabcodeConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\bin\\Debug\\Inv" +
+            "entory_Labcode.mdf;Integrated Security=True;Connect Timeout=30")]
+        public string Inventory_LabcodeConnectionString1 {
+            get {
+                return ((string)(this["Inventory_LabcodeConnectionString1"]));
+            }
+        }
     }
 }

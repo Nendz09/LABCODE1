@@ -1,4 +1,5 @@
 ﻿using CircularProgressBar;
+using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -136,7 +137,7 @@ namespace LABCODE1
             }
 
 
-            chart1.Series["Series1"].Points[0].Color = Color.LightYellow;
+            chart1.Series["Series1"].Points[0].Color = Color.Orange;
             chart1.Series["Series1"].Points[1].Color = Color.LightGreen;
             chart1.Series["Series1"].Points[2].Color = Color.LightCoral;
         }
@@ -246,7 +247,86 @@ namespace LABCODE1
         }
 
 
+        //DELETE RECENT ACTIVITES (RESEEDING)
+        private void DeleteWithReseeding()
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+            {
+                con.Open();
+                string deleteQuery = "DELETE FROM lab_recent_activities;";
+                string reseedQuery = "DBCC CHECKIDENT ('lab_recent_activities', RESEED, 0);";
+                string combineDeleteReseedQuery = deleteQuery + reseedQuery;
 
+                cmd = new SqlCommand(combineDeleteReseedQuery, con);
+                cmd.ExecuteNonQuery();
+            }
+        }
 
+        
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            ExportToExcel();
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(@"Deleting the recent activity logs will lose permanently. Do you want to export it in excel first?",
+                                    "Deleting Recent Activites/Exporting Recent Activities",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                dgvDashboardLoad();
+                ExportToExcel();
+            }
+            else if (MessageBox.Show(@"The recent activities will be deleted permanently. Proceed?",
+                        "Deleting Activities", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                DeleteWithReseeding();
+            }
+        }
+
+        //EXPORT METHOD
+        private void ExportToExcel()
+        {
+            try
+            {
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                {
+                    saveDialog.Filter = "Excel Workbook|*.xlsx";
+                    saveDialog.ValidateNames = true;
+
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (XLWorkbook workbook = new XLWorkbook())
+                        {
+                            var worksheet = workbook.Worksheets.Add("EquipmentData");
+                            int column = 3; //this is not index
+
+                            //add headers
+                            for (int i = 0; i < column; i++)
+                            {
+                                worksheet.Cell(1, i + 1).Value = dgvRecentActivities.Columns[i].HeaderText;
+                            }
+
+                            //add data
+                            for (int i = 0; i < dgvRecentActivities.Rows.Count; i++)//this is row, so bale lahat from 0 to hanggang saan yung nasa data
+                            {
+                                for (int j = 0; j < column; j++)//j sa column cell na nasa row
+                                {
+                                    worksheet.Cell(i + 2, j + 1).Value = dgvRecentActivities.Rows[i].Cells[j].Value.ToString();
+                                }
+                            }
+                            workbook.SaveAs(saveDialog.FileName);
+                        }
+                        MessageBox.Show("Export successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        
     }
 }
