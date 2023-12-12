@@ -75,7 +75,7 @@ namespace LABCODE1
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
                     }
-                    else if (timeDifference.TotalHours <= 5) // within 3 days
+                    else if (timeDifference.TotalHours <= 2) // within 3 days
                     {
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
                         dgvBorrowed.Rows[e.RowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(255, 216, 110);//ORANGE???
@@ -279,7 +279,9 @@ namespace LABCODE1
             dgvBorrowed.Visible = true;
             LoadBorrows();
             btnDelete.Visible = false;
-            btnExport.Visible = true;
+            btnExport.Visible = false;
+            picReturnLegend.Visible = false;
+            picBorrowLegend.Visible = true;
         }
 
         private void btnReturnLogs_Click(object sender, EventArgs e)
@@ -291,6 +293,8 @@ namespace LABCODE1
             LoadReturns();
             btnDelete.Visible = true;
             btnExport.Visible = true;
+            picReturnLegend.Visible = true;
+            picBorrowLegend.Visible = false;
         }
 
         private void btnBackup_Restore_Click(object sender, EventArgs e)

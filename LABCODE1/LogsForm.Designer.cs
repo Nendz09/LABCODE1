@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogsForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExport = new LABCODE1.UserButton();
             this.labelReturn = new System.Windows.Forms.Label();
             this.labelBorrow = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,25 +62,28 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnPrev1 = new LABCODE1.UserButton();
             this.labelPage = new System.Windows.Forms.Label();
+            this.btnNext1 = new LABCODE1.UserButton();
             this.btnDelete = new LABCODE1.UserButton();
             this.btnBackup_Restore = new LABCODE1.UserButton();
             this.btnReturnLogs = new LABCODE1.UserButton();
             this.btnBorrowLogs = new LABCODE1.UserButton();
-            this.btnPrev1 = new LABCODE1.UserButton();
-            this.btnNext1 = new LABCODE1.UserButton();
-            this.btnExport = new LABCODE1.UserButton();
+            this.picBorrowLegend = new System.Windows.Forms.PictureBox();
+            this.picReturnLegend = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturned)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBackup_Restore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReturnLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBorrowLogs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBorrowLegend)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReturnLegend)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -94,6 +98,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 1;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
+            this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
+            this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
+            this.btnExport.Location = new System.Drawing.Point(703, -2);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(126, 56);
+            this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnExport.TabIndex = 12;
+            this.btnExport.TabStop = false;
+            this.btnExport.Visible = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // labelReturn
             // 
@@ -144,14 +164,14 @@
             this.dgvBorrowed.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBorrowed.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvBorrowed.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGreen;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Green;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBorrowed.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkGreen;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Green;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBorrowed.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvBorrowed.ColumnHeadersHeight = 35;
             this.dgvBorrowed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvBorrowed.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -164,14 +184,14 @@
             this.Column6,
             this.br_col_returnDate});
             this.dgvBorrowed.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBorrowed.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBorrowed.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvBorrowed.EnableHeadersVisualStyles = false;
             this.dgvBorrowed.GridColor = System.Drawing.Color.White;
             this.dgvBorrowed.Location = new System.Drawing.Point(82, 92);
@@ -179,9 +199,9 @@
             this.dgvBorrowed.ReadOnly = true;
             this.dgvBorrowed.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvBorrowed.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvBorrowed.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvBorrowed.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvBorrowed.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvBorrowed.RowTemplate.Height = 30;
             this.dgvBorrowed.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -258,14 +278,14 @@
             this.dgvReturned.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvReturned.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvReturned.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DarkGreen;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Green;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvReturned.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.DarkGreen;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Green;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvReturned.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvReturned.ColumnHeadersHeight = 35;
             this.dgvReturned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvReturned.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -279,14 +299,14 @@
             this.Column15,
             this.Column16,
             this.Column7});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReturned.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReturned.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvReturned.EnableHeadersVisualStyles = false;
             this.dgvReturned.GridColor = System.Drawing.Color.White;
             this.dgvReturned.Location = new System.Drawing.Point(82, 92);
@@ -294,9 +314,9 @@
             this.dgvReturned.ReadOnly = true;
             this.dgvReturned.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvReturned.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvReturned.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvReturned.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvReturned.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvReturned.RowTemplate.Height = 30;
             this.dgvReturned.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -395,6 +415,21 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(309, 54);
             this.flowLayoutPanel1.TabIndex = 7;
             // 
+            // btnPrev1
+            // 
+            this.btnPrev1.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrev1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrev1.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev1.Image")));
+            this.btnPrev1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageHover")));
+            this.btnPrev1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageNormal")));
+            this.btnPrev1.Location = new System.Drawing.Point(3, 3);
+            this.btnPrev1.Name = "btnPrev1";
+            this.btnPrev1.Size = new System.Drawing.Size(105, 47);
+            this.btnPrev1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnPrev1.TabIndex = 7;
+            this.btnPrev1.TabStop = false;
+            this.btnPrev1.Click += new System.EventHandler(this.btnPrev1_Click);
+            // 
             // labelPage
             // 
             this.labelPage.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -406,6 +441,21 @@
             this.labelPage.Size = new System.Drawing.Size(40, 16);
             this.labelPage.TabIndex = 2;
             this.labelPage.Text = "Page";
+            // 
+            // btnNext1
+            // 
+            this.btnNext1.BackColor = System.Drawing.Color.Transparent;
+            this.btnNext1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNext1.Image = ((System.Drawing.Image)(resources.GetObject("btnNext1.Image")));
+            this.btnNext1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageHover")));
+            this.btnNext1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageNormal")));
+            this.btnNext1.Location = new System.Drawing.Point(160, 3);
+            this.btnNext1.Name = "btnNext1";
+            this.btnNext1.Size = new System.Drawing.Size(105, 47);
+            this.btnNext1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnNext1.TabIndex = 6;
+            this.btnNext1.TabStop = false;
+            this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
             // 
             // btnDelete
             // 
@@ -470,51 +520,28 @@
             this.btnBorrowLogs.TabStop = false;
             this.btnBorrowLogs.Click += new System.EventHandler(this.btnBorrowLogs_Click);
             // 
-            // btnPrev1
+            // picBorrowLegend
             // 
-            this.btnPrev1.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrev1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrev1.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev1.Image")));
-            this.btnPrev1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageHover")));
-            this.btnPrev1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageNormal")));
-            this.btnPrev1.Location = new System.Drawing.Point(3, 3);
-            this.btnPrev1.Name = "btnPrev1";
-            this.btnPrev1.Size = new System.Drawing.Size(105, 47);
-            this.btnPrev1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnPrev1.TabIndex = 7;
-            this.btnPrev1.TabStop = false;
-            this.btnPrev1.Click += new System.EventHandler(this.btnPrev1_Click);
+            this.picBorrowLegend.BackColor = System.Drawing.Color.Transparent;
+            this.picBorrowLegend.Image = ((System.Drawing.Image)(resources.GetObject("picBorrowLegend.Image")));
+            this.picBorrowLegend.Location = new System.Drawing.Point(344, 31);
+            this.picBorrowLegend.Name = "picBorrowLegend";
+            this.picBorrowLegend.Size = new System.Drawing.Size(158, 45);
+            this.picBorrowLegend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBorrowLegend.TabIndex = 12;
+            this.picBorrowLegend.TabStop = false;
             // 
-            // btnNext1
+            // picReturnLegend
             // 
-            this.btnNext1.BackColor = System.Drawing.Color.Transparent;
-            this.btnNext1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext1.Image = ((System.Drawing.Image)(resources.GetObject("btnNext1.Image")));
-            this.btnNext1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageHover")));
-            this.btnNext1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageNormal")));
-            this.btnNext1.Location = new System.Drawing.Point(160, 3);
-            this.btnNext1.Name = "btnNext1";
-            this.btnNext1.Size = new System.Drawing.Size(105, 47);
-            this.btnNext1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnNext1.TabIndex = 6;
-            this.btnNext1.TabStop = false;
-            this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
-            this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
-            this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
-            this.btnExport.Location = new System.Drawing.Point(703, -2);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(126, 56);
-            this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnExport.TabIndex = 12;
-            this.btnExport.TabStop = false;
-            this.btnExport.Visible = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            this.picReturnLegend.BackColor = System.Drawing.Color.Transparent;
+            this.picReturnLegend.Image = ((System.Drawing.Image)(resources.GetObject("picReturnLegend.Image")));
+            this.picReturnLegend.Location = new System.Drawing.Point(344, 31);
+            this.picReturnLegend.Name = "picReturnLegend";
+            this.picReturnLegend.Size = new System.Drawing.Size(158, 45);
+            this.picReturnLegend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picReturnLegend.TabIndex = 13;
+            this.picReturnLegend.TabStop = false;
+            this.picReturnLegend.Visible = false;
             // 
             // LogsForm
             // 
@@ -523,6 +550,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(841, 606);
+            this.Controls.Add(this.picReturnLegend);
+            this.Controls.Add(this.picBorrowLegend);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnBackup_Restore);
             this.Controls.Add(this.btnReturnLogs);
@@ -540,17 +569,19 @@
             this.Text = "LogsForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturned)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBackup_Restore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReturnLogs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBorrowLogs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBorrowLegend)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReturnLegend)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -591,5 +622,7 @@
         private UserButton btnBackup_Restore;
         private UserButton btnDelete;
         private UserButton btnExport;
+        private System.Windows.Forms.PictureBox picBorrowLegend;
+        private System.Windows.Forms.PictureBox picReturnLegend;
     }
 }
