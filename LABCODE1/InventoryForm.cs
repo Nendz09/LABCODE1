@@ -305,12 +305,9 @@ namespace LABCODE1
                     //cmd.ExecuteNonQuery();
                     //con.Close();
 
-                    
-                    
 
                     
 
-                    MessageBox.Show("Status updated to Available!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             LoadEquipment();

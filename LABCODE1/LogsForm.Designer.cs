@@ -36,7 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogsForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLogs_Backup = new System.Windows.Forms.Button();
             this.labelReturn = new System.Windows.Forms.Label();
             this.labelBorrow = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,20 +62,30 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelPage = new System.Windows.Forms.Label();
+            this.btnDelete = new LABCODE1.UserButton();
+            this.btnBackup_Restore = new LABCODE1.UserButton();
+            this.btnReturnLogs = new LABCODE1.UserButton();
+            this.btnBorrowLogs = new LABCODE1.UserButton();
             this.btnPrev1 = new LABCODE1.UserButton();
             this.btnNext1 = new LABCODE1.UserButton();
+            this.btnExport = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturned)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBackup_Restore)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnReturnLogs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBorrowLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
-            this.panel1.Controls.Add(this.btnLogs_Backup);
+            this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.labelReturn);
             this.panel1.Controls.Add(this.labelBorrow);
             this.panel1.Controls.Add(this.label1);
@@ -85,16 +94,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 1;
-            // 
-            // btnLogs_Backup
-            // 
-            this.btnLogs_Backup.Location = new System.Drawing.Point(335, 14);
-            this.btnLogs_Backup.Name = "btnLogs_Backup";
-            this.btnLogs_Backup.Size = new System.Drawing.Size(232, 23);
-            this.btnLogs_Backup.TabIndex = 3;
-            this.btnLogs_Backup.Text = "BACK UP AND RESTORE";
-            this.btnLogs_Backup.UseVisualStyleBackColor = true;
-            this.btnLogs_Backup.Click += new System.EventHandler(this.button1_Click);
             // 
             // labelReturn
             // 
@@ -408,6 +407,69 @@
             this.labelPage.TabIndex = 2;
             this.labelPage.Text = "Page";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageHover")));
+            this.btnDelete.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageNormal")));
+            this.btnDelete.Location = new System.Drawing.Point(688, 50);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(88, 36);
+            this.btnDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnDelete.TabIndex = 11;
+            this.btnDelete.TabStop = false;
+            this.btnDelete.Visible = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnBackup_Restore
+            // 
+            this.btnBackup_Restore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBackup_Restore.BackColor = System.Drawing.Color.Transparent;
+            this.btnBackup_Restore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBackup_Restore.Image = ((System.Drawing.Image)(resources.GetObject("btnBackup_Restore.Image")));
+            this.btnBackup_Restore.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnBackup_Restore.ImageHover")));
+            this.btnBackup_Restore.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnBackup_Restore.ImageNormal")));
+            this.btnBackup_Restore.Location = new System.Drawing.Point(609, 481);
+            this.btnBackup_Restore.Name = "btnBackup_Restore";
+            this.btnBackup_Restore.Size = new System.Drawing.Size(167, 63);
+            this.btnBackup_Restore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnBackup_Restore.TabIndex = 10;
+            this.btnBackup_Restore.TabStop = false;
+            this.btnBackup_Restore.Click += new System.EventHandler(this.btnBackup_Restore_Click);
+            // 
+            // btnReturnLogs
+            // 
+            this.btnReturnLogs.BackColor = System.Drawing.Color.Transparent;
+            this.btnReturnLogs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReturnLogs.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnLogs.Image")));
+            this.btnReturnLogs.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnReturnLogs.ImageHover")));
+            this.btnReturnLogs.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnReturnLogs.ImageNormal")));
+            this.btnReturnLogs.Location = new System.Drawing.Point(213, 23);
+            this.btnReturnLogs.Name = "btnReturnLogs";
+            this.btnReturnLogs.Size = new System.Drawing.Size(125, 63);
+            this.btnReturnLogs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnReturnLogs.TabIndex = 9;
+            this.btnReturnLogs.TabStop = false;
+            this.btnReturnLogs.Click += new System.EventHandler(this.btnReturnLogs_Click);
+            // 
+            // btnBorrowLogs
+            // 
+            this.btnBorrowLogs.BackColor = System.Drawing.Color.Transparent;
+            this.btnBorrowLogs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBorrowLogs.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrowLogs.Image")));
+            this.btnBorrowLogs.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnBorrowLogs.ImageHover")));
+            this.btnBorrowLogs.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnBorrowLogs.ImageNormal")));
+            this.btnBorrowLogs.Location = new System.Drawing.Point(82, 23);
+            this.btnBorrowLogs.Name = "btnBorrowLogs";
+            this.btnBorrowLogs.Size = new System.Drawing.Size(125, 63);
+            this.btnBorrowLogs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnBorrowLogs.TabIndex = 8;
+            this.btnBorrowLogs.TabStop = false;
+            this.btnBorrowLogs.Click += new System.EventHandler(this.btnBorrowLogs_Click);
+            // 
             // btnPrev1
             // 
             this.btnPrev1.BackColor = System.Drawing.Color.Transparent;
@@ -438,6 +500,22 @@
             this.btnNext1.TabStop = false;
             this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
             // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
+            this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
+            this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
+            this.btnExport.Location = new System.Drawing.Point(703, -2);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(126, 56);
+            this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnExport.TabIndex = 12;
+            this.btnExport.TabStop = false;
+            this.btnExport.Visible = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // LogsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -445,10 +523,14 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(841, 606);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnBackup_Restore);
+            this.Controls.Add(this.btnReturnLogs);
+            this.Controls.Add(this.btnBorrowLogs);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dgvBorrowed);
             this.Controls.Add(this.dgvReturned);
+            this.Controls.Add(this.dgvBorrowed);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -462,8 +544,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturned)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBackup_Restore)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnReturnLogs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBorrowLogs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -483,7 +570,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn br_col_returnDate;
-        private System.Windows.Forms.Button btnLogs_Backup;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
@@ -500,5 +586,10 @@
         private UserButton btnPrev1;
         private System.Windows.Forms.Label labelPage;
         private UserButton btnNext1;
+        private UserButton btnBorrowLogs;
+        private UserButton btnReturnLogs;
+        private UserButton btnBackup_Restore;
+        private UserButton btnDelete;
+        private UserButton btnExport;
     }
 }

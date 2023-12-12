@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,8 @@ namespace LABCODE1
         SqlCommand cmd = new SqlCommand();
         SqlDataReader dr;
 
+        DashboardForm dbForm = new DashboardForm();
+
         //for clickable pages
         private int currentPage = 1;
         private int recordsPerPage = 15; //limit per page
@@ -32,10 +35,10 @@ namespace LABCODE1
             LoadReturns();
         }
 
-        
+
         private void labelBorrow_Click(object sender, EventArgs e)
         {
-            
+
             dgvBorrowed.Visible = false;
             labelBorrow.Visible = false;
             labelReturn.Visible = true;
@@ -53,9 +56,9 @@ namespace LABCODE1
         }
 
 
-        
 
-        
+
+
         //mga kulor
         private void dgvBorrowed_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -98,7 +101,7 @@ namespace LABCODE1
                     dgvReturned.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
                     dgvReturned.Rows[e.RowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(255, 216, 110);
                 }
-                else if (col_replacement == "Replaced") 
+                else if (col_replacement == "Replaced")
                 {
                     dgvReturned.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
                     dgvReturned.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
@@ -125,35 +128,7 @@ namespace LABCODE1
             this.dgvReturned.ClearSelection();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            BackUpForm backUp = new BackUpForm();
-            backUp.ShowDialog();
-            //try
-            //{
-            //    //EXPORT
-            //    // Specify the connection string to your database
-            //    string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True";
-            //    string backupPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Backup", "Inventory_Labcode.bak");
 
-            //    using (SqlConnection connection = new SqlConnection(connectionString))
-            //    {
-            //        connection.Open();
-
-            //        // Create a backup command
-            //        string backupCommand = $"BACKUP DATABASE [{connection.Database}] TO DISK = '{backupPath}'";
-            //        using (SqlCommand command = new SqlCommand(backupCommand, connection))
-            //        {
-            //            command.ExecuteNonQuery();
-            //            MessageBox.Show("Database exported successfully!");
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error exporting database: {ex.Message}");
-            //}
-        }
 
         //PAGES LOAD
         private void LoadReturns()
@@ -256,7 +231,7 @@ namespace LABCODE1
                 while (dr.Read())
                 {
                     dgvBorrowed.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
-                        dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), 
+                        dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(),
                         dr[8].ToString());
                 }
                 dr.Close();
@@ -296,6 +271,176 @@ namespace LABCODE1
             }
         }
 
-        
+        private void btnBorrowLogs_Click(object sender, EventArgs e)
+        {
+            labelReturn.Visible = false;
+            dgvReturned.Visible = false;
+            labelBorrow.Visible = true;
+            dgvBorrowed.Visible = true;
+            LoadBorrows();
+            btnDelete.Visible = false;
+            btnExport.Visible = true;
+        }
+
+        private void btnReturnLogs_Click(object sender, EventArgs e)
+        {
+            dgvBorrowed.Visible = false;
+            labelBorrow.Visible = false;
+            labelReturn.Visible = true;
+            dgvReturned.Visible = true;
+            LoadReturns();
+            btnDelete.Visible = true;
+            btnExport.Visible = true;
+        }
+
+        private void btnBackup_Restore_Click(object sender, EventArgs e)
+        {
+            BackUpForm backUp = new BackUpForm();
+            backUp.ShowDialog();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool haveReplacement = false;
+
+            foreach (DataGridViewRow row in dgvReturned.Rows)
+            {
+                string replaceValue = row.Cells[9].Value.ToString();
+
+                if (replaceValue == "Yes")
+                {
+                    haveReplacement = true;
+                    break; // No need to continue checking once 'Yes' is found
+                }
+            }
+
+            if (haveReplacement)
+            {
+                MessageBox.Show(@"Please make sure that there are no replacements that is needed before deleting the logs.",
+                                "Information",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (MessageBox.Show(@"Deleting the return logs will lose permanently. Do you want to export it in excel first?",
+                                    "Deleting Logs/Exporting Logs",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                LoadAllDataDGVRETURNED();
+                ExportToExcel();
+
+                //dashboard
+                string msg = "You exported the the returned logs in excel file.";
+                dbForm.InsertRecentActivities(msg);
+            }
+            else if (MessageBox.Show(@"The return logs will be deleted permanently. Proceed?",
+                        "Deleting Return Logs", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                DeleteWithReseeding();
+            }
+        }
+
+        //LOAD DATA MUNA
+        private void LoadAllDataDGVRETURNED()
+        {
+            dgvReturned.Rows.Clear();
+
+            string query = "SELECT * FROM lab_logs ORDER BY date_borrow DESC;";
+            cmd = new SqlCommand(query, con);
+
+            try
+            {
+                con.Open();
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    dgvReturned.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
+                        dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString(),
+                        dr[9].ToString(), dr[10].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dr.Close();
+                con.Close();
+            }
+        }
+
+
+        //EXPORT METHOD
+        private void ExportToExcel()
+        {
+            try
+            {
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                {
+                    saveDialog.Filter = "Excel Workbook|*.xlsx";
+                    saveDialog.ValidateNames = true;
+
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (XLWorkbook workbook = new XLWorkbook())
+                        {
+                            var worksheet = workbook.Worksheets.Add("EquipmentData");
+                            int column = 10; //this is not index
+
+                            //add headers
+                            for (int i = 0; i < column; i++)
+                            {
+                                worksheet.Cell(1, i + 1).Value = dgvReturned.Columns[i].HeaderText;
+                            }
+
+                            //add data
+                            for (int i = 0; i < dgvReturned.Rows.Count; i++)//this is row, so bale lahat from 0 to hanggang saan yung nasa data
+                            {
+                                for (int j = 0; j < column; j++)//j sa column cell na nasa row
+                                {
+                                    worksheet.Cell(i + 2, j + 1).Value = dgvReturned.Rows[i].Cells[j].Value.ToString();
+                                }
+                            }
+                            workbook.SaveAs(saveDialog.FileName);
+                        }
+                        MessageBox.Show("Export successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //DELETE RETURN LOGS (RESEEDING)
+        private void DeleteWithReseeding() 
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+            {
+                con.Open();
+                string deleteQuery = "DELETE FROM lab_logs;";
+                string reseedQuery = "DBCC CHECKIDENT ('lab_logs', RESEED, 0);";
+                string combineDeleteReseedQuery = deleteQuery + reseedQuery;
+
+                cmd = new SqlCommand(combineDeleteReseedQuery, con);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        //THIS EXPORT IS FOR RETURN LOGS ONLY
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to export the return logs into excel file?", "Export",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                LoadAllDataDGVRETURNED();
+                ExportToExcel();
+
+                //dashboard
+                string msg = "You exported the the returned logs in excel file.";
+                dbForm.InsertRecentActivities(msg);
+            }
+        }
     }
 }
