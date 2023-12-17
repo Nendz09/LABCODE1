@@ -15,6 +15,16 @@ using ClosedXML.Excel;
 using ZXing;
 using System.IO;
 
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using System.Diagnostics;
+//using iText.IO.Image;
+//using iText.Kernel.Pdf;
+//using System.Diagnostics;
+//using iText.Layout;
+//using DocumentFormat.OpenXml.Drawing;
+
+
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 //using ToolTip = System.Windows.Forms.ToolTip;
 
@@ -116,8 +126,18 @@ namespace LABCODE1
 
             UpdatePageInfo();
         }
-        
 
+
+
+        //IMAGE TO BYTE AND BYTE TO IMAGE
+        private byte[] ImageToByteArray(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
         private Image ByteArrayToImage(byte[] byteArray)
         {
             using (MemoryStream ms = new MemoryStream(byteArray))
@@ -550,7 +570,6 @@ namespace LABCODE1
 
 
 
-
         //EXPORT
         private void btnExport_Click(object sender, EventArgs e)
         {
@@ -609,6 +628,137 @@ namespace LABCODE1
             }
         }
 
-        
+        private void btnExportPDF_Click(object sender, EventArgs e)
+        {
+            ExportPDF();
+        }
+
+
+        private void ExportPDF()
+        {
+            try
+            {
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                {
+                    saveDialog.Filter = "PDF Document|*.pdf";
+                    saveDialog.ValidateNames = true;
+
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (PdfDocument pdfDocument = new PdfDocument())
+                        {
+                            pdfDocument.Info.Title = "DataGridView Export";
+
+                            PdfPage page = pdfDocument.AddPage();
+                            XGraphics gfx = XGraphics.FromPdfPage(page);
+
+                            XFont font = new XFont("Arial", 12);
+
+                            // Title
+                            gfx.DrawString("Title: ASD", font, XBrushes.Black, new XRect(10, 10, page.Width, 20), XStringFormats.TopLeft);
+
+                            // Add DataGridView content
+                            int xOffset = 2; // Initial X offset
+                            int yOffset = 40; // Initial Y offset
+                            int imageWidth = 95;
+                            int imageHeight = 90;
+                            int spacing = 10; // Adjust as needed
+                            int columnsPerRow = 6;
+
+                            // Add DataGridView content
+                            for (int i = 0; i < dgvLab.Rows.Count; i++)
+                            {
+                                Image image = (Image)dgvLab.Rows[i].Cells[0].Value;
+                                
+
+                                // Draw the Image and ID number on the PDF
+                                using (MemoryStream memoryStream = new MemoryStream())
+                                {
+                                    // Convert System.Drawing.Image to a byte array
+                                    image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                                    byte[] imageBytes = memoryStream.ToArray();
+
+                                    // Create an XImage from the byte array
+                                    XImage xImage = XImage.FromStream(memoryStream);
+
+                                    gfx.DrawImage(xImage, xOffset, yOffset, imageWidth, imageHeight);
+
+                                    xOffset += imageWidth + spacing; // Increment X offset for the next column
+
+                                    // Check if we need to move to the next row
+                                    if ((i + 1) % columnsPerRow == 0)
+                                    {
+                                        xOffset = 2; // Reset X offset
+                                        yOffset += imageHeight + spacing; // Move to the next row
+                                    }
+                                }
+
+                                // Optionally reset X offset and increment Y offset for the next row
+                                //yOffset += imageHeight + 2 * spacing; // Adjust spacing between rows
+                                //xOffset = 10;
+                            }
+
+                            pdfDocument.Save(saveDialog.FileName);
+                        }
+
+                        Process.Start(saveDialog.FileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error exporting to PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        //private void ExportToPdf()
+        //{
+        //    try
+        //    {
+        //        using (SaveFileDialog saveDialog = new SaveFileDialog())
+        //        {
+        //            saveDialog.Filter = "PDF Document|*.pdf";
+        //            saveDialog.ValidateNames = true;
+
+        //            if (saveDialog.ShowDialog() == DialogResult.OK)
+        //            {
+        //                using (var pdfWriter = new PdfWriter(saveDialog.FileName))
+        //                {
+        //                    using (var pdfDocument = new PdfDocument(pdfWriter))
+        //                    {
+        //                        var document = new Document(pdfDocument);
+
+        //                        // Title
+        //                        document.Add(new Paragraph($"Title: {yourTitleTextBox.Text}"));
+
+        //                        // Add barcode images and ID numbers
+        //                        for (int i = 0; i < dgvLab.Rows.Count; i++)
+        //                        {
+        //                            Image barcodeImage = (Image)dgvLab.Rows[i].Cells[0].Value;
+        //                            string idNumber = dgvLab.Rows[i].Cells[1].Value.ToString();
+
+        //                            document.Add(new Image(ImageDataFactory.Create(ImageToByteArray(barcodeImage))));
+        //                            document.Add(new Paragraph(idNumber));
+
+        //                            // Add spacing or formatting as needed
+        //                            document.Add(new Paragraph()); // Note: You need to instantiate a new Paragraph object
+
+
+        //                            // Adjust the layout and formatting as needed
+        //                        }
+        //                    }
+        //                }
+
+        //                Process.Start(saveDialog.FileName);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Error exporting to PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
     }
 }

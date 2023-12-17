@@ -33,18 +33,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dgvLab = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.labelPage = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnPrev1 = new LABCODE1.UserButton();
-            this.btnNext1 = new LABCODE1.UserButton();
-            this.userTextbox1 = new LABCODE1.UserTextbox();
             this.btnExport = new LABCODE1.UserButton();
             this.btnAdd = new LABCODE1.UserButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dgvLab = new System.Windows.Forms.DataGridView();
             this.Barcode = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,18 +47,29 @@
             this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.Replacement = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.labelPage = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnPrev1 = new LABCODE1.UserButton();
+            this.btnNext1 = new LABCODE1.UserButton();
+            this.userTextbox1 = new LABCODE1.UserTextbox();
+            this.btnExportPDF = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLab)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExportPDF)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
+            this.panel1.Controls.Add(this.btnExportPDF);
             this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.label1);
@@ -75,6 +78,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 0;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
+            this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
+            this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
+            this.btnExport.Location = new System.Drawing.Point(565, -3);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(126, 56);
+            this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnExport.TabIndex = 4;
+            this.btnExport.TabStop = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
+            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
+            this.btnAdd.Location = new System.Drawing.Point(702, -3);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(126, 56);
+            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label1
             // 
@@ -146,6 +179,96 @@
             this.dgvLab.TabIndex = 1;
             this.dgvLab.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLab_CellContentClick);
             this.dgvLab.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvLab_CellFormatting);
+            // 
+            // Barcode
+            // 
+            this.Barcode.HeaderText = "Barcode";
+            this.Barcode.Name = "Barcode";
+            this.Barcode.ReadOnly = true;
+            this.Barcode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Barcode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column1.HeaderText = "ID";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 42;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.FillWeight = 36.2891F;
+            this.Column2.HeaderText = "Item Name";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.FillWeight = 30.90991F;
+            this.Column3.HeaderText = "Category";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.FillWeight = 25.10812F;
+            this.Column4.HeaderText = "Size/Calibration";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // col_status
+            // 
+            this.col_status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.col_status.FillWeight = 20F;
+            this.col_status.HeaderText = "Status";
+            this.col_status.Name = "col_status";
+            this.col_status.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.FillWeight = 50F;
+            this.Column5.HeaderText = "Acquired Remarks";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Edit
+            // 
+            this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Edit.FillWeight = 285.1613F;
+            this.Edit.HeaderText = "";
+            this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
+            this.Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Edit.Name = "Edit";
+            this.Edit.ReadOnly = true;
+            this.Edit.Width = 11;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Delete.FillWeight = 55.91398F;
+            this.Delete.HeaderText = "";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Delete.Width = 11;
+            // 
+            // Replacement
+            // 
+            this.Replacement.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Replacement.FillWeight = 55.91398F;
+            this.Replacement.HeaderText = "";
+            this.Replacement.Image = ((System.Drawing.Image)(resources.GetObject("Replacement.Image")));
+            this.Replacement.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Replacement.Name = "Replacement";
+            this.Replacement.ReadOnly = true;
+            this.Replacement.Width = 11;
             // 
             // dataGridViewImageColumn1
             // 
@@ -247,125 +370,20 @@
             this.userTextbox1.UnderlinedStyle = false;
             this.userTextbox1._TextChanged += new System.EventHandler(this.userTextbox1__TextChanged);
             // 
-            // btnExport
+            // btnExportPDF
             // 
-            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
-            this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
-            this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
-            this.btnExport.Location = new System.Drawing.Point(565, -3);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(126, 56);
-            this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnExport.TabIndex = 4;
-            this.btnExport.TabStop = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
-            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
-            this.btnAdd.Location = new System.Drawing.Point(702, -3);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(126, 56);
-            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.TabStop = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // Barcode
-            // 
-            this.Barcode.HeaderText = "Barcode";
-            this.Barcode.Name = "Barcode";
-            this.Barcode.ReadOnly = true;
-            this.Barcode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Barcode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 42;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.FillWeight = 36.2891F;
-            this.Column2.HeaderText = "Item Name";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.FillWeight = 30.90991F;
-            this.Column3.HeaderText = "Category";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.FillWeight = 25.10812F;
-            this.Column4.HeaderText = "Size/Calibration";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // col_status
-            // 
-            this.col_status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.col_status.FillWeight = 20F;
-            this.col_status.HeaderText = "Status";
-            this.col_status.Name = "col_status";
-            this.col_status.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column5.FillWeight = 50F;
-            this.Column5.HeaderText = "Acquired Remarks";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Edit
-            // 
-            this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Edit.FillWeight = 285.1613F;
-            this.Edit.HeaderText = "";
-            this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
-            this.Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Edit.Name = "Edit";
-            this.Edit.ReadOnly = true;
-            this.Edit.Width = 11;
-            // 
-            // Delete
-            // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Delete.FillWeight = 55.91398F;
-            this.Delete.HeaderText = "";
-            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
-            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Delete.Width = 11;
-            // 
-            // Replacement
-            // 
-            this.Replacement.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Replacement.FillWeight = 55.91398F;
-            this.Replacement.HeaderText = "";
-            this.Replacement.Image = ((System.Drawing.Image)(resources.GetObject("Replacement.Image")));
-            this.Replacement.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Replacement.Name = "Replacement";
-            this.Replacement.ReadOnly = true;
-            this.Replacement.Width = 11;
+            this.btnExportPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportPDF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportPDF.Image = ((System.Drawing.Image)(resources.GetObject("btnExportPDF.Image")));
+            this.btnExportPDF.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExportPDF.ImageHover")));
+            this.btnExportPDF.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExportPDF.ImageNormal")));
+            this.btnExportPDF.Location = new System.Drawing.Point(357, -2);
+            this.btnExportPDF.Name = "btnExportPDF";
+            this.btnExportPDF.Size = new System.Drawing.Size(126, 56);
+            this.btnExportPDF.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnExportPDF.TabIndex = 5;
+            this.btnExportPDF.TabStop = false;
+            this.btnExportPDF.Click += new System.EventHandler(this.btnExportPDF_Click);
             // 
             // InventoryForm
             // 
@@ -389,13 +407,14 @@
             this.Text = "UserForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLab)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExportPDF)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -425,5 +444,6 @@
         private System.Windows.Forms.DataGridViewImageColumn Edit;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
         private System.Windows.Forms.DataGridViewImageColumn Replacement;
+        public UserButton btnExportPDF;
     }
 }
