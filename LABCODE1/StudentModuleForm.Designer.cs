@@ -47,8 +47,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label_StdExists = new System.Windows.Forms.Label();
             this.label_PhoneFormat = new System.Windows.Forms.Label();
+            this.studentPicture = new System.Windows.Forms.PictureBox();
+            this.btnUpload = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClear
@@ -59,7 +63,7 @@
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(427, 290);
+            this.btnClear.Location = new System.Drawing.Point(256, 289);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(97, 40);
             this.btnClear.TabIndex = 15;
@@ -75,7 +79,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(316, 290);
+            this.btnUpdate.Location = new System.Drawing.Point(145, 289);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(97, 40);
             this.btnUpdate.TabIndex = 14;
@@ -92,7 +96,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(203, 290);
+            this.btnSave.Location = new System.Drawing.Point(32, 289);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(97, 40);
             this.btnSave.TabIndex = 13;
@@ -168,7 +172,6 @@
             this.txtStudID.Name = "txtStudID";
             this.txtStudID.Size = new System.Drawing.Size(140, 21);
             this.txtStudID.TabIndex = 17;
-            //this.txtStudID.MaxLength = 9;
             this.txtStudID.TextChanged += new System.EventHandler(this.txtStudID_TextChanged);
             this.txtStudID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStudID_KeyPress);
             // 
@@ -241,7 +244,7 @@
             this.label_StdExists.AutoSize = true;
             this.label_StdExists.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_StdExists.ForeColor = System.Drawing.Color.Red;
-            this.label_StdExists.Location = new System.Drawing.Point(363, 93);
+            this.label_StdExists.Location = new System.Drawing.Point(200, 75);
             this.label_StdExists.Name = "label_StdExists";
             this.label_StdExists.Size = new System.Drawing.Size(155, 15);
             this.label_StdExists.TabIndex = 24;
@@ -253,18 +256,46 @@
             this.label_PhoneFormat.AutoSize = true;
             this.label_PhoneFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_PhoneFormat.ForeColor = System.Drawing.Color.Red;
-            this.label_PhoneFormat.Location = new System.Drawing.Point(363, 234);
+            this.label_PhoneFormat.Location = new System.Drawing.Point(200, 213);
             this.label_PhoneFormat.Name = "label_PhoneFormat";
             this.label_PhoneFormat.Size = new System.Drawing.Size(161, 15);
             this.label_PhoneFormat.TabIndex = 25;
             this.label_PhoneFormat.Text = "*Wrong Format (0948**)";
             this.label_PhoneFormat.Visible = false;
             // 
+            // studentPicture
+            // 
+            this.studentPicture.BackColor = System.Drawing.SystemColors.Control;
+            this.studentPicture.ErrorImage = ((System.Drawing.Image)(resources.GetObject("studentPicture.ErrorImage")));
+            this.studentPicture.Image = ((System.Drawing.Image)(resources.GetObject("studentPicture.Image")));
+            this.studentPicture.Location = new System.Drawing.Point(390, 83);
+            this.studentPicture.Name = "studentPicture";
+            this.studentPicture.Size = new System.Drawing.Size(168, 168);
+            this.studentPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.studentPicture.TabIndex = 26;
+            this.studentPicture.TabStop = false;
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpload.Image = ((System.Drawing.Image)(resources.GetObject("btnUpload.Image")));
+            this.btnUpload.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnUpload.ImageHover")));
+            this.btnUpload.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnUpload.ImageNormal")));
+            this.btnUpload.Location = new System.Drawing.Point(424, 257);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(100, 50);
+            this.btnUpload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnUpload.TabIndex = 27;
+            this.btnUpload.TabStop = false;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
             // StudentModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 359);
+            this.Controls.Add(this.btnUpload);
+            this.Controls.Add(this.studentPicture);
             this.Controls.Add(this.label_PhoneFormat);
             this.Controls.Add(this.label_StdExists);
             this.Controls.Add(this.txtPNo);
@@ -288,6 +319,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,5 +346,7 @@
         public System.Windows.Forms.TextBox txtFullName;
         public System.Windows.Forms.Label label_StdExists;
         public System.Windows.Forms.Label label_PhoneFormat;
+        public System.Windows.Forms.PictureBox studentPicture;
+        public UserButton btnUpload;
     }
 }

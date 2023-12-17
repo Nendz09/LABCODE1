@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient; //POTANGINAAA
 using Microsoft.VisualBasic;
+using ZXing;
+using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace LABCODE1
@@ -47,7 +49,25 @@ namespace LABCODE1
         //}
 
         //------EVENT MODIFIER-----//
-        public event Action<string> SaveClicked; //modified event name SaveClicked
+        /*public event Action<string> SaveClicked;*/ //modified event name SaveClicked
+
+        //IMAGE TO BYTE CONVERTER
+        private byte[] ImageToByteArray(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
+        //BARCODE GENERATOR
+        private Image GenerateBarcode(string itemId)
+        {
+            BarcodeWriter barcodeWriter = new BarcodeWriter();
+            barcodeWriter.Format = BarcodeFormat.CODE_128;
+            return barcodeWriter.Write(itemId);
+        }
 
         //------SAVE BUTTON--------//
         private void btnSave_Click(object sender, EventArgs e)
@@ -67,34 +87,28 @@ namespace LABCODE1
                         {
                             con.Open();
 
-                            if (cbMass.Checked) 
-                            {
-                                //concatenate qty text + cmb gram
-                                string concatenateQtyGram = txtQuantity.Text + " " + cmbGram.Text;
-                                string eqpName = txtEquipment.Text;
-
-                                cmd = new SqlCommand($@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
-                                                        VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks)", con);
-                                cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
-                                cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
-                                cmd.Parameters.AddWithValue("@eqp_size", concatenateQtyGram);
-                                cmd.Parameters.AddWithValue("@acq_remarks", txtRemarks.Text);
-
-                                cmd.ExecuteNonQuery();
-                                //dashboard
-                                string msg = $"You added {concatenateQtyGram} new item {eqpName}.";
-                                dbForm.InsertRecentActivities(msg);
-                            }
-                            else if (!cbMass.Checked)
+                            if (!cbMass.Checked)//NOT SUBSTANCE (EQUIPMENTS)
                             {
                                 for (int i = 0; i < quantity; i++)
                                 {
                                     cmd = new SqlCommand($@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
-                                                            VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks)", con);
+                                                            VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks); SELECT SCOPE_IDENTITY();", con);
                                     cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                                     cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
                                     cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
                                     cmd.Parameters.AddWithValue("@acq_remarks", txtRemarks.Text);
+
+                                    //get auto increment id
+                                    int incrementedID = Convert.ToInt32(cmd.ExecuteScalar());
+
+                                    //generate barcode image
+                                    Image barcodeImage = GenerateBarcode(incrementedID.ToString());
+                                    byte[] barcodeImageBytes = ImageToByteArray(barcodeImage);//generated barcode image into byte varbinary
+
+                                    //update row with column eqp_barcode_img
+                                    cmd = new SqlCommand($@"UPDATE lab_eqpment SET eqp_barcode_img = @eqp_barcode_img WHERE eqp_id = @eqp_id", con);
+                                    cmd.Parameters.AddWithValue("@eqp_id", incrementedID);
+                                    cmd.Parameters.AddWithValue("@eqp_barcode_img", barcodeImageBytes);
 
                                     cmd.ExecuteNonQuery();
                                 }
@@ -102,6 +116,41 @@ namespace LABCODE1
                                 string msg = "You added " + txtQuantity.Text + " new item " + txtEquipment.Text + "!";
                                 dbForm.InsertRecentActivities(msg);
                             }
+
+                            else //MORE ON SUBSTANCE
+                            {
+                                //byte[] barcodeImageBytes = (byte[])dr["barcode_image"];
+                                //Image barcodeImage = ByteArrayToImage(barcodeImageBytes);
+                                //byte[] barcodeImageBytes = ImageToByteArray(barcodeImage);
+                                //concatenate qty text + cmb gram
+                                string concatenateQtyGram = txtQuantity.Text + " " + cmbGram.Text;
+                                string eqpName = txtEquipment.Text;
+
+                                cmd = new SqlCommand($@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
+                                                        VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks); SELECT SCOPE_IDENTITY();", con);
+                                cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
+                                cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
+                                cmd.Parameters.AddWithValue("@eqp_size", concatenateQtyGram);
+                                cmd.Parameters.AddWithValue("@acq_remarks", txtRemarks.Text);
+
+                                //get auto increment id
+                                int incrementedID = Convert.ToInt32(cmd.ExecuteScalar());
+
+                                //generate barcode image
+                                Image barcodeImage = GenerateBarcode(incrementedID.ToString());
+                                byte[] barcodeImageBytes = ImageToByteArray(barcodeImage);//convert barcode image into byte to insert in varbinary 
+
+                                //update row with column eqp_barcode_img
+                                cmd = new SqlCommand($@"UPDATE lab_eqpment SET eqp_barcode_img = @eqp_barcode_img WHERE eqp_id = @eqp_id", con);
+                                cmd.Parameters.AddWithValue("@eqp_id", incrementedID);
+                                cmd.Parameters.AddWithValue("@eqp_barcode_img", barcodeImageBytes);
+
+                                cmd.ExecuteNonQuery();
+                                //dashboard
+                                string msg = $"You added new item {eqpName} with a quantity of {concatenateQtyGram}.";
+                                dbForm.InsertRecentActivities(msg);
+                            }
+                            
 
                             con.Close();
                             MessageBox.Show("Equipment has been saved.");

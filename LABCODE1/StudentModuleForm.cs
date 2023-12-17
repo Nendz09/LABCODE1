@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -67,11 +68,15 @@ namespace LABCODE1
                 {
                     if (MessageBox.Show("Are you sure you want to save this Student data?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        cmd = new SqlCommand("INSERT INTO lab_students(student_id, full_name, year_sec, c_number) VALUES(@student_id, @full_name, @year_sec, @c_number)", con);
+
+                        cmd = new SqlCommand(@"INSERT INTO lab_students(student_id, full_name, year_sec, c_number, student_pic) 
+                                            VALUES (@student_id, @full_name, @year_sec, @c_number, @student_pic)", con);
                         cmd.Parameters.AddWithValue("@student_id", txtStudID.Text);
                         cmd.Parameters.AddWithValue("@full_name", txtFullName.Text);
                         cmd.Parameters.AddWithValue("@year_sec", txtYearSec.Text);
                         cmd.Parameters.AddWithValue("@c_number", txtPNo.Text);
+                        cmd.Parameters.AddWithValue("@student_pic", getPhoto());
+
                         con.Open();
                         cmd.ExecuteNonQuery();
                         con.Close();
@@ -122,12 +127,15 @@ namespace LABCODE1
                     if (MessageBox.Show("Are you sure you want to update this Student data?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         con.Open();
+                        string studID = txtStudID.Text;
                         //update sa lab_students
-                        cmd = new SqlCommand("UPDATE lab_students SET student_id=@student_id, full_name=@full_name, year_sec=@year_sec, c_number=@c_number WHERE student_id LIKE '" + txtStudID.Text + "' ", con);
+                        cmd = new SqlCommand($@"UPDATE lab_students SET student_id=@student_id, full_name=@full_name, 
+                                            year_sec=@year_sec, c_number=@c_number, student_pic=@student_pic WHERE student_id LIKE {studID} ", con);
                         cmd.Parameters.AddWithValue("@student_id", txtStudID.Text);
                         cmd.Parameters.AddWithValue("@full_name", txtFullName.Text);
                         cmd.Parameters.AddWithValue("@year_sec", txtYearSec.Text);
                         cmd.Parameters.AddWithValue("@c_number", txtPNo.Text);
+                        cmd.Parameters.AddWithValue("@student_pic", getPhoto());
                         cmd.ExecuteNonQuery();
 
                         //update sa lab_borrows
@@ -220,6 +228,67 @@ namespace LABCODE1
             {
                 label_PhoneFormat.Visible = false;
                 //btnSave.Enabled = true;
+            }
+        }
+
+
+        //UPLOAD ID PICTURES
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
+            try
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    studentPicture.Image = new Bitmap(openFileDialog.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Make sure to upload correct format: .jpg, .jpeg, .png" + ex.Message);
+            }
+        }
+        //LOAD STUDENT PICTURE-EDIT
+        public void LoadStudentPicture(string studentID)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT student_pic FROM lab_students WHERE student_id = @StudentID", con);
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                byte[] imageData = (byte[])cmd.ExecuteScalar();
+
+                if (imageData != null)
+                {
+                    using (MemoryStream stream = new MemoryStream(imageData))
+                    {
+                        studentPicture.Image = Image.FromStream(stream);
+                    }
+                }
+                else
+                {
+                    studentPicture.Image = null;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+
+        //BYTE TRANSFER
+        private byte[] getPhoto() 
+        {
+            using (MemoryStream stream = new MemoryStream())//proper disposal using
+            {
+                studentPicture.Image.Save(stream, studentPicture.Image.RawFormat);
+                return stream.ToArray();
             }
         }
 

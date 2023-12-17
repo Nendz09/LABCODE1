@@ -121,6 +121,9 @@
   <data name="general_add_btn_highlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\general_add_btn_highlight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bg_trans" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_trans.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ekis_border_25px_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ekis_border_25px_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -142,7 +145,7 @@
   <data name="general_add_btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\general_add_btn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bg_trans" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bg_trans.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="user_ddefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_ddefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

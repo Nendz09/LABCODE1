@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using System.Configuration;
 using ClosedXML;
 using ClosedXML.Excel;
+using ZXing;
+using System.IO;
 
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 //using ToolTip = System.Windows.Forms.ToolTip;
@@ -44,36 +46,6 @@ namespace LABCODE1
 
             //LoadPageButtons();transparent not feasible putanginaaaaa
         }
-
-        //private void SetupPictureBox()
-        //{
-        //    //// Create a PictureBox
-        //    //PictureBox pictureBox = new PictureBox();
-        //    //pictureBox.Size = new Size(300, 200);
-        //    //pictureBox.Location = new Point(50, 50);
-
-        //    //// Set the image for the PictureBox
-        //    //pictureBox.Image = Properties.Resources.bg_cvsu; // Replace with your actual image
-
-        //    // Subscribe to the Paint event
-        //    pictureBox1.Paint += PictureBox_Paint;
-
-        //    // Add the PictureBox to the form
-        //    Controls.Add(pictureBox1);
-        //}
-
-        //private void PictureBox_Paint(object sender, PaintEventArgs e)
-        //{
-        //    // Draw the image with a semi-transparent background
-        //    using (var brush = new SolidBrush(Color.FromArgb(90, Color.White)))
-        //    {
-        //        e.Graphics.FillRectangle(brush, ((PictureBox)sender).ClientRectangle);
-        //    }
-
-        //    e.Graphics.DrawImage(((PictureBox)sender).Image, Point.Empty);
-        //}
-
-        
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
@@ -125,9 +97,17 @@ namespace LABCODE1
             con.Open();
             dr = cmd.ExecuteReader();
 
+
+
             while (dr.Read())
             {
-                dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), 
+                string itemId = dr[0].ToString();
+                //Image barcodeImage = GenerateBarcode(itemId);
+
+                byte[] barcodeImageBytes = (byte[])dr["eqp_barcode_img"];
+                Image barcodeImage = ByteArrayToImage(barcodeImageBytes);
+
+                dgvLab.Rows.Add(/*barcodeImage,*/ barcodeImage, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), 
                     dr[3].ToString(), dr[4].ToString(), dr[5].ToString());
             }
 
@@ -136,8 +116,24 @@ namespace LABCODE1
 
             UpdatePageInfo();
         }
-
         
+
+        private Image ByteArrayToImage(byte[] byteArray)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArray))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
+        //BARCODE GENERATOR PLEASE (IMAGE)
+        private Image GenerateBarcode(string itemId)
+        {
+            BarcodeWriter barcodeWriter = new BarcodeWriter();
+            barcodeWriter.Format = BarcodeFormat.CODE_128;
+            return barcodeWriter.Write(itemId);
+        }
+
 
         private void UpdatePageInfo()
         {
@@ -195,16 +191,16 @@ namespace LABCODE1
                 //dgvLab.Rows[e.RowIndex].Cells[3].Value.ToString();
                 InventoryModuleForm inventoryModule = new InventoryModuleForm();
                 inventoryModule.labelUpdate.Visible = true;
-                inventoryModule.txtEqpID.Text = dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString();
-                inventoryModule.txtEquipment.Text = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+                inventoryModule.txtEqpID.Text = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+                inventoryModule.txtEquipment.Text = dgvLab.Rows[e.RowIndex].Cells[2].Value.ToString();
 
                 inventoryModule.cmbCtg.DropDownStyle = ComboBoxStyle.DropDown;
-                inventoryModule.cmbCtg.Text = dgvLab.Rows[e.RowIndex].Cells[2].Value.ToString();
+                inventoryModule.cmbCtg.Text = dgvLab.Rows[e.RowIndex].Cells[3].Value.ToString();
 
                 inventoryModule.cmbSize.DropDownStyle = ComboBoxStyle.DropDown;
-                inventoryModule.cmbSize.Text = dgvLab.Rows[e.RowIndex].Cells[3].Value.ToString();
+                inventoryModule.cmbSize.Text = dgvLab.Rows[e.RowIndex].Cells[4].Value.ToString();
 
-                inventoryModule.txtRemarks.Text = dgvLab.Rows[e.RowIndex].Cells[5].Value.ToString();
+                inventoryModule.txtRemarks.Text = dgvLab.Rows[e.RowIndex].Cells[6].Value.ToString();
 
                 //quantity for substances
                 inventoryModule.txtQuantity.Visible = false;
@@ -238,7 +234,7 @@ namespace LABCODE1
                     con.Open();
                     //cmd = new SqlCommand("DELETE FROM lab_eqpment WHERE eqp_id LIKE'" + dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString() + "'", con);
                     cmd = new SqlCommand("DELETE FROM lab_eqpment WHERE eqp_id = @EquipmentID", con);
-                    cmd.Parameters.AddWithValue("@EquipmentID", dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    cmd.Parameters.AddWithValue("@EquipmentID", dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString());
 
                     //dashboard
                     string eqpName = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -257,8 +253,8 @@ namespace LABCODE1
 
                 if (status == "Borrowed")
                 {
-                    string eqpID = dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    string eqpName = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string eqpID = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string eqpName = dgvLab.Rows[e.RowIndex].Cells[2].Value.ToString();
                     string nameBorrower, yearSec;
                     WhoBorrowed(eqpID, out nameBorrower, out yearSec);
 
@@ -426,7 +422,7 @@ namespace LABCODE1
             }
             else
             {
-                // Filter and load equipment that match the searchValue
+                //filter and load equipment that match the searchValue
                 int i = 0;
                 dgvLab.Rows.Clear();
 
@@ -444,7 +440,10 @@ namespace LABCODE1
                 while (dr.Read())
                 {
                     ++i;
-                    dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+
+                    byte[] barcodeImageBytes = (byte[])dr["eqp_barcode_img"];
+                    Image barcodeImage = ByteArrayToImage(barcodeImageBytes);
+                    dgvLab.Rows.Add(barcodeImage, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
                 }
                 dr.Close();
                 con.Close();
@@ -453,43 +452,56 @@ namespace LABCODE1
 
         private void dgvLab_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 4 && e.RowIndex >= 0)
-            {
-                string status = dgvLab.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
 
-                if (status == "Available")
+            if (e.ColumnIndex == 5 && e.RowIndex >= 0 && e.RowIndex < dgvLab.Rows.Count)
+            {
+                // Check if the row index is within the valid range
+                DataGridViewRow row = dgvLab.Rows[e.RowIndex];
+
+                if (row.Cells.Count > e.ColumnIndex && row.Cells[e.ColumnIndex].Value != null)
                 {
-                    e.CellStyle.ForeColor = Color.Green;
-                    e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
-                }
-                else if (status == "Borrowed")
-                {
-                    e.CellStyle.ForeColor = Color.DarkOrange;
-                    e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
-                }
-                else if (status == "Unavailable")
-                {
-                    e.CellStyle.ForeColor = Color.Red;
-                    e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                    string status = row.Cells[e.ColumnIndex].Value.ToString();
+
+                    if (status == "Available")
+                    {
+                        e.CellStyle.ForeColor = Color.Green;
+                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                    }
+                    else if (status == "Borrowed")
+                    {
+                        e.CellStyle.ForeColor = Color.DarkOrange;
+                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                    }
+                    else if (status == "Unavailable")
+                    {
+                        e.CellStyle.ForeColor = Color.Red;
+                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                    }
                 }
             }
 
-            //else if (e.ColumnIndex == dgvLab.Columns["Replacement"].Index && e.RowIndex >= 0)
-            //{
-            //    string status = dgvLab.Rows[e.RowIndex].Cells["col_status"].Value.ToString();
 
-            //    if (status == "Unavailable")
+            //if (e.ColumnIndex == 5 && e.RowIndex >= 0)
+            //{
+            //    string status = dgvLab.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+            //    if (status == "Available")
             //    {
-            //        e.Value = Properties.Resources.replacement_20pixels;
-            //        //dgvLab.Rows[e.RowIndex].Cells["Replacement"].Visible = true;
+            //        e.CellStyle.ForeColor = Color.Green;
+            //        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
             //    }
-            //    else
+            //    else if (status == "Borrowed")
             //    {
-            //        // Set the value to null to hide the image
-            //        e.Value = null;
-            //        //dgvLab.Rows[e.RowIndex].Cells["Replacement"].Visible = false;
+            //        e.CellStyle.ForeColor = Color.DarkOrange;
+            //        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+            //    }
+            //    else if (status == "Unavailable")
+            //    {
+            //        e.CellStyle.ForeColor = Color.Red;
+            //        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
             //    }
             //}
+
         }
 
 
@@ -501,12 +513,15 @@ namespace LABCODE1
             //}
         }
 
+
+
         private void LoadAllDataDGV()
         {
             dgvLab.Rows.Clear();
 
-            string query = "SELECT * FROM lab_eqpment ORDER BY eqp_id;";
+            string query = "SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status, acq_remarks, eqp_barcode_img FROM lab_eqpment ORDER BY eqp_id;";
             cmd = new SqlCommand(query, con);
+
 
             try
             {
@@ -515,7 +530,10 @@ namespace LABCODE1
 
                 while (dr.Read())
                 {
-                    dgvLab.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), 
+                    byte[] barcodeImageBytes = (byte[])dr["eqp_barcode_img"];
+                    Image barcodeImage = ByteArrayToImage(barcodeImageBytes);
+
+                    dgvLab.Rows.Add(barcodeImage, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), 
                         dr[3].ToString(), dr[4].ToString(), dr[5].ToString());
                 }
             }
@@ -563,20 +581,20 @@ namespace LABCODE1
                         using (XLWorkbook workbook = new XLWorkbook())
                         {
                             var worksheet = workbook.Worksheets.Add("EquipmentData");
-                            int column = 6;
+                            int column = 7;
 
                             //add headers
-                            for (int i = 0; i < column; i++)
+                            for (int i = 1; i < column; i++)
                             {
-                                worksheet.Cell(1, i + 1).Value = dgvLab.Columns[i].HeaderText;
+                                worksheet.Cell(1, i + 0).Value = dgvLab.Columns[i].HeaderText;
                             }
 
                             //add data
                             for (int i = 0; i < dgvLab.Rows.Count; i++)//this is row, so bale lahat from 0 to hanggang saan yung nasa data
                             {
-                                for (int j = 0; j < column; j++)//j sa column cell na nasa row
+                                for (int j = 1; j < column; j++)//j sa column cell na nasa row
                                 {
-                                    worksheet.Cell(i + 2, j + 1).Value = dgvLab.Rows[i].Cells[j].Value.ToString();
+                                    worksheet.Cell(i + 2, j + 0).Value = dgvLab.Rows[i].Cells[j].Value.ToString();
                                 }
                             }
                             workbook.SaveAs(saveDialog.FileName);

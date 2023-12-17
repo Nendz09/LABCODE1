@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -144,6 +145,8 @@ namespace LABCODE1
             studentModule.ShowDialog();
             LoadStudents();
         }
+        
+
 
 
         //----EDIT AND DELETE BUTTON IN COLUMN ROW----///
@@ -152,12 +155,17 @@ namespace LABCODE1
             string colName = dgvStudents.Columns[e.ColumnIndex].Name;
             if (colName == "Edit")
             {
+                string studID = dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString();
+
                 StudentModuleForm studentModule = new StudentModuleForm();
                 studentModule.labelUpdate.Visible = true;
                 studentModule.txtStudID.Text = dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString();
                 studentModule.txtFullName.Text = dgvStudents.Rows[e.RowIndex].Cells[1].Value.ToString();
                 studentModule.txtYearSec.Text = dgvStudents.Rows[e.RowIndex].Cells[2].Value.ToString();
                 studentModule.txtPNo.Text = dgvStudents.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+                //LOAD PICTURE
+                studentModule.LoadStudentPicture(studID);
 
 
                 studentModule.label_StdExists.Visible = false;

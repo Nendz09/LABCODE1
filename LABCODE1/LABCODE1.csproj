@@ -585,6 +585,7 @@
     <Content Include="Inventory_Labcode_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\user_ddefault.png" />
     <None Include="Resources\bg_trans.png" />
     <None Include="Resources\bg_cvsu.png" />
     <None Include="Resources\general_add_btn_highlight.png" />

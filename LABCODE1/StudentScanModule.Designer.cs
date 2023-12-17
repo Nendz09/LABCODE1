@@ -31,7 +31,7 @@ namespace LABCODE1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentScanModule));
             this.cboCam = new System.Windows.Forms.ComboBox();
             this.btnProceed = new System.Windows.Forms.Button();
@@ -58,9 +58,12 @@ namespace LABCODE1
             this.clearStudentID = new LABCODE1.UserButton();
             this.label3 = new System.Windows.Forms.Label();
             this.dateLabelDate = new System.Windows.Forms.Label();
+            this.studentPicture = new System.Windows.Forms.PictureBox();
+            this.label_studentID = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCam
@@ -95,7 +98,7 @@ namespace LABCODE1
             // label_studentName
             // 
             this.label_studentName.AutoSize = true;
-            this.label_studentName.Location = new System.Drawing.Point(35, 136);
+            this.label_studentName.Location = new System.Drawing.Point(824, 275);
             this.label_studentName.Name = "label_studentName";
             this.label_studentName.Size = new System.Drawing.Size(93, 13);
             this.label_studentName.TabIndex = 4;
@@ -113,7 +116,7 @@ namespace LABCODE1
             // label_studentSection
             // 
             this.label_studentSection.AutoSize = true;
-            this.label_studentSection.Location = new System.Drawing.Point(35, 177);
+            this.label_studentSection.Location = new System.Drawing.Point(824, 315);
             this.label_studentSection.Name = "label_studentSection";
             this.label_studentSection.Size = new System.Drawing.Size(54, 13);
             this.label_studentSection.TabIndex = 15;
@@ -124,14 +127,14 @@ namespace LABCODE1
             this.dgvItemBorrow.AllowUserToAddRows = false;
             this.dgvItemBorrow.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvItemBorrow.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvItemBorrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvItemBorrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_dob,
@@ -320,11 +323,34 @@ namespace LABCODE1
             this.dateLabelDate.Text = "...HIDE";
             this.dateLabelDate.Visible = false;
             // 
+            // studentPicture
+            // 
+            this.studentPicture.BackColor = System.Drawing.SystemColors.Control;
+            this.studentPicture.ErrorImage = ((System.Drawing.Image)(resources.GetObject("studentPicture.ErrorImage")));
+            this.studentPicture.Image = global::LABCODE1.Properties.Resources.user_ddefault;
+            this.studentPicture.Location = new System.Drawing.Point(852, 75);
+            this.studentPicture.Name = "studentPicture";
+            this.studentPicture.Size = new System.Drawing.Size(168, 168);
+            this.studentPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.studentPicture.TabIndex = 27;
+            this.studentPicture.TabStop = false;
+            // 
+            // label_studentID
+            // 
+            this.label_studentID.AutoSize = true;
+            this.label_studentID.Location = new System.Drawing.Point(957, 275);
+            this.label_studentID.Name = "label_studentID";
+            this.label_studentID.Size = new System.Drawing.Size(73, 13);
+            this.label_studentID.TabIndex = 28;
+            this.label_studentID.Text = "STUDENT ID";
+            // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 450);
+            this.ClientSize = new System.Drawing.Size(1179, 667);
+            this.Controls.Add(this.label_studentID);
+            this.Controls.Add(this.studentPicture);
             this.Controls.Add(this.dateLabelDate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.clearStudentID);
@@ -350,6 +376,7 @@ namespace LABCODE1
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,5 +409,7 @@ namespace LABCODE1
         private DataGridViewTextBoxColumn col_size;
         private DataGridViewImageColumn Delete;
         private Label dateLabelDate;
+        public PictureBox studentPicture;
+        private Label label_studentID;
     }
 }
