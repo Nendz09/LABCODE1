@@ -18,6 +18,7 @@ using System.IO;
 using PdfSharp.Pdf;
 using PdfSharp.Drawing;
 using System.Diagnostics;
+using Microsoft.IdentityModel.Tokens;
 //using iText.IO.Image;
 //using iText.Kernel.Pdf;
 //using System.Diagnostics;
@@ -66,6 +67,9 @@ namespace LABCODE1
         //---LOAD EQUIPMENT INVENTORY---//
         public void LoadEquipment()
         {
+            string searchName = userTextbox1.Texts;
+            string searchCateg = searchSizeCalibration.Texts;
+
             //int i = 0;
             //dgvLab.Rows.Clear();
             //cmd = new SqlCommand("SELECT * FROM lab_eqpment", con);
@@ -88,10 +92,22 @@ namespace LABCODE1
             totalRecords = (int)cmd.ExecuteScalar();
             con.Close();
 
-            UpdatePageInfo();
 
             //Load data for the current page
-            LoadData();
+            //LoadData();
+
+            UpdatePageInfo();
+
+            if (string.IsNullOrWhiteSpace(searchName) && string.IsNullOrWhiteSpace(searchCateg))
+            {
+                LoadData();
+            }
+            else
+            {
+                LoadDataSearchValues();
+            }
+
+            
         }
         private void LoadData()
         {
@@ -169,21 +185,42 @@ namespace LABCODE1
 
         private void btnNext1_Click(object sender, EventArgs e)
         {
+            string searchName = userTextbox1.Texts;
+            string searchCateg = searchSizeCalibration.Texts;
+
             /*The Math.Ceiling method is used to round up the result to the nearest whole number. 
              * This ensures that even if there is a fraction of a page, it is counted as a whole page.*/
             if (currentPage < (int)Math.Ceiling((double)totalRecords / recordsPerPage))
             {
                 currentPage++;
-                LoadData();
+
+                if (string.IsNullOrWhiteSpace(searchName) && string.IsNullOrWhiteSpace(searchCateg))
+                {
+                    LoadData();
+                }
+                else
+                {
+                    LoadDataSearchValues();
+                }
             }
         }
 
         private void btnPrev1_Click(object sender, EventArgs e)
         {
+            string searchName = userTextbox1.Texts;
+            string searchCateg = searchSizeCalibration.Texts;
+
             if (currentPage > 1)
             {
                 currentPage--;
-                LoadData();
+                if (string.IsNullOrWhiteSpace(searchName) && string.IsNullOrWhiteSpace(searchCateg))
+                {
+                    LoadData();
+                }
+                else
+                {
+                    LoadDataSearchValues();
+                }
             }
         }
 
@@ -431,28 +468,40 @@ namespace LABCODE1
 
 
 
-        //SEARCH
+        //SEARCH EQUIPMENT NAME ONLY
         private void userTextbox1__TextChanged(object sender, EventArgs e)
         {
-            string searchValue = userTextbox1.Texts;
+            combinedSearch();
+        }
 
-            if (string.IsNullOrWhiteSpace(searchValue))
+        //SEARCH SIZE AND CALIBRATION
+        private void searchSizeCalibration__TextChanged(object sender, EventArgs e)
+        {
+            combinedSearch();
+        }
+
+        //SEARCH VALUE EQPNAME + EQPSIZE-CALIBRATION
+
+        private void combinedSearch() 
+        {
+            string searchEqpname = userTextbox1.Texts;
+            string searchCalibSize = searchSizeCalibration.Texts;
+
+            if (string.IsNullOrWhiteSpace(searchEqpname) && string.IsNullOrWhiteSpace(searchCalibSize))
             {
-                LoadEquipment(); 
+                LoadEquipment();
             }
             else
             {
-                //filter and load equipment that match the searchValue
                 int i = 0;
                 dgvLab.Rows.Clear();
 
-                cmd = new SqlCommand($@"SELECT * FROM lab_eqpment WHERE eqp_id LIKE @searchValue 
-                                    OR eqp_name LIKE @searchValue 
-                                    OR eqp_categ LIKE @searchValue 
-                                    OR eqp_size LIKE @searchValue 
-                                    OR status LIKE @searchValue
-                                    OR acq_remarks LIKE @searchValue", con);
-                cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
+                cmd = new SqlCommand($@"SELECT * FROM lab_eqpment 
+                                    WHERE (eqp_size LIKE @searchValueCalibsize OR eqp_categ LIKE @searchValueCalibsize)
+                                    AND (eqp_name LIKE @searchValueName OR eqp_id LIKE @searchValueName)", con);
+
+                cmd.Parameters.AddWithValue("@searchValueName", "%" + searchEqpname + "%");
+                cmd.Parameters.AddWithValue("@searchValueCalibsize", "%" + searchCalibSize + "%"); // Use '%' for partial matches
 
                 con.Open();
                 dr = cmd.ExecuteReader();
@@ -469,6 +518,52 @@ namespace LABCODE1
                 con.Close();
             }
         }
+        //LOAD DATA OF SEARCH VALUES
+        private void LoadDataSearchValues()
+        {
+            string searchEqpname = userTextbox1.Texts;
+            string searchCalibSize = searchSizeCalibration.Texts;
+
+            dgvLab.Rows.Clear();//clear current row para di pumatong
+
+            int startIndex = (currentPage - 1) * recordsPerPage + 1;
+            int endIndex = currentPage * recordsPerPage;
+
+
+            string query = $@"SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY eqp_id) AS RowNum FROM lab_eqpment
+                            WHERE (eqp_size LIKE @searchValueCalibsize OR eqp_categ LIKE @searchValueCalibsize)
+                            AND (eqp_name LIKE @searchValueName OR eqp_id LIKE @searchValueName)) 
+                            AS Temp WHERE RowNum BETWEEN {startIndex} AND {endIndex};";
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@searchValueName", "%" + searchEqpname + "%");
+            cmd.Parameters.AddWithValue("@searchValueCalibsize", "%" + searchCalibSize + "%");
+            con.Open();
+            dr = cmd.ExecuteReader();
+
+
+
+            while (dr.Read())
+            {
+                string itemId = dr[0].ToString();
+                //Image barcodeImage = GenerateBarcode(itemId);
+
+                byte[] barcodeImageBytes = (byte[])dr["eqp_barcode_img"];
+                Image barcodeImage = ByteArrayToImage(barcodeImageBytes);
+
+                dgvLab.Rows.Add(/*barcodeImage,*/ barcodeImage, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(),
+                    dr[3].ToString(), dr[4].ToString(), dr[5].ToString());
+            }
+
+            dr.Close();
+            con.Close();
+
+            UpdatePageInfo();
+        }
+
+
+
+
+
 
         private void dgvLab_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -630,7 +725,25 @@ namespace LABCODE1
 
         private void btnExportPDF_Click(object sender, EventArgs e)
         {
-            ExportPDF();
+            string searchName = userTextbox1.Texts;
+            string searchCateg = searchSizeCalibration.Texts;
+            //need ng messagebox otherwise na eexport lang yung current page
+            if (MessageBox.Show("Do you want to export barcode images into PDF?", "Exporting Barcode Images",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (string.IsNullOrWhiteSpace(searchName) && string.IsNullOrWhiteSpace(searchCateg))
+                {
+                    LoadAllDataDGV();
+                }
+                else
+                {
+                    LoadDataSearchValues();
+                }
+                ExportPDF();
+                //dashboard
+                string msg = "You exported the barcode images into pdf file.";
+                dbForm.InsertRecentActivities(msg);
+            }
         }
 
 
@@ -649,53 +762,34 @@ namespace LABCODE1
                         {
                             pdfDocument.Info.Title = "DataGridView Export";
 
-                            PdfPage page = pdfDocument.AddPage();
-                            XGraphics gfx = XGraphics.FromPdfPage(page);
+                            List<List<Image>> pages = new List<List<Image>>();
+                            List<Image> currentPage = new List<Image>();
 
-                            XFont font = new XFont("Arial", 12);
-
-                            // Title
-                            gfx.DrawString("Title: ASD", font, XBrushes.Black, new XRect(10, 10, page.Width, 20), XStringFormats.TopLeft);
-
-                            // Add DataGridView content
-                            int xOffset = 2; // Initial X offset
-                            int yOffset = 40; // Initial Y offset
-                            int imageWidth = 95;
-                            int imageHeight = 90;
-                            int spacing = 10; // Adjust as needed
                             int columnsPerRow = 6;
+                            int rowsPerPage = 6;
 
                             // Add DataGridView content
                             for (int i = 0; i < dgvLab.Rows.Count; i++)
                             {
                                 Image image = (Image)dgvLab.Rows[i].Cells[0].Value;
-                                
+                                currentPage.Add(image);
 
-                                // Draw the Image and ID number on the PDF
-                                using (MemoryStream memoryStream = new MemoryStream())
+                                if (currentPage.Count == columnsPerRow * rowsPerPage)
                                 {
-                                    // Convert System.Drawing.Image to a byte array
-                                    image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
-                                    byte[] imageBytes = memoryStream.ToArray();
-
-                                    // Create an XImage from the byte array
-                                    XImage xImage = XImage.FromStream(memoryStream);
-
-                                    gfx.DrawImage(xImage, xOffset, yOffset, imageWidth, imageHeight);
-
-                                    xOffset += imageWidth + spacing; // Increment X offset for the next column
-
-                                    // Check if we need to move to the next row
-                                    if ((i + 1) % columnsPerRow == 0)
-                                    {
-                                        xOffset = 2; // Reset X offset
-                                        yOffset += imageHeight + spacing; // Move to the next row
-                                    }
+                                    pages.Add(new List<Image>(currentPage));
+                                    currentPage.Clear();
                                 }
+                            }
 
-                                // Optionally reset X offset and increment Y offset for the next row
-                                //yOffset += imageHeight + 2 * spacing; // Adjust spacing between rows
-                                //xOffset = 10;
+                            if (currentPage.Count > 0)
+                            {
+                                pages.Add(new List<Image>(currentPage));
+                            }
+
+                            // Add pages to the PDF
+                            foreach (var imagePage in pages)
+                            {
+                                AddNewPage(pdfDocument, imagePage, columnsPerRow, rowsPerPage);
                             }
 
                             pdfDocument.Save(saveDialog.FileName);
@@ -711,54 +805,52 @@ namespace LABCODE1
             }
         }
 
+        private void AddNewPage(PdfDocument pdfDocument, List<Image> images, int columnsPerRow, int rowsPerPage)
+        {
+            string searchEqpname = userTextbox1.Texts;
+            string searchCalibSize = searchSizeCalibration.Texts;
 
 
-        //private void ExportToPdf()
-        //{
-        //    try
-        //    {
-        //        using (SaveFileDialog saveDialog = new SaveFileDialog())
-        //        {
-        //            saveDialog.Filter = "PDF Document|*.pdf";
-        //            saveDialog.ValidateNames = true;
+            PdfPage page = pdfDocument.AddPage();
+            XGraphics gfx = XGraphics.FromPdfPage(page);
 
-        //            if (saveDialog.ShowDialog() == DialogResult.OK)
-        //            {
-        //                using (var pdfWriter = new PdfWriter(saveDialog.FileName))
-        //                {
-        //                    using (var pdfDocument = new PdfDocument(pdfWriter))
-        //                    {
-        //                        var document = new Document(pdfDocument);
+            XFont font = new XFont("Arial", 12);
 
-        //                        // Title
-        //                        document.Add(new Paragraph($"Title: {yourTitleTextBox.Text}"));
+            int imageWidth = 95;
+            int imageHeight = 90;
+            int spacing = 10;
 
-        //                        // Add barcode images and ID numbers
-        //                        for (int i = 0; i < dgvLab.Rows.Count; i++)
-        //                        {
-        //                            Image barcodeImage = (Image)dgvLab.Rows[i].Cells[0].Value;
-        //                            string idNumber = dgvLab.Rows[i].Cells[1].Value.ToString();
+            for (int i = 0; i < images.Count; i++)
+            {
+                int columnIndex = i % columnsPerRow;
+                int rowIndex = (i / columnsPerRow) % rowsPerPage;
 
-        //                            document.Add(new Image(ImageDataFactory.Create(ImageToByteArray(barcodeImage))));
-        //                            document.Add(new Paragraph(idNumber));
+                int xOffset = columnIndex * (imageWidth + spacing) + 2;
+                int yOffset = rowIndex * (imageHeight + spacing) + 40;
 
-        //                            // Add spacing or formatting as needed
-        //                            document.Add(new Paragraph()); // Note: You need to instantiate a new Paragraph object
+                Image image = images[i];
+
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                    byte[] imageBytes = memoryStream.ToArray();
+                    XImage xImage = XImage.FromStream(memoryStream);
+
+                    gfx.DrawImage(xImage, xOffset, yOffset, imageWidth, imageHeight);
+                }
+            }
 
 
-        //                            // Adjust the layout and formatting as needed
-        //                        }
-        //                    }
-        //                }
+            if (string.IsNullOrWhiteSpace(searchEqpname) && string.IsNullOrWhiteSpace(searchCalibSize))
+            {
+                gfx.DrawString($"Title: ALL ITEM Page {pdfDocument.PageCount}", font, XBrushes.Black, new XRect(10, 10, page.Width, 20), XStringFormats.TopLeft);
+            }
+            else
+            {
+                gfx.DrawString($"Title: {searchEqpname}/{searchCalibSize} Page {pdfDocument.PageCount}", font, XBrushes.Black, new XRect(10, 10, page.Width, 20), XStringFormats.TopLeft);
+            }
+        }
 
-        //                Process.Start(saveDialog.FileName);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Error exporting to PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
+
     }
 }
