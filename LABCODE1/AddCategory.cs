@@ -59,7 +59,8 @@ namespace LABCODE1
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred. Please remove your Duplicate ID", "REMOVE DUPLICATE ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Console.WriteLine($"Exception: {ex}");
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {

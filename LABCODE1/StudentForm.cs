@@ -217,6 +217,7 @@ namespace LABCODE1
         private void btnBorrow_Click(object sender, EventArgs e)
         {
             StudentScanModule studentBorrowModule = new StudentScanModule();
+            studentBorrowModule.txt_Barcode.Focus();
             studentBorrowModule.ShowDialog();
         }
 

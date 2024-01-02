@@ -18,6 +18,7 @@ using System.Reflection.Emit;
 using DocumentFormat.OpenXml.Spreadsheet;
 using static System.Net.WebRequestMethods;
 using System.IO;
+using Irony.Parsing;
 
 namespace LABCODE1
 {
@@ -47,7 +48,7 @@ namespace LABCODE1
         public StudentScanModule()
         {
             InitializeComponent();
-            this.ActiveControl = cmbItem; //first focus
+            this.ActiveControl = txt_Barcode; //first focus
             videoCaptureWorker = new BackgroundWorker();
             videoCaptureWorker.DoWork += VideoCaptureWorker_DoWork;
             videoCaptureWorker.RunWorkerCompleted += VideoCaptureWorker_RunWorkerCompleted;
@@ -204,8 +205,9 @@ namespace LABCODE1
                     txt_Barcode.Enabled = false;
                     btnProceed.Enabled = true;
                     clearStudentID.Enabled = true;
-                    //txt_BarcodeItem.Enabled = true;
-                    //txt_BarcodeItem.Focus();
+
+                    txt_BarcodeItem.Enabled = true;
+                    txt_BarcodeItem.Focus();
                 }
                 else
                 {
@@ -236,6 +238,53 @@ namespace LABCODE1
             {
                 e.Handled = true;
             }
+        }
+        private void txt_BarcodeItem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '\r') //check if pressed
+            {
+                ProcessScannedData();
+            }
+
+            //try
+            //{
+            //    if (int.TryParse(cmbItem.Text, out int equipmentID))
+            //    {
+            //        con.Open();
+            //        cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
+            //        cmd.Parameters.AddWithValue("@equipmentID", equipmentID);
+
+            //        dr = cmd.ExecuteReader();
+
+            //        while (dr.Read())
+            //        {
+            //            dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+            //        }
+
+
+
+            //        //txt_Barcode.Enabled = true;
+            //        //txt_Barcode.Focus();
+            //    }
+            //    //else
+            //    //{
+            //    //    MessageBox.Show("Invalid equipment ID");
+            //    //}
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //finally
+            //{
+            //    dr.Close();
+            //    con.Close();
+            //}
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -508,7 +557,7 @@ namespace LABCODE1
 
         //method
 
-        //CMB ITEM 
+        //CMB ITEM - THIS IS YUNG MAY DROPDOWLIST
         private void cmbItemLoad() 
         {
             try
@@ -567,8 +616,8 @@ namespace LABCODE1
                 dr.Close();
                 con.Close();
 
-                txt_Barcode.Enabled = true;
-                txt_Barcode.Focus();
+                //txt_Barcode.Enabled = true;
+                //txt_Barcode.Focus();
             }
             else
             {
@@ -614,6 +663,7 @@ namespace LABCODE1
         {
             txt_Barcode.Text = "";
             txt_Barcode.Enabled = true;
+            txt_Barcode.Focus();
             btnProceed.Enabled = false;
         }
 
@@ -684,5 +734,108 @@ namespace LABCODE1
                 con.Close();
             }
         }
+
+        private void txt_BarcodeItem_TextChanged(object sender, EventArgs e)
+        {
+            //if (txt_BarcodeItem.Text.EndsWith("\r\n")) // Check for the appropriate delimiter
+            //{
+            //    string scannedData = txt_BarcodeItem.Text.Trim();
+
+            //    // Process the scanned data (e.g., query the database)
+            //    ProcessScannedData(scannedData);
+
+            //    // Clear the textbox for the next scan
+            //    txt_BarcodeItem.Clear();
+            //}
+
+
+            //try
+            //{
+            //    if (int.TryParse(txt_BarcodeItem.Text, out int equipmentID))
+            //    {
+            //        con.Open();
+            //        cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
+            //        cmd.Parameters.AddWithValue("@equipmentID", equipmentID);
+
+            //        dr = cmd.ExecuteReader();
+
+            //        while (dr.Read())
+            //        {
+            //            dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+            //        }
+
+            //        //txt_Barcode.Enabled = true;
+            //        //txt_Barcode.Focus();
+            //    }
+            //    //else
+            //    //{
+            //    //    MessageBox.Show("Invalid equipment ID");
+            //    //}
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //finally
+            //{
+            //    dr.Close();
+            //    con.Close();
+            //}
+        }
+        private void ProcessScannedData()
+        {
+            string scannedData = txt_BarcodeItem.Text.Trim();
+
+
+            if (!string.IsNullOrEmpty(scannedData))
+            {
+                if (int.TryParse(scannedData, out int equipmentID))
+                {
+
+                    bool itemIdExist = dgvItemBorrow.Rows
+                        .Cast<DataGridViewRow>()
+                        .Any(row => row.Cells[3].Value != null && row.Cells[3].Value.ToString() == equipmentID.ToString());
+
+                    if (!itemIdExist) 
+                    {
+                        try
+                        {
+                            con.Open();
+                            cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
+                            cmd.Parameters.AddWithValue("@equipmentID", equipmentID);
+
+                            dr = cmd.ExecuteReader();
+
+                            //dgvItemBorrow.Rows.Clear();
+
+                            while (dr.Read())
+                            {
+                                dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            dr.Close();
+                            con.Close();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ID does not exist", "Invalid ID", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                //clear txt
+                txt_BarcodeItem.Clear();
+            }
+
+            
+        }
+
+
     }
 }
