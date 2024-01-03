@@ -40,31 +40,30 @@ namespace LABCODE1
             this.label1 = new System.Windows.Forms.Label();
             this.label_studentSection = new System.Windows.Forms.Label();
             this.dgvItemBorrow = new System.Windows.Forms.DataGridView();
+            this.dateLabel = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dateLabelDate = new System.Windows.Forms.Label();
+            this.studentPicture = new System.Windows.Forms.PictureBox();
+            this.label_studentID = new System.Windows.Forms.Label();
+            this.txt_BarcodeItem = new System.Windows.Forms.TextBox();
             this.col_dob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_dor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_duetime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_itemid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duration = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dateLabel = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.cmbItem = new System.Windows.Forms.ComboBox();
-            this.cmbPickCateg = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.clearStudentID = new LABCODE1.UserButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dateLabelDate = new System.Windows.Forms.Label();
-            this.studentPicture = new System.Windows.Forms.PictureBox();
-            this.label_studentID = new System.Windows.Forms.Label();
-            this.txt_BarcodeItem = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCam
@@ -143,64 +142,18 @@ namespace LABCODE1
             this.col_itemid,
             this.col_itemname,
             this.col_size,
+            this.Duration,
             this.Delete});
+            this.dgvItemBorrow.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvItemBorrow.EnableHeadersVisualStyles = false;
-            this.dgvItemBorrow.Location = new System.Drawing.Point(134, 89);
+            this.dgvItemBorrow.Location = new System.Drawing.Point(44, 91);
             this.dgvItemBorrow.Name = "dgvItemBorrow";
-            this.dgvItemBorrow.ReadOnly = true;
             this.dgvItemBorrow.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.dgvItemBorrow.Size = new System.Drawing.Size(661, 268);
+            this.dgvItemBorrow.Size = new System.Drawing.Size(758, 268);
             this.dgvItemBorrow.TabIndex = 16;
             this.dgvItemBorrow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellClick);
             this.dgvItemBorrow.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellContentClick);
             this.dgvItemBorrow.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellLeave);
-            // 
-            // col_dob
-            // 
-            this.col_dob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.col_dob.HeaderText = "Date of Borrow";
-            this.col_dob.Name = "col_dob";
-            this.col_dob.ReadOnly = true;
-            this.col_dob.Width = 110;
-            // 
-            // col_dor
-            // 
-            this.col_dor.HeaderText = "Date of Return";
-            this.col_dor.Name = "col_dor";
-            this.col_dor.ReadOnly = true;
-            // 
-            // col_duetime
-            // 
-            this.col_duetime.HeaderText = "Due Time";
-            this.col_duetime.Name = "col_duetime";
-            this.col_duetime.ReadOnly = true;
-            // 
-            // col_itemid
-            // 
-            this.col_itemid.HeaderText = "Item ID";
-            this.col_itemid.Name = "col_itemid";
-            this.col_itemid.ReadOnly = true;
-            // 
-            // col_itemname
-            // 
-            this.col_itemname.HeaderText = "Item Name";
-            this.col_itemname.Name = "col_itemname";
-            this.col_itemname.ReadOnly = true;
-            // 
-            // col_size
-            // 
-            this.col_size.HeaderText = "Size/Calibration";
-            this.col_size.Name = "col_size";
-            this.col_size.ReadOnly = true;
-            // 
-            // Delete
-            // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Delete.HeaderText = "";
-            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Width = 5;
             // 
             // dateLabel
             // 
@@ -228,46 +181,14 @@ namespace LABCODE1
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // cmbItem
-            // 
-            this.cmbItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbItem.Enabled = false;
-            this.cmbItem.FormattingEnabled = true;
-            this.cmbItem.Location = new System.Drawing.Point(198, 382);
-            this.cmbItem.Name = "cmbItem";
-            this.cmbItem.Size = new System.Drawing.Size(268, 21);
-            this.cmbItem.TabIndex = 20;
-            this.cmbItem.DropDown += new System.EventHandler(this.cmbItem_DropDown);
-            this.cmbItem.SelectedIndexChanged += new System.EventHandler(this.cmbItem_SelectedIndexChanged);
-            this.cmbItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbItem_KeyPress);
-            // 
-            // cmbPickCateg
-            // 
-            this.cmbPickCateg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPickCateg.FormattingEnabled = true;
-            this.cmbPickCateg.Items.AddRange(new object[] {
-            "GENERAL SCIENCE",
-            "BIOLOGY",
-            "PHYSICS",
-            "CHEMISTRY",
-            "SUBSTANCES",
-            "OTHER"});
-            this.cmbPickCateg.Location = new System.Drawing.Point(60, 382);
-            this.cmbPickCateg.Name = "cmbPickCateg";
-            this.cmbPickCateg.Size = new System.Drawing.Size(121, 21);
-            this.cmbPickCateg.TabIndex = 21;
-            this.cmbPickCateg.DropDown += new System.EventHandler(this.cmbPickCateg_DropDown);
-            this.cmbPickCateg.SelectedIndexChanged += new System.EventHandler(this.cmbPickCateg_SelectedIndexChanged);
-            this.cmbPickCateg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPickCateg_KeyPress);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 366);
+            this.label2.Location = new System.Drawing.Point(127, 470);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 22;
-            this.label2.Text = "CATEGORY";
+            this.label2.Text = "ITEM SCAN";
             // 
             // dataGridViewImageColumn1
             // 
@@ -287,21 +208,6 @@ namespace LABCODE1
             this.pictureBoxClose.TabIndex = 13;
             this.pictureBoxClose.TabStop = false;
             this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
-            // 
-            // clearStudentID
-            // 
-            this.clearStudentID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.clearStudentID.Enabled = false;
-            this.clearStudentID.Image = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
-            this.clearStudentID.ImageHover = ((System.Drawing.Image)(resources.GetObject("clearStudentID.ImageHover")));
-            this.clearStudentID.ImageNormal = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
-            this.clearStudentID.Location = new System.Drawing.Point(445, 418);
-            this.clearStudentID.Name = "clearStudentID";
-            this.clearStudentID.Size = new System.Drawing.Size(21, 20);
-            this.clearStudentID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.clearStudentID.TabIndex = 24;
-            this.clearStudentID.TabStop = false;
-            this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
             // 
             // label3
             // 
@@ -354,6 +260,77 @@ namespace LABCODE1
             this.txt_BarcodeItem.TextChanged += new System.EventHandler(this.txt_BarcodeItem_TextChanged);
             this.txt_BarcodeItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_BarcodeItem_KeyPress);
             // 
+            // col_dob
+            // 
+            this.col_dob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.col_dob.HeaderText = "Date of Borrow";
+            this.col_dob.Name = "col_dob";
+            this.col_dob.ReadOnly = true;
+            this.col_dob.Width = 110;
+            // 
+            // col_dor
+            // 
+            this.col_dor.HeaderText = "Date of Return";
+            this.col_dor.Name = "col_dor";
+            this.col_dor.ReadOnly = true;
+            // 
+            // col_duetime
+            // 
+            this.col_duetime.HeaderText = "Due Time";
+            this.col_duetime.Name = "col_duetime";
+            this.col_duetime.ReadOnly = true;
+            // 
+            // col_itemid
+            // 
+            this.col_itemid.HeaderText = "Item ID";
+            this.col_itemid.Name = "col_itemid";
+            this.col_itemid.ReadOnly = true;
+            // 
+            // col_itemname
+            // 
+            this.col_itemname.HeaderText = "Item Name";
+            this.col_itemname.Name = "col_itemname";
+            this.col_itemname.ReadOnly = true;
+            // 
+            // col_size
+            // 
+            this.col_size.HeaderText = "Size/Calibration";
+            this.col_size.Name = "col_size";
+            this.col_size.ReadOnly = true;
+            // 
+            // Duration
+            // 
+            this.Duration.HeaderText = "Duration";
+            this.Duration.Items.AddRange(new object[] {
+            "1 hr",
+            "2 hrs"});
+            this.Duration.Name = "Duration";
+            this.Duration.ReadOnly = false;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Delete.HeaderText = "";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Width = 5;
+            // 
+            // clearStudentID
+            // 
+            this.clearStudentID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.clearStudentID.Enabled = false;
+            this.clearStudentID.Image = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
+            this.clearStudentID.ImageHover = ((System.Drawing.Image)(resources.GetObject("clearStudentID.ImageHover")));
+            this.clearStudentID.ImageNormal = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
+            this.clearStudentID.Location = new System.Drawing.Point(445, 418);
+            this.clearStudentID.Name = "clearStudentID";
+            this.clearStudentID.Size = new System.Drawing.Size(21, 20);
+            this.clearStudentID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.clearStudentID.TabIndex = 24;
+            this.clearStudentID.TabStop = false;
+            this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
+            // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,8 +343,6 @@ namespace LABCODE1
             this.Controls.Add(this.label3);
             this.Controls.Add(this.clearStudentID);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmbPickCateg);
-            this.Controls.Add(this.cmbItem);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.dgvItemBorrow);
@@ -386,8 +361,8 @@ namespace LABCODE1
             this.Load += new System.EventHandler(this.StudentScanModule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -406,22 +381,21 @@ namespace LABCODE1
         public Button btnProceed;
         public Button button1;
         public DataGridView dgvItemBorrow;
-        public ComboBox cmbItem;
-        public ComboBox cmbPickCateg;
         private Label label2;
         private UserButton clearStudentID;
         private DataGridViewImageColumn dataGridViewImageColumn1;
         private Label label3;
+        private Label dateLabelDate;
+        public PictureBox studentPicture;
+        private Label label_studentID;
+        public TextBox txt_BarcodeItem;
         private DataGridViewTextBoxColumn col_dob;
         private DataGridViewTextBoxColumn col_dor;
         private DataGridViewTextBoxColumn col_duetime;
         private DataGridViewTextBoxColumn col_itemid;
         private DataGridViewTextBoxColumn col_itemname;
         private DataGridViewTextBoxColumn col_size;
+        private DataGridViewComboBoxColumn Duration;
         private DataGridViewImageColumn Delete;
-        private Label dateLabelDate;
-        public PictureBox studentPicture;
-        private Label label_studentID;
-        public TextBox txt_BarcodeItem;
     }
 }

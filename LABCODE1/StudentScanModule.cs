@@ -53,7 +53,7 @@ namespace LABCODE1
             videoCaptureWorker.DoWork += VideoCaptureWorker_DoWork;
             videoCaptureWorker.RunWorkerCompleted += VideoCaptureWorker_RunWorkerCompleted;
 
-
+            
 
             // Initialize DateTimePicker controls
             dtpDate = new DateTimePicker();
@@ -113,6 +113,13 @@ namespace LABCODE1
 
         private void StudentScanModule_Load(object sender, EventArgs e)
         {
+
+            //if (dgvItemBorrow.Columns["Duration"] is DataGridViewComboBoxColumn comboBoxColumn)
+            //{
+            //    comboBoxColumn.Items.AddRange("1 hr", "2 hrs");
+            //}
+
+
             reader.Options = new ZXing.Common.DecodingOptions
             {
                 PossibleFormats = new List<BarcodeFormat>
@@ -295,11 +302,11 @@ namespace LABCODE1
         
         private void button1_Click(object sender, EventArgs e)
         {
-            cmbPickCateg.SelectedIndex = -1;
+            //cmbPickCateg.SelectedIndex = -1;
             txt_Barcode.Clear();
-            cmbItem.Items.Clear();
-            cmbItem.Enabled = false;
-            txt_Barcode.Enabled = false;
+            txt_Barcode.Enabled = true;
+            txt_Barcode.Focus();
+            txt_BarcodeItem.Enabled = false;
             btnProceed.Enabled = false;
             clearStudentID.Enabled = false;
             dgvItemBorrow.Rows.Clear();
@@ -331,8 +338,8 @@ namespace LABCODE1
 
         private void dgvItemBorrow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+          
 
-            
 
 
             if (e.ColumnIndex == 1 && e.RowIndex >= 0)
@@ -558,82 +565,82 @@ namespace LABCODE1
         //method
 
         //CMB ITEM - THIS IS YUNG MAY DROPDOWLIST
-        private void cmbItemLoad() 
-        {
-            try
-            {
-                con.Open();
-                cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE status = 'Available' AND eqp_categ = '" + cmbPickCateg.Text + "' ", con);
-                cmbItem.Items.Clear();
+        //private void cmbItemLoad() 
+        //{
+        //    try
+        //    {
+        //        con.Open();
+        //        cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE status = 'Available' AND eqp_categ = '" + cmbPickCateg.Text + "' ", con);
+        //        cmbItem.Items.Clear();
 
-                SqlDataReader datareader = cmd.ExecuteReader();
+        //        SqlDataReader datareader = cmd.ExecuteReader();
 
-                while (datareader.Read())
-                {
-                    //cmbItem.Items.Add(datareader["eqp_name"].ToString());
-                    string itemName = $"{datareader["eqp_id"]} - {datareader["eqp_name"]} - {datareader["eqp_size"]}"; //concatenate
+        //        while (datareader.Read())
+        //        {
+        //            //cmbItem.Items.Add(datareader["eqp_name"].ToString());
+        //            string itemName = $"{datareader["eqp_id"]} - {datareader["eqp_name"]} - {datareader["eqp_size"]}"; //concatenate
 
-                    cmbItem.Items.Add(itemName);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading items: " + ex.Message);
-            }
-            finally { con.Close(); }
+        //            cmbItem.Items.Add(itemName);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error loading items: " + ex.Message);
+        //    }
+        //    finally { con.Close(); }
 
            
-        }
-        private void cmbItem_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-        }
-        private void cmbItem_DropDown(object sender, EventArgs e)
-        {
-            cmbItemLoad();
-        }
+        //}
+        //private void cmbItem_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    e.Handled = true;
+        //}
+        //private void cmbItem_DropDown(object sender, EventArgs e)
+        //{
+        //    cmbItemLoad();
+        //}
 
         
 
         
 
-        private void cmbItem_SelectedIndexChanged(object sender, EventArgs e)//NO NEED BTN- REKTA INPUT SA DGV AFTER SELECTING INDEX
-        {
-            //extract the equipment ID from the selected cmbItem text
-            if (int.TryParse(cmbItem.Text.Split('-')[0].Trim(), out int equipmentID))
-            {
-                con.Open();
-                cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
-                cmd.Parameters.AddWithValue("@equipmentID", equipmentID);
+        //private void cmbItem_SelectedIndexChanged(object sender, EventArgs e)//NO NEED BTN- REKTA INPUT SA DGV AFTER SELECTING INDEX
+        //{
+        //    //extract the equipment ID from the selected cmbItem text
+        //    if (int.TryParse(cmbItem.Text.Split('-')[0].Trim(), out int equipmentID))
+        //    {
+        //        con.Open();
+        //        cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
+        //        cmd.Parameters.AddWithValue("@equipmentID", equipmentID);
 
-                dr = cmd.ExecuteReader();
+        //        dr = cmd.ExecuteReader();
 
-                while (dr.Read())
-                {
-                    dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
-                }
+        //        while (dr.Read())
+        //        {
+        //            dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+        //        }
 
-                dr.Close();
-                con.Close();
+        //        dr.Close();
+        //        con.Close();
 
-                //txt_Barcode.Enabled = true;
-                //txt_Barcode.Focus();
-            }
-            else
-            {
-                MessageBox.Show("Invalid equipment ID");
-            }
-        }
-        private void cmbPickCateg_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbPickCateg.SelectedItem != null)
-            {
-                cmbItem.Enabled = true;
-                cmbItem.Text = "";
-                txt_Barcode.Text = "";
-                //cmbPickCateg.DropDownStyle = ComboBoxStyle.DropDownList;
-            }
-        }
+        //        //txt_Barcode.Enabled = true;
+        //        //txt_Barcode.Focus();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Invalid equipment ID");
+        //    }
+        //}
+        //private void cmbPickCateg_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (cmbPickCateg.SelectedItem != null)
+        //    {
+        //        cmbItem.Enabled = true;
+        //        cmbItem.Text = "";
+        //        txt_Barcode.Text = "";
+        //        //cmbPickCateg.DropDownStyle = ComboBoxStyle.DropDownList;
+        //    }
+        //}
 
         
 
@@ -664,45 +671,39 @@ namespace LABCODE1
             txt_Barcode.Text = "";
             txt_Barcode.Enabled = true;
             txt_Barcode.Focus();
+            txt_BarcodeItem.Enabled = false;
             btnProceed.Enabled = false;
         }
 
 
 
         //categ combo box
-        private void cmbCategLoad()
-        {
-            try
-            {
-                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
-                {
-                    string selectQuery = "SELECT categ_name FROM lab_categ";
-                    con.Open();
-                    cmbPickCateg.Items.Clear();//clear to prevent loop
+        //private void cmbCategLoad()
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+        //        {
+        //            string selectQuery = "SELECT categ_name FROM lab_categ";
+        //            con.Open();
+        //            cmbPickCateg.Items.Clear();//clear to prevent loop
 
-                    cmd = new SqlCommand(selectQuery, con);
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        string categName = $"{dr["categ_name"]}";
-                        cmbPickCateg.Items.Add(categName);
-                    }
-                    dr.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading items: " + ex.Message);
-            }
-        }
-        private void cmbPickCateg_DropDown(object sender, EventArgs e)
-        {
-            cmbCategLoad();
-        }
-        private void cmbPickCateg_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-        }
+        //            cmd = new SqlCommand(selectQuery, con);
+        //            SqlDataReader dr = cmd.ExecuteReader();
+        //            while (dr.Read())
+        //            {
+        //                string categName = $"{dr["categ_name"]}";
+        //                cmbPickCateg.Items.Add(categName);
+        //            }
+        //            dr.Close();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error loading items: " + ex.Message);
+        //    }
+        //}
+        
 
         public void LoadStudentPicture(string studentID)
         {
@@ -791,7 +792,7 @@ namespace LABCODE1
             {
                 if (int.TryParse(scannedData, out int equipmentID))
                 {
-
+                    //if itemid exist in dgv
                     bool itemIdExist = dgvItemBorrow.Rows
                         .Cast<DataGridViewRow>()
                         .Any(row => row.Cells[3].Value != null && row.Cells[3].Value.ToString() == equipmentID.ToString());
@@ -808,9 +809,19 @@ namespace LABCODE1
 
                             //dgvItemBorrow.Rows.Clear();
 
+                            
+
                             while (dr.Read())
                             {
-                                dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+
+                                //DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
+                                //comboBoxCell.Items.AddRange(new string[] { "1 hr", "2 hrs" });
+
+                                ////default
+                                //comboBoxCell.Value = "1 hr";
+
+                                dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString()/*, comboBoxCell*/);
+                                
                             }
                         }
                         catch (Exception ex)
