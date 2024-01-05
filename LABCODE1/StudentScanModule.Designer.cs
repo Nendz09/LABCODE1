@@ -44,13 +44,14 @@ namespace LABCODE1
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dateLabelDate = new System.Windows.Forms.Label();
-            this.studentPicture = new System.Windows.Forms.PictureBox();
             this.label_studentID = new System.Windows.Forms.Label();
             this.txt_BarcodeItem = new System.Windows.Forms.TextBox();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.studentPicture = new System.Windows.Forms.PictureBox();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
+            this.clearStudentID = new LABCODE1.UserButton();
             this.col_dob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_dor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_duetime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,10 +60,9 @@ namespace LABCODE1
             this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Duration = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clearStudentID = new LABCODE1.UserButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,7 +87,7 @@ namespace LABCODE1
             // 
             // txt_Barcode
             // 
-            this.txt_Barcode.Location = new System.Drawing.Point(198, 418);
+            this.txt_Barcode.Location = new System.Drawing.Point(198, 382);
             this.txt_Barcode.Name = "txt_Barcode";
             this.txt_Barcode.Size = new System.Drawing.Size(245, 20);
             this.txt_Barcode.TabIndex = 3;
@@ -184,35 +184,16 @@ namespace LABCODE1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(127, 470);
+            this.label2.Location = new System.Drawing.Point(127, 434);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 22;
             this.label2.Text = "ITEM SCAN";
             // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            // 
-            // pictureBoxClose
-            // 
-            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(772, 6);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
-            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxClose.TabIndex = 13;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(119, 421);
+            this.label3.Location = new System.Drawing.Point(119, 385);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 13);
             this.label3.TabIndex = 25;
@@ -229,18 +210,6 @@ namespace LABCODE1
             this.dateLabelDate.Text = "...HIDE";
             this.dateLabelDate.Visible = false;
             // 
-            // studentPicture
-            // 
-            this.studentPicture.BackColor = System.Drawing.SystemColors.Control;
-            this.studentPicture.ErrorImage = ((System.Drawing.Image)(resources.GetObject("studentPicture.ErrorImage")));
-            this.studentPicture.Image = global::LABCODE1.Properties.Resources.user_ddefault;
-            this.studentPicture.Location = new System.Drawing.Point(852, 75);
-            this.studentPicture.Name = "studentPicture";
-            this.studentPicture.Size = new System.Drawing.Size(168, 168);
-            this.studentPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.studentPicture.TabIndex = 27;
-            this.studentPicture.TabStop = false;
-            // 
             // label_studentID
             // 
             this.label_studentID.AutoSize = true;
@@ -253,12 +222,60 @@ namespace LABCODE1
             // txt_BarcodeItem
             // 
             this.txt_BarcodeItem.Enabled = false;
-            this.txt_BarcodeItem.Location = new System.Drawing.Point(198, 467);
+            this.txt_BarcodeItem.Location = new System.Drawing.Point(198, 431);
             this.txt_BarcodeItem.Name = "txt_BarcodeItem";
             this.txt_BarcodeItem.Size = new System.Drawing.Size(245, 20);
             this.txt_BarcodeItem.TabIndex = 29;
             this.txt_BarcodeItem.TextChanged += new System.EventHandler(this.txt_BarcodeItem_TextChanged);
             this.txt_BarcodeItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_BarcodeItem_KeyPress);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Width = 5;
+            // 
+            // studentPicture
+            // 
+            this.studentPicture.BackColor = System.Drawing.SystemColors.Control;
+            this.studentPicture.ErrorImage = ((System.Drawing.Image)(resources.GetObject("studentPicture.ErrorImage")));
+            this.studentPicture.Image = global::LABCODE1.Properties.Resources.user_ddefault;
+            this.studentPicture.Location = new System.Drawing.Point(852, 75);
+            this.studentPicture.Name = "studentPicture";
+            this.studentPicture.Size = new System.Drawing.Size(168, 168);
+            this.studentPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.studentPicture.TabIndex = 27;
+            this.studentPicture.TabStop = false;
+            // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(772, 6);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 13;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            // 
+            // clearStudentID
+            // 
+            this.clearStudentID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.clearStudentID.Enabled = false;
+            this.clearStudentID.Image = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
+            this.clearStudentID.ImageHover = ((System.Drawing.Image)(resources.GetObject("clearStudentID.ImageHover")));
+            this.clearStudentID.ImageNormal = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
+            this.clearStudentID.Location = new System.Drawing.Point(445, 382);
+            this.clearStudentID.Name = "clearStudentID";
+            this.clearStudentID.Size = new System.Drawing.Size(21, 20);
+            this.clearStudentID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.clearStudentID.TabIndex = 24;
+            this.clearStudentID.TabStop = false;
+            this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
             // 
             // col_dob
             // 
@@ -303,9 +320,9 @@ namespace LABCODE1
             this.Duration.HeaderText = "Duration";
             this.Duration.Items.AddRange(new object[] {
             "1 hr",
-            "2 hrs"});
+            "2 hrs",
+            "3 hrs"});
             this.Duration.Name = "Duration";
-            this.Duration.ReadOnly = false;
             // 
             // Delete
             // 
@@ -315,21 +332,6 @@ namespace LABCODE1
             this.Delete.Name = "Delete";
             this.Delete.ReadOnly = true;
             this.Delete.Width = 5;
-            // 
-            // clearStudentID
-            // 
-            this.clearStudentID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.clearStudentID.Enabled = false;
-            this.clearStudentID.Image = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
-            this.clearStudentID.ImageHover = ((System.Drawing.Image)(resources.GetObject("clearStudentID.ImageHover")));
-            this.clearStudentID.ImageNormal = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
-            this.clearStudentID.Location = new System.Drawing.Point(445, 418);
-            this.clearStudentID.Name = "clearStudentID";
-            this.clearStudentID.Size = new System.Drawing.Size(21, 20);
-            this.clearStudentID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.clearStudentID.TabIndex = 24;
-            this.clearStudentID.TabStop = false;
-            this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
             // 
             // StudentScanModule
             // 
@@ -360,8 +362,8 @@ namespace LABCODE1
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentScanModule_FormClosing);
             this.Load += new System.EventHandler(this.StudentScanModule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

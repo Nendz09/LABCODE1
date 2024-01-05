@@ -28,12 +28,65 @@ namespace LABCODE1
         private int recordsPerPage = 15; //limit per page
         private int totalRecords;
 
+
+
         public LogsForm()
         {
             InitializeComponent();
             LoadBorrows();
             LoadReturns();
+
         }
+        //public void UpdateDgvBorrowedCountdown(string itemId, string duration)
+        //{
+        //    // Assuming dgvBorrowed is the DataGridView in LogsForm
+        //    // Find the corresponding row based on item ID
+        //    foreach (DataGridViewRow row in dgvBorrowed.Rows)
+        //    {
+        //        if (row.Cells["Item ID"].Value.ToString() == itemId)
+        //        {
+        //            // Set the duration in the corresponding column (replace "Duration" with your actual column name)
+        //            row.Cells["Duration"].Value = duration;
+        //            StartCountdownTimer(); // Start the timer if not already started
+        //            break;
+        //        }
+        //    }
+        //}
+
+        //private void InitializeCountdownTimer()
+        //{
+        //    logsTimer.Tick += logsTimer_Tick;
+        //}
+        //private void StartCountdownTimer()
+        //{
+        //    if (!logsTimer.Enabled)
+        //    {
+        //        logsTimer.Start();
+        //    }
+        //}
+
+        //private void logsTimer_Tick(object sender, EventArgs e)
+        //{
+        //    // Update the countdown in dgvBorrowed for each row
+        //    foreach (DataGridViewRow row in dgvBorrowed.Rows)
+        //    {
+        //        // Assuming "Duration" is the column where you want to display the countdown
+        //        string duration = row.Cells["Duration"].Value.ToString();
+        //        UpdateCountdown(row, duration);
+        //    }
+        //}
+
+        //private void UpdateCountdown(DataGridViewRow row, string duration)
+        //{
+        //    // Implement the logic to update the countdown in the specified row
+        //    // You can use the existing logic for countdown without additional methods
+        //    // Example: subtract one second from the remaining time
+        //    TimeSpan remainingTime = TimeSpan.Parse(row.Cells["Time"].Value.ToString());
+        //    remainingTime = remainingTime.Subtract(TimeSpan.FromSeconds(1));
+        //    row.Cells["Time"].Value = remainingTime.ToString(@"hh\:mm\:ss");
+        //}
+
+
 
 
         private void labelBorrow_Click(object sender, EventArgs e)
@@ -192,9 +245,15 @@ namespace LABCODE1
             LoadData();
         }
 
+
+        //DICTIONARY
+        private Dictionary<int, DateTime> borrowDates = new Dictionary<int, DateTime>();
+        private Dictionary<int, DateTime> returnDates = new Dictionary<int, DateTime>();
+
         //PAGE
         private void LoadData()
         {
+            StudentScanModule studentScanModule = new StudentScanModule();
             dgvBorrowed.Rows.Clear();//clear current row para di pumatong
             dgvReturned.Rows.Clear();
 
@@ -233,14 +292,63 @@ namespace LABCODE1
                     dgvBorrowed.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
                         dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(),
                         dr[8].ToString());
+
+                    // Get the duration dynamically based on the selected options in dgvItemBorrow
+                    //string itemId = dr[4].ToString();
+                    //string duration = studentScanModule.GetDurationFromDgvItemBorrow(itemId);
+                    //dgvBorrowed.Rows[dgvBorrowed.Rows.Count - 1].Cells["col_time"].Value = duration;
                 }
                 dr.Close();
                 UpdatePageInfo();
             }
 
 
-        }
 
+
+            int index = 0;
+            foreach (DataGridViewRow row in dgvBorrowed.Rows)
+            {
+                DateTime borrowDate = DateTime.Parse(row.Cells["br_col_borrowDate"].Value.ToString());
+                DateTime returnDate = DateTime.Parse(row.Cells["br_col_returnDate"].Value.ToString());
+
+                borrowDates[index] = borrowDate;
+                returnDates[index] = returnDate;
+
+                // Calculate and set the initial remaining time
+                TimeSpan remainingTime = returnDate - DateTime.Now;
+                row.Cells["col_time"].Value = remainingTime.ToString(@"hh\:mm\:ss");
+
+                index++;
+            }
+
+            // Set up the timer to update the countdown every second
+            logsTimer.Interval = 1000; // 1 second
+            logsTimer.Tick += logsTimer_Tick;
+            logsTimer.Start();
+
+        }
+        private void logsTimer_Tick(object sender, EventArgs e)
+        {
+            int index = 0;
+            foreach (DataGridViewRow row in dgvBorrowed.Rows)
+            {
+                DateTime borrowDate = borrowDates[index];
+                DateTime returnDate = returnDates[index];
+
+                // Calculate remaining time
+                TimeSpan remainingTime = returnDate - DateTime.Now;
+
+
+                if (remainingTime <= TimeSpan.Zero)
+                {
+                    remainingTime = TimeSpan.Zero;
+                }
+
+                row.Cells["col_time"].Value = remainingTime.ToString(@"hh\:mm\:ss");
+
+                index++;
+            }
+        }
 
 
         private void UpdatePageInfo()
@@ -446,5 +554,7 @@ namespace LABCODE1
                 dbForm.InsertRecentActivities(msg);
             }
         }
+
+       
     }
 }

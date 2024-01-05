@@ -113,7 +113,7 @@ namespace LABCODE1
 
         private void StudentScanModule_Load(object sender, EventArgs e)
         {
-
+            
             //if (dgvItemBorrow.Columns["Duration"] is DataGridViewComboBoxColumn comboBoxColumn)
             //{
             //    comboBoxColumn.Items.AddRange("1 hr", "2 hrs");
@@ -297,9 +297,12 @@ namespace LABCODE1
         private void timer1_Tick(object sender, EventArgs e)
         {
             dateLabel.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
-            dateLabelDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); ;
+            dateLabelDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
+            
+
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             //cmbPickCateg.SelectedIndex = -1;
@@ -467,13 +470,16 @@ namespace LABCODE1
                 if (HasDuplicateItemIds())
                 {
                     MessageBox.Show("Please remove the DUPLICATE item ID before proceeding. Thank you.", "Duplicate Item ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; //exit the method if duplicates are found
+                    return; //exit
                 }
+
+                
 
                 List<int> itemIds = dgv_GetSelectedItemIds(); //list item (int type)
                 List<string> itemNames = dgv_ItemNames(); //list item names
                 dgv_UpdateLabEqpmentStatus(itemIds);
                 dgv_InsertIntoLabBorrows();
+
 
                 //DASHBOARD
                 string studentName = label_studentName.Text;
@@ -484,6 +490,9 @@ namespace LABCODE1
 
                 //con.Close();
                 MessageBox.Show("Borrowed Successfully!");
+
+               
+
                 this.Dispose();
             }
             catch (Exception ex)
@@ -783,6 +792,8 @@ namespace LABCODE1
             //    con.Close();
             //}
         }
+
+
         private void ProcessScannedData()
         {
             string scannedData = txt_BarcodeItem.Text.Trim();
@@ -848,5 +859,61 @@ namespace LABCODE1
         }
 
 
+
+
+
+
+
+
+        //private TimeSpan remainingTime;
+
+        //public string GetDurationFromDgvItemBorrow(string itemId)
+        //{
+        //    string duration = "asdasd"; // Default value if duration is not found
+
+        //    foreach (DataGridViewRow row in dgvItemBorrow.Rows)
+        //    {
+        //        string currentItemId = row.Cells["col_itemid"].Value.ToString();
+        //        if (currentItemId == itemId)
+        //        {
+        //            // Get the duration from the selected options in dgvItemBorrow
+        //            DataGridViewComboBoxCell comboBoxCell = (DataGridViewComboBoxCell)row.Cells["Duration"];
+        //            duration = comboBoxCell.Value.ToString();
+
+        //            // Convert the duration to a TimeSpan
+        //            TimeSpan durationTimeSpan = ConvertDuration(duration);
+
+        //            // Perform any actions with the duration, e.g., update another column
+        //            int timeLeftColumnIndex = dgvItemBorrow.Columns["col_timeleft"].Index;
+        //            row.Cells[timeLeftColumnIndex].Value = durationTimeSpan.ToString(@"hh\:mm\:ss");
+
+        //            break;
+        //        }
+        //    }
+
+        //    return duration;
+        //}
+
+
+
+
+
+
+
+        //private TimeSpan ConvertDuration(string duration)
+        //{
+        //    switch (duration)
+        //    {
+        //        case "1 hr":
+        //            return TimeSpan.FromHours(1);
+        //        case "2 hrs":
+        //            return TimeSpan.FromHours(2);
+        //        case "3 hrs":
+        //            return TimeSpan.FromHours(3);
+        //        // Add more cases for other durations as needed
+        //        default:
+        //            return TimeSpan.Zero; // or throw an exception for unknown durations
+        //    }
+        //}
     }
 }

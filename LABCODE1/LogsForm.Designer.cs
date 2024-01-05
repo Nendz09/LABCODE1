@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogsForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogsForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExport = new LABCODE1.UserButton();
             this.labelReturn = new System.Windows.Forms.Label();
             this.labelBorrow = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvBorrowed = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.br_col_borrowDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +50,7 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.br_col_returnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvReturned = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,29 +64,29 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnPrev1 = new LABCODE1.UserButton();
             this.labelPage = new System.Windows.Forms.Label();
+            this.btnNext1 = new LABCODE1.UserButton();
             this.picBorrowLegend = new System.Windows.Forms.PictureBox();
             this.picReturnLegend = new System.Windows.Forms.PictureBox();
             this.btnDelete = new LABCODE1.UserButton();
             this.btnBackup_Restore = new LABCODE1.UserButton();
             this.btnReturnLogs = new LABCODE1.UserButton();
             this.btnBorrowLogs = new LABCODE1.UserButton();
-            this.btnPrev1 = new LABCODE1.UserButton();
-            this.btnNext1 = new LABCODE1.UserButton();
-            this.btnExport = new LABCODE1.UserButton();
+            this.logsTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturned)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBorrowLegend)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReturnLegend)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBackup_Restore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReturnLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBorrowLogs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -98,6 +101,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 1;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
+            this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
+            this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
+            this.btnExport.Location = new System.Drawing.Point(703, -2);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(126, 56);
+            this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnExport.TabIndex = 12;
+            this.btnExport.TabStop = false;
+            this.btnExport.Visible = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // labelReturn
             // 
@@ -159,14 +178,15 @@
             this.dgvBorrowed.ColumnHeadersHeight = 35;
             this.dgvBorrowed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvBorrowed.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.br_col_borrowDate,
             this.Column2,
             this.Column3,
             this.Column4,
             this.Column8,
             this.Column5,
             this.Column6,
-            this.br_col_returnDate});
+            this.br_col_returnDate,
+            this.col_time});
             this.dgvBorrowed.Cursor = System.Windows.Forms.Cursors.Default;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -194,12 +214,12 @@
             this.dgvBorrowed.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBorrowed_CellFormatting);
             this.dgvBorrowed.SelectionChanged += new System.EventHandler(this.dgvBorrowed_SelectionChanged);
             // 
-            // Column1
+            // br_col_borrowDate
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "Date";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.br_col_borrowDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.br_col_borrowDate.HeaderText = "Date";
+            this.br_col_borrowDate.Name = "br_col_borrowDate";
+            this.br_col_borrowDate.ReadOnly = true;
             // 
             // Column2
             // 
@@ -251,6 +271,12 @@
             this.br_col_returnDate.HeaderText = "Return Date";
             this.br_col_returnDate.Name = "br_col_returnDate";
             this.br_col_returnDate.ReadOnly = true;
+            // 
+            // col_time
+            // 
+            this.col_time.HeaderText = "Time";
+            this.col_time.Name = "col_time";
+            this.col_time.ReadOnly = true;
             // 
             // dgvReturned
             // 
@@ -399,6 +425,21 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(309, 54);
             this.flowLayoutPanel1.TabIndex = 7;
             // 
+            // btnPrev1
+            // 
+            this.btnPrev1.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrev1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrev1.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev1.Image")));
+            this.btnPrev1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageHover")));
+            this.btnPrev1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageNormal")));
+            this.btnPrev1.Location = new System.Drawing.Point(3, 3);
+            this.btnPrev1.Name = "btnPrev1";
+            this.btnPrev1.Size = new System.Drawing.Size(105, 47);
+            this.btnPrev1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnPrev1.TabIndex = 7;
+            this.btnPrev1.TabStop = false;
+            this.btnPrev1.Click += new System.EventHandler(this.btnPrev1_Click);
+            // 
             // labelPage
             // 
             this.labelPage.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -410,6 +451,21 @@
             this.labelPage.Size = new System.Drawing.Size(40, 16);
             this.labelPage.TabIndex = 2;
             this.labelPage.Text = "Page";
+            // 
+            // btnNext1
+            // 
+            this.btnNext1.BackColor = System.Drawing.Color.Transparent;
+            this.btnNext1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNext1.Image = ((System.Drawing.Image)(resources.GetObject("btnNext1.Image")));
+            this.btnNext1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageHover")));
+            this.btnNext1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageNormal")));
+            this.btnNext1.Location = new System.Drawing.Point(160, 3);
+            this.btnNext1.Name = "btnNext1";
+            this.btnNext1.Size = new System.Drawing.Size(105, 47);
+            this.btnNext1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnNext1.TabIndex = 6;
+            this.btnNext1.TabStop = false;
+            this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
             // 
             // picBorrowLegend
             // 
@@ -497,51 +553,10 @@
             this.btnBorrowLogs.TabStop = false;
             this.btnBorrowLogs.Click += new System.EventHandler(this.btnBorrowLogs_Click);
             // 
-            // btnPrev1
+            // logsTimer
             // 
-            this.btnPrev1.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrev1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrev1.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev1.Image")));
-            this.btnPrev1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageHover")));
-            this.btnPrev1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnPrev1.ImageNormal")));
-            this.btnPrev1.Location = new System.Drawing.Point(3, 3);
-            this.btnPrev1.Name = "btnPrev1";
-            this.btnPrev1.Size = new System.Drawing.Size(105, 47);
-            this.btnPrev1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnPrev1.TabIndex = 7;
-            this.btnPrev1.TabStop = false;
-            this.btnPrev1.Click += new System.EventHandler(this.btnPrev1_Click);
-            // 
-            // btnNext1
-            // 
-            this.btnNext1.BackColor = System.Drawing.Color.Transparent;
-            this.btnNext1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext1.Image = ((System.Drawing.Image)(resources.GetObject("btnNext1.Image")));
-            this.btnNext1.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageHover")));
-            this.btnNext1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageNormal")));
-            this.btnNext1.Location = new System.Drawing.Point(160, 3);
-            this.btnNext1.Name = "btnNext1";
-            this.btnNext1.Size = new System.Drawing.Size(105, 47);
-            this.btnNext1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnNext1.TabIndex = 6;
-            this.btnNext1.TabStop = false;
-            this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
-            this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
-            this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
-            this.btnExport.Location = new System.Drawing.Point(703, -2);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(126, 56);
-            this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnExport.TabIndex = 12;
-            this.btnExport.TabStop = false;
-            this.btnExport.Visible = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            this.logsTimer.Interval = 1000;
+            this.logsTimer.Tick += new System.EventHandler(this.logsTimer_Tick);
             // 
             // LogsForm
             // 
@@ -558,8 +573,8 @@
             this.Controls.Add(this.btnBorrowLogs);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dgvReturned);
             this.Controls.Add(this.dgvBorrowed);
+            this.Controls.Add(this.dgvReturned);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -569,19 +584,19 @@
             this.Text = "LogsForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturned)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBorrowLegend)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picReturnLegend)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBackup_Restore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReturnLogs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBorrowLogs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -593,14 +608,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelBorrow;
         private System.Windows.Forms.Label labelReturn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn br_col_returnDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
@@ -624,5 +631,15 @@
         private UserButton btnExport;
         private System.Windows.Forms.PictureBox picBorrowLegend;
         private System.Windows.Forms.PictureBox picReturnLegend;
+        private System.Windows.Forms.Timer logsTimer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn br_col_borrowDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn br_col_returnDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_time;
     }
 }
