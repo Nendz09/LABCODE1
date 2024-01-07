@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExportPDF = new LABCODE1.UserButton();
+            this.btnExport = new LABCODE1.UserButton();
+            this.btnAdd = new LABCODE1.UserButton();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvLab = new System.Windows.Forms.DataGridView();
             this.Barcode = new System.Windows.Forms.DataGridViewImageColumn();
@@ -50,21 +53,18 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.labelPage = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.searchSizeCalibration = new LABCODE1.UserTextbox();
             this.btnPrev1 = new LABCODE1.UserButton();
             this.btnNext1 = new LABCODE1.UserButton();
+            this.searchSizeCalibration = new LABCODE1.UserTextbox();
             this.userTextbox1 = new LABCODE1.UserTextbox();
-            this.btnExportPDF = new LABCODE1.UserButton();
-            this.btnExport = new LABCODE1.UserButton();
-            this.btnAdd = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExportPDF)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLab)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExportPDF)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -79,6 +79,51 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 0;
+            // 
+            // btnExportPDF
+            // 
+            this.btnExportPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportPDF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportPDF.Image = ((System.Drawing.Image)(resources.GetObject("btnExportPDF.Image")));
+            this.btnExportPDF.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExportPDF.ImageHover")));
+            this.btnExportPDF.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExportPDF.ImageNormal")));
+            this.btnExportPDF.Location = new System.Drawing.Point(357, -2);
+            this.btnExportPDF.Name = "btnExportPDF";
+            this.btnExportPDF.Size = new System.Drawing.Size(126, 56);
+            this.btnExportPDF.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnExportPDF.TabIndex = 5;
+            this.btnExportPDF.TabStop = false;
+            this.btnExportPDF.Click += new System.EventHandler(this.btnExportPDF_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
+            this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
+            this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
+            this.btnExport.Location = new System.Drawing.Point(565, -3);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(126, 56);
+            this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnExport.TabIndex = 4;
+            this.btnExport.TabStop = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
+            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
+            this.btnAdd.Location = new System.Drawing.Point(702, -3);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(126, 56);
+            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label1
             // 
@@ -144,6 +189,7 @@
             this.dgvLab.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvLab.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dgvLab.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvLab.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvLab.RowTemplate.Height = 40;
             this.dgvLab.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLab.Size = new System.Drawing.Size(694, 365);
@@ -288,29 +334,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(344, 54);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
-            // searchSizeCalibration
-            // 
-            this.searchSizeCalibration.BackColor = System.Drawing.SystemColors.Window;
-            this.searchSizeCalibration.BorderColor = System.Drawing.Color.Green;
-            this.searchSizeCalibration.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.searchSizeCalibration.BorderRadius = 15;
-            this.searchSizeCalibration.BorderSize = 2;
-            this.searchSizeCalibration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchSizeCalibration.ForeColor = System.Drawing.Color.Black;
-            this.searchSizeCalibration.Location = new System.Drawing.Point(376, 54);
-            this.searchSizeCalibration.Margin = new System.Windows.Forms.Padding(4);
-            this.searchSizeCalibration.Multiline = false;
-            this.searchSizeCalibration.Name = "searchSizeCalibration";
-            this.searchSizeCalibration.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.searchSizeCalibration.PasswordChar = false;
-            this.searchSizeCalibration.PlaceholderColor = System.Drawing.Color.Gray;
-            this.searchSizeCalibration.PlaceholderText = "Search Size/Calibration";
-            this.searchSizeCalibration.Size = new System.Drawing.Size(196, 31);
-            this.searchSizeCalibration.TabIndex = 6;
-            this.searchSizeCalibration.Texts = "";
-            this.searchSizeCalibration.UnderlinedStyle = false;
-            this.searchSizeCalibration._TextChanged += new System.EventHandler(this.searchSizeCalibration__TextChanged);
-            // 
             // btnPrev1
             // 
             this.btnPrev1.BackColor = System.Drawing.Color.Transparent;
@@ -341,6 +364,29 @@
             this.btnNext1.TabStop = false;
             this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
             // 
+            // searchSizeCalibration
+            // 
+            this.searchSizeCalibration.BackColor = System.Drawing.SystemColors.Window;
+            this.searchSizeCalibration.BorderColor = System.Drawing.Color.Green;
+            this.searchSizeCalibration.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.searchSizeCalibration.BorderRadius = 15;
+            this.searchSizeCalibration.BorderSize = 2;
+            this.searchSizeCalibration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchSizeCalibration.ForeColor = System.Drawing.Color.Black;
+            this.searchSizeCalibration.Location = new System.Drawing.Point(376, 54);
+            this.searchSizeCalibration.Margin = new System.Windows.Forms.Padding(4);
+            this.searchSizeCalibration.Multiline = false;
+            this.searchSizeCalibration.Name = "searchSizeCalibration";
+            this.searchSizeCalibration.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.searchSizeCalibration.PasswordChar = false;
+            this.searchSizeCalibration.PlaceholderColor = System.Drawing.Color.Gray;
+            this.searchSizeCalibration.PlaceholderText = "Search Size/Calibration";
+            this.searchSizeCalibration.Size = new System.Drawing.Size(196, 31);
+            this.searchSizeCalibration.TabIndex = 6;
+            this.searchSizeCalibration.Texts = "";
+            this.searchSizeCalibration.UnderlinedStyle = false;
+            this.searchSizeCalibration._TextChanged += new System.EventHandler(this.searchSizeCalibration__TextChanged);
+            // 
             // userTextbox1
             // 
             this.userTextbox1.BackColor = System.Drawing.SystemColors.Window;
@@ -363,51 +409,6 @@
             this.userTextbox1.Texts = "";
             this.userTextbox1.UnderlinedStyle = false;
             this.userTextbox1._TextChanged += new System.EventHandler(this.userTextbox1__TextChanged);
-            // 
-            // btnExportPDF
-            // 
-            this.btnExportPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportPDF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportPDF.Image = ((System.Drawing.Image)(resources.GetObject("btnExportPDF.Image")));
-            this.btnExportPDF.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExportPDF.ImageHover")));
-            this.btnExportPDF.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExportPDF.ImageNormal")));
-            this.btnExportPDF.Location = new System.Drawing.Point(357, -2);
-            this.btnExportPDF.Name = "btnExportPDF";
-            this.btnExportPDF.Size = new System.Drawing.Size(126, 56);
-            this.btnExportPDF.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnExportPDF.TabIndex = 5;
-            this.btnExportPDF.TabStop = false;
-            this.btnExportPDF.Click += new System.EventHandler(this.btnExportPDF_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
-            this.btnExport.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageHover")));
-            this.btnExport.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageNormal")));
-            this.btnExport.Location = new System.Drawing.Point(565, -3);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(126, 56);
-            this.btnExport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnExport.TabIndex = 4;
-            this.btnExport.TabStop = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageHover")));
-            this.btnAdd.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageNormal")));
-            this.btnAdd.Location = new System.Drawing.Point(702, -3);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(126, 56);
-            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.TabStop = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // InventoryForm
             // 
@@ -432,14 +433,14 @@
             this.Text = "UserForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExportPDF)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLab)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExportPDF)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             this.ResumeLayout(false);
 
         }

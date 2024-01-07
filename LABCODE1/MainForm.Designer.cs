@@ -35,6 +35,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.userButtonMainPanel1 = new LABCODE1.UserButtonMainPanel();
             this.btnLogsMainPanel = new LABCODE1.UserButtonMainPanel();
             this.btnStudentsMainPanel = new LABCODE1.UserButtonMainPanel();
             this.btnInventoryMainPanel = new LABCODE1.UserButtonMainPanel();
@@ -44,6 +45,7 @@
             this.panelMain.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userButtonMainPanel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudentsMainPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInventoryMainPanel)).BeginInit();
@@ -53,6 +55,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
+            this.panel1.Controls.Add(this.userButtonMainPanel1);
             this.panel1.Controls.Add(this.btnLogsMainPanel);
             this.panel1.Controls.Add(this.btnStudentsMainPanel);
             this.panel1.Controls.Add(this.btnInventoryMainPanel);
@@ -121,6 +124,20 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // userButtonMainPanel1
+            // 
+            this.userButtonMainPanel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.userButtonMainPanel1.Image = ((System.Drawing.Image)(resources.GetObject("userButtonMainPanel1.Image")));
+            this.userButtonMainPanel1.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButtonMainPanel1.ImageHover")));
+            this.userButtonMainPanel1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButtonMainPanel1.ImageNormal")));
+            this.userButtonMainPanel1.Location = new System.Drawing.Point(1, 509);
+            this.userButtonMainPanel1.Name = "userButtonMainPanel1";
+            this.userButtonMainPanel1.Size = new System.Drawing.Size(206, 94);
+            this.userButtonMainPanel1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.userButtonMainPanel1.TabIndex = 14;
+            this.userButtonMainPanel1.TabStop = false;
+            this.userButtonMainPanel1.Click += new System.EventHandler(this.userButtonMainPanel1_Click);
             // 
             // btnLogsMainPanel
             // 
@@ -196,6 +213,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userButtonMainPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudentsMainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInventoryMainPanel)).EndInit();
@@ -216,5 +234,6 @@
         private UserButtonMainPanel btnStudentsMainPanel;
         private UserButtonMainPanel btnLogsMainPanel;
         private System.Windows.Forms.Panel panel2;
+        private UserButtonMainPanel userButtonMainPanel1;
     }
 }

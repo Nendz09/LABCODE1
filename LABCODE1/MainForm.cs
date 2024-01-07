@@ -53,6 +53,10 @@ namespace LABCODE1
         {
             openChildForm(new LogsForm());
         }
+        private void userButtonMainPanel1_Click(object sender, EventArgs e)
+        {
+            openChildForm(new ItemDetails());
+        }
 
 
 
@@ -67,6 +71,5 @@ namespace LABCODE1
             this.WindowState = FormWindowState.Maximized;
         }
 
-        
     }
 }
