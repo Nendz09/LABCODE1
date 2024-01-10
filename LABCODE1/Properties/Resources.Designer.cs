@@ -123,6 +123,16 @@ namespace LABCODE1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap item_unavailable {
+            get {
+                object obj = ResourceManager.GetObject("item_unavailable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap replacement_20pixels {
             get {
                 object obj = ResourceManager.GetObject("replacement_20pixels", resourceCulture);

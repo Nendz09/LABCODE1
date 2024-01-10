@@ -438,6 +438,12 @@
     <Compile Include="ItemDetails.Designer.cs">
       <DependentUpon>ItemDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="ItemDetailsModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemDetailsModule.Designer.cs">
+      <DependentUpon>ItemDetailsModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -500,12 +506,6 @@
     <Compile Include="StudentViewModule.Designer.cs">
       <DependentUpon>StudentViewModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="TIMERTRY.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TIMERTRY.Designer.cs">
-      <DependentUpon>TIMERTRY.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -548,6 +548,9 @@
     <EmbeddedResource Include="ItemDetails.resx">
       <DependentUpon>ItemDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ItemDetailsModule.resx">
+      <DependentUpon>ItemDetailsModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogsForm.resx">
       <DependentUpon>LogsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -588,9 +591,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StudentViewModule.resx">
       <DependentUpon>StudentViewModule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TIMERTRY.resx">
-      <DependentUpon>TIMERTRY.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserButton.resx">
       <DependentUpon>UserButton.cs</DependentUpon>
@@ -671,6 +671,7 @@
     <Content Include="Inventory_Labcode_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\item_unavailable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.1.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.1.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />

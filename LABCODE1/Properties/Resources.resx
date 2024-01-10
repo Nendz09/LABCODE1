@@ -121,6 +121,9 @@
   <data name="general_add_btn_highlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\general_add_btn_highlight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="user_ddefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_ddefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bg_trans" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bg_trans.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,11 +133,11 @@
   <data name="replacement_20pixels" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\replacement_20pixels.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="return_20px_highlight_REVERSED" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\return_20px_highlight_REVERSED.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="edit_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="return_20px_highlight_REVERSED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\return_20px_highlight_REVERSED.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bg_cvsu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bg_cvsu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,7 +148,7 @@
   <data name="general_add_btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\general_add_btn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user_ddefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user_ddefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="item_unavailable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\item_unavailable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

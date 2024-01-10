@@ -19,6 +19,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using static System.Net.WebRequestMethods;
 using System.IO;
 using Irony.Parsing;
+using System.Globalization;
 
 namespace LABCODE1
 {
@@ -43,36 +44,36 @@ namespace LABCODE1
         /*backgroundworker - is a component in .NET that simplifies working with background threads
         in a Windows Forms application*/
         private BackgroundWorker videoCaptureWorker;
-        private DateTimePicker dtpDate;
-        private DateTimePicker dtpTime;
+        //private DateTimePicker dtpDate;
+        //private DateTimePicker dtpTime;
         public StudentScanModule()
         {
             InitializeComponent();
             this.ActiveControl = txt_Barcode; //first focus
-            videoCaptureWorker = new BackgroundWorker();
-            videoCaptureWorker.DoWork += VideoCaptureWorker_DoWork;
-            videoCaptureWorker.RunWorkerCompleted += VideoCaptureWorker_RunWorkerCompleted;
+            //videoCaptureWorker = new BackgroundWorker();
+            //videoCaptureWorker.DoWork += VideoCaptureWorker_DoWork;
+            //videoCaptureWorker.RunWorkerCompleted += VideoCaptureWorker_RunWorkerCompleted;
 
             
 
             // Initialize DateTimePicker controls
-            dtpDate = new DateTimePicker();
-            dtpDate.Format = DateTimePickerFormat.Custom;
-            dtpDate.MinDate = DateTime.Now;
-            dtpDate.CustomFormat = "yyyy-MM-dd";
+            //dtpDate = new DateTimePicker();
+            //dtpDate.Format = DateTimePickerFormat.Custom;
+            //dtpDate.MinDate = DateTime.Now;
+            //dtpDate.CustomFormat = "yyyy-MM-dd";
 
 
-            dtpTime = new DateTimePicker();
-            dtpTime.Format = DateTimePickerFormat.Custom;
-            dtpTime.MinDate = DateTime.Now;
-            dtpTime.CustomFormat = "HH:mm";
-            dtpTime.ShowUpDown = true;
+            //dtpTime = new DateTimePicker();
+            //dtpTime.Format = DateTimePickerFormat.Custom;
+            //dtpTime.MinDate = DateTime.Now;
+            //dtpTime.CustomFormat = "HH:mm";
+            //dtpTime.ShowUpDown = true;
 
-            dtpDate.TextChanged += new EventHandler(DateTimePickerChange);
-            dtpDate.CloseUp += new EventHandler(DateTimePickerClose);
+            //dtpDate.TextChanged += new EventHandler(DateTimePickerChange);
+            //dtpDate.CloseUp += new EventHandler(DateTimePickerClose);
 
-            dtpTime.TextChanged += new EventHandler(DateTimePickerChange);
-            dtpTime.CloseUp += new EventHandler(DateTimePickerClose);
+            //dtpTime.TextChanged += new EventHandler(DateTimePickerChange);
+            //dtpTime.CloseUp += new EventHandler(DateTimePickerClose);
 
 
 
@@ -89,27 +90,27 @@ namespace LABCODE1
 
 
 
-        private void VideoCaptureWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            // Stop the video capture device
-            if (videoCaptureDevice != null && videoCaptureDevice.IsRunning)
-            {
-                videoCaptureDevice.SignalToStop();
-                videoCaptureDevice.WaitForStop();
-            }
-        }
+        //private void VideoCaptureWorker_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    // Stop the video capture device
+        //    if (videoCaptureDevice != null && videoCaptureDevice.IsRunning)
+        //    {
+        //        videoCaptureDevice.SignalToStop();
+        //        videoCaptureDevice.WaitForStop();
+        //    }
+        //}
 
-        private void VideoCaptureWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (videoCaptureDevice != null)
-            {
-                videoCaptureDevice = null; // Ensure that the device is disposed of.
-            }
-        }
+        //private void VideoCaptureWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        //{
+        //    if (videoCaptureDevice != null)
+        //    {
+        //        videoCaptureDevice = null; // Ensure that the device is disposed of.
+        //    }
+        //}
 
 
-        FilterInfoCollection filterInfoCollection;
-        VideoCaptureDevice videoCaptureDevice;
+        //FilterInfoCollection filterInfoCollection;
+        //VideoCaptureDevice videoCaptureDevice;
 
         private void StudentScanModule_Load(object sender, EventArgs e)
         {
@@ -130,24 +131,24 @@ namespace LABCODE1
                 },
             };
 
-            filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            if (filterInfoCollection.Count == 0)
-            {
-                MessageBox.Show("No video capture devices found.");
-                return;
-            }
-            else
-            {
-                foreach (FilterInfo device in filterInfoCollection)
-                {
-                    cboCam.Items.Add(device.Name);
-                }
-                cboCam.SelectedIndex = 0;
-            }
+            //filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            //if (filterInfoCollection.Count == 0)
+            //{
+            //    MessageBox.Show("No video capture devices found.");
+            //    return;
+            //}
+            //else
+            //{
+            //    foreach (FilterInfo device in filterInfoCollection)
+            //    {
+            //        cboCam.Items.Add(device.Name);
+            //    }
+            //    cboCam.SelectedIndex = 0;
+            //}
 
-            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cboCam.SelectedIndex].MonikerString);
-            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
-            videoCaptureDevice.Start();
+            //videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cboCam.SelectedIndex].MonikerString);
+            //videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+            //videoCaptureDevice.Start();
 
         }
 
@@ -157,37 +158,37 @@ namespace LABCODE1
         }
 
 
-        private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
-        {
+        //private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
+        //{
 
-            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-            //lalabas ko to
-            //BarcodeReader reader = new BarcodeReader(); 
+        //    Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+        //    //lalabas ko to
+        //    //BarcodeReader reader = new BarcodeReader(); 
 
-            //THIS ONE IS PARA MAANO FORMAT NG BARCODE VVVV----------
-            var result = reader.Decode(bitmap);
-
-
-        }
+        //    //THIS ONE IS PARA MAANO FORMAT NG BARCODE VVVV----------
+        //    var result = reader.Decode(bitmap);
 
 
-        private void StudentScanModule_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (!videoCaptureWorker.IsBusy)
-            {
-                videoCaptureWorker.RunWorkerAsync();
-            }
-            //if (videoCaptureDevice != null)
-            //{
-            //    if (videoCaptureDevice.IsRunning) 
-            //    {
-            //        videoCaptureDevice.Stop();
-            //    }
-            //    //BEFORE
-            //    //if (videoCaptureDevice.IsRunning)
-            //    //    videoCaptureDevice.Stop();
-            //}
-        }
+        //}
+
+
+        //private void StudentScanModule_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    if (!videoCaptureWorker.IsBusy)
+        //    {
+        //        videoCaptureWorker.RunWorkerAsync();
+        //    }
+        //    //if (videoCaptureDevice != null)
+        //    //{
+        //    //    if (videoCaptureDevice.IsRunning) 
+        //    //    {
+        //    //        videoCaptureDevice.Stop();
+        //    //    }
+        //    //    //BEFORE
+        //    //    //if (videoCaptureDevice.IsRunning)
+        //    //    //    videoCaptureDevice.Stop();
+        //    //}
+        //}
 
         private void txt_Barcode_TextChanged(object sender, EventArgs e)
         {
@@ -234,7 +235,93 @@ namespace LABCODE1
             con.Close();
         }
 
+        private void txt_BarcodeItem_TextChanged(object sender, EventArgs e)
+        {
+            string labelItemName = label_itemName.Text;
+            LoadItemPicture(labelItemName);
 
+            try
+            {
+                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                {
+                    if (int.TryParse(txt_BarcodeItem.Text, out int itemID)) 
+                    {
+                        string query = "SELECT eqp_name FROM lab_eqpment WHERE eqp_id = @eqp_id and status = 'Available' ";
+
+                        using (SqlCommand cmd = new SqlCommand(query, con))
+                        {
+                            cmd.Parameters.AddWithValue("@eqp_id", itemID);
+                            con.Open();
+                            dr = cmd.ExecuteReader();
+                            if (dr.Read())
+                            {
+                                label_itemName.Text = dr["eqp_name"].ToString();
+                            }
+                            else
+                            {
+                                label_itemName.Text = "ITEM NAME";
+                                itemPicture.Image = Properties.Resources.item_unavailable;
+                            }
+                        }
+
+                    }
+                    
+                   
+                        
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error");
+            }
+            finally { dr.Close(); }
+
+
+            //if (txt_BarcodeItem.Text.EndsWith("\r\n")) // Check for the appropriate delimiter
+            //{
+            //    string scannedData = txt_BarcodeItem.Text.Trim();
+
+            //    // Process the scanned data (e.g., query the database)
+            //    ProcessScannedData(scannedData);
+
+            //    // Clear the textbox for the next scan
+            //    txt_BarcodeItem.Clear();
+            //}
+
+
+            //try
+            //{
+            //    if (int.TryParse(txt_BarcodeItem.Text, out int equipmentID))
+            //    {
+            //        con.Open();
+            //        cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
+            //        cmd.Parameters.AddWithValue("@equipmentID", equipmentID);
+
+            //        dr = cmd.ExecuteReader();
+
+            //        while (dr.Read())
+            //        {
+            //            dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+            //        }
+
+            //        //txt_Barcode.Enabled = true;
+            //        //txt_Barcode.Focus();
+            //    }
+            //    //else
+            //    //{
+            //    //    MessageBox.Show("Invalid equipment ID");
+            //    //}
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //finally
+            //{
+            //    dr.Close();
+            //    con.Close();
+            //}
+        }
 
 
 
@@ -313,8 +400,8 @@ namespace LABCODE1
             btnProceed.Enabled = false;
             clearStudentID.Enabled = false;
             dgvItemBorrow.Rows.Clear();
-            dtpDate.Visible = false;
-            dtpTime.Visible = false;
+            //dtpDate.Visible = false;
+            //dtpTime.Visible = false;
             label_studentName.Text = "STUDENT NAME";
             label_studentSection.Text = "SECTION";
         }
@@ -345,121 +432,122 @@ namespace LABCODE1
 
 
 
-            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
-            {
-                dgvItemBorrow.Controls.Add(dtpDate);
-                _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-                dtpDate.Size = new Size(_Rectangle.Width, _Rectangle.Height);
-                dtpDate.Location = new Point(_Rectangle.X, _Rectangle.Y);
-                dtpDate.Visible = true;
-            }
-            else if (e.ColumnIndex == 2 && e.RowIndex >= 0)
-            {
-                dgvItemBorrow.Controls.Add(dtpTime);
-                _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-                dtpTime.Size = new Size(_Rectangle.Width, _Rectangle.Height);
-                dtpTime.Location = new Point(_Rectangle.X, _Rectangle.Y);
-                dtpTime.Visible = true;
-            }
+            //if (e.ColumnIndex == 1 && e.RowIndex >= 0)
+            //{
+            //    dgvItemBorrow.Controls.Add(dtpDate);
+            //    _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+            //    dtpDate.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+            //    dtpDate.Location = new Point(_Rectangle.X, _Rectangle.Y);
+            //    dtpDate.Visible = true;
+            //}
+            //else if (e.ColumnIndex == 2 && e.RowIndex >= 0)
+            //{
+            //    dgvItemBorrow.Controls.Add(dtpTime);
+            //    _Rectangle = dgvItemBorrow.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+            //    dtpTime.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+            //    dtpTime.Location = new Point(_Rectangle.X, _Rectangle.Y);
+            //    dtpTime.Visible = true;
+            //}
 
 
         }
 
         
 
-        private void DateTimePickerChange(object sender, EventArgs e)
-        {
-            //string newDateText = dtp.Text.ToString();
+        //private void DateTimePickerChange(object sender, EventArgs e)
+        //{
+        //    //string newDateText = dtp.Text.ToString();
 
-            //// Check if the value has actually changed
-            //if (dtp.Tag == null || !newDateText.Equals(dtp.Tag.ToString()))
-            //{
-            //    dgvItemBorrow.CurrentCell.Value = newDateText;
+        //    //// Check if the value has actually changed
+        //    //if (dtp.Tag == null || !newDateText.Equals(dtp.Tag.ToString()))
+        //    //{
+        //    //    dgvItemBorrow.CurrentCell.Value = newDateText;
 
-            //    // Show the message only if the value has changed
-            //    MessageBox.Show(string.Format("Date changed to {0}", newDateText));
+        //    //    // Show the message only if the value has changed
+        //    //    MessageBox.Show(string.Format("Date changed to {0}", newDateText));
 
-            //    // Store the current value in the Tag property to compare with future changes
-            //    dtp.Tag = newDateText;
-            //}
+        //    //    // Store the current value in the Tag property to compare with future changes
+        //    //    dtp.Tag = newDateText;
+        //    //}
 
-            //dtp.Visible = false;
-
-
-            if (sender == dtpDate)
-            {
-                dgvItemBorrow.CurrentCell.Value = dtpDate.Text;
-            }
-            else if (sender == dtpTime)
-            {
-                dgvItemBorrow.CurrentCell.Value = dtpTime.Text;
-            }
+        //    //dtp.Visible = false;
 
 
-            //WORKING
-            //dgvItemBorrow.CurrentCell.Value = dtp.Text.ToString();
-            //dgvItemBorrow.CurrentCell.Value = atp.Text.ToString();
+        //    //if (sender == dtpDate)
+        //    //{
+        //    //    dgvItemBorrow.CurrentCell.Value = dtpDate.Text;
+        //    //}
+        //    //else if (sender == dtpTime)
+        //    //{
+        //    //    dgvItemBorrow.CurrentCell.Value = dtpTime.Text;
+        //    //}
 
 
-            //MessageBox.Show(string.Format("Date changed to {0}", dtp.Text.ToString()));
-        }
-        private void DateTimePickerClose(object sender, EventArgs e)
-        {
-            //if (sender is DateTimePicker)
-            //{
-            //    DateTimePicker dateTimePicker = (DateTimePicker)sender;
-            //    dateTimePicker.Value = DateTime.Now; //set the Value to the current date
-            //    dateTimePicker.Visible = false;
-            //}
+        //    //WORKING
+        //    //dgvItemBorrow.CurrentCell.Value = dtp.Text.ToString();
+        //    //dgvItemBorrow.CurrentCell.Value = atp.Text.ToString();
+
+
+        //    //MessageBox.Show(string.Format("Date changed to {0}", dtp.Text.ToString()));
+        //}
+        //private void DateTimePickerClose(object sender, EventArgs e)
+        //{
+        //    //if (sender is DateTimePicker)
+        //    //{
+        //    //    DateTimePicker dateTimePicker = (DateTimePicker)sender;
+        //    //    dateTimePicker.Value = DateTime.Now; //set the Value to the current date
+        //    //    dateTimePicker.Visible = false;
+        //    //}
 
 
 
-            //if (sender is DateTimePicker)
-            //{
-            //    DateTimePicker dateTimePicker = (DateTimePicker)sender;
+        //    //if (sender is DateTimePicker)
+        //    //{
+        //    //    DateTimePicker dateTimePicker = (DateTimePicker)sender;
 
-            //    // Get the current date from the DateTimePicker
-            //    DateTime selectedDate = dateTimePicker.Value;
+        //    //    // Get the current date from the DateTimePicker
+        //    //    DateTime selectedDate = dateTimePicker.Value;
 
 
-            //    dateTimePicker.Visible = false;
-            //}
-            if (sender == dtpDate)
-            {
-                dtpDate.Visible = false;
-            }
-            else if (sender == dtpTime)
-            {
-                dtpTime.Visible = false;
-            }
-        }
+        //    //    dateTimePicker.Visible = false;
+        //    //}
+        //    if (sender == dtpDate)
+        //    {
+        //        dtpDate.Visible = false;
+        //    }
+        //    else if (sender == dtpTime)
+        //    {
+        //        dtpTime.Visible = false;
+        //    }
+        //}
 
 
         private void dgvItemBorrow_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
-            {
-                // Hide the DateTimePicker control when leaving the cell
-                dtpDate.Visible = false;
-            }
-            else if (e.ColumnIndex == 2 && e.RowIndex >= 0)
-            {
-                // Hide the DateTimePicker control when leaving the cell
-                dtpTime.Visible = false;
-            }
+            //if (e.ColumnIndex == 1 && e.RowIndex >= 0)
+            //{
+            //    // Hide the DateTimePicker control when leaving the cell
+            //    dtpDate.Visible = false;
+            //}
+            //else if (e.ColumnIndex == 2 && e.RowIndex >= 0)
+            //{
+            //    // Hide the DateTimePicker control when leaving the cell
+            //    dtpTime.Visible = false;
+            //}
         }
 
         private void btnProceed_Click(object sender, EventArgs e)
         {
             try
             {
+
                 //check empty cells
                 foreach (DataGridViewRow row in dgvItemBorrow.Rows)
                 {
                     if (string.IsNullOrEmpty(Convert.ToString(row.Cells["col_dor"].Value)) || 
-                        string.IsNullOrEmpty(Convert.ToString(row.Cells["col_duetime"].Value)))
+                        string.IsNullOrEmpty(Convert.ToString(row.Cells["Duration"].Value)))
                     {
-                        MessageBox.Show("Please set a value for the 'Date of Return' or 'Due Time' before proceeding.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Please set a value for the 'Duration' before proceeding.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
@@ -556,18 +644,46 @@ namespace LABCODE1
         {
             for (int i = 0; i < dgvItemBorrow.RowCount; i++)
             {
-                string concatenateReturnDateAndTime = (string.Concat(dgvItemBorrow.Rows[i].Cells["col_dor"].Value.ToString() + " " + dgvItemBorrow.Rows[i].Cells["col_duetime"].Value.ToString()));
-                cmd = new SqlCommand(@"INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) 
-                                    VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return, @eqp_size)", con);
-                cmd.Parameters.AddWithValue("@date_borrow", dgvItemBorrow.Rows[i].Cells["col_dob"].Value.ToString());
-                cmd.Parameters.AddWithValue("@student_id", txt_Barcode.Text);
-                cmd.Parameters.AddWithValue("@name", label_studentName.Text);
-                cmd.Parameters.AddWithValue("@year_sec", label_studentSection.Text);
-                cmd.Parameters.AddWithValue("@eqp_id", dgvItemBorrow.Rows[i].Cells["col_itemid"].Value.ToString());
-                cmd.Parameters.AddWithValue("@eqp_name", dgvItemBorrow.Rows[i].Cells["col_itemname"].Value.ToString());
-                cmd.Parameters.AddWithValue("@date_return", concatenateReturnDateAndTime);
-                cmd.Parameters.AddWithValue("@eqp_size", dgvItemBorrow.Rows[i].Cells["col_size"].Value.ToString());
-                cmd.ExecuteNonQuery();
+                string dateOfBorrow = dgvItemBorrow.Rows[i].Cells["col_dob"].Value.ToString();
+                string dateOfReturn = dgvItemBorrow.Rows[i].Cells["col_dor"].Value.ToString();
+
+                // Extract the numeric part from the duration string (e.g., "1hr" -> "1")
+                string durationString = dgvItemBorrow.Rows[i].Cells["Duration"].Value.ToString();
+                int selectedDuration = Convert.ToInt32(new string(durationString.Where(char.IsDigit).ToArray()));
+
+                MessageBox.Show($"Original Date Of Return String: {dateOfReturn}");
+
+                // Try to parse the date string
+                if (DateTime.TryParseExact(dateOfBorrow, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture, 
+                    DateTimeStyles.None, out DateTime borrowDateTime))
+                {
+                    MessageBox.Show($"Date Of Borrow: {borrowDateTime}");
+
+                    // Calculate return date and time
+                    DateTime returnDateTime = borrowDateTime.AddHours(selectedDuration);
+                    string formattedReturnDateTime = returnDateTime.ToString("yyyy-MM-dd HH:mm");
+                    MessageBox.Show($"Calculated Return Date Time: {formattedReturnDateTime}");
+
+                    // Continue with your code...
+                    cmd = new SqlCommand(@"INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) 
+                                VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return, @eqp_size)", con);
+                    cmd.Parameters.AddWithValue("@date_borrow", dateOfBorrow);
+                    cmd.Parameters.AddWithValue("@student_id", txt_Barcode.Text);
+                    cmd.Parameters.AddWithValue("@name", label_studentName.Text);
+                    cmd.Parameters.AddWithValue("@year_sec", label_studentSection.Text);
+                    cmd.Parameters.AddWithValue("@eqp_id", dgvItemBorrow.Rows[i].Cells["col_itemid"].Value.ToString());
+                    cmd.Parameters.AddWithValue("@eqp_name", dgvItemBorrow.Rows[i].Cells["col_itemname"].Value.ToString());
+                    cmd.Parameters.AddWithValue("@date_return", formattedReturnDateTime);
+                    cmd.Parameters.AddWithValue("@eqp_size", dgvItemBorrow.Rows[i].Cells["col_size"].Value.ToString());
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    // Unable to parse the date string of borrow
+                    MessageBox.Show("Unable to parse the date string of borrow. Please check the format.");
+                }
+
+
             }
         }
 
@@ -745,53 +861,41 @@ namespace LABCODE1
             }
         }
 
-        private void txt_BarcodeItem_TextChanged(object sender, EventArgs e)
+        public void LoadItemPicture(string itemName) 
         {
-            //if (txt_BarcodeItem.Text.EndsWith("\r\n")) // Check for the appropriate delimiter
-            //{
-            //    string scannedData = txt_BarcodeItem.Text.Trim();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT img_eqp FROM lab_eqpDetails WHERE name_eqp = @eqpName", con);
+                cmd.Parameters.AddWithValue("@eqpName", itemName);
+                byte[] imageData = (byte[])cmd.ExecuteScalar();
 
-            //    // Process the scanned data (e.g., query the database)
-            //    ProcessScannedData(scannedData);
-
-            //    // Clear the textbox for the next scan
-            //    txt_BarcodeItem.Clear();
-            //}
-
-
-            //try
-            //{
-            //    if (int.TryParse(txt_BarcodeItem.Text, out int equipmentID))
-            //    {
-            //        con.Open();
-            //        cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
-            //        cmd.Parameters.AddWithValue("@equipmentID", equipmentID);
-
-            //        dr = cmd.ExecuteReader();
-
-            //        while (dr.Read())
-            //        {
-            //            dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
-            //        }
-
-            //        //txt_Barcode.Enabled = true;
-            //        //txt_Barcode.Focus();
-            //    }
-            //    //else
-            //    //{
-            //    //    MessageBox.Show("Invalid equipment ID");
-            //    //}
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            //finally
-            //{
-            //    dr.Close();
-            //    con.Close();
-            //}
+                if (imageData != null)
+                {
+                    using (MemoryStream stream = new MemoryStream(imageData))
+                    {
+                        itemPicture.Image = Image.FromStream(stream);
+                    }
+                }
+                else
+                {
+                    itemPicture.Image = Properties.Resources.item_unavailable;
+                    //itemPicture.Image = null;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
+
+
+
+        
 
 
         private void ProcessScannedData()

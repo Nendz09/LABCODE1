@@ -33,11 +33,9 @@ namespace LABCODE1
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentScanModule));
-            this.cboCam = new System.Windows.Forms.ComboBox();
             this.btnProceed = new System.Windows.Forms.Button();
             this.txt_Barcode = new System.Windows.Forms.TextBox();
             this.label_studentName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label_studentSection = new System.Windows.Forms.Label();
             this.dgvItemBorrow = new System.Windows.Forms.DataGridView();
             this.dateLabel = new System.Windows.Forms.Label();
@@ -48,31 +46,25 @@ namespace LABCODE1
             this.dateLabelDate = new System.Windows.Forms.Label();
             this.label_studentID = new System.Windows.Forms.Label();
             this.txt_BarcodeItem = new System.Windows.Forms.TextBox();
+            this.label_itemName = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.itemPicture = new System.Windows.Forms.PictureBox();
             this.studentPicture = new System.Windows.Forms.PictureBox();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.clearStudentID = new LABCODE1.UserButton();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.col_dob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_dor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_duetime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duration = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.col_itemid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Duration = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
-            // 
-            // cboCam
-            // 
-            this.cboCam.FormattingEnabled = true;
-            this.cboCam.Location = new System.Drawing.Point(198, 48);
-            this.cboCam.Name = "cboCam";
-            this.cboCam.Size = new System.Drawing.Size(293, 21);
-            this.cboCam.TabIndex = 0;
             // 
             // btnProceed
             // 
@@ -103,15 +95,6 @@ namespace LABCODE1
             this.label_studentName.TabIndex = 4;
             this.label_studentName.Text = "STUDENT NAME";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(130, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "SCANNER:";
-            // 
             // label_studentSection
             // 
             this.label_studentSection.AutoSize = true;
@@ -138,11 +121,10 @@ namespace LABCODE1
             this.dgvItemBorrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_dob,
             this.col_dor,
-            this.col_duetime,
+            this.Duration,
             this.col_itemid,
             this.col_itemname,
             this.col_size,
-            this.Duration,
             this.Delete});
             this.dgvItemBorrow.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvItemBorrow.EnableHeadersVisualStyles = false;
@@ -229,6 +211,15 @@ namespace LABCODE1
             this.txt_BarcodeItem.TextChanged += new System.EventHandler(this.txt_BarcodeItem_TextChanged);
             this.txt_BarcodeItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_BarcodeItem_KeyPress);
             // 
+            // label_itemName
+            // 
+            this.label_itemName.AutoSize = true;
+            this.label_itemName.Location = new System.Drawing.Point(824, 557);
+            this.label_itemName.Name = "label_itemName";
+            this.label_itemName.Size = new System.Drawing.Size(67, 13);
+            this.label_itemName.TabIndex = 44;
+            this.label_itemName.Text = "ITEM NAME";
+            // 
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -237,6 +228,19 @@ namespace LABCODE1
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.ReadOnly = true;
             this.dataGridViewImageColumn1.Width = 5;
+            // 
+            // itemPicture
+            // 
+            this.itemPicture.BackColor = System.Drawing.SystemColors.Control;
+            this.itemPicture.ErrorImage = global::LABCODE1.Properties.Resources.item_unavailable;
+            this.itemPicture.Image = global::LABCODE1.Properties.Resources.item_unavailable;
+            this.itemPicture.Location = new System.Drawing.Point(852, 360);
+            this.itemPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.itemPicture.Name = "itemPicture";
+            this.itemPicture.Size = new System.Drawing.Size(168, 168);
+            this.itemPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.itemPicture.TabIndex = 43;
+            this.itemPicture.TabStop = false;
             // 
             // studentPicture
             // 
@@ -249,18 +253,6 @@ namespace LABCODE1
             this.studentPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.studentPicture.TabIndex = 27;
             this.studentPicture.TabStop = false;
-            // 
-            // pictureBoxClose
-            // 
-            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(772, 6);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
-            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxClose.TabIndex = 13;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
             // clearStudentID
             // 
@@ -277,6 +269,18 @@ namespace LABCODE1
             this.clearStudentID.TabStop = false;
             this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
             // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(772, 6);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 13;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            // 
             // col_dob
             // 
             this.col_dob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -291,11 +295,14 @@ namespace LABCODE1
             this.col_dor.Name = "col_dor";
             this.col_dor.ReadOnly = true;
             // 
-            // col_duetime
+            // Duration
             // 
-            this.col_duetime.HeaderText = "Due Time";
-            this.col_duetime.Name = "col_duetime";
-            this.col_duetime.ReadOnly = true;
+            this.Duration.HeaderText = "Duration";
+            this.Duration.Items.AddRange(new object[] {
+            "1 hr",
+            "2 hrs",
+            "3 hrs"});
+            this.Duration.Name = "Duration";
             // 
             // col_itemid
             // 
@@ -315,15 +322,6 @@ namespace LABCODE1
             this.col_size.Name = "col_size";
             this.col_size.ReadOnly = true;
             // 
-            // Duration
-            // 
-            this.Duration.HeaderText = "Duration";
-            this.Duration.Items.AddRange(new object[] {
-            "1 hr",
-            "2 hrs",
-            "3 hrs"});
-            this.Duration.Name = "Duration";
-            // 
             // Delete
             // 
             this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -338,6 +336,8 @@ namespace LABCODE1
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 667);
+            this.Controls.Add(this.label_itemName);
+            this.Controls.Add(this.itemPicture);
             this.Controls.Add(this.txt_BarcodeItem);
             this.Controls.Add(this.label_studentID);
             this.Controls.Add(this.studentPicture);
@@ -349,33 +349,28 @@ namespace LABCODE1
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.dgvItemBorrow);
             this.Controls.Add(this.label_studentSection);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBoxClose);
             this.Controls.Add(this.label_studentName);
             this.Controls.Add(this.txt_Barcode);
             this.Controls.Add(this.btnProceed);
-            this.Controls.Add(this.cboCam);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StudentScanModule";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StudentScanModule";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentScanModule_FormClosing);
             this.Load += new System.EventHandler(this.StudentScanModule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox cboCam;
         private System.Windows.Forms.Label label_studentName;
         private System.Windows.Forms.PictureBox pictureBoxClose;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label_studentSection;
         private Label dateLabel;
         private Timer timer1;
@@ -391,13 +386,14 @@ namespace LABCODE1
         public PictureBox studentPicture;
         private Label label_studentID;
         public TextBox txt_BarcodeItem;
+        public PictureBox itemPicture;
+        public Label label_itemName;
         private DataGridViewTextBoxColumn col_dob;
         private DataGridViewTextBoxColumn col_dor;
-        private DataGridViewTextBoxColumn col_duetime;
+        private DataGridViewComboBoxColumn Duration;
         private DataGridViewTextBoxColumn col_itemid;
         private DataGridViewTextBoxColumn col_itemname;
         private DataGridViewTextBoxColumn col_size;
-        private DataGridViewComboBoxColumn Duration;
         private DataGridViewImageColumn Delete;
     }
 }
