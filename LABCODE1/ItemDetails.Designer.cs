@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemDetails));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.listViewItems = new System.Windows.Forms.ListView();
+            this.ImageList = new System.Windows.Forms.ImageList(this.components);
             this.btnAdd = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
@@ -61,12 +63,22 @@
             // 
             // listViewItems
             // 
+            this.listViewItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewItems.HideSelection = false;
-            this.listViewItems.Location = new System.Drawing.Point(104, 84);
+            this.listViewItems.Location = new System.Drawing.Point(82, 92);
             this.listViewItems.Name = "listViewItems";
-            this.listViewItems.Size = new System.Drawing.Size(658, 372);
+            this.listViewItems.Size = new System.Drawing.Size(694, 365);
+            this.listViewItems.SmallImageList = this.ImageList;
             this.listViewItems.TabIndex = 3;
             this.listViewItems.UseCompatibleStateImageBehavior = false;
+            // 
+            // ImageList
+            // 
+            this.ImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.ImageList.ImageSize = new System.Drawing.Size(250, 250);
+            this.ImageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // btnAdd
             // 
@@ -114,5 +126,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView listViewItems;
         private UserButton btnAdd;
+        public System.Windows.Forms.ImageList ImageList;
     }
 }
