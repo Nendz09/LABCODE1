@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listViewItems = new System.Windows.Forms.ListView();
             this.ImageList = new System.Windows.Forms.ImageList(this.components);
+            this.cmbCategories = new System.Windows.Forms.ComboBox();
             this.btnAdd = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
@@ -73,12 +74,23 @@
             this.listViewItems.SmallImageList = this.ImageList;
             this.listViewItems.TabIndex = 3;
             this.listViewItems.UseCompatibleStateImageBehavior = false;
+            this.listViewItems.Click += new System.EventHandler(this.listViewItems_Click);
             // 
             // ImageList
             // 
             this.ImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.ImageList.ImageSize = new System.Drawing.Size(250, 250);
             this.ImageList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // cmbCategories
+            // 
+            this.cmbCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCategories.FormattingEnabled = true;
+            this.cmbCategories.Location = new System.Drawing.Point(313, 63);
+            this.cmbCategories.Name = "cmbCategories";
+            this.cmbCategories.Size = new System.Drawing.Size(121, 23);
+            this.cmbCategories.TabIndex = 14;
+            this.cmbCategories.SelectedIndexChanged += new System.EventHandler(this.cmbCategories_SelectedIndexChanged);
             // 
             // btnAdd
             // 
@@ -103,6 +115,7 @@
             this.BackgroundImage = global::LABCODE1.Properties.Resources.bg_trans;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(841, 606);
+            this.Controls.Add(this.cmbCategories);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.listViewItems);
             this.Controls.Add(this.panel1);
@@ -127,5 +140,6 @@
         private System.Windows.Forms.ListView listViewItems;
         private UserButton btnAdd;
         public System.Windows.Forms.ImageList ImageList;
+        public System.Windows.Forms.ComboBox cmbCategories;
     }
 }

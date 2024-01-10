@@ -26,14 +26,15 @@ namespace LABCODE1
             InitializeComponent();
             InitializeListView();
             LoadData();
+            LoadCategories();
         }
 
         private void InitializeListView()
         {
             listViewItems.View = View.Details;
 
-            listViewItems.Columns.Add("Name", 500);
-            listViewItems.Columns.Add("Image", 150);
+            listViewItems.Columns.Add("Image", 300);
+            listViewItems.Columns.Add("Name", 150);
             listViewItems.Columns.Add("Category", 150);
             listViewItems.Columns.Add("Description", 200);
 
@@ -43,11 +44,16 @@ namespace LABCODE1
             //listViewItems.Columns["Category"].Width = 150;
             //listViewItems.Columns["Description"].Width = 200;
         }
+        
+        
 
         private void LoadData()
         {
             try
             {
+                itemList.Clear();
+                listViewItems.Items.Clear();
+
                 con.Open();
                 string query = "SELECT name_eqp, img_eqp, categ_eqp, desc_eqp FROM lab_eqpDetails";
 
@@ -80,11 +86,14 @@ namespace LABCODE1
             {
                 con.Close();
             }
+
+
+
         }
 
         private void AddListViewItem(Item item, byte[] imageData)
         {
-            ListViewItem listViewItem = new ListViewItem(item.Name);
+            ListViewItem listViewItem = new ListViewItem();
 
             if (imageData != null && imageData.Length > 0)
             {
@@ -101,7 +110,7 @@ namespace LABCODE1
             {
                 listViewItem.ImageIndex = -1; // No image
             }
-
+            listViewItem.SubItems.Add(item.Name);
             listViewItem.SubItems.Add(item.Category);
             listViewItem.SubItems.Add(item.Description);
 
@@ -122,7 +131,116 @@ namespace LABCODE1
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ItemDetailsModule itemDetailsModule = new ItemDetailsModule();
+            itemDetailsModule.btnUpdate.Enabled = false;
             itemDetailsModule.ShowDialog();
+            LoadData();
+        }
+
+        private void listViewItems_Click(object sender, EventArgs e)
+        {
+            if (listViewItems.SelectedItems.Count > 0)
+            {
+                // Access the selected item
+                ListViewItem selectedItem = listViewItems.SelectedItems[0];
+
+                // Check if there is at least one subitem in the selected item
+                if (selectedItem.SubItems.Count > 1)
+                {
+                    // Access the text of the second subitem (index 1) in the selected item
+                    string itemName = selectedItem.SubItems[1].Text;
+                    string itemDesc = selectedItem.SubItems[3].Text;
+
+                    ItemDetailsModule itemDetailsModule = new ItemDetailsModule();
+                    itemDetailsModule.btnSave.Enabled = false;
+
+                    itemDetailsModule.LoadItemPicture(itemName);
+
+                    itemDetailsModule.txt_Description.Text = itemDesc;
+                    itemDetailsModule.txt_itemName.Text = itemName;
+                    itemDetailsModule.cmbCateg.Text = itemName;   
+
+                    itemDetailsModule.ShowDialog();
+                }
+            }
+
+            //MessageBox.Show(itemName);
+        }
+
+
+        private void LoadCategories() //combobox
+        {
+            try
+            {
+                con.Open();
+                string query = "SELECT DISTINCT categ_eqp FROM lab_eqpDetails";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            cmbCategories.Items.Add(reader["categ_eqp"].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading categories: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        private void cmbCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedCategory = cmbCategories.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedCategory))
+            {
+                // Clear existing items in the ListView
+                listViewItems.Items.Clear();
+
+                try
+                {
+                    con.Open();
+                    string query = "SELECT name_eqp, img_eqp, categ_eqp, desc_eqp FROM lab_eqpDetails WHERE categ_eqp = @selectedCategory";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@selectedCategory", selectedCategory);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                byte[] imageData = reader["img_eqp"] as byte[];
+
+                                Item item = new Item
+                                {
+                                    Name = reader["name_eqp"].ToString(),
+                                    Category = reader["categ_eqp"].ToString(),
+                                    Description = reader["desc_eqp"].ToString()
+                                };
+
+                                AddListViewItem(item, imageData);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading items: " + ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+
+
         }
     }
 

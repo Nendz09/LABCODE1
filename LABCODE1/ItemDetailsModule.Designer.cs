@@ -142,6 +142,7 @@
             this.btnUpdate.TabIndex = 30;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSave
             // 
@@ -272,6 +273,6 @@
         public System.Windows.Forms.Button btnUpdate;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cmbCateg;
+        public System.Windows.Forms.ComboBox cmbCateg;
     }
 }

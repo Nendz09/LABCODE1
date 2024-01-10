@@ -64,6 +64,40 @@ namespace LABCODE1
             }
         }
 
+
+        public void LoadItemPicture(string itemName)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT img_eqp FROM lab_eqpDetails WHERE name_eqp = @eqpName", con);
+                cmd.Parameters.AddWithValue("@eqpName", itemName);
+                byte[] imageData = (byte[])cmd.ExecuteScalar();
+
+                if (imageData != null)
+                {
+                    using (MemoryStream stream = new MemoryStream(imageData))
+                    {
+                        itemPicture.Image = Image.FromStream(stream);
+                    }
+                }
+                else
+                {
+                    itemPicture.Image = Properties.Resources.item_unavailable;
+                    //itemPicture.Image = null;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+
         private void cmbCateg_DropDown(object sender, EventArgs e)
         {
             LoadCateg();
@@ -145,6 +179,9 @@ namespace LABCODE1
             }
         }
 
-        
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

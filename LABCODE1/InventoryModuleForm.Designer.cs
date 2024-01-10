@@ -168,13 +168,6 @@ namespace LABCODE1
             // 
             this.cmbCtg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCtg.FormattingEnabled = true;
-            this.cmbCtg.Items.AddRange(new object[] {
-            "GENERAL SCIENCE",
-            "BIOLOGY",
-            "PHYSICS",
-            "CHEMISTRY",
-            "SUBSTANCES",
-            "OTHER"});
             this.cmbCtg.Location = new System.Drawing.Point(199, 175);
             this.cmbCtg.Name = "cmbCtg";
             this.cmbCtg.Size = new System.Drawing.Size(210, 24);
