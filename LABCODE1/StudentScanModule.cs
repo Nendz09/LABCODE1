@@ -20,6 +20,7 @@ using static System.Net.WebRequestMethods;
 using System.IO;
 using Irony.Parsing;
 using System.Globalization;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace LABCODE1
 {
@@ -262,67 +263,51 @@ namespace LABCODE1
                                 label_itemName.Text = "ITEM NAME";
                                 itemPicture.Image = Properties.Resources.item_unavailable;
                             }
+                            
                         }
-
                     }
-                    
-                   
-                        
+                    LoadItemDescription();
+
+
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"Error: {ex.Message}");
             }
-            finally { dr.Close(); }
+            finally { dr.Close(); con.Close(); }
 
-
-            //if (txt_BarcodeItem.Text.EndsWith("\r\n")) // Check for the appropriate delimiter
-            //{
-            //    string scannedData = txt_BarcodeItem.Text.Trim();
-
-            //    // Process the scanned data (e.g., query the database)
-            //    ProcessScannedData(scannedData);
-
-            //    // Clear the textbox for the next scan
-            //    txt_BarcodeItem.Clear();
-            //}
-
-
-            //try
-            //{
-            //    if (int.TryParse(txt_BarcodeItem.Text, out int equipmentID))
-            //    {
-            //        con.Open();
-            //        cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
-            //        cmd.Parameters.AddWithValue("@equipmentID", equipmentID);
-
-            //        dr = cmd.ExecuteReader();
-
-            //        while (dr.Read())
-            //        {
-            //            dgvItemBorrow.Rows.Add(dateLabel.Text, dateLabelDate.Text, "", dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
-            //        }
-
-            //        //txt_Barcode.Enabled = true;
-            //        //txt_Barcode.Focus();
-            //    }
-            //    //else
-            //    //{
-            //    //    MessageBox.Show("Invalid equipment ID");
-            //    //}
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            //finally
-            //{
-            //    dr.Close();
-            //    con.Close();
-            //}
         }
 
+        private void LoadItemDescription() 
+        {
+            string labelItemName = label_itemName.Text;
+            string queryDescription = "SELECT desc_eqp FROM lab_eqpDetails WHERE name_eqp = @nameEquip";
+
+            SqlCommand cmdDesc = new SqlCommand(queryDescription, con);
+            cmdDesc.Parameters.AddWithValue("@nameEquip", labelItemName);
+
+            try
+            {
+                con.Open();
+                dr = cmdDesc.ExecuteReader();
+                if (dr.Read())
+                {
+                    label_itemDesc.Text = dr["desc_eqp"].ToString();
+                }
+                else
+                {
+                    label_itemDesc.Text = "ITEM DESC";
+                }
+            }
+            finally
+            {
+                if (dr != null && !dr.IsClosed)
+                {
+                    dr.Close();
+                }
+            }
+        }
 
 
         //TYPING STRING UNAVAILABLE
@@ -404,6 +389,9 @@ namespace LABCODE1
             //dtpTime.Visible = false;
             label_studentName.Text = "STUDENT NAME";
             label_studentSection.Text = "SECTION";
+            label_itemDesc.Text = "ITEM DESC";
+            label_itemName.Text = "ITEM NAME";
+            itemPicture.Image = Properties.Resources.item_unavailable;
         }
 
         private void dgvItemBorrow_CellContentClick(object sender, DataGridViewCellEventArgs e)

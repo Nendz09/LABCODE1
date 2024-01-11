@@ -207,10 +207,6 @@ namespace LABCODE1
                     MessageBox.Show("Student info has been deleted successfully!", "Deleting Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            else if (colName == "col_studentid") 
-            {
-                MessageBox.Show("HELLO");
-            }
             LoadStudents();
         }
 

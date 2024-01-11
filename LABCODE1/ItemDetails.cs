@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 // ... (existing using statements)
@@ -34,18 +35,26 @@ namespace LABCODE1
             listViewItems.View = View.Details;
 
             listViewItems.Columns.Add("Image", 300);
-            listViewItems.Columns.Add("Name", 150);
-            listViewItems.Columns.Add("Category", 150);
-            listViewItems.Columns.Add("Description", 200);
+            listViewItems.Columns.Add("Name", 300);
+            listViewItems.Columns.Add("Category", 300);
+            listViewItems.Columns.Add("Description", 450);
 
-            
+            listViewItems.Font = new Font("Arial", 12, FontStyle.Regular);
+
             //listViewItems.Columns["Name"].Width = 150;
             //listViewItems.Columns["Image"].Width = 150;
             //listViewItems.Columns["Category"].Width = 150;
             //listViewItems.Columns["Description"].Width = 200;
         }
-        
-        
+
+        //private void AutoResizeListViewColumns()
+        //{
+        //    // Auto-resize columns to fit content
+        //    foreach (ColumnHeader column in listViewItems.Columns)
+        //    {
+        //        column.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+        //    }
+        //}
 
         private void LoadData()
         {
@@ -77,6 +86,7 @@ namespace LABCODE1
                         }
                     }
                 }
+                //AutoResizeListViewColumns();
             }
             catch (Exception ex)
             {
@@ -198,6 +208,9 @@ namespace LABCODE1
         {
             string selectedCategory = cmbCategories.SelectedItem?.ToString();
 
+
+            
+
             if (!string.IsNullOrEmpty(selectedCategory))
             {
                 // Clear existing items in the ListView
@@ -238,6 +251,10 @@ namespace LABCODE1
                 {
                     con.Close();
                 }
+            }
+            if (cmbCategories.SelectedItem.ToString() == "All")
+            {
+                LoadData();
             }
 
 
