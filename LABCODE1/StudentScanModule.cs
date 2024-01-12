@@ -951,6 +951,11 @@ namespace LABCODE1
             
         }
 
+        private void dgvItemBorrow_SelectionChanged(object sender, EventArgs e)
+        {
+            this.dgvItemBorrow.ClearSelection();
+        }
+
 
 
 

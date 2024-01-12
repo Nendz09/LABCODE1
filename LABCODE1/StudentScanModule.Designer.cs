@@ -53,6 +53,7 @@ namespace LABCODE1
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.clearStudentID = new LABCODE1.UserButton();
             this.col_dob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_dor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Duration = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -60,7 +61,6 @@ namespace LABCODE1
             this.col_itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clearStudentID = new LABCODE1.UserButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).BeginInit();
@@ -118,8 +118,8 @@ namespace LABCODE1
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvItemBorrow.ColumnHeadersHeight = 30;
@@ -139,12 +139,15 @@ namespace LABCODE1
             this.dgvItemBorrow.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvItemBorrow.RowHeadersVisible = false;
             this.dgvItemBorrow.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvItemBorrow.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.dgvItemBorrow.RowTemplate.Height = 35;
+            this.dgvItemBorrow.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvItemBorrow.Size = new System.Drawing.Size(715, 268);
             this.dgvItemBorrow.TabIndex = 16;
             this.dgvItemBorrow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellClick);
             this.dgvItemBorrow.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellContentClick);
             this.dgvItemBorrow.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellLeave);
+            this.dgvItemBorrow.SelectionChanged += new System.EventHandler(this.dgvItemBorrow_SelectionChanged);
             // 
             // dateLabel
             // 
@@ -299,6 +302,21 @@ namespace LABCODE1
             this.textBox1.Size = new System.Drawing.Size(400, 180);
             this.textBox1.TabIndex = 49;
             // 
+            // clearStudentID
+            // 
+            this.clearStudentID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.clearStudentID.Enabled = false;
+            this.clearStudentID.Image = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
+            this.clearStudentID.ImageHover = ((System.Drawing.Image)(resources.GetObject("clearStudentID.ImageHover")));
+            this.clearStudentID.ImageNormal = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
+            this.clearStudentID.Location = new System.Drawing.Point(393, 341);
+            this.clearStudentID.Name = "clearStudentID";
+            this.clearStudentID.Size = new System.Drawing.Size(21, 20);
+            this.clearStudentID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.clearStudentID.TabIndex = 24;
+            this.clearStudentID.TabStop = false;
+            this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
+            // 
             // col_dob
             // 
             this.col_dob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -321,7 +339,11 @@ namespace LABCODE1
             this.Duration.Items.AddRange(new object[] {
             "1 hr",
             "2 hrs",
-            "3 hrs"});
+            "3 hrs",
+            "4 hrs",
+            "5 hrs",
+            "6 hrs",
+            "7 hrs"});
             this.Duration.Name = "Duration";
             // 
             // col_itemid
@@ -353,21 +375,6 @@ namespace LABCODE1
             this.Delete.Name = "Delete";
             this.Delete.ReadOnly = true;
             this.Delete.Width = 5;
-            // 
-            // clearStudentID
-            // 
-            this.clearStudentID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.clearStudentID.Enabled = false;
-            this.clearStudentID.Image = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
-            this.clearStudentID.ImageHover = ((System.Drawing.Image)(resources.GetObject("clearStudentID.ImageHover")));
-            this.clearStudentID.ImageNormal = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
-            this.clearStudentID.Location = new System.Drawing.Point(393, 341);
-            this.clearStudentID.Name = "clearStudentID";
-            this.clearStudentID.Size = new System.Drawing.Size(21, 20);
-            this.clearStudentID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.clearStudentID.TabIndex = 24;
-            this.clearStudentID.TabStop = false;
-            this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
             // 
             // StudentScanModule
             // 

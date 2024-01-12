@@ -21,6 +21,9 @@ namespace LABCODE1
         //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
         SqlDataReader dr;
+
+        ItemDetails itemDetails = new ItemDetails();
+
         public ItemDetailsModule()
         {
             InitializeComponent();

@@ -33,7 +33,7 @@ namespace LABCODE1
         {
             InitializeComponent();
             LoadStudents();
-            // Attach the KeyPress event handler
+           
             this.KeyPress += StudentForm_KeyPress;
         }
 

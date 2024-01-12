@@ -62,11 +62,10 @@ namespace LABCODE1
         //}
 
 
-        private void LoadDataDGV()
+        public void LoadDataDGV()
         {
             try
             {
-                itemList.Clear();
                 dataGridView1.Rows.Clear();
 
                 con.Open();
