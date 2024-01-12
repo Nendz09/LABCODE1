@@ -285,11 +285,35 @@ namespace LABCODE1
         //BYTE TRANSFER
         private byte[] getPhoto() 
         {
-            using (MemoryStream stream = new MemoryStream())//proper disposal using
+            try
             {
-                studentPicture.Image.Save(stream, studentPicture.Image.RawFormat);
-                return stream.ToArray();
+                if (studentPicture.Image != null)
+                {
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        Bitmap bitmap = new Bitmap(studentPicture.Image);
+
+                        bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);//convert img to jpeg format from upload button
+
+                        //dispose
+                        bitmap.Dispose();
+
+                        return stream.ToArray();
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while converting image to byte array: {ex.Message}");
+            }
+
+            return new byte[0];
+
+            //using (MemoryStream stream = new MemoryStream())//proper disposal using
+            //{
+            //    studentPicture.Image.Save(stream, studentPicture.Image.RawFormat);
+            //    return stream.ToArray();
+            //}
         }
 
 

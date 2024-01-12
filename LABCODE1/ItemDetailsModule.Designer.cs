@@ -78,6 +78,7 @@
             this.txt_Description.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_Description.Multiline = true;
             this.txt_Description.Name = "txt_Description";
+            this.txt_Description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txt_Description.Size = new System.Drawing.Size(312, 144);
             this.txt_Description.TabIndex = 37;
             // 
@@ -204,7 +205,7 @@
             // itemPicture
             // 
             this.itemPicture.BackColor = System.Drawing.SystemColors.Control;
-            this.itemPicture.ErrorImage = ((System.Drawing.Image)(resources.GetObject("itemPicture.ErrorImage")));
+            this.itemPicture.ErrorImage = null;
             this.itemPicture.Image = ((System.Drawing.Image)(resources.GetObject("itemPicture.Image")));
             this.itemPicture.Location = new System.Drawing.Point(566, 142);
             this.itemPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

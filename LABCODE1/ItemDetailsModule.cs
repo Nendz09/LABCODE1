@@ -146,20 +146,71 @@ namespace LABCODE1
         }
 
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Are you sure you want to update this data?", "Update Item Details", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;
+                                                                AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;
+                                                                Integrated Security=True"))
+                    {
+                        
+                        con.Open();
+
+                        cmd = new SqlCommand(@"UPDATE lab_eqpDetails 
+                                                SET desc_eqp=@desc_eqp, img_eqp=@img_eqp,  categ_eqp=@categ_eqp 
+                                                WHERE name_eqp=@name_eqp ", con);
+                        cmd.Parameters.AddWithValue("@name_eqp", txt_itemName.Text);
+                        cmd.Parameters.AddWithValue("@desc_eqp", txt_Description.Text);
+                        cmd.Parameters.AddWithValue("@img_eqp", getPhoto());
+                        cmd.Parameters.AddWithValue("@categ_eqp", cmbCateg.Text);
 
 
 
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Item has been updated.");
+                        this.Dispose();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while updating: {ex.Message}");
+            }
+        }
 
 
 
         //BYTE TRANSFER
         private byte[] getPhoto()
         {
-            using (MemoryStream stream = new MemoryStream())//proper disposal using
+            try
             {
-                itemPicture.Image.Save(stream, itemPicture.Image.RawFormat);
-                return stream.ToArray();
+                if (itemPicture.Image != null)
+                {
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        Bitmap bitmap = new Bitmap(itemPicture.Image);
+
+                        bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);//convert img to jpeg format from upload button
+
+                        //dispose
+                        bitmap.Dispose();
+
+                        return stream.ToArray();
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while converting image to byte array: {ex.Message}");
+            }
+
+            return new byte[0];
+
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -179,9 +230,5 @@ namespace LABCODE1
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
