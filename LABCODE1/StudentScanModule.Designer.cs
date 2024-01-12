@@ -31,20 +31,13 @@ namespace LABCODE1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentScanModule));
             this.btnProceed = new System.Windows.Forms.Button();
             this.txt_Barcode = new System.Windows.Forms.TextBox();
             this.label_studentName = new System.Windows.Forms.Label();
             this.label_studentSection = new System.Windows.Forms.Label();
             this.dgvItemBorrow = new System.Windows.Forms.DataGridView();
-            this.col_dob = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_dor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Duration = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.col_itemid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.dateLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
@@ -57,20 +50,29 @@ namespace LABCODE1
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.itemPicture = new System.Windows.Forms.PictureBox();
             this.studentPicture = new System.Windows.Forms.PictureBox();
-            this.clearStudentID = new LABCODE1.UserButton();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.label_itemDesc = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.col_dob = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_dor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duration = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.col_itemid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clearStudentID = new LABCODE1.UserButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).BeginInit();
             this.SuspendLayout();
             // 
             // btnProceed
             // 
             this.btnProceed.Enabled = false;
-            this.btnProceed.Location = new System.Drawing.Point(400, 375);
+            this.btnProceed.Location = new System.Drawing.Point(429, 378);
             this.btnProceed.Name = "btnProceed";
             this.btnProceed.Size = new System.Drawing.Size(75, 23);
             this.btnProceed.TabIndex = 1;
@@ -80,7 +82,7 @@ namespace LABCODE1
             // 
             // txt_Barcode
             // 
-            this.txt_Barcode.Location = new System.Drawing.Point(117, 338);
+            this.txt_Barcode.Location = new System.Drawing.Point(146, 341);
             this.txt_Barcode.Name = "txt_Barcode";
             this.txt_Barcode.Size = new System.Drawing.Size(245, 20);
             this.txt_Barcode.TabIndex = 3;
@@ -90,18 +92,20 @@ namespace LABCODE1
             // label_studentName
             // 
             this.label_studentName.AutoSize = true;
-            this.label_studentName.Location = new System.Drawing.Point(308, 486);
+            this.label_studentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_studentName.Location = new System.Drawing.Point(208, 466);
             this.label_studentName.Name = "label_studentName";
-            this.label_studentName.Size = new System.Drawing.Size(93, 13);
+            this.label_studentName.Size = new System.Drawing.Size(160, 24);
             this.label_studentName.TabIndex = 4;
             this.label_studentName.Text = "STUDENT NAME";
             // 
             // label_studentSection
             // 
             this.label_studentSection.AutoSize = true;
-            this.label_studentSection.Location = new System.Drawing.Point(308, 526);
+            this.label_studentSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_studentSection.Location = new System.Drawing.Point(208, 510);
             this.label_studentSection.Name = "label_studentSection";
-            this.label_studentSection.Size = new System.Drawing.Size(54, 13);
+            this.label_studentSection.Size = new System.Drawing.Size(93, 24);
             this.label_studentSection.TabIndex = 15;
             this.label_studentSection.Text = "SECTION";
             // 
@@ -110,14 +114,15 @@ namespace LABCODE1
             this.dgvItemBorrow.AllowUserToAddRows = false;
             this.dgvItemBorrow.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvItemBorrow.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvItemBorrow.ColumnHeadersHeight = 30;
             this.dgvItemBorrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvItemBorrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_dob,
@@ -129,72 +134,25 @@ namespace LABCODE1
             this.Delete});
             this.dgvItemBorrow.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvItemBorrow.EnableHeadersVisualStyles = false;
-            this.dgvItemBorrow.Location = new System.Drawing.Point(37, 47);
+            this.dgvItemBorrow.Location = new System.Drawing.Point(18, 47);
             this.dgvItemBorrow.Name = "dgvItemBorrow";
             this.dgvItemBorrow.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.dgvItemBorrow.Size = new System.Drawing.Size(692, 268);
+            this.dgvItemBorrow.RowHeadersVisible = false;
+            this.dgvItemBorrow.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvItemBorrow.RowTemplate.Height = 35;
+            this.dgvItemBorrow.Size = new System.Drawing.Size(715, 268);
             this.dgvItemBorrow.TabIndex = 16;
             this.dgvItemBorrow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellClick);
             this.dgvItemBorrow.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellContentClick);
             this.dgvItemBorrow.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellLeave);
             // 
-            // col_dob
-            // 
-            this.col_dob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.col_dob.HeaderText = "Date of Borrow";
-            this.col_dob.Name = "col_dob";
-            this.col_dob.ReadOnly = true;
-            this.col_dob.Width = 110;
-            // 
-            // col_dor
-            // 
-            this.col_dor.HeaderText = "Date of Return";
-            this.col_dor.Name = "col_dor";
-            this.col_dor.ReadOnly = true;
-            // 
-            // Duration
-            // 
-            this.Duration.HeaderText = "Duration";
-            this.Duration.Items.AddRange(new object[] {
-            "1 hr",
-            "2 hrs",
-            "3 hrs"});
-            this.Duration.Name = "Duration";
-            // 
-            // col_itemid
-            // 
-            this.col_itemid.HeaderText = "Item ID";
-            this.col_itemid.Name = "col_itemid";
-            this.col_itemid.ReadOnly = true;
-            // 
-            // col_itemname
-            // 
-            this.col_itemname.HeaderText = "Item Name";
-            this.col_itemname.Name = "col_itemname";
-            this.col_itemname.ReadOnly = true;
-            // 
-            // col_size
-            // 
-            this.col_size.HeaderText = "Size/Calibration";
-            this.col_size.Name = "col_size";
-            this.col_size.ReadOnly = true;
-            // 
-            // Delete
-            // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Delete.HeaderText = "";
-            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Width = 5;
-            // 
             // dateLabel
             // 
             this.dateLabel.AutoSize = true;
-            this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabel.Location = new System.Drawing.Point(12, 640);
+            this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateLabel.Location = new System.Drawing.Point(3, 0);
             this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(20, 18);
+            this.dateLabel.Size = new System.Drawing.Size(25, 24);
             this.dateLabel.TabIndex = 17;
             this.dateLabel.Text = "...";
             // 
@@ -206,7 +164,7 @@ namespace LABCODE1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(400, 336);
+            this.button1.Location = new System.Drawing.Point(429, 339);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 19;
@@ -217,18 +175,20 @@ namespace LABCODE1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 380);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(27, 380);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.Size = new System.Drawing.Size(112, 24);
             this.label2.TabIndex = 22;
             this.label2.Text = "ITEM SCAN";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(38, 341);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(19, 341);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 13);
+            this.label3.Size = new System.Drawing.Size(121, 24);
             this.label3.TabIndex = 25;
             this.label3.Text = "STUDENT ID";
             // 
@@ -236,7 +196,7 @@ namespace LABCODE1
             // 
             this.dateLabelDate.AutoSize = true;
             this.dateLabelDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabelDate.Location = new System.Drawing.Point(536, 338);
+            this.dateLabelDate.Location = new System.Drawing.Point(565, 341);
             this.dateLabelDate.Name = "dateLabelDate";
             this.dateLabelDate.Size = new System.Drawing.Size(55, 18);
             this.dateLabelDate.TabIndex = 26;
@@ -246,16 +206,17 @@ namespace LABCODE1
             // label_studentID
             // 
             this.label_studentID.AutoSize = true;
-            this.label_studentID.Location = new System.Drawing.Point(441, 486);
+            this.label_studentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_studentID.Location = new System.Drawing.Point(208, 423);
             this.label_studentID.Name = "label_studentID";
-            this.label_studentID.Size = new System.Drawing.Size(73, 13);
+            this.label_studentID.Size = new System.Drawing.Size(121, 24);
             this.label_studentID.TabIndex = 28;
             this.label_studentID.Text = "STUDENT ID";
             // 
             // txt_BarcodeItem
             // 
             this.txt_BarcodeItem.Enabled = false;
-            this.txt_BarcodeItem.Location = new System.Drawing.Point(117, 377);
+            this.txt_BarcodeItem.Location = new System.Drawing.Point(146, 380);
             this.txt_BarcodeItem.Name = "txt_BarcodeItem";
             this.txt_BarcodeItem.Size = new System.Drawing.Size(245, 20);
             this.txt_BarcodeItem.TabIndex = 29;
@@ -265,9 +226,10 @@ namespace LABCODE1
             // label_itemName
             // 
             this.label_itemName.AutoSize = true;
-            this.label_itemName.Location = new System.Drawing.Point(750, 486);
+            this.label_itemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_itemName.Location = new System.Drawing.Point(743, 481);
             this.label_itemName.Name = "label_itemName";
-            this.label_itemName.Size = new System.Drawing.Size(67, 13);
+            this.label_itemName.Size = new System.Drawing.Size(116, 24);
             this.label_itemName.TabIndex = 44;
             this.label_itemName.Text = "ITEM NAME";
             // 
@@ -284,10 +246,10 @@ namespace LABCODE1
             this.itemPicture.BackColor = System.Drawing.SystemColors.Control;
             this.itemPicture.ErrorImage = global::LABCODE1.Properties.Resources.item_unavailable;
             this.itemPicture.Image = global::LABCODE1.Properties.Resources.item_unavailable;
-            this.itemPicture.Location = new System.Drawing.Point(753, 47);
+            this.itemPicture.Location = new System.Drawing.Point(747, 47);
             this.itemPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.itemPicture.Name = "itemPicture";
-            this.itemPicture.Size = new System.Drawing.Size(400, 410);
+            this.itemPicture.Size = new System.Drawing.Size(519, 410);
             this.itemPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.itemPicture.TabIndex = 43;
             this.itemPicture.TabStop = false;
@@ -297,12 +259,100 @@ namespace LABCODE1
             this.studentPicture.BackColor = System.Drawing.SystemColors.Control;
             this.studentPicture.ErrorImage = ((System.Drawing.Image)(resources.GetObject("studentPicture.ErrorImage")));
             this.studentPicture.Image = global::LABCODE1.Properties.Resources.user_ddefault;
-            this.studentPicture.Location = new System.Drawing.Point(117, 425);
+            this.studentPicture.Location = new System.Drawing.Point(18, 423);
             this.studentPicture.Name = "studentPicture";
             this.studentPicture.Size = new System.Drawing.Size(168, 168);
             this.studentPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.studentPicture.TabIndex = 27;
             this.studentPicture.TabStop = false;
+            // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(1244, 12);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 13;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Wheat;
+            this.flowLayoutPanel1.Controls.Add(this.dateLabel);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 634);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(218, 26);
+            this.flowLayoutPanel1.TabIndex = 46;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(867, 478);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(400, 180);
+            this.textBox1.TabIndex = 49;
+            // 
+            // col_dob
+            // 
+            this.col_dob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.col_dob.HeaderText = "Date of Borrow";
+            this.col_dob.Name = "col_dob";
+            this.col_dob.ReadOnly = true;
+            this.col_dob.Width = 170;
+            // 
+            // col_dor
+            // 
+            this.col_dor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.col_dor.HeaderText = "Date of Return";
+            this.col_dor.Name = "col_dor";
+            this.col_dor.ReadOnly = true;
+            this.col_dor.Width = 110;
+            // 
+            // Duration
+            // 
+            this.Duration.HeaderText = "Duration";
+            this.Duration.Items.AddRange(new object[] {
+            "1 hr",
+            "2 hrs",
+            "3 hrs"});
+            this.Duration.Name = "Duration";
+            // 
+            // col_itemid
+            // 
+            this.col_itemid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.col_itemid.HeaderText = "Item ID";
+            this.col_itemid.Name = "col_itemid";
+            this.col_itemid.ReadOnly = true;
+            this.col_itemid.Width = 50;
+            // 
+            // col_itemname
+            // 
+            this.col_itemname.HeaderText = "Item Name";
+            this.col_itemname.Name = "col_itemname";
+            this.col_itemname.ReadOnly = true;
+            this.col_itemname.Width = 130;
+            // 
+            // col_size
+            // 
+            this.col_size.HeaderText = "Size/Calibration";
+            this.col_size.Name = "col_size";
+            this.col_size.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Delete.HeaderText = "";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Width = 5;
             // 
             // clearStudentID
             // 
@@ -311,7 +361,7 @@ namespace LABCODE1
             this.clearStudentID.Image = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
             this.clearStudentID.ImageHover = ((System.Drawing.Image)(resources.GetObject("clearStudentID.ImageHover")));
             this.clearStudentID.ImageNormal = global::LABCODE1.Properties.Resources.ekis_border_25px_red;
-            this.clearStudentID.Location = new System.Drawing.Point(364, 338);
+            this.clearStudentID.Location = new System.Drawing.Point(393, 341);
             this.clearStudentID.Name = "clearStudentID";
             this.clearStudentID.Size = new System.Drawing.Size(21, 20);
             this.clearStudentID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -319,34 +369,13 @@ namespace LABCODE1
             this.clearStudentID.TabStop = false;
             this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
             // 
-            // pictureBoxClose
-            // 
-            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(1144, 12);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
-            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxClose.TabIndex = 13;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
-            // 
-            // label_itemDesc
-            // 
-            this.label_itemDesc.AutoSize = true;
-            this.label_itemDesc.Location = new System.Drawing.Point(980, 486);
-            this.label_itemDesc.MaximumSize = new System.Drawing.Size(200, 0);
-            this.label_itemDesc.Name = "label_itemDesc";
-            this.label_itemDesc.Size = new System.Drawing.Size(65, 13);
-            this.label_itemDesc.TabIndex = 45;
-            this.label_itemDesc.Text = "ITEM DESC";
-            // 
             // StudentScanModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 667);
-            this.Controls.Add(this.label_itemDesc);
+            this.ClientSize = new System.Drawing.Size(1279, 667);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label_itemName);
             this.Controls.Add(this.itemPicture);
             this.Controls.Add(this.txt_BarcodeItem);
@@ -357,7 +386,6 @@ namespace LABCODE1
             this.Controls.Add(this.clearStudentID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.dgvItemBorrow);
             this.Controls.Add(this.label_studentSection);
             this.Controls.Add(this.pictureBoxClose);
@@ -372,8 +400,10 @@ namespace LABCODE1
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.clearStudentID)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -399,6 +429,8 @@ namespace LABCODE1
         public TextBox txt_BarcodeItem;
         public PictureBox itemPicture;
         public Label label_itemName;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private TextBox textBox1;
         private DataGridViewTextBoxColumn col_dob;
         private DataGridViewTextBoxColumn col_dor;
         private DataGridViewComboBoxColumn Duration;
@@ -406,6 +438,5 @@ namespace LABCODE1
         private DataGridViewTextBoxColumn col_itemname;
         private DataGridViewTextBoxColumn col_size;
         private DataGridViewImageColumn Delete;
-        public Label label_itemDesc;
     }
 }

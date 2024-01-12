@@ -293,11 +293,11 @@ namespace LABCODE1
                 dr = cmdDesc.ExecuteReader();
                 if (dr.Read())
                 {
-                    label_itemDesc.Text = dr["desc_eqp"].ToString();
+                    textBox1.Text = dr["desc_eqp"].ToString();
                 }
                 else
                 {
-                    label_itemDesc.Text = "ITEM DESC";
+                    textBox1.Text = "ITEM DESCRIPTION";
                 }
             }
             finally
@@ -387,9 +387,10 @@ namespace LABCODE1
             dgvItemBorrow.Rows.Clear();
             //dtpDate.Visible = false;
             //dtpTime.Visible = false;
+            label_studentID.Text = "STUDENT ID";
             label_studentName.Text = "STUDENT NAME";
             label_studentSection.Text = "SECTION";
-            label_itemDesc.Text = "ITEM DESC";
+            textBox1.Text = "ITEM DESCRIPTION";
             label_itemName.Text = "ITEM NAME";
             itemPicture.Image = Properties.Resources.item_unavailable;
         }
