@@ -386,7 +386,7 @@ namespace LABCODE1
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0) // Only the first column (image) is clickable
             {
                 // Access the data in the clicked cell
                 DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
@@ -403,16 +403,42 @@ namespace LABCODE1
                 itemDetailsModule.txt_itemName.Text = itemName;
                 itemDetailsModule.txt_itemName.Enabled = false;
 
-                //itemDetailsModule.cmbCateg.SelectedItem = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-
-
-                string categVal = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string categVal = selectedRow.Cells["categ_col"].Value.ToString();
                 itemDetailsModule.cmbCateg.DropDownStyle = ComboBoxStyle.DropDown;
                 itemDetailsModule.cmbCateg.Text = categVal;
 
                 itemDetailsModule.ShowDialog();
+
+                LoadDataDGV();
             }
-            LoadDataDGV();
+            
+            //if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            //{
+            //    // Access the data in the clicked cell
+            //    DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+            //    string itemName = selectedRow.Cells["name_col"].Value.ToString();
+            //    string itemDesc = selectedRow.Cells["desc_col"].Value.ToString();
+
+            //    // Your logic to open the details form
+            //    ItemDetailsModule itemDetailsModule = new ItemDetailsModule();
+            //    itemDetailsModule.btnSave.Enabled = false;
+
+            //    itemDetailsModule.LoadItemPicture(itemName);
+
+            //    itemDetailsModule.txt_Description.Text = itemDesc;
+            //    itemDetailsModule.txt_itemName.Text = itemName;
+            //    itemDetailsModule.txt_itemName.Enabled = false;
+
+            //    //itemDetailsModule.cmbCateg.SelectedItem = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+
+            //    string categVal = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            //    itemDetailsModule.cmbCateg.DropDownStyle = ComboBoxStyle.DropDown;
+            //    itemDetailsModule.cmbCateg.Text = categVal;
+
+            //    itemDetailsModule.ShowDialog();
+            //}
+            //LoadDataDGV();
         }
 
         //private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
