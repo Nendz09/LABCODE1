@@ -60,7 +60,7 @@ namespace LABCODE1
         private void standbyMode_Click(object sender, EventArgs e)
         {
             QRManual qrManual = new QRManual();
-            qrManual.Show();
+            qrManual.ShowDialog();
         }
 
 

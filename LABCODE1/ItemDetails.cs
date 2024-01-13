@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using DocumentFormat.OpenXml.Office.Word;
 
 
 // ... (existing using statements)
@@ -19,6 +20,8 @@ namespace LABCODE1
     public partial class ItemDetails : Form
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        SqlCommand cmd = new SqlCommand();
+        SqlDataReader dr;
 
         private List<Item> itemList = new List<Item>();
 
@@ -413,7 +416,8 @@ namespace LABCODE1
 
                 LoadDataDGV();
             }
-            
+            cmbCategories.SelectedIndex = -1;
+
             //if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             //{
             //    // Access the data in the clicked cell
@@ -476,6 +480,55 @@ namespace LABCODE1
 
             Cursor = Cursors.Default; // Change the cursor back to the default when not over an image cell
         }
+
+        private void searchTextbox__TextChanged(object sender, EventArgs e)
+        {
+            string searchValue = searchTextbox.Texts;
+            string searchValueCateg = cmbCategories.Text;
+
+            if (string.IsNullOrWhiteSpace(searchValue) && string.IsNullOrWhiteSpace(searchValueCateg))
+            {
+                LoadDataDGV();
+            }
+            else
+            {
+                int i = 0;
+                dataGridView1.Rows.Clear();
+
+                cmd = new SqlCommand(@"SELECT * FROM lab_eqpDetails 
+                                    WHERE (name_eqp LIKE @searchValue)
+                                    AND (categ_eqp LIKE @searchValueCateg)", con);
+                cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%");
+                cmd.Parameters.AddWithValue("@searchValueCateg", "%" + searchValueCateg + "%");
+
+                con.Open();
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    ++i;
+                    byte[] imageData = (byte[])dr["img_eqp"];
+
+                    // Convert byte array to Image
+                    Image image = ByteArrayToImage(imageData);
+
+                    dataGridView1.Rows.Add(image, dr[1].ToString(), dr[4].ToString(), dr[2].ToString());
+                }
+                dr.Close();
+                con.Close();
+            }
+        }
+
+        private Image ByteArrayToImage(byte[] byteArray)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArray))
+            {
+                Image image = Image.FromStream(ms);
+                return image;
+            }
+        }
+
+        
     }
 
     public class Item

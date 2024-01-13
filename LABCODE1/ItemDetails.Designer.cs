@@ -43,6 +43,7 @@
             this.name_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categ_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.desc_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchTextbox = new LABCODE1.UserTextbox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -96,10 +97,11 @@
             // cmbCategories
             // 
             this.cmbCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCategories.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCategories.FormattingEnabled = true;
-            this.cmbCategories.Location = new System.Drawing.Point(83, 27);
+            this.cmbCategories.Location = new System.Drawing.Point(265, 24);
             this.cmbCategories.Name = "cmbCategories";
-            this.cmbCategories.Size = new System.Drawing.Size(121, 23);
+            this.cmbCategories.Size = new System.Drawing.Size(146, 26);
             this.cmbCategories.TabIndex = 14;
             this.cmbCategories.SelectedIndexChanged += new System.EventHandler(this.cmbCategories_SelectedIndexChanged);
             // 
@@ -186,6 +188,29 @@
             this.desc_col.Name = "desc_col";
             this.desc_col.ReadOnly = true;
             // 
+            // searchTextbox
+            // 
+            this.searchTextbox.BackColor = System.Drawing.SystemColors.Window;
+            this.searchTextbox.BorderColor = System.Drawing.Color.Green;
+            this.searchTextbox.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.searchTextbox.BorderRadius = 15;
+            this.searchTextbox.BorderSize = 2;
+            this.searchTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchTextbox.ForeColor = System.Drawing.Color.Black;
+            this.searchTextbox.Location = new System.Drawing.Point(83, 18);
+            this.searchTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.searchTextbox.Multiline = false;
+            this.searchTextbox.Name = "searchTextbox";
+            this.searchTextbox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.searchTextbox.PasswordChar = false;
+            this.searchTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.searchTextbox.PlaceholderText = "Search...";
+            this.searchTextbox.Size = new System.Drawing.Size(165, 33);
+            this.searchTextbox.TabIndex = 16;
+            this.searchTextbox.Texts = "";
+            this.searchTextbox.UnderlinedStyle = false;
+            this.searchTextbox._TextChanged += new System.EventHandler(this.searchTextbox__TextChanged);
+            // 
             // ItemDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -193,6 +218,7 @@
             this.BackgroundImage = global::LABCODE1.Properties.Resources.bg_trans;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(841, 606);
+            this.Controls.Add(this.searchTextbox);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cmbCategories);
             this.Controls.Add(this.panel1);
@@ -223,5 +249,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn name_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn categ_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn desc_col;
+        private UserTextbox searchTextbox;
     }
 }
