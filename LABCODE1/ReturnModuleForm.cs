@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,12 +61,13 @@ namespace LABCODE1
                     //txt_BarcodeItem.Enabled = true;
                     //txt_BarcodeItem.Focus();
                 }
+                else
+                {
+                    studentPicture.Image = Properties.Resources.user_ddefault;
+                    label_studentName.Text = "Invalid Student ID or NOT a number";
+                    label_studentSection.Text = "";
+                }
                 dr.Close();
-            }
-            else
-            {
-                label_studentName.Text = "Invalid Student ID or NOT a number";
-                label_studentSection.Text = "";
             }
             con.Close();
         }
@@ -77,6 +79,8 @@ namespace LABCODE1
             {
                 if (int.TryParse(txt_Barcode.Text, out int studentID))
                 {
+                    string studID = txt_Barcode.Text;
+                    LoadStudentPicture(studID);
                     int i = 0;
                     dgvReturn.Rows.Clear();
                     cmd = new SqlCommand("SELECT date_borrow, date_return, eqp_id, eqp_name, eqp_size FROM lab_borrows WHERE student_id = @studentID", con);
@@ -94,6 +98,7 @@ namespace LABCODE1
                     dr.Close();
                     con.Close();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -102,6 +107,36 @@ namespace LABCODE1
             finally { con.Close(); }
         }
 
+        private void LoadStudentPicture(string studentID)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT student_pic FROM lab_students WHERE student_id = @StudentID", con);
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                byte[] imageData = (byte[])cmd.ExecuteScalar();
+
+                if (imageData != null)
+                {
+                    using (MemoryStream stream = new MemoryStream(imageData))
+                    {
+                        studentPicture.Image = Image.FromStream(stream);
+                    }
+                }
+                else
+                {
+                    studentPicture.Image = null;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
 
         //events??
         private void dgvReturn_CellContentClick(object sender, DataGridViewCellEventArgs e)

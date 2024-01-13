@@ -671,6 +671,7 @@
     <Content Include="Inventory_Labcode_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\item_unavailable_square.jpeg" />
     <None Include="Resources\item_unavailable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

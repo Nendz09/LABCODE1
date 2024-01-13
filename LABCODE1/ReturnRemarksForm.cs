@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -164,6 +165,44 @@ namespace LABCODE1
             cmd.Parameters.AddWithValue("@eqpId", eqpId); // use borrow_id here
             cmd.ExecuteNonQuery();
             con.Close();
+        }
+
+        public void LoadItemPicture(string itemName)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT img_eqp FROM lab_eqpDetails WHERE name_eqp = @eqpName", con);
+                cmd.Parameters.AddWithValue("@eqpName", itemName);
+                byte[] imageData = (byte[])cmd.ExecuteScalar();
+
+                if (imageData != null)
+                {
+                    using (MemoryStream stream = new MemoryStream(imageData))
+                    {
+                        itemPicture.Image = Image.FromStream(stream);
+                    }
+                }
+                else
+                {
+                    itemPicture.Image = Properties.Resources.item_unavailable_square;
+                    //itemPicture.Image = null;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        private void txt_itemName_TextChanged(object sender, EventArgs e)
+        {
+            string itemName = txt_itemName.Text;
+            LoadItemPicture(itemName);
         }
     }
 }

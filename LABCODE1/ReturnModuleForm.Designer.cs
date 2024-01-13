@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReturnModuleForm));
             this.txt_Barcode = new System.Windows.Forms.TextBox();
-            this.btnReturn = new System.Windows.Forms.Button();
             this.label_studentSection = new System.Windows.Forms.Label();
             this.label_studentName = new System.Windows.Forms.Label();
             this.dgvReturn = new System.Windows.Forms.DataGridView();
+            this.studentPicture = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,41 +44,35 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Return = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_Barcode
             // 
-            this.txt_Barcode.Location = new System.Drawing.Point(262, 307);
+            this.txt_Barcode.Location = new System.Drawing.Point(196, 305);
             this.txt_Barcode.Name = "txt_Barcode";
             this.txt_Barcode.Size = new System.Drawing.Size(245, 20);
             this.txt_Barcode.TabIndex = 4;
             this.txt_Barcode.TextChanged += new System.EventHandler(this.txt_Barcode_TextChanged);
             this.txt_Barcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Barcode_KeyPress);
             // 
-            // btnReturn
-            // 
-            this.btnReturn.Location = new System.Drawing.Point(656, 376);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(75, 23);
-            this.btnReturn.TabIndex = 17;
-            this.btnReturn.Text = "Return";
-            this.btnReturn.UseVisualStyleBackColor = true;
-            // 
             // label_studentSection
             // 
             this.label_studentSection.AutoSize = true;
-            this.label_studentSection.Location = new System.Drawing.Point(27, 136);
+            this.label_studentSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_studentSection.Location = new System.Drawing.Point(192, 392);
             this.label_studentSection.Name = "label_studentSection";
-            this.label_studentSection.Size = new System.Drawing.Size(54, 13);
+            this.label_studentSection.Size = new System.Drawing.Size(93, 24);
             this.label_studentSection.TabIndex = 19;
             this.label_studentSection.Text = "SECTION";
             // 
             // label_studentName
             // 
             this.label_studentName.AutoSize = true;
-            this.label_studentName.Location = new System.Drawing.Point(27, 95);
+            this.label_studentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_studentName.Location = new System.Drawing.Point(192, 351);
             this.label_studentName.Name = "label_studentName";
-            this.label_studentName.Size = new System.Drawing.Size(93, 13);
+            this.label_studentName.Size = new System.Drawing.Size(160, 24);
             this.label_studentName.TabIndex = 18;
             this.label_studentName.Text = "STUDENT NAME";
             // 
@@ -87,12 +83,13 @@
             this.dgvReturn.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvReturn.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvReturn.ColumnHeadersHeight = 30;
             this.dgvReturn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvReturn.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
@@ -102,13 +99,42 @@
             this.Column4,
             this.Return});
             this.dgvReturn.EnableHeadersVisualStyles = false;
-            this.dgvReturn.Location = new System.Drawing.Point(139, 52);
+            this.dgvReturn.Location = new System.Drawing.Point(12, 24);
             this.dgvReturn.Name = "dgvReturn";
             this.dgvReturn.ReadOnly = true;
             this.dgvReturn.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.dgvReturn.Size = new System.Drawing.Size(566, 228);
+            this.dgvReturn.RowHeadersVisible = false;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Honeydew;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvReturn.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvReturn.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvReturn.RowTemplate.Height = 40;
+            this.dgvReturn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvReturn.Size = new System.Drawing.Size(627, 228);
             this.dgvReturn.TabIndex = 20;
             this.dgvReturn.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReturn_CellContentClick);
+            // 
+            // studentPicture
+            // 
+            this.studentPicture.BackColor = System.Drawing.SystemColors.Control;
+            this.studentPicture.ErrorImage = ((System.Drawing.Image)(resources.GetObject("studentPicture.ErrorImage")));
+            this.studentPicture.Image = global::LABCODE1.Properties.Resources.user_ddefault;
+            this.studentPicture.Location = new System.Drawing.Point(12, 267);
+            this.studentPicture.Name = "studentPicture";
+            this.studentPicture.Size = new System.Drawing.Size(168, 168);
+            this.studentPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.studentPicture.TabIndex = 28;
+            this.studentPicture.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(192, 278);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(121, 24);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "STUDENT ID";
             // 
             // Column2
             // 
@@ -116,12 +142,15 @@
             this.Column2.HeaderText = "Date of Borrow";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            this.Column2.Width = 160;
             // 
             // Column5
             // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column5.HeaderText = "Date of Return";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
+            this.Column5.Width = 160;
             // 
             // Column3
             // 
@@ -129,19 +158,22 @@
             this.Column3.HeaderText = "Item ID";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 60;
+            this.Column3.Width = 50;
             // 
             // Column1
             // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column1.HeaderText = "Item Name";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
             // Column4
             // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column4.HeaderText = "Size/Calibration";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
+            this.Column4.Width = 90;
             // 
             // Return
             // 
@@ -150,22 +182,24 @@
             this.Return.Image = ((System.Drawing.Image)(resources.GetObject("Return.Image")));
             this.Return.Name = "Return";
             this.Return.ReadOnly = true;
-            this.Return.Width = 41;
+            this.Return.Width = 44;
             // 
             // ReturnModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(787, 411);
+            this.ClientSize = new System.Drawing.Size(654, 460);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.studentPicture);
             this.Controls.Add(this.dgvReturn);
             this.Controls.Add(this.label_studentSection);
             this.Controls.Add(this.label_studentName);
-            this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.txt_Barcode);
             this.Name = "ReturnModuleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReturnModuleForm";
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,15 +207,16 @@
 
         #endregion
         public System.Windows.Forms.TextBox txt_Barcode;
-        private System.Windows.Forms.Button btnReturn;
         public System.Windows.Forms.DataGridView dgvReturn;
+        public System.Windows.Forms.Label label_studentSection;
+        public System.Windows.Forms.Label label_studentName;
+        public System.Windows.Forms.PictureBox studentPicture;
+        public System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewImageColumn Return;
-        public System.Windows.Forms.Label label_studentSection;
-        public System.Windows.Forms.Label label_studentName;
     }
 }

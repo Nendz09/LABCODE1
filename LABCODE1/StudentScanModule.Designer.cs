@@ -31,13 +31,20 @@ namespace LABCODE1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentScanModule));
             this.btnProceed = new System.Windows.Forms.Button();
             this.txt_Barcode = new System.Windows.Forms.TextBox();
             this.label_studentName = new System.Windows.Forms.Label();
             this.label_studentSection = new System.Windows.Forms.Label();
             this.dgvItemBorrow = new System.Windows.Forms.DataGridView();
+            this.col_dob = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_dor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duration = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.col_itemid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.dateLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
@@ -54,13 +61,6 @@ namespace LABCODE1
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.clearStudentID = new LABCODE1.UserButton();
-            this.col_dob = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_dor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Duration = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.col_itemid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPicture)).BeginInit();
@@ -72,9 +72,10 @@ namespace LABCODE1
             // btnProceed
             // 
             this.btnProceed.Enabled = false;
-            this.btnProceed.Location = new System.Drawing.Point(429, 378);
+            this.btnProceed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProceed.Location = new System.Drawing.Point(429, 380);
             this.btnProceed.Name = "btnProceed";
-            this.btnProceed.Size = new System.Drawing.Size(75, 23);
+            this.btnProceed.Size = new System.Drawing.Size(93, 26);
             this.btnProceed.TabIndex = 1;
             this.btnProceed.Text = "PROCEED";
             this.btnProceed.UseVisualStyleBackColor = true;
@@ -82,9 +83,10 @@ namespace LABCODE1
             // 
             // txt_Barcode
             // 
+            this.txt_Barcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Barcode.Location = new System.Drawing.Point(146, 341);
             this.txt_Barcode.Name = "txt_Barcode";
-            this.txt_Barcode.Size = new System.Drawing.Size(245, 20);
+            this.txt_Barcode.Size = new System.Drawing.Size(245, 26);
             this.txt_Barcode.TabIndex = 3;
             this.txt_Barcode.TextChanged += new System.EventHandler(this.txt_Barcode_TextChanged);
             this.txt_Barcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Barcode_KeyPress);
@@ -114,14 +116,14 @@ namespace LABCODE1
             this.dgvItemBorrow.AllowUserToAddRows = false;
             this.dgvItemBorrow.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvItemBorrow.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItemBorrow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvItemBorrow.ColumnHeadersHeight = 30;
             this.dgvItemBorrow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvItemBorrow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -139,7 +141,6 @@ namespace LABCODE1
             this.dgvItemBorrow.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvItemBorrow.RowHeadersVisible = false;
             this.dgvItemBorrow.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvItemBorrow.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.dgvItemBorrow.RowTemplate.Height = 35;
             this.dgvItemBorrow.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvItemBorrow.Size = new System.Drawing.Size(715, 268);
@@ -148,6 +149,65 @@ namespace LABCODE1
             this.dgvItemBorrow.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellContentClick);
             this.dgvItemBorrow.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemBorrow_CellLeave);
             this.dgvItemBorrow.SelectionChanged += new System.EventHandler(this.dgvItemBorrow_SelectionChanged);
+            // 
+            // col_dob
+            // 
+            this.col_dob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.col_dob.HeaderText = "Date of Borrow";
+            this.col_dob.Name = "col_dob";
+            this.col_dob.ReadOnly = true;
+            this.col_dob.Width = 170;
+            // 
+            // col_dor
+            // 
+            this.col_dor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.col_dor.HeaderText = "Date of Return";
+            this.col_dor.Name = "col_dor";
+            this.col_dor.ReadOnly = true;
+            this.col_dor.Width = 110;
+            // 
+            // Duration
+            // 
+            this.Duration.HeaderText = "Duration";
+            this.Duration.Items.AddRange(new object[] {
+            "1 hr",
+            "2 hrs",
+            "3 hrs",
+            "4 hrs",
+            "5 hrs",
+            "6 hrs",
+            "7 hrs"});
+            this.Duration.Name = "Duration";
+            // 
+            // col_itemid
+            // 
+            this.col_itemid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.col_itemid.HeaderText = "Item ID";
+            this.col_itemid.Name = "col_itemid";
+            this.col_itemid.ReadOnly = true;
+            this.col_itemid.Width = 50;
+            // 
+            // col_itemname
+            // 
+            this.col_itemname.HeaderText = "Item Name";
+            this.col_itemname.Name = "col_itemname";
+            this.col_itemname.ReadOnly = true;
+            this.col_itemname.Width = 130;
+            // 
+            // col_size
+            // 
+            this.col_size.HeaderText = "Size/Calibration";
+            this.col_size.Name = "col_size";
+            this.col_size.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Delete.HeaderText = "";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Width = 5;
             // 
             // dateLabel
             // 
@@ -167,9 +227,10 @@ namespace LABCODE1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(429, 339);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(429, 341);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(93, 26);
             this.button1.TabIndex = 19;
             this.button1.Text = "CLEAR";
             this.button1.UseVisualStyleBackColor = true;
@@ -219,9 +280,10 @@ namespace LABCODE1
             // txt_BarcodeItem
             // 
             this.txt_BarcodeItem.Enabled = false;
+            this.txt_BarcodeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_BarcodeItem.Location = new System.Drawing.Point(146, 380);
             this.txt_BarcodeItem.Name = "txt_BarcodeItem";
-            this.txt_BarcodeItem.Size = new System.Drawing.Size(245, 20);
+            this.txt_BarcodeItem.Size = new System.Drawing.Size(245, 26);
             this.txt_BarcodeItem.TabIndex = 29;
             this.txt_BarcodeItem.TextChanged += new System.EventHandler(this.txt_BarcodeItem_TextChanged);
             this.txt_BarcodeItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_BarcodeItem_KeyPress);
@@ -316,65 +378,6 @@ namespace LABCODE1
             this.clearStudentID.TabIndex = 24;
             this.clearStudentID.TabStop = false;
             this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
-            // 
-            // col_dob
-            // 
-            this.col_dob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.col_dob.HeaderText = "Date of Borrow";
-            this.col_dob.Name = "col_dob";
-            this.col_dob.ReadOnly = true;
-            this.col_dob.Width = 170;
-            // 
-            // col_dor
-            // 
-            this.col_dor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.col_dor.HeaderText = "Date of Return";
-            this.col_dor.Name = "col_dor";
-            this.col_dor.ReadOnly = true;
-            this.col_dor.Width = 110;
-            // 
-            // Duration
-            // 
-            this.Duration.HeaderText = "Duration";
-            this.Duration.Items.AddRange(new object[] {
-            "1 hr",
-            "2 hrs",
-            "3 hrs",
-            "4 hrs",
-            "5 hrs",
-            "6 hrs",
-            "7 hrs"});
-            this.Duration.Name = "Duration";
-            // 
-            // col_itemid
-            // 
-            this.col_itemid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.col_itemid.HeaderText = "Item ID";
-            this.col_itemid.Name = "col_itemid";
-            this.col_itemid.ReadOnly = true;
-            this.col_itemid.Width = 50;
-            // 
-            // col_itemname
-            // 
-            this.col_itemname.HeaderText = "Item Name";
-            this.col_itemname.Name = "col_itemname";
-            this.col_itemname.ReadOnly = true;
-            this.col_itemname.Width = 130;
-            // 
-            // col_size
-            // 
-            this.col_size.HeaderText = "Size/Calibration";
-            this.col_size.Name = "col_size";
-            this.col_size.ReadOnly = true;
-            // 
-            // Delete
-            // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Delete.HeaderText = "";
-            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Width = 5;
             // 
             // StudentScanModule
             // 
