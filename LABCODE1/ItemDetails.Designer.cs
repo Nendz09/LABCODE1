@@ -158,7 +158,7 @@
             // 
             this.image_col.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.image_col.HeaderText = "Image";
-            this.image_col.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.image_col.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.image_col.Name = "image_col";
             this.image_col.ReadOnly = true;
             this.image_col.Width = 300;

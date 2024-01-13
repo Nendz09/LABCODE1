@@ -397,5 +397,65 @@ namespace LABCODE1
                 MessageBox.Show($"Error exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+        private void ImportFromExcel(string filePath)
+        {
+            try
+            {
+                // Load data from Excel using ClosedXML or any other library you prefer
+                using (XLWorkbook workbook = new XLWorkbook(filePath))
+                {
+                    var worksheet = workbook.Worksheets.First();
+
+                    // Assuming your Excel columns correspond to student_id, full_name, year_sec, c_number
+                    var data = worksheet.RowsUsed().Skip(1) //skip header row
+                                    .Select(row => new
+                                    {
+                                        StudentID = row.Cell(1).Value.ToString(),
+                                        FullName = row.Cell(2).Value.ToString(),
+                                        YearSec = row.Cell(3).Value.ToString(),
+                                        ContactNumber = row.Cell(4).Value.ToString()
+                                    });
+
+                    // Update the database with the imported data
+                    con.Open();
+                    foreach (var student in data)
+                    {
+                        // Use your SQL command to insert or update the database records
+                        // For simplicity, assuming student_id is the primary key
+                        SqlCommand cmd = new SqlCommand(@"INSERT INTO lab_students (student_id, full_name, year_sec, c_number) 
+                                                        VALUES (@student_id, @full_name, @year_sec, @c_number)", con);
+
+                        cmd.Parameters.AddWithValue("@student_id", student.StudentID);
+                        cmd.Parameters.AddWithValue("@full_name", student.FullName);
+                        cmd.Parameters.AddWithValue("@year_sec", student.YearSec);
+                        cmd.Parameters.AddWithValue("@c_number", student.ContactNumber);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                // Reload students after importing
+                
+                MessageBox.Show("Import successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error importing from Excel, make sure to use the correct format and there is no DUPLICATION of STUDENT ID." +
+                    $"\n The format column should be the same Student ID | Full Name | Year/Sec | Phone Number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                con.Close();
+            }
+            LoadStudents();
+        }
+
+        private void excelImportBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentForm));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExport = new LABCODE1.UserButton();
@@ -54,6 +54,7 @@
             this.btnNext1 = new LABCODE1.UserButton();
             this.btnReturn = new LABCODE1.UserButton();
             this.btnBorrow = new LABCODE1.UserButton();
+            this.excelImportBtn = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
@@ -63,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReturn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBorrow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.excelImportBtn)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -79,6 +81,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
+            this.panel1.Controls.Add(this.excelImportBtn);
             this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.label1);
@@ -363,6 +366,19 @@
             this.btnBorrow.TabStop = false;
             this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
             // 
+            // excelImportBtn
+            // 
+            this.excelImportBtn.Image = ((System.Drawing.Image)(resources.GetObject("excelImportBtn.Image")));
+            this.excelImportBtn.ImageHover = null;
+            this.excelImportBtn.ImageNormal = null;
+            this.excelImportBtn.Location = new System.Drawing.Point(399, -1);
+            this.excelImportBtn.Name = "excelImportBtn";
+            this.excelImportBtn.Size = new System.Drawing.Size(135, 60);
+            this.excelImportBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.excelImportBtn.TabIndex = 7;
+            this.excelImportBtn.TabStop = false;
+            this.excelImportBtn.Click += new System.EventHandler(this.excelImportBtn_Click);
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -396,6 +412,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReturn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBorrow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.excelImportBtn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -424,5 +441,6 @@
         private System.Windows.Forms.DataGridViewImageColumn View;
         private System.Windows.Forms.DataGridViewImageColumn Edit;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
+        private UserButton excelImportBtn;
     }
 }
