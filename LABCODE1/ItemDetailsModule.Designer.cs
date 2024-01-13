@@ -40,13 +40,13 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.btnUpload = new LABCODE1.UserButton();
             this.itemPicture = new System.Windows.Forms.PictureBox();
             this.cmbCateg = new System.Windows.Forms.ComboBox();
+            this.btnUpload = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -187,21 +187,6 @@
             this.pictureBoxClose.TabStop = false;
             this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
-            // btnUpload
-            // 
-            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpload.Image = ((System.Drawing.Image)(resources.GetObject("btnUpload.Image")));
-            this.btnUpload.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnUpload.ImageHover")));
-            this.btnUpload.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnUpload.ImageNormal")));
-            this.btnUpload.Location = new System.Drawing.Point(616, 409);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(150, 77);
-            this.btnUpload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnUpload.TabIndex = 43;
-            this.btnUpload.TabStop = false;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
-            // 
             // itemPicture
             // 
             this.itemPicture.BackColor = System.Drawing.SystemColors.Control;
@@ -225,6 +210,22 @@
             this.cmbCateg.Size = new System.Drawing.Size(312, 28);
             this.cmbCateg.TabIndex = 44;
             this.cmbCateg.DropDown += new System.EventHandler(this.cmbCateg_DropDown);
+            this.cmbCateg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCateg_KeyPress);
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpload.Image = ((System.Drawing.Image)(resources.GetObject("btnUpload.Image")));
+            this.btnUpload.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnUpload.ImageHover")));
+            this.btnUpload.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnUpload.ImageNormal")));
+            this.btnUpload.Location = new System.Drawing.Point(616, 409);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(150, 77);
+            this.btnUpload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnUpload.TabIndex = 43;
+            this.btnUpload.TabStop = false;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
             // ItemDetailsModule
             // 
@@ -252,8 +253,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

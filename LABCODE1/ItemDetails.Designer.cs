@@ -99,7 +99,7 @@
             this.cmbCategories.FormattingEnabled = true;
             this.cmbCategories.Items.AddRange(new object[] {
             "All"});
-            this.cmbCategories.Location = new System.Drawing.Point(304, 27);
+            this.cmbCategories.Location = new System.Drawing.Point(83, 27);
             this.cmbCategories.Name = "cmbCategories";
             this.cmbCategories.Size = new System.Drawing.Size(121, 23);
             this.cmbCategories.TabIndex = 14;

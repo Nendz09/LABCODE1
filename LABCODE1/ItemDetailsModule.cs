@@ -175,6 +175,13 @@ namespace LABCODE1
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Item has been updated.");
+
+                        //updates the datagridview
+                        //ItemDetails itemDetailsForm = Application.OpenForms.OfType<ItemDetails>().FirstOrDefault();
+                        //itemDetailsForm?.LoadDataDGV();
+
+                        //ItemDetails itemDetails = new ItemDetails();
+                        //itemDetails?.LoadDataDGV();
                         this.Dispose();
                     }
                 }
@@ -233,5 +240,9 @@ namespace LABCODE1
             }
         }
 
+        private void cmbCateg_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

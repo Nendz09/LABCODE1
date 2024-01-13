@@ -66,6 +66,7 @@ namespace LABCODE1
         {
             try
             {
+                //dataGridView1.ClearSelection();
                 dataGridView1.Rows.Clear();
 
                 con.Open();
@@ -401,10 +402,17 @@ namespace LABCODE1
                 itemDetailsModule.txt_Description.Text = itemDesc;
                 itemDetailsModule.txt_itemName.Text = itemName;
                 itemDetailsModule.txt_itemName.Enabled = false;
-                itemDetailsModule.cmbCateg.Text = itemName;
+
+                //itemDetailsModule.cmbCateg.SelectedItem = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+
+                string categVal = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                itemDetailsModule.cmbCateg.DropDownStyle = ComboBoxStyle.DropDown;
+                itemDetailsModule.cmbCateg.Text = categVal;
 
                 itemDetailsModule.ShowDialog();
             }
+            LoadDataDGV();
         }
 
         //private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
