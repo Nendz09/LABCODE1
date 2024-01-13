@@ -221,16 +221,16 @@ namespace LABCODE1
             try
             {
                 con.Open();
-                //string query = "SELECT DISTINCT categ_eqp FROM lab_eqpDetails";
-                string query = "SELECT DISTINCT categ_name FROM lab_categ";
+                string query = "SELECT DISTINCT categ_eqp FROM lab_eqpDetails";
+                //string query = "SELECT DISTINCT categ_name FROM lab_categ";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            //cmbCategories.Items.Add(reader["categ_eqp"].ToString());
-                            cmbCategories.Items.Add(reader["categ_name"].ToString());
+                            cmbCategories.Items.Add(reader["categ_eqp"].ToString());
+                            //cmbCategories.Items.Add(reader["categ_name"].ToString());
                         }
                     }
                 }

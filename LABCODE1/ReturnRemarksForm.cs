@@ -27,7 +27,10 @@ namespace LABCODE1
         public ReturnRemarksForm()
         {
             InitializeComponent();
-            
+
+            rb_Yes.CheckedChanged += RadioButton_CheckedChanged;
+            rb_No.CheckedChanged += RadioButton_CheckedChanged;
+
         }
 
 
@@ -203,6 +206,79 @@ namespace LABCODE1
         {
             string itemName = txt_itemName.Text;
             LoadItemPicture(itemName);
+            LoadItemDescription();
+        }
+
+
+        private void LoadItemDescription()
+        {
+            string labelItemName = txt_itemName.Text;
+            string queryDescription = "SELECT desc_eqp FROM lab_eqpDetails WHERE name_eqp = @nameEquip";
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                {
+                    con.Open();
+                    SqlCommand cmdDesc = new SqlCommand(queryDescription, con);
+                    cmdDesc.Parameters.AddWithValue("@nameEquip", labelItemName);
+
+                    dr = cmdDesc.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        txt_desc.Text = dr["desc_eqp"].ToString();
+                    }
+                    else
+                    {
+                        txt_desc.Text = "ITEM DESCRIPTION";
+                    }
+                }
+            }
+            finally
+            {
+                if (dr != null && !dr.IsClosed)
+                {
+                    dr.Close();
+                }
+            }
+
+
+            //string labelItemName = txt_itemName.Text;
+            //string queryDescription = "SELECT desc_eqp FROM lab_eqpDetails WHERE name_eqp = @nameEquip";
+
+            //SqlCommand cmdDesc = new SqlCommand(queryDescription, con);
+            //cmdDesc.Parameters.AddWithValue("@nameEquip", labelItemName);
+
+            //try
+            //{
+            //    using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+            //    {
+            //        con.Open();
+            //        dr = cmdDesc.ExecuteReader();
+            //        if (dr.Read())
+            //        {
+            //            txt_desc.Text = dr["desc_eqp"].ToString();
+            //        }
+            //        else
+            //        {
+            //            txt_desc.Text = "ITEM DESCRIPTION";
+            //        }
+            //    }
+            //}
+            //finally
+            //{
+            //    if (dr != null && !dr.IsClosed)
+            //    {
+            //        dr.Close();
+            //    }
+            //}
+        }
+
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            // Enable the Return button if either "Yes" or "No" is checked
+            btnReturn.Enabled = rb_Yes.Checked || rb_No.Checked;
         }
     }
 }

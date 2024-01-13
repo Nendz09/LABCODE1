@@ -30,31 +30,34 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelMain = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.standbyMode = new LABCODE1.UserButtonMainPanel();
             this.userButtonMainPanel1 = new LABCODE1.UserButtonMainPanel();
             this.btnLogsMainPanel = new LABCODE1.UserButtonMainPanel();
             this.btnStudentsMainPanel = new LABCODE1.UserButtonMainPanel();
             this.btnInventoryMainPanel = new LABCODE1.UserButtonMainPanel();
             this.btnDashboardMainPanel = new LABCODE1.UserButtonMainPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panelMain = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            this.panelMain.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.standbyMode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userButtonMainPanel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudentsMainPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInventoryMainPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDashboardMainPanel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panelMain.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
+            this.panel1.Controls.Add(this.standbyMode);
             this.panel1.Controls.Add(this.userButtonMainPanel1);
             this.panel1.Controls.Add(this.btnLogsMainPanel);
             this.panel1.Controls.Add(this.btnStudentsMainPanel);
@@ -64,8 +67,83 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(207, 736);
+            this.panel1.Size = new System.Drawing.Size(207, 837);
             this.panel1.TabIndex = 0;
+            // 
+            // panelMain
+            // 
+            this.panelMain.BackColor = System.Drawing.Color.White;
+            this.panelMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelMain.BackgroundImage")));
+            this.panelMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelMain.Controls.Add(this.panel2);
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelMain.Location = new System.Drawing.Point(207, 0);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(1113, 837);
+            this.panelMain.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Location = new System.Drawing.Point(17, 170);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1084, 549);
+            this.panel2.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(353, 132);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(751, 146);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Depatment of Biological \r\nand Physical Sciences";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-51, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(461, 411);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(23, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(153, 103);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 10;
+            this.pictureBox2.TabStop = false;
+            // 
+            // standbyMode
+            // 
+            this.standbyMode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.standbyMode.Image = ((System.Drawing.Image)(resources.GetObject("standbyMode.Image")));
+            this.standbyMode.ImageHover = ((System.Drawing.Image)(resources.GetObject("standbyMode.ImageHover")));
+            this.standbyMode.ImageNormal = ((System.Drawing.Image)(resources.GetObject("standbyMode.ImageNormal")));
+            this.standbyMode.Location = new System.Drawing.Point(0, 609);
+            this.standbyMode.Name = "standbyMode";
+            this.standbyMode.Size = new System.Drawing.Size(206, 94);
+            this.standbyMode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.standbyMode.TabIndex = 15;
+            this.standbyMode.TabStop = false;
+            this.standbyMode.Click += new System.EventHandler(this.standbyMode_Click);
             // 
             // userButtonMainPanel1
             // 
@@ -73,7 +151,7 @@
             this.userButtonMainPanel1.Image = ((System.Drawing.Image)(resources.GetObject("userButtonMainPanel1.Image")));
             this.userButtonMainPanel1.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButtonMainPanel1.ImageHover")));
             this.userButtonMainPanel1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButtonMainPanel1.ImageNormal")));
-            this.userButtonMainPanel1.Location = new System.Drawing.Point(1, 509);
+            this.userButtonMainPanel1.Location = new System.Drawing.Point(0, 509);
             this.userButtonMainPanel1.Name = "userButtonMainPanel1";
             this.userButtonMainPanel1.Size = new System.Drawing.Size(206, 94);
             this.userButtonMainPanel1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -137,72 +215,11 @@
             this.btnDashboardMainPanel.TabStop = false;
             this.btnDashboardMainPanel.Click += new System.EventHandler(this.btnDashboardMainPanel_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(23, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(153, 103);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 10;
-            this.pictureBox2.TabStop = false;
-            // 
-            // panelMain
-            // 
-            this.panelMain.BackColor = System.Drawing.Color.White;
-            this.panelMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelMain.BackgroundImage")));
-            this.panelMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelMain.Controls.Add(this.panel2);
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelMain.Location = new System.Drawing.Point(207, 0);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1113, 736);
-            this.panelMain.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(17, 170);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1084, 448);
-            this.panel2.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(353, 132);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(751, 146);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Depatment of Biological \r\nand Physical Sciences";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-51, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(461, 411);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 736);
+            this.ClientSize = new System.Drawing.Size(1320, 837);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
@@ -211,16 +228,17 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing_1);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
+            this.panelMain.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.standbyMode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userButtonMainPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStudentsMainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnInventoryMainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDashboardMainPanel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panelMain.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -238,5 +256,6 @@
         private UserButtonMainPanel btnLogsMainPanel;
         private System.Windows.Forms.Panel panel2;
         private UserButtonMainPanel userButtonMainPanel1;
+        private UserButtonMainPanel standbyMode;
     }
 }

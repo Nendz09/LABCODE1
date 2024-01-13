@@ -57,7 +57,11 @@ namespace LABCODE1
         {
             openChildForm(new ItemDetails());
         }
-
+        private void standbyMode_Click(object sender, EventArgs e)
+        {
+            QRManual qrManual = new QRManual();
+            qrManual.Show();
+        }
 
 
         //terminate app
@@ -71,5 +75,6 @@ namespace LABCODE1
             this.WindowState = FormWindowState.Maximized;
         }
 
+        
     }
 }

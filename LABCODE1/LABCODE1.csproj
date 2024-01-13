@@ -462,6 +462,12 @@
     <Compile Include="ReturnRemarksForm.Designer.cs">
       <DependentUpon>ReturnRemarksForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="QRManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QRManual.Designer.cs">
+      <DependentUpon>QRManual.cs</DependentUpon>
+    </Compile>
     <Compile Include="StudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -559,6 +565,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReturnRemarksForm.resx">
       <DependentUpon>ReturnRemarksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QRManual.resx">
+      <DependentUpon>QRManual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>

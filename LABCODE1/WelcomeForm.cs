@@ -23,7 +23,7 @@ namespace LABCODE1
         private void timer1_Tick(object sender, EventArgs e)
         {
             progressBar1.Maximum = 100;
-            startPoint += 2;
+            startPoint += 1;
             progressBar1.Value = startPoint;
             if (progressBar1.Value >= progressBar1.Maximum ) 
             {

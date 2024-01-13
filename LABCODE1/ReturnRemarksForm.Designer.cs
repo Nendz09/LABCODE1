@@ -37,28 +37,29 @@
             this.rb_Yes = new System.Windows.Forms.RadioButton();
             this.rb_No = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.borrowDate = new System.Windows.Forms.Label();
             this.txt_studSec = new System.Windows.Forms.Label();
             this.txt_studName = new System.Windows.Forms.Label();
             this.txt_studId = new System.Windows.Forms.Label();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.currentDateAndTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.borrowDate = new System.Windows.Forms.Label();
             this.txt_itemSize = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.itemPicture = new System.Windows.Forms.PictureBox();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_desc = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.txt_remarks1 = new LABCODE1.UserTextbox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnReturn
             // 
+            this.btnReturn.Enabled = false;
             this.btnReturn.Location = new System.Drawing.Point(514, 516);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(75, 23);
@@ -139,6 +140,39 @@
             this.panel1.Size = new System.Drawing.Size(799, 65);
             this.panel1.TabIndex = 29;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(463, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(150, 19);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "BORROWED DATE:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(482, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(131, 19);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "CURRENT DATE:";
+            // 
+            // borrowDate
+            // 
+            this.borrowDate.AutoSize = true;
+            this.borrowDate.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.borrowDate.ForeColor = System.Drawing.Color.White;
+            this.borrowDate.Location = new System.Drawing.Point(623, 7);
+            this.borrowDate.Name = "borrowDate";
+            this.borrowDate.Size = new System.Drawing.Size(21, 19);
+            this.borrowDate.TabIndex = 33;
+            this.borrowDate.Text = "...";
+            // 
             // txt_studSec
             // 
             this.txt_studSec.AutoSize = true;
@@ -172,6 +206,19 @@
             this.txt_studId.TabIndex = 32;
             this.txt_studId.Text = "STUDENT ID";
             // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(771, 4);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 30;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            // 
             // currentDateAndTime
             // 
             this.currentDateAndTime.AutoSize = true;
@@ -189,17 +236,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // borrowDate
-            // 
-            this.borrowDate.AutoSize = true;
-            this.borrowDate.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.borrowDate.ForeColor = System.Drawing.Color.White;
-            this.borrowDate.Location = new System.Drawing.Point(623, 7);
-            this.borrowDate.Name = "borrowDate";
-            this.borrowDate.Size = new System.Drawing.Size(21, 19);
-            this.borrowDate.TabIndex = 33;
-            this.borrowDate.Text = "...";
-            // 
             // txt_itemSize
             // 
             this.txt_itemSize.AutoSize = true;
@@ -209,28 +245,6 @@
             this.txt_itemSize.Size = new System.Drawing.Size(88, 20);
             this.txt_itemSize.TabIndex = 34;
             this.txt_itemSize.Text = "ITEM SIZE";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(482, 36);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 19);
-            this.label3.TabIndex = 35;
-            this.label3.Text = "CURRENT DATE:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Novecento DemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(463, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 19);
-            this.label4.TabIndex = 36;
-            this.label4.Text = "BORROWED DATE:";
             // 
             // itemPicture
             // 
@@ -245,29 +259,16 @@
             this.itemPicture.TabIndex = 44;
             this.itemPicture.TabStop = false;
             // 
-            // pictureBoxClose
+            // txt_desc
             // 
-            this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(771, 4);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(23, 20);
-            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxClose.TabIndex = 30;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(16, 443);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(468, 115);
-            this.textBox1.TabIndex = 51;
+            this.txt_desc.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_desc.Location = new System.Drawing.Point(16, 443);
+            this.txt_desc.Multiline = true;
+            this.txt_desc.Name = "txt_desc";
+            this.txt_desc.ReadOnly = true;
+            this.txt_desc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txt_desc.Size = new System.Drawing.Size(468, 115);
+            this.txt_desc.TabIndex = 51;
             // 
             // flowLayoutPanel1
             // 
@@ -307,7 +308,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 578);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_desc);
             this.Controls.Add(this.itemPicture);
             this.Controls.Add(this.txt_itemSize);
             this.Controls.Add(this.panel1);
@@ -321,8 +322,8 @@
             this.Text = "ReturnRemarksForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -351,7 +352,7 @@
         public System.Windows.Forms.PictureBox itemPicture;
         public System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_desc;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

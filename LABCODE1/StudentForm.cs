@@ -404,12 +404,11 @@ namespace LABCODE1
         {
             try
             {
-                // Load data from Excel using ClosedXML or any other library you prefer
                 using (XLWorkbook workbook = new XLWorkbook(filePath))
                 {
                     var worksheet = workbook.Worksheets.First();
 
-                    // Assuming your Excel columns correspond to student_id, full_name, year_sec, c_number
+                    
                     var data = worksheet.RowsUsed().Skip(1) //skip header row
                                     .Select(row => new
                                     {
@@ -419,12 +418,10 @@ namespace LABCODE1
                                         ContactNumber = row.Cell(4).Value.ToString()
                                     });
 
-                    // Update the database with the imported data
+                    
                     con.Open();
                     foreach (var student in data)
                     {
-                        // Use your SQL command to insert or update the database records
-                        // For simplicity, assuming student_id is the primary key
                         SqlCommand cmd = new SqlCommand(@"INSERT INTO lab_students (student_id, full_name, year_sec, c_number) 
                                                         VALUES (@student_id, @full_name, @year_sec, @c_number)", con);
 
@@ -455,7 +452,16 @@ namespace LABCODE1
 
         private void excelImportBtn_Click(object sender, EventArgs e)
         {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
 
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+                    ImportFromExcel(filePath);
+                }
+            }
         }
     }
 }
