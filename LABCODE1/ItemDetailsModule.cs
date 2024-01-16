@@ -23,6 +23,7 @@ namespace LABCODE1
         SqlDataReader dr;
 
         ItemDetails itemDetails = new ItemDetails();
+        DashboardForm dbForm = new DashboardForm();
 
         public ItemDetailsModule()
         {
@@ -138,8 +139,9 @@ namespace LABCODE1
                         MessageBox.Show("Item details has been saved.");
 
                         //dashboard
-                        //string msg = "You added a new student: " + txtFullName.Text + " - " + txtYearSec.Text + ".";
-                        //dbForm.InsertRecentActivities(msg);
+                        string itemName = txt_itemName.Text;
+                        string msg = $"You added a new item details: {itemName}";
+                        dbForm.InsertRecentActivities(msg);
 
                         //Clear();
                         this.Dispose();
@@ -185,6 +187,10 @@ namespace LABCODE1
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Item has been updated.");
+
+                        string itemName = txt_itemName.Text;
+                        string msg = $"You updated the item: {itemName}";
+                        dbForm.InsertRecentActivities(msg);
 
                         //updates the datagridview
                         //ItemDetails itemDetailsForm = Application.OpenForms.OfType<ItemDetails>().FirstOrDefault();

@@ -215,6 +215,7 @@ namespace LABCODE1
             itemDetailsModule.ShowDialog();
             //LoadData();
             LoadDataDGV();
+            LoadCategories();
         }
 
         
@@ -222,6 +223,7 @@ namespace LABCODE1
 
         private void LoadCategories() //combobox
         {
+            cmbCategories.Items.Clear();
             try
             {
                 con.Open();
@@ -358,36 +360,7 @@ namespace LABCODE1
         }
 
 
-        //private void listViewItems_Click(object sender, EventArgs e)
-        //{
-        //    if (listViewItems.SelectedItems.Count > 0)
-        //    {
-        //        // Access the selected item
-        //        ListViewItem selectedItem = listViewItems.SelectedItems[0];
-
-        //        // Check if there is at least one subitem in the selected item
-        //        if (selectedItem.SubItems.Count > 1)
-        //        {
-        //            // Access the text of the second subitem (index 1) in the selected item
-        //            string itemName = selectedItem.SubItems[1].Text;
-        //            string itemDesc = selectedItem.SubItems[3].Text;
-
-        //            ItemDetailsModule itemDetailsModule = new ItemDetailsModule();
-        //            itemDetailsModule.btnSave.Enabled = false;
-
-        //            itemDetailsModule.LoadItemPicture(itemName);
-
-        //            itemDetailsModule.txt_Description.Text = itemDesc;
-        //            itemDetailsModule.txt_itemName.Text = itemName;
-        //            itemDetailsModule.cmbCateg.Text = itemName;
-
-        //            itemDetailsModule.ShowDialog();
-        //        }
-        //    }
-
-        //    //MessageBox.Show(itemName);
-        //}
-
+        
 
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -418,34 +391,9 @@ namespace LABCODE1
                 LoadDataDGV();
             }
             cmbCategories.SelectedIndex = -1;
-
-            //if (e.RowIndex >= 0 && e.ColumnIndex == 0)
-            //{
-            //    // Access the data in the clicked cell
-            //    DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
-            //    string itemName = selectedRow.Cells["name_col"].Value.ToString();
-            //    string itemDesc = selectedRow.Cells["desc_col"].Value.ToString();
-
-            //    // Your logic to open the details form
-            //    ItemDetailsModule itemDetailsModule = new ItemDetailsModule();
-            //    itemDetailsModule.btnSave.Enabled = false;
-
-            //    itemDetailsModule.LoadItemPicture(itemName);
-
-            //    itemDetailsModule.txt_Description.Text = itemDesc;
-            //    itemDetailsModule.txt_itemName.Text = itemName;
-            //    itemDetailsModule.txt_itemName.Enabled = false;
-
-            //    //itemDetailsModule.cmbCateg.SelectedItem = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            LoadCategories();
 
 
-            //    string categVal = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-            //    itemDetailsModule.cmbCateg.DropDownStyle = ComboBoxStyle.DropDown;
-            //    itemDetailsModule.cmbCateg.Text = categVal;
-
-            //    itemDetailsModule.ShowDialog();
-            //}
-            //LoadDataDGV();
         }
 
         //private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
