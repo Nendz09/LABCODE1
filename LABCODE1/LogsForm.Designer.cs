@@ -42,15 +42,6 @@
             this.labelBorrow = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvBorrowed = new System.Windows.Forms.DataGridView();
-            this.br_col_borrowDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.br_col_returnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvReturned = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +65,15 @@
             this.btnReturnLogs = new LABCODE1.UserButton();
             this.btnBorrowLogs = new LABCODE1.UserButton();
             this.logsTimer = new System.Windows.Forms.Timer(this.components);
+            this.br_col_borrowDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.br_col_returnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowed)).BeginInit();
@@ -213,70 +213,6 @@
             this.dgvBorrowed.TabIndex = 2;
             this.dgvBorrowed.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBorrowed_CellFormatting);
             this.dgvBorrowed.SelectionChanged += new System.EventHandler(this.dgvBorrowed_SelectionChanged);
-            // 
-            // br_col_borrowDate
-            // 
-            this.br_col_borrowDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.br_col_borrowDate.HeaderText = "Date";
-            this.br_col_borrowDate.Name = "br_col_borrowDate";
-            this.br_col_borrowDate.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Student ID";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Full Name";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.FillWeight = 120F;
-            this.Column4.HeaderText = "Year & Section";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.FillWeight = 30F;
-            this.Column8.HeaderText = "ID";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column5.HeaderText = "Item Name";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.HeaderText = "Item Size";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // br_col_returnDate
-            // 
-            this.br_col_returnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.br_col_returnDate.HeaderText = "Return Date";
-            this.br_col_returnDate.Name = "br_col_returnDate";
-            this.br_col_returnDate.ReadOnly = true;
-            // 
-            // col_time
-            // 
-            this.col_time.HeaderText = "Time";
-            this.col_time.Name = "col_time";
-            this.col_time.ReadOnly = true;
             // 
             // dgvReturned
             // 
@@ -557,6 +493,72 @@
             // 
             this.logsTimer.Interval = 1000;
             this.logsTimer.Tick += new System.EventHandler(this.logsTimer_Tick);
+            // 
+            // br_col_borrowDate
+            // 
+            this.br_col_borrowDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.br_col_borrowDate.HeaderText = "Date";
+            this.br_col_borrowDate.Name = "br_col_borrowDate";
+            this.br_col_borrowDate.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.FillWeight = 90F;
+            this.Column2.HeaderText = "Student ID";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.FillWeight = 120F;
+            this.Column3.HeaderText = "Full Name";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.FillWeight = 120F;
+            this.Column4.HeaderText = "Year & Section";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.FillWeight = 30F;
+            this.Column8.HeaderText = "ID";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.HeaderText = "Item Name";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.HeaderText = "Item Size";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // br_col_returnDate
+            // 
+            this.br_col_returnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.br_col_returnDate.HeaderText = "Return Date";
+            this.br_col_returnDate.Name = "br_col_returnDate";
+            this.br_col_returnDate.ReadOnly = true;
+            // 
+            // col_time
+            // 
+            this.col_time.HeaderText = "Time";
+            this.col_time.Name = "col_time";
+            this.col_time.ReadOnly = true;
             // 
             // LogsForm
             // 

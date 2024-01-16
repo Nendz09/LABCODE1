@@ -211,6 +211,7 @@ namespace LABCODE1
         {
             ItemDetailsModule itemDetailsModule = new ItemDetailsModule();
             itemDetailsModule.btnUpdate.Enabled = false;
+            itemDetailsModule.btnDelete.Visible = false;
             itemDetailsModule.ShowDialog();
             //LoadData();
             LoadDataDGV();

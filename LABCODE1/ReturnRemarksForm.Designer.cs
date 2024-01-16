@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReturnRemarksForm));
-            this.btnReturn = new System.Windows.Forms.Button();
             this.txt_itemName = new System.Windows.Forms.Label();
             this.txt_itemId = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,22 +50,15 @@
             this.txt_desc = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.txt_remarks1 = new LABCODE1.UserTextbox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.userBtnReturn = new LABCODE1.UserButton();
+            this.returnBtnPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBtnReturn)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnReturn
-            // 
-            this.btnReturn.Enabled = false;
-            this.btnReturn.Location = new System.Drawing.Point(514, 516);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(75, 23);
-            this.btnReturn.TabIndex = 18;
-            this.btnReturn.Text = "Return";
-            this.btnReturn.UseVisualStyleBackColor = true;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // txt_itemName
             // 
@@ -83,7 +75,7 @@
             // 
             this.txt_itemId.AutoSize = true;
             this.txt_itemId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_itemId.Location = new System.Drawing.Point(416, 120);
+            this.txt_itemId.Location = new System.Drawing.Point(447, 120);
             this.txt_itemId.Name = "txt_itemId";
             this.txt_itemId.Size = new System.Drawing.Size(68, 20);
             this.txt_itemId.TabIndex = 22;
@@ -92,10 +84,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 20);
+            this.label2.Size = new System.Drawing.Size(139, 20);
             this.label2.TabIndex = 24;
             this.label2.Text = "REPLACEMENT";
             // 
@@ -277,7 +269,7 @@
             this.flowLayoutPanel1.Controls.Add(this.rb_No);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(514, 443);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(146, 55);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(152, 55);
             this.flowLayoutPanel1.TabIndex = 52;
             // 
             // txt_remarks1
@@ -302,11 +294,48 @@
             this.txt_remarks1.Texts = "";
             this.txt_remarks1.UnderlinedStyle = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(416, 120);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 20);
+            this.label1.TabIndex = 53;
+            this.label1.Text = "ID:";
+            // 
+            // userBtnReturn
+            // 
+            this.userBtnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.userBtnReturn.BackColor = System.Drawing.Color.Transparent;
+            this.userBtnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.userBtnReturn.Enabled = false;
+            this.userBtnReturn.Image = ((System.Drawing.Image)(resources.GetObject("userBtnReturn.Image")));
+            this.userBtnReturn.ImageHover = ((System.Drawing.Image)(resources.GetObject("userBtnReturn.ImageHover")));
+            this.userBtnReturn.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userBtnReturn.ImageNormal")));
+            this.userBtnReturn.Location = new System.Drawing.Point(641, 513);
+            this.userBtnReturn.Name = "userBtnReturn";
+            this.userBtnReturn.Size = new System.Drawing.Size(136, 45);
+            this.userBtnReturn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.userBtnReturn.TabIndex = 54;
+            this.userBtnReturn.TabStop = false;
+            this.userBtnReturn.Click += new System.EventHandler(this.userBtnReturn_Click);
+            // 
+            // returnBtnPanel
+            // 
+            this.returnBtnPanel.Cursor = System.Windows.Forms.Cursors.No;
+            this.returnBtnPanel.Location = new System.Drawing.Point(641, 513);
+            this.returnBtnPanel.Name = "returnBtnPanel";
+            this.returnBtnPanel.Size = new System.Drawing.Size(136, 45);
+            this.returnBtnPanel.TabIndex = 55;
+            // 
             // ReturnRemarksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 578);
+            this.Controls.Add(this.userBtnReturn);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.txt_desc);
             this.Controls.Add(this.itemPicture);
@@ -315,7 +344,7 @@
             this.Controls.Add(this.txt_itemId);
             this.Controls.Add(this.txt_itemName);
             this.Controls.Add(this.txt_remarks1);
-            this.Controls.Add(this.btnReturn);
+            this.Controls.Add(this.returnBtnPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ReturnRemarksForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -326,14 +355,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBtnReturn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnReturn;
         public System.Windows.Forms.Label txt_itemName;
         public System.Windows.Forms.Label txt_itemId;
         private System.Windows.Forms.Label label2;
@@ -354,5 +382,8 @@
         public System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_desc;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        public System.Windows.Forms.Label label1;
+        private UserButton userBtnReturn;
+        private System.Windows.Forms.Panel returnBtnPanel;
     }
 }

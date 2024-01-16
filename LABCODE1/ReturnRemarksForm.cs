@@ -34,7 +34,9 @@ namespace LABCODE1
         }
 
 
-        private void btnReturn_Click(object sender, EventArgs e)
+
+
+        private void userBtnReturn_Click(object sender, EventArgs e)
         {
             string studentName = txt_studName.Text;
             string studentSec = txt_studSec.Text;
@@ -278,7 +280,11 @@ namespace LABCODE1
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             // Enable the Return button if either "Yes" or "No" is checked
-            btnReturn.Enabled = rb_Yes.Checked || rb_No.Checked;
+            //btnReturn.Enabled = rb_Yes.Checked || rb_No.Checked;
+            userBtnReturn.Enabled = rb_Yes.Checked || rb_No.Checked;
+            returnBtnPanel.Enabled = rb_Yes.Checked || rb_No.Checked;
         }
+
+        
     }
 }

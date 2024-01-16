@@ -336,8 +336,8 @@ namespace LABCODE1
                 }
                 else if (status == "Unavailable")
                 {
-                    string eqpID = dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    string eqpName = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string eqpID = dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string eqpName = dgvLab.Rows[e.RowIndex].Cells[2].Value.ToString();
                     string nameReplacer, yearSec;
                     WhoWillReplace(eqpID, out nameReplacer, out yearSec);
 
@@ -479,15 +479,20 @@ namespace LABCODE1
         {
             combinedSearch();
         }
-
+        //SEARCH STATUS
+        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            combinedSearch();
+        }
         //SEARCH VALUE EQPNAME + EQPSIZE-CALIBRATION
 
         private void combinedSearch() 
         {
             string searchEqpname = userTextbox1.Texts;
             string searchCalibSize = searchSizeCalibration.Texts;
+            string searchStatus = cmbStatus.Text;   
 
-            if (string.IsNullOrWhiteSpace(searchEqpname) && string.IsNullOrWhiteSpace(searchCalibSize))
+            if (string.IsNullOrWhiteSpace(searchEqpname) && string.IsNullOrWhiteSpace(searchCalibSize) && string.IsNullOrWhiteSpace(searchStatus))
             {
                 LoadEquipment();
             }
@@ -498,10 +503,12 @@ namespace LABCODE1
 
                 cmd = new SqlCommand($@"SELECT * FROM lab_eqpment 
                                     WHERE (eqp_size LIKE @searchValueCalibsize OR eqp_categ LIKE @searchValueCalibsize)
-                                    AND (eqp_name LIKE @searchValueName OR eqp_id LIKE @searchValueName)", con);
+                                    AND (eqp_name LIKE @searchValueName OR eqp_id LIKE @searchValueName)
+                                    AND (status LIKE @searchValueStatus)", con);
 
                 cmd.Parameters.AddWithValue("@searchValueName", "%" + searchEqpname + "%");
-                cmd.Parameters.AddWithValue("@searchValueCalibsize", "%" + searchCalibSize + "%"); // Use '%' for partial matches
+                cmd.Parameters.AddWithValue("@searchValueCalibsize", "%" + searchCalibSize + "%");
+                cmd.Parameters.AddWithValue("@searchValueStatus", "%" + searchStatus + "%");// Use '%' for partial matches
 
                 con.Open();
                 dr = cmd.ExecuteReader();
@@ -851,6 +858,6 @@ namespace LABCODE1
             }
         }
 
-
+        
     }
 }

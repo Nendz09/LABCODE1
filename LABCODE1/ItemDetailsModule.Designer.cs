@@ -43,10 +43,12 @@
             this.itemPicture = new System.Windows.Forms.PictureBox();
             this.cmbCateg = new System.Windows.Forms.ComboBox();
             this.btnUpload = new LABCODE1.UserButton();
+            this.btnDelete = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -227,11 +229,28 @@
             this.btnUpload.TabStop = false;
             this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.BackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageHover")));
+            this.btnDelete.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageNormal")));
+            this.btnDelete.Location = new System.Drawing.Point(781, 102);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(83, 32);
+            this.btnDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnDelete.TabIndex = 45;
+            this.btnDelete.TabStop = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // ItemDetailsModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 552);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.cmbCateg);
             this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.itemPicture);
@@ -255,6 +274,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,5 +296,6 @@
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.ComboBox cmbCateg;
+        public UserButton btnDelete;
     }
 }

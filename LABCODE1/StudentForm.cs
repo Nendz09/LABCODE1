@@ -175,18 +175,18 @@ namespace LABCODE1
 
                 studentModule.ShowDialog();
             }
-            else if (colName == "View")
-            {
-                StudentViewModule studentView = new StudentViewModule();
+            //else if (colName == "View")
+            //{
+            //    StudentViewModule studentView = new StudentViewModule();
 
-                studentView.txt_studentid.Text = dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString();
-                studentView.txt_name.Text = dgvStudents.Rows[e.RowIndex].Cells[1].Value.ToString();
-                studentView.txt_section.Text = dgvStudents.Rows[e.RowIndex].Cells[2].Value.ToString();
+            //    studentView.txt_studentid.Text = dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString();
+            //    studentView.txt_name.Text = dgvStudents.Rows[e.RowIndex].Cells[1].Value.ToString();
+            //    studentView.txt_section.Text = dgvStudents.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-                studentView.LoadStudentView();
+            //    studentView.LoadStudentView();
 
-                studentView.ShowDialog();
-            }
+            //    studentView.ShowDialog();
+            //}
             else if (colName == "Delete")
             {
                 if (MessageBox.Show("Are you sure you want to delete this Student Info?", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

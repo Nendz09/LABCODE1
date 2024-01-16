@@ -244,5 +244,40 @@ namespace LABCODE1
         {
             e.Handled = true;
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Are you sure you want to delete this item?", "Delete Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                    {
+                        con.Open();
+
+                        // Add the DELETE statement to delete the selected item
+                        cmd = new SqlCommand(@"DELETE FROM lab_eqpDetails WHERE name_eqp=@name_eqp", con);
+                        cmd.Parameters.AddWithValue("@name_eqp", txt_itemName.Text);
+
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Item has been deleted.");
+
+                        // Optionally, you can clear the form or perform other actions after deletion
+                        // ClearForm();
+
+                        // Close the form after deletion
+                        this.Dispose();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while deleting: {ex.Message}");
+            }
+        }
+
+
+
     }
 }
