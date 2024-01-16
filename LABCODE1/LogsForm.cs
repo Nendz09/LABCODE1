@@ -559,33 +559,34 @@ namespace LABCODE1
 
         private void searchTextbox__TextChanged(object sender, EventArgs e)
         {
-            //string searchValue = searchTextbox.Texts;
+            string searchValue = searchTextbox.Texts;
 
-            //if (string.IsNullOrWhiteSpace(searchValue))
-            //{
-            //    LoadAllDataDGVRETURNED();
-            //}
-            //else
-            //{
-            //    int i = 0;
-            //    dgvReturned.Rows.Clear();
+            if (string.IsNullOrWhiteSpace(searchValue))
+            {
+                LoadAllDataDGVRETURNED();
+            }
+            else
+            {
+                int i = 0;
+                dgvReturned.Rows.Clear();
 
-            //    cmd = new SqlCommand("SELECT * FROM lab_students WHERE student_id LIKE @searchValue OR full_name LIKE @searchValue OR year_sec LIKE @searchValue OR c_number LIKE @searchValue", con);
-            //    cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
+                cmd = new SqlCommand("SELECT * FROM lab_logs WHERE name LIKE @searchValue OR year_sec LIKE @searchValue OR year_sec LIKE @searchValue " +
+                    "               OR eqp_name LIKE @searchValue OR remarks LIKE @searchValue", con);
+                cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
 
-            //    con.Open();
-            //    dr = cmd.ExecuteReader();
+                con.Open();
+                dr = cmd.ExecuteReader();
 
-            //    while (dr.Read())
-            //    {
-            //        ++i;
-            //        dgvReturned.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
-            //            dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString(),
-            //            dr[9].ToString(), dr[10].ToString());
-            //    }
-            //    dr.Close();
-            //    con.Close();
-            //}
+                while (dr.Read())
+                {
+                    ++i;
+                    dgvReturned.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
+                        dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString(),
+                        dr[9].ToString(), dr[10].ToString());
+                }
+                dr.Close();
+                con.Close();
+            }
         }
     }
 }

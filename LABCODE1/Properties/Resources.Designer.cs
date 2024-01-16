@@ -83,6 +83,26 @@ namespace LABCODE1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bg_trans_withstatue {
+            get {
+                object obj = ResourceManager.GetObject("bg_trans_withstatue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bg_trans_withstatue_noopacity {
+            get {
+                object obj = ResourceManager.GetObject("bg_trans_withstatue_noopacity", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap edit_20px {
             get {
                 object obj = ResourceManager.GetObject("edit_20px", resourceCulture);

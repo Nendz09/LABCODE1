@@ -680,6 +680,8 @@
     <Content Include="Inventory_Labcode_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\bg_trans_withstatue_noopacity.png" />
+    <None Include="Resources\bg_trans_withstatue.png" />
     <None Include="Resources\item_unavailable_square.jpeg" />
     <None Include="Resources\item_unavailable.png" />
   </ItemGroup>

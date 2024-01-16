@@ -115,7 +115,12 @@ namespace LABCODE1
             {
                 try
                 {
-                    if (MessageBox.Show("Are you sure you want to save this Item Details?", "Saving Item Details", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (string.IsNullOrEmpty(txt_itemName.Text) || string.IsNullOrEmpty(txt_Description.Text) || string.IsNullOrEmpty(cmbCateg.Text))
+                    {
+                        MessageBox.Show("Please fill out all required fields before saving.");
+                    }
+
+                    else if (MessageBox.Show("Are you sure you want to save this Item Details?", "Saving Item Details", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         string query = @"INSERT INTO lab_eqpDetails(name_eqp, desc_eqp, img_eqp, categ_eqp) 
                                             VALUES(@equipmentName, @equipmentDesc, @equipmentImage, @equipmentCateg)";
@@ -153,7 +158,12 @@ namespace LABCODE1
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to update this data?", "Update Item Details", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (string.IsNullOrEmpty(txt_itemName.Text) || string.IsNullOrEmpty(txt_Description.Text) || string.IsNullOrEmpty(cmbCateg.Text))
+                {
+                    MessageBox.Show("Please fill out all required fields before saving.");
+                }
+
+                else if (MessageBox.Show("Are you sure you want to update this data?", "Update Item Details", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;
                                                                 AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;
@@ -277,7 +287,19 @@ namespace LABCODE1
             }
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txt_itemName.Text) || string.IsNullOrEmpty(txt_Description.Text) || string.IsNullOrEmpty(cmbCateg.Text))
+            {
+                MessageBox.Show("Please fill out all required fields before saving.");
+            }
+        }
 
-
+        private void btnAddCateg_Click(object sender, EventArgs e)
+        {
+            AddCategory addCateg = new AddCategory();
+            //addCateg.btnAdd.Enabled = false;
+            addCateg.ShowDialog();
+        }
     }
 }

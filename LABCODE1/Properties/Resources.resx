@@ -118,17 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="general_add_btn_highlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\general_add_btn_highlight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="user_ddefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user_ddefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bg_trans" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bg_trans.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ekis_border_25px_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ekis_border_25px_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bg_trans_withstatue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_trans_withstatue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="replacement_20pixels" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\replacement_20pixels.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,16 +136,28 @@
   <data name="bg_cvsu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bg_cvsu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="item_unavailable" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\item_unavailable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bg_trans" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_trans.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="return_120px_REVERSED" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\return_120px_REVERSED.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="general_add_btn_highlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\general_add_btn_highlight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="general_add_btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\general_add_btn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ekis_border_25px_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ekis_border_25px_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="item_unavailable_square" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\item_unavailable_square.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="return_120px_REVERSED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\return_120px_REVERSED.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="item_unavailable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\item_unavailable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg_trans_withstatue_noopacity" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_trans_withstatue_noopacity.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

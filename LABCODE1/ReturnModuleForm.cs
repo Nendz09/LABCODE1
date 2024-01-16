@@ -166,5 +166,13 @@ namespace LABCODE1
             }
 
         }
+
+        private void clearStudentID_Click(object sender, EventArgs e)
+        {
+            txt_Barcode.Text = "";
+            txt_Barcode.Enabled = true;
+            txt_Barcode.Focus();
+            dgvReturn.Rows.Clear();
+        }
     }
 }

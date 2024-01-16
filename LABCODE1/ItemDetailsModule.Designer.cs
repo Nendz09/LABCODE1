@@ -35,7 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_itemName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnClear = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -44,11 +43,13 @@
             this.cmbCateg = new System.Windows.Forms.ComboBox();
             this.btnUpload = new LABCODE1.UserButton();
             this.btnDelete = new LABCODE1.UserButton();
+            this.btnAddCateg = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddCateg)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -113,22 +114,6 @@
             this.label2.Size = new System.Drawing.Size(110, 24);
             this.label2.TabIndex = 34;
             this.label2.Text = "Item Name";
-            // 
-            // btnClear
-            // 
-            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClear.FlatAppearance.BorderSize = 0;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(364, 458);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(146, 62);
-            this.btnClear.TabIndex = 31;
-            this.btnClear.Text = "CLEAR";
-            this.btnClear.UseVisualStyleBackColor = false;
             // 
             // btnUpdate
             // 
@@ -209,7 +194,7 @@
             this.cmbCateg.Location = new System.Drawing.Point(198, 391);
             this.cmbCateg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbCateg.Name = "cmbCateg";
-            this.cmbCateg.Size = new System.Drawing.Size(312, 28);
+            this.cmbCateg.Size = new System.Drawing.Size(231, 28);
             this.cmbCateg.TabIndex = 44;
             this.cmbCateg.DropDown += new System.EventHandler(this.cmbCateg_DropDown);
             this.cmbCateg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCateg_KeyPress);
@@ -245,11 +230,27 @@
             this.btnDelete.TabStop = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnAddCateg
+            // 
+            this.btnAddCateg.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddCateg.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddCateg.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.Image")));
+            this.btnAddCateg.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.ImageHover")));
+            this.btnAddCateg.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.ImageNormal")));
+            this.btnAddCateg.Location = new System.Drawing.Point(436, 376);
+            this.btnAddCateg.Name = "btnAddCateg";
+            this.btnAddCateg.Size = new System.Drawing.Size(75, 56);
+            this.btnAddCateg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnAddCateg.TabIndex = 46;
+            this.btnAddCateg.TabStop = false;
+            this.btnAddCateg.Click += new System.EventHandler(this.btnAddCateg_Click);
+            // 
             // ItemDetailsModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 552);
+            this.Controls.Add(this.btnAddCateg);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.cmbCateg);
             this.Controls.Add(this.btnUpload);
@@ -259,7 +260,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txt_itemName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.panel1);
@@ -275,6 +275,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddCateg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,11 +292,11 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox txt_itemName;
         private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.Button btnClear;
         public System.Windows.Forms.Button btnUpdate;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.ComboBox cmbCateg;
         public UserButton btnDelete;
+        private UserButton btnAddCateg;
     }
 }
