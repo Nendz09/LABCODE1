@@ -1,10 +1,11 @@
 ﻿using CircularProgressBar;
 using ClosedXML.Excel;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
+//using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,16 @@ namespace LABCODE1
 {
     public partial class DashboardForm : Form
     {
-        //string constring = System.Configuration.ConfigurationManager.ConnectionStrings["connection_string"].ConnectionString;
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
+        
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        
 
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
 
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
         public DashboardForm()
         {
@@ -43,7 +47,7 @@ namespace LABCODE1
                 string readQuery = "SELECT * from lab_recent_activities ORDER BY activityDate DESC, activityTime DESC";
                 
                 con.Open();
-                cmd = new SqlCommand(readQuery, con);
+                cmd = new MySqlCommand(readQuery, con);
                 dr = cmd.ExecuteReader();
 
                 while (dr.Read()) 
@@ -75,7 +79,7 @@ namespace LABCODE1
                 string insertQuery = "INSERT INTO lab_recent_activities (activityDate, activityMessage, activityTime) VALUES (@activityDate, @activityMessage, @activityTime)";
 
                 con.Open();
-                cmd = new SqlCommand(insertQuery, con);
+                cmd = new MySqlCommand(insertQuery, con);
                 cmd.Parameters.AddWithValue("@activityDate", dateFormat);
                 cmd.Parameters.AddWithValue("@activityMessage", message);
                 cmd.Parameters.AddWithValue("@activityTime", timeFormat);
@@ -92,54 +96,104 @@ namespace LABCODE1
 
         private void totalBorrowedItems() 
         {
-
-
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+            try
             {
                 chart1.Series["Series1"].IsValueShownAsLabel = true;
                 string totalBorrowedQuery = "SELECT COUNT(*) AS total_rows FROM lab_eqpment WHERE status = 'Borrowed'";
                 string totalAvailableQuery = "SELECT COUNT(*) AS total_rows FROM lab_eqpment WHERE status = 'Available'";
                 string totalUnavailableQuery = "SELECT COUNT(*) AS total_rows FROM lab_eqpment WHERE status = 'Unavailable'";
-                con.Open();
 
-                cmd = new SqlCommand(totalBorrowedQuery, con);
-                int totalBorrowed = (int)cmd.ExecuteScalar();
-                chart1.Series["Series1"].Points.AddXY("Borrowed", totalBorrowed);
-
-                cmd = new SqlCommand(totalAvailableQuery, con);
-                int totalAvailable = (int)cmd.ExecuteScalar();
-                chart1.Series["Series1"].Points.AddXY("Available", totalAvailable);
-
-                cmd = new SqlCommand(totalUnavailableQuery, con);
-                int totalUnavailable = (int)cmd.ExecuteScalar();
-
-                // Show or hide label for "Unavailable" based on count
-                //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = (totalUnavailable == 0);
-
-                chart1.Series["Series1"].Points.AddXY("Unavailable", totalUnavailable);
-
-                if (totalUnavailable == 0)
+                using (MySqlConnection con = DbConnection.GetConnection())
                 {
-                    //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = false;
-                    chart1.Series["Series1"].Points[2].Label = " ";
-                }
-                if (totalBorrowed == 0)
-                {
-                    chart1.Series["Series1"].Points[0].Label = " ";
-                }
-                if (totalAvailable == 0)
-                {
-                    chart1.Series["Series1"].Points[1].Label = " ";
-                }
+                    con.Open();
 
+                    cmd = new MySqlCommand(totalBorrowedQuery, con);
+                    int totalBorrowed = Convert.ToInt32(cmd.ExecuteScalar());
+                    chart1.Series["Series1"].Points.AddXY("Borrowed", totalBorrowed);
 
-                chart1.Series["Series1"].Points[2].IsValueShownAsLabel = (totalUnavailable > 0);
+                    cmd = new MySqlCommand(totalAvailableQuery, con);
+                    int totalAvailable = Convert.ToInt32(cmd.ExecuteScalar());
+                    chart1.Series["Series1"].Points.AddXY("Available", totalAvailable);
+
+                    cmd = new MySqlCommand(totalUnavailableQuery, con);
+                    int totalUnavailable = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    // Show or hide label for "Unavailable" based on count
+                    //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = (totalUnavailable == 0);
+
+                    chart1.Series["Series1"].Points.AddXY("Unavailable", totalUnavailable);
+
+                    if (totalUnavailable == 0)
+                    {
+                        //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = false;
+                        chart1.Series["Series1"].Points[2].Label = " ";
+                    }
+                    if (totalBorrowed == 0)
+                    {
+                        chart1.Series["Series1"].Points[0].Label = " ";
+                    }
+                    if (totalAvailable == 0)
+                    {
+                        chart1.Series["Series1"].Points[1].Label = " ";
+                    }
+
+                    chart1.Series["Series1"].Points[2].IsValueShownAsLabel = (totalUnavailable > 0);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show($"Error: {ex.Message}");
             }
 
+            //using (MySqlConnection con = new MySqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+            //using (MySqlConnection con = DbConnection.GetConnection())
+            //{
+            //    chart1.Series["Series1"].IsValueShownAsLabel = true;
+            //    string totalBorrowedQuery = "SELECT COUNT(*) AS total_rows FROM lab_eqpment WHERE status = 'Borrowed'";
+            //    string totalAvailableQuery = "SELECT COUNT(*) AS total_rows FROM lab_eqpment WHERE status = 'Available'";
+            //    string totalUnavailableQuery = "SELECT COUNT(*) AS total_rows FROM lab_eqpment WHERE status = 'Unavailable'";
+            //    con.Open();
 
-            chart1.Series["Series1"].Points[0].Color = Color.Orange;
-            chart1.Series["Series1"].Points[1].Color = Color.LightGreen;
-            chart1.Series["Series1"].Points[2].Color = Color.LightCoral;
+            //    cmd = new MySqlCommand(totalBorrowedQuery, con);
+            //    int totalBorrowed = (int)cmd.ExecuteScalar();
+            //    chart1.Series["Series1"].Points.AddXY("Borrowed", totalBorrowed);
+
+            //    cmd = new MySqlCommand(totalAvailableQuery, con);
+            //    int totalAvailable = (int)cmd.ExecuteScalar();
+            //    chart1.Series["Series1"].Points.AddXY("Available", totalAvailable);
+
+            //    cmd = new MySqlCommand(totalUnavailableQuery, con);
+            //    int totalUnavailable = (int)cmd.ExecuteScalar();
+
+            //    // Show or hide label for "Unavailable" based on count
+            //    //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = (totalUnavailable == 0);
+
+            //    chart1.Series["Series1"].Points.AddXY("Unavailable", totalUnavailable);
+
+            //    if (totalUnavailable == 0)
+            //    {
+            //        //chart1.Series["Series1"].Points[2].IsValueShownAsLabel = false;
+            //        chart1.Series["Series1"].Points[2].Label = " ";
+            //    }
+            //    if (totalBorrowed == 0)
+            //    {
+            //        chart1.Series["Series1"].Points[0].Label = " ";
+            //    }
+            //    if (totalAvailable == 0)
+            //    {
+            //        chart1.Series["Series1"].Points[1].Label = " ";
+            //    }
+
+
+            //    chart1.Series["Series1"].Points[2].IsValueShownAsLabel = (totalUnavailable > 0);
+            //}
+
+
+            //chart1.Series["Series1"].Points[0].Color = Color.Orange;
+            //chart1.Series["Series1"].Points[1].Color = Color.LightGreen;
+            //chart1.Series["Series1"].Points[2].Color = Color.LightCoral;
         }
 
         private void DashboardForm_Load(object sender, EventArgs e)
@@ -183,7 +237,7 @@ namespace LABCODE1
             {
                 chart2.Series["topEqp"].Points.Clear();
 
-                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                using (MySqlConnection connection = DbConnection.GetConnection())
                 {
                     con.Open();
 
@@ -191,17 +245,22 @@ namespace LABCODE1
                     DateTime startDate = new DateTime(selectedDate.Year, selectedDate.Month, 1);
                     DateTime endDate = startDate.AddMonths(1).AddDays(-1); //end of month
 
-                    string query = @"SELECT TOP 3 eqp_name, COUNT(eqp_name) AS eqp_count
-                            FROM lab_logs
-                            WHERE actual_date_return >= @StartDate AND actual_date_return <= @EndDate
-                            GROUP BY eqp_name
-                            ORDER BY eqp_count DESC";
+                    string query = @"SELECT eqp_name, COUNT(eqp_name) AS eqp_count
+                                     FROM lab_logs
+                                     WHERE actual_date_return BETWEEN @StartDate AND @EndDate
+                                     GROUP BY eqp_name
+                                     ORDER BY eqp_count DESC
+                                     LIMIT 3";
 
 
+                    //string query = @"SELECT TOP 3 eqp_name, COUNT(eqp_name) AS eqp_count
+                    //        FROM lab_logs
+                    //        WHERE actual_date_return >= @StartDate AND actual_date_return <= @EndDate
+                    //        GROUP BY eqp_name
+                    //        ORDER BY eqp_count DESC";
 
 
-
-                    cmd = new SqlCommand(query, con);
+                    cmd = new MySqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@StartDate", startDate);
                     cmd.Parameters.AddWithValue("@EndDate", endDate);
 
@@ -253,14 +312,14 @@ namespace LABCODE1
         //DELETE RECENT ACTIVITES (RESEEDING)
         private void DeleteWithReseeding()
         {
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+            using (MySqlConnection connection = DbConnection.GetConnection())
             {
                 con.Open();
                 string deleteQuery = "DELETE FROM lab_recent_activities;";
                 string reseedQuery = "DBCC CHECKIDENT ('lab_recent_activities', RESEED, 0);";
                 string combineDeleteReseedQuery = deleteQuery + reseedQuery;
 
-                cmd = new SqlCommand(combineDeleteReseedQuery, con);
+                cmd = new MySqlCommand(combineDeleteReseedQuery, con);
                 cmd.ExecuteNonQuery();
             }
         }

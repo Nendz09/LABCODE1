@@ -189,7 +189,7 @@ namespace LABCODE1
                         MessageBox.Show("Item has been updated.");
 
                         string itemName = txt_itemName.Text;
-                        string msg = $"You updated the item: {itemName}";
+                        string msg = $"You updated the item details: {itemName}";
                         dbForm.InsertRecentActivities(msg);
 
                         //updates the datagridview
@@ -286,6 +286,9 @@ namespace LABCODE1
                         this.Dispose();
                     }
                 }
+                string itemName = txt_itemName.Text;
+                string msg = $"You deleted the item details: {itemName}";
+                dbForm.InsertRecentActivities(msg);
             }
             catch (Exception ex)
             {

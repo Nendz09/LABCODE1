@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
+//using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
@@ -15,11 +16,11 @@ namespace LABCODE1
 {
     public partial class StudentForm : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
 
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
         DashboardForm dbForm = new DashboardForm();
 
@@ -63,15 +64,41 @@ namespace LABCODE1
 
             //export excel
             //CLICKABLE PAGE
-            cmd = new SqlCommand("SELECT COUNT(*) FROM lab_students", con);
-            con.Open();
-            totalRecords = (int)cmd.ExecuteScalar();
-            con.Close();
+            //cmd = new MySqlCommand("SELECT COUNT(*) FROM lab_students", con);
+            //con.Open();
+            //totalRecords = (int)cmd.ExecuteScalar();
+            //con.Close();
 
-            UpdatePageInfo();
+            //UpdatePageInfo();
 
-            //Load data for the current page
-            LoadData();
+            ////Load data for the current page
+            //LoadData();
+
+
+            try
+            {
+                using (MySqlConnection connection = DbConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    // Get the total number of records
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM lab_students", connection))
+                    {
+                        totalRecords = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+
+                    UpdatePageInfo();
+
+                    // Load data for the current page
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            
         }
 
         //PAGES
@@ -85,7 +112,7 @@ namespace LABCODE1
 
             string query = $@"SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY student_id) AS RowNum FROM lab_students) 
                               AS Temp WHERE RowNum BETWEEN {startIndex} AND {endIndex};";
-            cmd = new SqlCommand(query, con);
+            cmd = new MySqlCommand(query, con);
             con.Open();
             dr = cmd.ExecuteReader();
 
@@ -192,7 +219,7 @@ namespace LABCODE1
                 if (MessageBox.Show("Are you sure you want to delete this Student Info?", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     con.Open();
-                    cmd = new SqlCommand("DELETE FROM lab_students WHERE student_id = @StudentID", con);
+                    cmd = new MySqlCommand("DELETE FROM lab_students WHERE student_id = @StudentID", con);
                     cmd.Parameters.AddWithValue("@StudentID", dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString());
                     //cmd = new SqlCommand("DELETE FROM lab_students WHERE student_id LIKE'" + dgvStudents.Rows[e.RowIndex].Cells[0].Value.ToString() + "'", con);
                     cmd.ExecuteNonQuery();
@@ -230,7 +257,7 @@ namespace LABCODE1
                 int i = 0;
                 dgvStudents.Rows.Clear();
 
-                cmd = new SqlCommand("SELECT * FROM lab_students WHERE student_id LIKE @searchValue OR full_name LIKE @searchValue OR year_sec LIKE @searchValue OR c_number LIKE @searchValue", con);
+                cmd = new MySqlCommand("SELECT * FROM lab_students WHERE student_id LIKE @searchValue OR full_name LIKE @searchValue OR year_sec LIKE @searchValue OR c_number LIKE @searchValue", con);
                 cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
 
                 con.Open();
@@ -332,7 +359,7 @@ namespace LABCODE1
             dgvStudents.Rows.Clear();
 
             string query = "SELECT * FROM lab_students ORDER BY student_id;";
-            cmd = new SqlCommand(query, con);
+            cmd = new MySqlCommand(query, con);
 
             try
             {
@@ -422,7 +449,7 @@ namespace LABCODE1
                     con.Open();
                     foreach (var student in data)
                     {
-                        SqlCommand cmd = new SqlCommand(@"INSERT INTO lab_students (student_id, full_name, year_sec, c_number) 
+                        MySqlCommand cmd = new MySqlCommand(@"INSERT INTO lab_students (student_id, full_name, year_sec, c_number) 
                                                         VALUES (@student_id, @full_name, @year_sec, @c_number)", con);
 
                         cmd.Parameters.AddWithValue("@student_id", student.StudentID);
