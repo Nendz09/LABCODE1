@@ -334,7 +334,7 @@
             this.searchTextbox.TabIndex = 5;
             this.searchTextbox.Texts = "";
             this.searchTextbox.UnderlinedStyle = false;
-            this.searchTextbox._TextChanged += new System.EventHandler(this.searchTextbox__TextChanged);
+            this.searchTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyDown);
             // 
             // btnReturn
             // 
@@ -389,7 +389,7 @@
             this.Name = "StudentForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StudentForm";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StudentForm_KeyPress);
+            //this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StudentForm_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.excelImportBtn)).EndInit();

@@ -375,6 +375,11 @@ namespace LABCODE1
         {
             this.OnKeyPress(e);
         }
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.OnKeyDown(e);
+        }
+
         private void textBox1_Enter(object sender, EventArgs e)
         {
             isFocused = true;
@@ -387,5 +392,7 @@ namespace LABCODE1
             this.Invalidate();
             SetPlaceholder();
         }
+
+        
     }
 }

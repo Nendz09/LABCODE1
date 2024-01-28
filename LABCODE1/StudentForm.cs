@@ -35,7 +35,7 @@ namespace LABCODE1
             InitializeComponent();
             LoadStudents();
            
-            this.KeyPress += StudentForm_KeyPress;
+            //this.KeyPress += StudentForm_KeyPress;
         }
 
 
@@ -244,34 +244,34 @@ namespace LABCODE1
             studentBorrowModule.ShowDialog();
         }
 
-        private void searchTextbox__TextChanged(object sender, EventArgs e)
-        {
-            string searchValue = searchTextbox.Texts;
+        //private void searchTextbox__TextChanged(object sender, EventArgs e)
+        //{
+        //    string searchValue = searchTextbox.Texts;
 
-            if (string.IsNullOrWhiteSpace(searchValue))
-            {
-                LoadStudents();
-            }
-            else
-            {
-                int i = 0;
-                dgvStudents.Rows.Clear();
+        //    if (string.IsNullOrWhiteSpace(searchValue))
+        //    {
+        //        LoadStudents();
+        //    }
+        //    else
+        //    {
+        //        int i = 0;
+        //        dgvStudents.Rows.Clear();
 
-                cmd = new MySqlCommand("SELECT * FROM lab_students WHERE student_id LIKE @searchValue OR full_name LIKE @searchValue OR year_sec LIKE @searchValue OR c_number LIKE @searchValue", con);
-                cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
+        //        cmd = new MySqlCommand("SELECT * FROM lab_students WHERE student_id LIKE @searchValue OR full_name LIKE @searchValue OR year_sec LIKE @searchValue OR c_number LIKE @searchValue", con);
+        //        cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
 
-                con.Open();
-                dr = cmd.ExecuteReader();
+        //        con.Open();
+        //        dr = cmd.ExecuteReader();
 
-                while (dr.Read())
-                {
-                    ++i;
-                    dgvStudents.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
-                }
-                dr.Close();
-                con.Close();
-            }
-        }
+        //        while (dr.Read())
+        //        {
+        //            ++i;
+        //            dgvStudents.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+        //        }
+        //        dr.Close();
+        //        con.Close();
+        //    }
+        //}
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
@@ -285,55 +285,55 @@ namespace LABCODE1
 
 
 
-        private void StudentForm_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //check if the pressed key is a valid character in your barcode
-            if (char.IsDigit(e.KeyChar) || e.KeyChar == '-' || e.KeyChar == ' ')
-            {
-                // Append the character to a buffer until a delimiter is encountered
-                if (e.KeyChar == '\r') // Assuming Enter key is used as a delimiter
-                {
-                    // Process the complete barcode data
-                    string barcode = GetBarcodeFromBuffer();
-                    ProcessBarcode(barcode);
+        //private void StudentForm_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    //check if the pressed key is a valid character in your barcode
+        //    if (char.IsDigit(e.KeyChar) || e.KeyChar == '-' || e.KeyChar == ' ')
+        //    {
+        //        // Append the character to a buffer until a delimiter is encountered
+        //        if (e.KeyChar == '\r') // Assuming Enter key is used as a delimiter
+        //        {
+        //            // Process the complete barcode data
+        //            string barcode = GetBarcodeFromBuffer();
+        //            ProcessBarcode(barcode);
 
-                    // Clear the buffer for the next barcode
-                    ClearBuffer();
-                }
-                else
-                {
-                    // Append the character to the buffer
-                    AppendToBuffer(e.KeyChar);
-                }
+        //            // Clear the buffer for the next barcode
+        //            ClearBuffer();
+        //        }
+        //        else
+        //        {
+        //            // Append the character to the buffer
+        //            AppendToBuffer(e.KeyChar);
+        //        }
 
-                // Consume the key event to prevent it from being handled elsewhere
-                e.Handled = true;
-            }
-        }
-        // Buffer to store the scanned characters until a delimiter is encountered
+        //        // Consume the key event to prevent it from being handled elsewhere
+        //        e.Handled = true;
+        //    }
+        //}
+        //// Buffer to store the scanned characters until a delimiter is encountered
 
         
 
-        private void AppendToBuffer(char character)
-        {
-            barcodeBuffer.Append(character);
-        }
+        //private void AppendToBuffer(char character)
+        //{
+        //    barcodeBuffer.Append(character);
+        //}
 
-        private string GetBarcodeFromBuffer()
-        {
-            return barcodeBuffer.ToString();
-        }
+        //private string GetBarcodeFromBuffer()
+        //{
+        //    return barcodeBuffer.ToString();
+        //}
 
-        private void ClearBuffer()
-        {
-            barcodeBuffer.Clear();
-        }
-        private void ProcessBarcode(string barcode)
-        {
-            // Here, you can implement the logic to handle the scanned barcode
-            // For example, you can display a message, search for the student, or perform any other action.
-            MessageBox.Show($"Scanned Barcode: {barcode}");
-        }
+        //private void ClearBuffer()
+        //{
+        //    barcodeBuffer.Clear();
+        //}
+        //private void ProcessBarcode(string barcode)
+        //{
+        //    // Here, you can implement the logic to handle the scanned barcode
+        //    // For example, you can display a message, search for the student, or perform any other action.
+        //    MessageBox.Show($"Scanned Barcode: {barcode}");
+        //}
         
 
 
@@ -352,6 +352,7 @@ namespace LABCODE1
                 string msg = "You exported the student data in excel file.";
                 dbForm.InsertRecentActivities(msg);
             }
+            LoadStudents();
         }
 
         private void LoadAllDataDGV()
@@ -445,34 +446,33 @@ namespace LABCODE1
                                         ContactNumber = row.Cell(4).Value.ToString()
                                     });
 
-                    
-                    con.Open();
-                    foreach (var student in data)
+                    using (MySqlConnection con = DbConnection.GetConnection())
                     {
-                        MySqlCommand cmd = new MySqlCommand(@"INSERT INTO lab_students (student_id, full_name, year_sec, c_number) 
+                        con.Open();
+                        foreach (var student in data)
+                        {
+                            MySqlCommand cmd = new MySqlCommand(@"INSERT INTO lab_students (student_id, full_name, year_sec, c_number) 
                                                         VALUES (@student_id, @full_name, @year_sec, @c_number)", con);
 
-                        cmd.Parameters.AddWithValue("@student_id", student.StudentID);
-                        cmd.Parameters.AddWithValue("@full_name", student.FullName);
-                        cmd.Parameters.AddWithValue("@year_sec", student.YearSec);
-                        cmd.Parameters.AddWithValue("@c_number", student.ContactNumber);
+                            cmd.Parameters.AddWithValue("@student_id", student.StudentID);
+                            cmd.Parameters.AddWithValue("@full_name", student.FullName);
+                            cmd.Parameters.AddWithValue("@year_sec", student.YearSec);
+                            cmd.Parameters.AddWithValue("@c_number", student.ContactNumber);
 
-                        cmd.ExecuteNonQuery();
+                            cmd.ExecuteNonQuery();
+                        }
                     }
+                    
                 }
 
                 // Reload students after importing
                 
                 MessageBox.Show("Import successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show($"Error importing from Excel, make sure to use the correct format and there is no DUPLICATION of STUDENT ID." +
                     $"\n The format column should be the same Student ID | Full Name | Year/Sec | Phone Number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                con.Close();
             }
             LoadStudents();
         }
@@ -490,5 +490,46 @@ namespace LABCODE1
                 }
             }
         }
+
+        
+
+
+
+        private void searchTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                string searchValue = searchTextbox.Texts.Trim();
+                Console.WriteLine("Search Value: " + searchValue); // Debug statement
+
+                if (string.IsNullOrWhiteSpace(searchValue))
+                {
+                    LoadStudents();
+                }
+                else
+                {
+                    int i = 0;
+                    dgvStudents.Rows.Clear();
+
+                    cmd = new MySqlCommand(@"SELECT * FROM lab_students WHERE student_id LIKE @searchValue OR full_name LIKE @searchValue OR year_sec LIKE @searchValue OR c_number LIKE @searchValue", con);
+                    cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%");
+
+                    con.Open();
+                    dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        ++i;
+                        dgvStudents.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                    }
+                    dr.Close();
+                    con.Close();
+                }
+            }
+        }
+
+
+
     }
 }
