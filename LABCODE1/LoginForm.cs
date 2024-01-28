@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +14,13 @@ namespace LABCODE1
 {
     public partial class LoginForm : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
+
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
         public LoginForm()
         {
@@ -42,7 +46,7 @@ namespace LABCODE1
         {
             try
             {
-                cmd = new SqlCommand("SELECT * FROM lab_user WHERE username=@username AND password=@password", con);
+                cmd = new MySqlCommand("SELECT * FROM lab_user WHERE username=@username AND password=@password", con);
                 cmd.Parameters.AddWithValue("@username", username_txt.Text);
                 cmd.Parameters.AddWithValue("@password", pass_txt.Text);
                 con.Open();

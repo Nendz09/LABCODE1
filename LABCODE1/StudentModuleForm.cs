@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,11 +18,14 @@ namespace LABCODE1
 {
     public partial class StudentModuleForm : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
 
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
+
 
         DashboardForm dbForm = new DashboardForm();
 
@@ -69,7 +73,7 @@ namespace LABCODE1
                     if (MessageBox.Show("Are you sure you want to save this Student data?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
 
-                        cmd = new SqlCommand(@"INSERT INTO lab_students(student_id, full_name, year_sec, c_number, student_pic) 
+                        cmd = new MySqlCommand(@"INSERT INTO lab_students(student_id, full_name, year_sec, c_number, student_pic) 
                                             VALUES (@student_id, @full_name, @year_sec, @c_number, @student_pic)", con);
                         cmd.Parameters.AddWithValue("@student_id", txtStudID.Text);
                         cmd.Parameters.AddWithValue("@full_name", txtFullName.Text);
@@ -129,7 +133,7 @@ namespace LABCODE1
                         con.Open();
                         string studID = txtStudID.Text;
                         //update sa lab_students
-                        cmd = new SqlCommand($@"UPDATE lab_students SET student_id=@student_id, full_name=@full_name, 
+                        cmd = new MySqlCommand($@"UPDATE lab_students SET student_id=@student_id, full_name=@full_name, 
                                             year_sec=@year_sec, c_number=@c_number, student_pic=@student_pic WHERE student_id LIKE {studID} ", con);
                         cmd.Parameters.AddWithValue("@student_id", txtStudID.Text);
                         cmd.Parameters.AddWithValue("@full_name", txtFullName.Text);
@@ -139,7 +143,7 @@ namespace LABCODE1
                         cmd.ExecuteNonQuery();
 
                         //update sa lab_borrows
-                        cmd = new SqlCommand("UPDATE lab_borrows SET name=@full_name, year_sec=@year_sec WHERE student_id = @student_id", con);
+                        cmd = new MySqlCommand("UPDATE lab_borrows SET name=@full_name, year_sec=@year_sec WHERE student_id = @student_id", con);
                         cmd.Parameters.AddWithValue("@student_id", txtStudID.Text);
                         cmd.Parameters.AddWithValue("@full_name", txtFullName.Text);
                         cmd.Parameters.AddWithValue("@year_sec", txtYearSec.Text);
@@ -169,9 +173,9 @@ namespace LABCODE1
            
             con.Open();
             // Check if a student with the same ID exists
-            cmd = new SqlCommand("SELECT COUNT(*) FROM lab_students WHERE student_id = @student_id", con);
+            cmd = new MySqlCommand("SELECT COUNT(*) FROM lab_students WHERE student_id = @student_id", con);
             cmd.Parameters.AddWithValue("@student_id", txtStudID.Text);
-            int studentIdCount = (int)cmd.ExecuteScalar();
+            int studentIdCount = Convert.ToInt32(cmd.ExecuteScalar());
 
             label_StdExists.Visible = studentIdCount > 0;
             btnSave.Enabled = studentIdCount == 0;
@@ -255,7 +259,7 @@ namespace LABCODE1
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT student_pic FROM lab_students WHERE student_id = @StudentID", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT student_pic FROM lab_students WHERE student_id = @StudentID", con);
                 cmd.Parameters.AddWithValue("@StudentID", studentID);
                 byte[] imageData = (byte[])cmd.ExecuteScalar();
 
