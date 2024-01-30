@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,12 +15,13 @@ namespace LABCODE1
 {
     public partial class ReturnModuleForm : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
 
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
-        
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
 
         public ReturnModuleForm()
@@ -44,7 +46,7 @@ namespace LABCODE1
             {
                 dgvBorrowedItems();
                 con.Open();
-                cmd = new SqlCommand("SELECT * FROM lab_students WHERE student_id = @studentID", con);
+                cmd = new MySqlCommand("SELECT * FROM lab_students WHERE student_id = @studentID", con);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
 
                 dr = cmd.ExecuteReader();
@@ -83,7 +85,7 @@ namespace LABCODE1
                     LoadStudentPicture(studID);
                     int i = 0;
                     dgvReturn.Rows.Clear();
-                    cmd = new SqlCommand("SELECT date_borrow, date_return, eqp_id, eqp_name, eqp_size FROM lab_borrows WHERE student_id = @studentID", con);
+                    cmd = new MySqlCommand("SELECT date_borrow, date_return, eqp_id, eqp_name, eqp_size FROM lab_borrows WHERE student_id = @studentID", con);
                     cmd.Parameters.AddWithValue("@studentID", studentID);
                     
 
@@ -112,7 +114,7 @@ namespace LABCODE1
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT student_pic FROM lab_students WHERE student_id = @StudentID", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT student_pic FROM lab_students WHERE student_id = @StudentID", con);
                 cmd.Parameters.AddWithValue("@StudentID", studentID);
                 byte[] imageData = (byte[])cmd.ExecuteScalar();
 

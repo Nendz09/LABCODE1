@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +14,14 @@ namespace LABCODE1
 {
     public partial class AddCategory : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
 
-        SqlDataReader dr;
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
+
         DashboardForm dbForm = new DashboardForm();
         public AddCategory()
         {
@@ -44,7 +48,7 @@ namespace LABCODE1
                                     VALUES (@categ_name)";
 
                     con.Open();
-                    cmd = new SqlCommand(insertQuery, con);
+                    cmd = new MySqlCommand(insertQuery, con);
                     cmd.Parameters.AddWithValue("@categ_name", trimmedInput);
 
 
@@ -78,7 +82,7 @@ namespace LABCODE1
             {
                 int i = 0;
                 dgvCateg.Rows.Clear();
-                cmd = new SqlCommand("SELECT * FROM lab_categ", con);
+                cmd = new MySqlCommand("SELECT * FROM lab_categ", con);
                 con.Open();
                 dr = cmd.ExecuteReader();
 
@@ -130,7 +134,7 @@ namespace LABCODE1
                 if (MessageBox.Show("Are you sure you want to delete this category?", "Deleting Category", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     con.Open();
-                    cmd = new SqlCommand("DELETE FROM lab_categ WHERE categ_name = @categName", con);
+                    cmd = new MySqlCommand("DELETE FROM lab_categ WHERE categ_name = @categName", con);
                     cmd.Parameters.AddWithValue("@categName", dgvCateg.Rows[e.RowIndex].Cells[0].Value.ToString());
 
                     //dashboard

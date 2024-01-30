@@ -13,12 +13,12 @@ namespace LABCODE1
 {
     public partial class MainForm : Form
     {
+        private AccountForm _accountForm;
 
-       
-        public MainForm()
+        public MainForm(AccountForm accountForm)
         {
             InitializeComponent();
-            
+            _accountForm = accountForm;
         }
 
         //show the subForm in this MainForm by clicking the btn
@@ -75,6 +75,9 @@ namespace LABCODE1
             this.WindowState = FormWindowState.Maximized;
         }
 
-        
+        private void btnAccountMainPanel_Click(object sender, EventArgs e)
+        {
+            openChildForm(_accountForm);
+        }
     }
 }

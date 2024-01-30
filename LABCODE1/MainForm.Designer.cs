@@ -43,6 +43,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnAccountMainPanel = new LABCODE1.UserButtonMainPanel();
             this.standbyMode = new LABCODE1.UserButtonMainPanel();
             this.userButtonMainPanel1 = new LABCODE1.UserButtonMainPanel();
             this.btnLogsMainPanel = new LABCODE1.UserButtonMainPanel();
@@ -56,6 +57,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAccountMainPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.standbyMode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userButtonMainPanel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).BeginInit();
@@ -67,6 +69,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
+            this.panel1.Controls.Add(this.btnAccountMainPanel);
             this.panel1.Controls.Add(this.standbyMode);
             this.panel1.Controls.Add(this.userButtonMainPanel1);
             this.panel1.Controls.Add(this.btnLogsMainPanel);
@@ -77,7 +80,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(207, 837);
+            this.panel1.Size = new System.Drawing.Size(207, 923);
             this.panel1.TabIndex = 0;
             // 
             // panelMain
@@ -98,7 +101,7 @@
             this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelMain.Location = new System.Drawing.Point(207, 0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1330, 837);
+            this.panelMain.Size = new System.Drawing.Size(1330, 923);
             this.panelMain.TabIndex = 1;
             // 
             // label2
@@ -108,7 +111,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(77, 570);
+            this.label2.Location = new System.Drawing.Point(77, 656);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(537, 225);
             this.label2.TabIndex = 8;
@@ -120,7 +123,7 @@
             this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(82, 448);
+            this.pictureBox3.Location = new System.Drawing.Point(82, 534);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(128, 133);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -134,7 +137,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("LEMON MILK Bold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(896, 492);
+            this.label6.Location = new System.Drawing.Point(896, 578);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(218, 68);
             this.label6.TabIndex = 14;
@@ -148,7 +151,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(944, 467);
+            this.label7.Location = new System.Drawing.Point(944, 553);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(137, 25);
             this.label7.TabIndex = 13;
@@ -162,7 +165,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("LEMON MILK Bold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(216, 492);
+            this.label5.Location = new System.Drawing.Point(216, 578);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(256, 68);
             this.label5.TabIndex = 11;
@@ -176,7 +179,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(279, 467);
+            this.label4.Location = new System.Drawing.Point(279, 553);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(137, 25);
             this.label4.TabIndex = 10;
@@ -190,7 +193,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(772, 571);
+            this.label3.Location = new System.Drawing.Point(772, 657);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(476, 217);
             this.label3.TabIndex = 9;
@@ -205,7 +208,7 @@
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(62, 31);
+            this.panel2.Location = new System.Drawing.Point(59, 37);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1103, 433);
             this.panel2.TabIndex = 8;
@@ -240,7 +243,7 @@
             this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(747, 449);
+            this.pictureBox4.Location = new System.Drawing.Point(747, 535);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(128, 133);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -257,13 +260,27 @@
             this.pictureBox2.TabIndex = 10;
             this.pictureBox2.TabStop = false;
             // 
+            // btnAccountMainPanel
+            // 
+            this.btnAccountMainPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAccountMainPanel.Image = ((System.Drawing.Image)(resources.GetObject("btnAccountMainPanel.Image")));
+            this.btnAccountMainPanel.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAccountMainPanel.ImageHover")));
+            this.btnAccountMainPanel.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAccountMainPanel.ImageNormal")));
+            this.btnAccountMainPanel.Location = new System.Drawing.Point(0, 609);
+            this.btnAccountMainPanel.Name = "btnAccountMainPanel";
+            this.btnAccountMainPanel.Size = new System.Drawing.Size(206, 94);
+            this.btnAccountMainPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnAccountMainPanel.TabIndex = 16;
+            this.btnAccountMainPanel.TabStop = false;
+            this.btnAccountMainPanel.Click += new System.EventHandler(this.btnAccountMainPanel_Click);
+            // 
             // standbyMode
             // 
             this.standbyMode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.standbyMode.Image = ((System.Drawing.Image)(resources.GetObject("standbyMode.Image")));
             this.standbyMode.ImageHover = ((System.Drawing.Image)(resources.GetObject("standbyMode.ImageHover")));
             this.standbyMode.ImageNormal = ((System.Drawing.Image)(resources.GetObject("standbyMode.ImageNormal")));
-            this.standbyMode.Location = new System.Drawing.Point(0, 609);
+            this.standbyMode.Location = new System.Drawing.Point(0, 709);
             this.standbyMode.Name = "standbyMode";
             this.standbyMode.Size = new System.Drawing.Size(206, 94);
             this.standbyMode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -345,7 +362,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1537, 837);
+            this.ClientSize = new System.Drawing.Size(1537, 923);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
@@ -362,6 +379,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAccountMainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.standbyMode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userButtonMainPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogsMainPanel)).EndInit();
@@ -394,5 +412,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private UserButtonMainPanel btnAccountMainPanel;
     }
 }

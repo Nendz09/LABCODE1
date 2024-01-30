@@ -38,18 +38,18 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.itemPicture = new System.Windows.Forms.PictureBox();
             this.cmbCateg = new System.Windows.Forms.ComboBox();
-            this.btnUpload = new LABCODE1.UserButton();
-            this.btnDelete = new LABCODE1.UserButton();
             this.btnAddCateg = new LABCODE1.UserButton();
+            this.btnDelete = new LABCODE1.UserButton();
+            this.btnUpload = new LABCODE1.UserButton();
+            this.itemPicture = new System.Windows.Forms.PictureBox();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCateg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -63,6 +63,7 @@
             this.label1.Size = new System.Drawing.Size(136, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Item Details";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label4
             // 
@@ -74,6 +75,7 @@
             this.label4.Size = new System.Drawing.Size(99, 24);
             this.label4.TabIndex = 38;
             this.label4.Text = "Category:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txt_Description
             // 
@@ -84,6 +86,7 @@
             this.txt_Description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txt_Description.Size = new System.Drawing.Size(312, 144);
             this.txt_Description.TabIndex = 37;
+            this.txt_Description.TextChanged += new System.EventHandler(this.txt_Description_TextChanged);
             // 
             // label3
             // 
@@ -95,6 +98,7 @@
             this.label3.Size = new System.Drawing.Size(121, 24);
             this.label3.TabIndex = 36;
             this.label3.Text = "Description:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txt_itemName
             // 
@@ -103,6 +107,7 @@
             this.txt_itemName.Name = "txt_itemName";
             this.txt_itemName.Size = new System.Drawing.Size(312, 26);
             this.txt_itemName.TabIndex = 35;
+            this.txt_itemName.TextChanged += new System.EventHandler(this.txt_itemName_TextChanged);
             // 
             // label2
             // 
@@ -114,6 +119,7 @@
             this.label2.Size = new System.Drawing.Size(110, 24);
             this.label2.TabIndex = 34;
             this.label2.Text = "Item Name";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // btnUpdate
             // 
@@ -160,32 +166,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(876, 97);
             this.panel1.TabIndex = 28;
-            // 
-            // pictureBoxClose
-            // 
-            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(830, 12);
-            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(34, 31);
-            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxClose.TabIndex = 12;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
-            // 
-            // itemPicture
-            // 
-            this.itemPicture.BackColor = System.Drawing.SystemColors.Control;
-            this.itemPicture.ErrorImage = null;
-            this.itemPicture.Image = ((System.Drawing.Image)(resources.GetObject("itemPicture.Image")));
-            this.itemPicture.Location = new System.Drawing.Point(566, 142);
-            this.itemPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.itemPicture.Name = "itemPicture";
-            this.itemPicture.Size = new System.Drawing.Size(252, 258);
-            this.itemPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.itemPicture.TabIndex = 42;
-            this.itemPicture.TabStop = false;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // cmbCateg
             // 
@@ -197,22 +178,23 @@
             this.cmbCateg.Size = new System.Drawing.Size(231, 28);
             this.cmbCateg.TabIndex = 44;
             this.cmbCateg.DropDown += new System.EventHandler(this.cmbCateg_DropDown);
+            this.cmbCateg.SelectedIndexChanged += new System.EventHandler(this.cmbCateg_SelectedIndexChanged);
             this.cmbCateg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCateg_KeyPress);
             // 
-            // btnUpload
+            // btnAddCateg
             // 
-            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpload.Image = ((System.Drawing.Image)(resources.GetObject("btnUpload.Image")));
-            this.btnUpload.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnUpload.ImageHover")));
-            this.btnUpload.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnUpload.ImageNormal")));
-            this.btnUpload.Location = new System.Drawing.Point(616, 409);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(150, 77);
-            this.btnUpload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnUpload.TabIndex = 43;
-            this.btnUpload.TabStop = false;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            this.btnAddCateg.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddCateg.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddCateg.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.Image")));
+            this.btnAddCateg.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.ImageHover")));
+            this.btnAddCateg.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.ImageNormal")));
+            this.btnAddCateg.Location = new System.Drawing.Point(436, 376);
+            this.btnAddCateg.Name = "btnAddCateg";
+            this.btnAddCateg.Size = new System.Drawing.Size(75, 56);
+            this.btnAddCateg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnAddCateg.TabIndex = 46;
+            this.btnAddCateg.TabStop = false;
+            this.btnAddCateg.Click += new System.EventHandler(this.btnAddCateg_Click);
             // 
             // btnDelete
             // 
@@ -230,20 +212,47 @@
             this.btnDelete.TabStop = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnAddCateg
+            // btnUpload
             // 
-            this.btnAddCateg.BackColor = System.Drawing.Color.Transparent;
-            this.btnAddCateg.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddCateg.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.Image")));
-            this.btnAddCateg.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.ImageHover")));
-            this.btnAddCateg.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnAddCateg.ImageNormal")));
-            this.btnAddCateg.Location = new System.Drawing.Point(436, 376);
-            this.btnAddCateg.Name = "btnAddCateg";
-            this.btnAddCateg.Size = new System.Drawing.Size(75, 56);
-            this.btnAddCateg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAddCateg.TabIndex = 46;
-            this.btnAddCateg.TabStop = false;
-            this.btnAddCateg.Click += new System.EventHandler(this.btnAddCateg_Click);
+            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpload.Image = ((System.Drawing.Image)(resources.GetObject("btnUpload.Image")));
+            this.btnUpload.ImageHover = ((System.Drawing.Image)(resources.GetObject("btnUpload.ImageHover")));
+            this.btnUpload.ImageNormal = ((System.Drawing.Image)(resources.GetObject("btnUpload.ImageNormal")));
+            this.btnUpload.Location = new System.Drawing.Point(616, 409);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(150, 77);
+            this.btnUpload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnUpload.TabIndex = 43;
+            this.btnUpload.TabStop = false;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // itemPicture
+            // 
+            this.itemPicture.BackColor = System.Drawing.SystemColors.Control;
+            this.itemPicture.ErrorImage = null;
+            this.itemPicture.Image = ((System.Drawing.Image)(resources.GetObject("itemPicture.Image")));
+            this.itemPicture.Location = new System.Drawing.Point(566, 142);
+            this.itemPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.itemPicture.Name = "itemPicture";
+            this.itemPicture.Size = new System.Drawing.Size(252, 258);
+            this.itemPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.itemPicture.TabIndex = 42;
+            this.itemPicture.TabStop = false;
+            this.itemPicture.Click += new System.EventHandler(this.itemPicture_Click);
+            // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(830, 12);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(34, 31);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 12;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
             // ItemDetailsModule
             // 
@@ -271,11 +280,11 @@
             this.Text = "ItemDetailsModule";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCateg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

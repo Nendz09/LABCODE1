@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
+using MySql.Data.MySqlClient;
 using PdfSharp.Drawing;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,13 @@ namespace LABCODE1
 {
     public partial class ItemDetailsModule : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
 
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
         ItemDetails itemDetails = new ItemDetails();
         DashboardForm dbForm = new DashboardForm();
@@ -39,15 +42,13 @@ namespace LABCODE1
 
         private void LoadCateg() 
         {
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;
-                                AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;
-                                Integrated Security=True"))
+            using (MySqlConnection con = DbConnection.GetConnection())
             {
                 try
                 {
                     string query = "SELECT categ_name FROM lab_categ";
                     
-                    cmd = new SqlCommand(query, con);
+                    cmd = new MySqlCommand(query, con);
                     con.Open();
 
                     cmbCateg.Items.Clear();//iwas loop
@@ -74,7 +75,7 @@ namespace LABCODE1
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT img_eqp FROM lab_eqpDetails WHERE name_eqp = @eqpName", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT img_eqp FROM lab_eqpdetails WHERE name_eqp = @eqpName", con);
                 cmd.Parameters.AddWithValue("@eqpName", itemName);
                 byte[] imageData = (byte[])cmd.ExecuteScalar();
 
@@ -110,9 +111,7 @@ namespace LABCODE1
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;
-                                                        AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;
-                                                        Integrated Security=True"))
+            using (MySqlConnection con = DbConnection.GetConnection())
             {
                 try
                 {
@@ -123,9 +122,9 @@ namespace LABCODE1
 
                     else if (MessageBox.Show("Are you sure you want to save this Item Details?", "Saving Item Details", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        string query = @"INSERT INTO lab_eqpDetails(name_eqp, desc_eqp, img_eqp, categ_eqp) 
+                        string query = @"INSERT INTO lab_eqpdetails(name_eqp, desc_eqp, img_eqp, categ_eqp) 
                                             VALUES(@equipmentName, @equipmentDesc, @equipmentImage, @equipmentCateg)";
-                        cmd = new SqlCommand(query, con);
+                        cmd = new MySqlCommand(query, con);
                         
                         cmd.Parameters.AddWithValue("@equipmentName", txt_itemName.Text);
                         cmd.Parameters.AddWithValue("@equipmentDesc", txt_Description.Text);
@@ -167,14 +166,12 @@ namespace LABCODE1
 
                 else if (MessageBox.Show("Are you sure you want to update this data?", "Update Item Details", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;
-                                                                AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;
-                                                                Integrated Security=True"))
+                    using (MySqlConnection con = DbConnection.GetConnection())
                     {
                         
                         con.Open();
 
-                        cmd = new SqlCommand(@"UPDATE lab_eqpDetails 
+                        cmd = new MySqlCommand(@"UPDATE lab_eqpdetails 
                                                 SET desc_eqp=@desc_eqp, img_eqp=@img_eqp,  categ_eqp=@categ_eqp 
                                                 WHERE name_eqp=@name_eqp ", con);
                         cmd.Parameters.AddWithValue("@name_eqp", txt_itemName.Text);
@@ -267,12 +264,12 @@ namespace LABCODE1
             {
                 if (MessageBox.Show("Are you sure you want to delete this item?", "Delete Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                    using (MySqlConnection con = DbConnection.GetConnection())
                     {
                         con.Open();
 
                         // Add the DELETE statement to delete the selected item
-                        cmd = new SqlCommand(@"DELETE FROM lab_eqpDetails WHERE name_eqp=@name_eqp", con);
+                        cmd = new MySqlCommand(@"DELETE FROM lab_eqpdetails WHERE name_eqp=@name_eqp", con);
                         cmd.Parameters.AddWithValue("@name_eqp", txt_itemName.Text);
 
                         cmd.ExecuteNonQuery();
@@ -309,6 +306,51 @@ namespace LABCODE1
             AddCategory addCateg = new AddCategory();
             //addCateg.btnAdd.Enabled = false;
             addCateg.ShowDialog();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_Description_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_itemName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cmbCateg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void itemPicture_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

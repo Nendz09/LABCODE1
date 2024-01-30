@@ -8,16 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Sql;
-using System.Data.SqlClient;
+//using System.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using System.IO;
+using MySql.Data.MySqlClient;
 
 namespace LABCODE1
 {
     public partial class BackUpForm : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //MySqlConnection con = DbConnection.GetConnection();
+
+        MySqlConnection con = DbConnection.GetConnection();
+        //MySqlCommand cmd = new MySqlCommand();
+        //MySqlDataReader dr;
+
 
         DashboardForm dbForm = new DashboardForm();
 
@@ -42,7 +49,7 @@ namespace LABCODE1
         }
 
 
-       
+
 
         private void btnBackup1_Click(object sender, EventArgs e)
         {
@@ -55,7 +62,8 @@ namespace LABCODE1
             try
             {
                 string date = DateTime.Now.ToString("yyyy-MM-dd-HH-mm");
-                using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                //using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                using (MySqlConnection connection = DbConnection.GetConnection())
                 {
                     connection.Open();
 
@@ -64,7 +72,7 @@ namespace LABCODE1
 
                     string backupPath = Path.Combine(txtBackupPath.Text, $"Inventory_Labcode-{date}.bak");
 
-                    using (SqlCommand command = new SqlCommand($"BACKUP DATABASE [{databaseName}] TO DISK = '{backupPath}' WITH INIT", connection))
+                    using (MySqlCommand command = new MySqlCommand($"BACKUP DATABASE [{databaseName}] TO DISK = '{backupPath}' WITH INIT", connection))
                     {
                         command.ExecuteNonQuery();
                     }
@@ -105,8 +113,8 @@ namespace LABCODE1
             }
 
         }
-        
-        
+
+
 
 
 
@@ -121,7 +129,7 @@ namespace LABCODE1
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                using (MySqlConnection connection = DbConnection.GetConnection())
                 {
                     connection.Open();
 
@@ -130,21 +138,21 @@ namespace LABCODE1
 
                     //step 1: Set the database to single-user mode
                     string setSingleUserQuery = $"ALTER DATABASE [{databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE";
-                    using (SqlCommand setSingleUserCmd = new SqlCommand(setSingleUserQuery, connection))
+                    using (MySqlCommand setSingleUserCmd = new MySqlCommand(setSingleUserQuery, connection))
                     {
                         setSingleUserCmd.ExecuteNonQuery();
                     }
 
                     //step 2: Perform the restore operation
                     string restoreQuery = $"USE MASTER RESTORE DATABASE [{databaseName}] FROM DISK = '{txtRestorePath.Text}' WITH REPLACE;";
-                    using (SqlCommand restoreCmd = new SqlCommand(restoreQuery, connection))
+                    using (MySqlCommand restoreCmd = new MySqlCommand(restoreQuery, connection))
                     {
                         restoreCmd.ExecuteNonQuery();
                     }
 
                     //step 3: Set the database back to multi-user mode
                     string setMultiUserQuery = $"ALTER DATABASE [{databaseName}] SET MULTI_USER";
-                    using (SqlCommand setMultiUserCmd = new SqlCommand(setMultiUserQuery, connection))
+                    using (MySqlCommand setMultiUserCmd = new MySqlCommand(setMultiUserQuery, connection))
                     {
                         setMultiUserCmd.ExecuteNonQuery();
                     }

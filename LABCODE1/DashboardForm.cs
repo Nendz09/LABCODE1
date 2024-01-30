@@ -41,27 +41,32 @@ namespace LABCODE1
         public void dgvDashboardLoad() 
         {
             dgvRecentActivities.CellBorderStyle = DataGridViewCellBorderStyle.None; //remove black lines of cell
+            dgvRecentActivities.Rows.Clear();
             try
             {
                 int i = 0;
                 string readQuery = "SELECT * from lab_recent_activities ORDER BY activityDate DESC, activityTime DESC";
-                
-                con.Open();
-                cmd = new MySqlCommand(readQuery, con);
-                dr = cmd.ExecuteReader();
 
-                while (dr.Read()) 
+                using (MySqlConnection con = DbConnection.GetConnection())
                 {
-                    i++;
-                    dgvRecentActivities.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                    con.Open();
+                    cmd = new MySqlCommand(readQuery, con);
+                    dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        i++;
+                        dgvRecentActivities.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                    }
+                    dr.Close();
                 }
-                dr.Close();
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally { con.Close(); }
+            
         }
 
         private void dgvActivities_SelectionChanged(object sender, EventArgs e)//remove highlight
@@ -191,9 +196,9 @@ namespace LABCODE1
             //}
 
 
-            //chart1.Series["Series1"].Points[0].Color = Color.Orange;
-            //chart1.Series["Series1"].Points[1].Color = Color.LightGreen;
-            //chart1.Series["Series1"].Points[2].Color = Color.LightCoral;
+            chart1.Series["Series1"].Points[0].Color = Color.Orange;
+            chart1.Series["Series1"].Points[1].Color = Color.LightGreen;
+            chart1.Series["Series1"].Points[2].Color = Color.LightCoral;
         }
 
         private void DashboardForm_Load(object sender, EventArgs e)
@@ -314,13 +319,17 @@ namespace LABCODE1
         {
             using (MySqlConnection connection = DbConnection.GetConnection())
             {
-                con.Open();
-                string deleteQuery = "DELETE FROM lab_recent_activities;";
-                string reseedQuery = "DBCC CHECKIDENT ('lab_recent_activities', RESEED, 0);";
-                string combineDeleteReseedQuery = deleteQuery + reseedQuery;
+                using (MySqlConnection con = DbConnection.GetConnection())
+                {
+                    con.Open();
+                    string deleteQuery = "DELETE FROM lab_recent_activities;";
+                    //string reseedQuery = "DBCC CHECKIDENT ('lab_recent_activities', RESEED, 0);";
+                    string reseedQuery = "ALTER TABLE lab_recent_activities AUTO_INCREMENT = 1;";
+                    string combineDeleteReseedQuery = deleteQuery + reseedQuery;
 
-                cmd = new MySqlCommand(combineDeleteReseedQuery, con);
-                cmd.ExecuteNonQuery();
+                    cmd = new MySqlCommand(combineDeleteReseedQuery, con);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
@@ -343,6 +352,7 @@ namespace LABCODE1
                         "Deleting Activities", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 DeleteWithReseeding();
+                dgvDashboardLoad();
             }
         }
 

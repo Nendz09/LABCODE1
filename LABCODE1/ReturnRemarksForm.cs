@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,11 +17,14 @@ namespace LABCODE1
 {
     public partial class ReturnRemarksForm : Form
     {
-        //string constring = System.Configuration.ConfigurationManager.ConnectionStrings["connection_string"].ConnectionString;
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
+
+
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
         DashboardForm dbForm = new DashboardForm();
 
@@ -95,7 +99,7 @@ namespace LABCODE1
         {
             con.Open();
             string queryUnavailable = $"UPDATE lab_eqpment SET status = 'Unavailable' WHERE eqp_id = '" + txt_itemId.Text + "' ";
-            cmd = new SqlCommand(queryUnavailable, con);
+            cmd = new MySqlCommand(queryUnavailable, con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -104,7 +108,7 @@ namespace LABCODE1
         {
             con.Open();
             string queryAvailable = "UPDATE lab_eqpment SET status = 'Available' WHERE eqp_id = '" + txt_itemId.Text + "' ";
-            cmd = new SqlCommand(queryAvailable, con);
+            cmd = new MySqlCommand(queryAvailable, con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -118,7 +122,7 @@ namespace LABCODE1
                                             eqp_id, eqp_name, eqp_size, remarks, replacement) 
                                 VALUES (@date_borrow, @actual_date_return, @student_id, @name, @year_sec, 
                                             @eqp_id, @eqp_name, @eqp_size, @remarks, 'Yes')";
-            cmd = new SqlCommand(queryInsert, con);
+            cmd = new MySqlCommand(queryInsert, con);
             cmd.Parameters.AddWithValue("@date_borrow", borrowDate.Text);
             cmd.Parameters.AddWithValue("@actual_date_return", currentDateAndTime.Text);
             cmd.Parameters.AddWithValue("@student_id", txt_studId.Text);
@@ -141,7 +145,7 @@ namespace LABCODE1
                                             eqp_id, eqp_name, eqp_size, remarks, replacement) 
                                 VALUES (@date_borrow, @actual_date_return, @student_id, @name, @year_sec, 
                                             @eqp_id, @eqp_name, @eqp_size, @remarks, 'No')";
-            cmd = new SqlCommand(queryInsert, con);
+            cmd = new MySqlCommand(queryInsert, con);
             cmd.Parameters.AddWithValue("@date_borrow", borrowDate.Text);
             cmd.Parameters.AddWithValue("@actual_date_return", currentDateAndTime.Text);
             cmd.Parameters.AddWithValue("@student_id", txt_studId.Text);
@@ -166,7 +170,7 @@ namespace LABCODE1
             int eqpId = int.Parse(txt_itemId.Text);
             string queryDeleteBorrows = "DELETE FROM lab_borrows WHERE eqp_id = @eqpId";
 
-            cmd = new SqlCommand(queryDeleteBorrows, con);
+            cmd = new MySqlCommand(queryDeleteBorrows, con);
             cmd.Parameters.AddWithValue("@eqpId", eqpId); // use borrow_id here
             cmd.ExecuteNonQuery();
             con.Close();
@@ -177,7 +181,7 @@ namespace LABCODE1
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT img_eqp FROM lab_eqpDetails WHERE name_eqp = @eqpName", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT img_eqp FROM lab_eqpdetails WHERE name_eqp = @eqpName", con);
                 cmd.Parameters.AddWithValue("@eqpName", itemName);
                 byte[] imageData = (byte[])cmd.ExecuteScalar();
 
@@ -215,14 +219,14 @@ namespace LABCODE1
         private void LoadItemDescription()
         {
             string labelItemName = txt_itemName.Text;
-            string queryDescription = "SELECT desc_eqp FROM lab_eqpDetails WHERE name_eqp = @nameEquip";
+            string queryDescription = "SELECT desc_eqp FROM lab_eqpdetails WHERE name_eqp = @nameEquip";
 
             try
             {
-                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                using (MySqlConnection con = DbConnection.GetConnection())
                 {
                     con.Open();
-                    SqlCommand cmdDesc = new SqlCommand(queryDescription, con);
+                    MySqlCommand cmdDesc = new MySqlCommand(queryDescription, con);
                     cmdDesc.Parameters.AddWithValue("@nameEquip", labelItemName);
 
                     dr = cmdDesc.ExecuteReader();

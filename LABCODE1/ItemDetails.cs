@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using DocumentFormat.OpenXml.Office.Word;
+using MySql.Data.MySqlClient;
 
 
 // ... (existing using statements)
@@ -19,9 +20,13 @@ namespace LABCODE1
 {
     public partial class ItemDetails : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
+
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
         private List<Item> itemList = new List<Item>();
 
@@ -73,11 +78,11 @@ namespace LABCODE1
                 dataGridView1.Rows.Clear();
 
                 con.Open();
-                string query = "SELECT name_eqp, img_eqp, categ_eqp, desc_eqp FROM lab_eqpDetails";
+                string query = "SELECT name_eqp, img_eqp, categ_eqp, desc_eqp FROM lab_eqpdetails";
 
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -227,11 +232,11 @@ namespace LABCODE1
             try
             {
                 con.Open();
-                string query = "SELECT DISTINCT categ_eqp FROM lab_eqpDetails";
+                string query = "SELECT DISTINCT categ_eqp FROM lab_eqpdetails";
                 //string query = "SELECT DISTINCT categ_name FROM lab_categ";
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -262,13 +267,13 @@ namespace LABCODE1
                 try
                 {
                     con.Open();
-                    string query = "SELECT name_eqp, img_eqp, categ_eqp, desc_eqp FROM lab_eqpDetails WHERE categ_eqp = @selectedCategory";
+                    string query = "SELECT name_eqp, img_eqp, categ_eqp, desc_eqp FROM lab_eqpdetails WHERE categ_eqp = @selectedCategory";
 
-                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
                         cmd.Parameters.AddWithValue("@selectedCategory", selectedCategory);
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
@@ -365,14 +370,14 @@ namespace LABCODE1
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == 0) // Only the first column (image) is clickable
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0) 
             {
-                // Access the data in the clicked cell
+                
                 DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
                 string itemName = selectedRow.Cells["name_col"].Value.ToString();
                 string itemDesc = selectedRow.Cells["desc_col"].Value.ToString();
 
-                // Your logic to open the details form
+               
                 ItemDetailsModule itemDetailsModule = new ItemDetailsModule();
                 itemDetailsModule.btnSave.Enabled = false;
 
@@ -430,43 +435,43 @@ namespace LABCODE1
             Cursor = Cursors.Default; // Change the cursor back to the default when not over an image cell
         }
 
-        private void searchTextbox__TextChanged(object sender, EventArgs e)
-        {
-            string searchValue = searchTextbox.Texts;
-            string searchValueCateg = cmbCategories.Text;
+        //private void searchTextbox__TextChanged(object sender, EventArgs e)
+        //{
+        //    string searchValue = searchTextbox.Texts;
+        //    string searchValueCateg = cmbCategories.Text;
 
-            if (string.IsNullOrWhiteSpace(searchValue) && string.IsNullOrWhiteSpace(searchValueCateg))
-            {
-                LoadDataDGV();
-            }
-            else
-            {
-                int i = 0;
-                dataGridView1.Rows.Clear();
+        //    if (string.IsNullOrWhiteSpace(searchValue) && string.IsNullOrWhiteSpace(searchValueCateg))
+        //    {
+        //        LoadDataDGV();
+        //    }
+        //    else
+        //    {
+        //        int i = 0;
+        //        dataGridView1.Rows.Clear();
 
-                cmd = new SqlCommand(@"SELECT * FROM lab_eqpDetails 
-                                    WHERE (name_eqp LIKE @searchValue)
-                                    AND (categ_eqp LIKE @searchValueCateg)", con);
-                cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%");
-                cmd.Parameters.AddWithValue("@searchValueCateg", "%" + searchValueCateg + "%");
+        //        cmd = new MySqlCommand(@"SELECT * FROM lab_eqpdetails 
+        //                            WHERE (name_eqp LIKE @searchValue)
+        //                            AND (categ_eqp LIKE @searchValueCateg)", con);
+        //        cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%");
+        //        cmd.Parameters.AddWithValue("@searchValueCateg", "%" + searchValueCateg + "%");
 
-                con.Open();
-                dr = cmd.ExecuteReader();
+        //        con.Open();
+        //        dr = cmd.ExecuteReader();
 
-                while (dr.Read())
-                {
-                    ++i;
-                    byte[] imageData = (byte[])dr["img_eqp"];
+        //        while (dr.Read())
+        //        {
+        //            ++i;
+        //            byte[] imageData = (byte[])dr["img_eqp"];
 
-                    // Convert byte array to Image
-                    Image image = ByteArrayToImage(imageData);
+        //            // Convert byte array to Image
+        //            Image image = ByteArrayToImage(imageData);
 
-                    dataGridView1.Rows.Add(image, dr[1].ToString(), dr[4].ToString(), dr[2].ToString());
-                }
-                dr.Close();
-                con.Close();
-            }
-        }
+        //            dataGridView1.Rows.Add(image, dr[1].ToString(), dr[4].ToString(), dr[2].ToString());
+        //        }
+        //        dr.Close();
+        //        con.Close();
+        //    }
+        //}
 
         private Image ByteArrayToImage(byte[] byteArray)
         {
@@ -477,7 +482,46 @@ namespace LABCODE1
             }
         }
 
-        
+        private void searchTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string searchValue = searchTextbox.Texts;
+                string searchValueCateg = cmbCategories.Text;
+
+                if (string.IsNullOrWhiteSpace(searchValue) && string.IsNullOrWhiteSpace(searchValueCateg))
+                {
+                    LoadDataDGV();
+                }
+                else
+                {
+                    int i = 0;
+                    dataGridView1.Rows.Clear();
+
+                    cmd = new MySqlCommand(@"SELECT * FROM lab_eqpdetails 
+                                    WHERE (name_eqp LIKE @searchValue)
+                                    AND (categ_eqp LIKE @searchValueCateg)", con);
+                    cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%");
+                    cmd.Parameters.AddWithValue("@searchValueCateg", "%" + searchValueCateg + "%");
+
+                    con.Open();
+                    dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        ++i;
+                        byte[] imageData = (byte[])dr["img_eqp"];
+
+                        // Convert byte array to Image
+                        Image image = ByteArrayToImage(imageData);
+
+                        dataGridView1.Rows.Add(image, dr[1].ToString(), dr[4].ToString(), dr[2].ToString());
+                    }
+                    dr.Close();
+                    con.Close();
+                }
+            }
+        }
     }
 
     public class Item

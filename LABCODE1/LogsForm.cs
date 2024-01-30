@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +16,13 @@ namespace LABCODE1
 {
     public partial class LogsForm : Form
     {
-        //string constring = System.Configuration.ConfigurationManager.ConnectionStrings["connection_string"].ConnectionString;
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
+
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
         DashboardForm dbForm = new DashboardForm();
 
@@ -204,9 +207,9 @@ namespace LABCODE1
             //con.Close();
 
             //CLICKABLE PAGE
-            cmd = new SqlCommand("SELECT COUNT(*) FROM lab_logs", con);
+            cmd = new MySqlCommand("SELECT COUNT(*) FROM lab_logs", con);
             con.Open();
-            totalRecords = (int)cmd.ExecuteScalar();
+            totalRecords = Convert.ToInt32(cmd.ExecuteScalar());
             con.Close();
 
             UpdatePageInfo();
@@ -234,9 +237,9 @@ namespace LABCODE1
             //con.Close();
 
             //CLICKABLE PAGE
-            cmd = new SqlCommand("SELECT COUNT(*) FROM lab_borrows", con);
+            cmd = new MySqlCommand("SELECT COUNT(*) FROM lab_borrows", con);
             con.Open();
-            totalRecords = (int)cmd.ExecuteScalar();
+            totalRecords = Convert.ToInt32(cmd.ExecuteScalar());
             con.Close();
 
             UpdatePageInfo();
@@ -266,9 +269,9 @@ namespace LABCODE1
             string queryLabBorrowed = $@"SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY date_borrow DESC) AS RowNum FROM lab_borrows) 
                               AS Temp WHERE RowNum BETWEEN {startIndex} AND {endIndex};";
 
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+            using (MySqlConnection con = DbConnection.GetConnection())
             {
-                cmd = new SqlCommand(queryLabLogs, con);
+                cmd = new MySqlCommand(queryLabLogs, con);
                 con.Open();
                 dr = cmd.ExecuteReader();
 
@@ -281,9 +284,9 @@ namespace LABCODE1
                 dr.Close();
                 UpdatePageInfo();
             }
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+            using (MySqlConnection con = DbConnection.GetConnection())
             {
-                cmd = new SqlCommand(queryLabBorrowed, con);
+                cmd = new MySqlCommand(queryLabBorrowed, con);
                 con.Open();
                 dr = cmd.ExecuteReader();
 
@@ -458,7 +461,7 @@ namespace LABCODE1
             dgvReturned.Rows.Clear();
 
             string query = "SELECT * FROM lab_logs ORDER BY date_borrow DESC;";
-            cmd = new SqlCommand(query, con);
+            cmd = new MySqlCommand(query, con);
 
             try
             {
@@ -530,14 +533,14 @@ namespace LABCODE1
         //DELETE RETURN LOGS (RESEEDING)
         private void DeleteWithReseeding() 
         {
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+            using (MySqlConnection con = DbConnection.GetConnection())
             {
                 con.Open();
                 string deleteQuery = "DELETE FROM lab_logs;";
                 string reseedQuery = "DBCC CHECKIDENT ('lab_logs', RESEED, 0);";
                 string combineDeleteReseedQuery = deleteQuery + reseedQuery;
 
-                cmd = new SqlCommand(combineDeleteReseedQuery, con);
+                cmd = new MySqlCommand(combineDeleteReseedQuery, con);
                 cmd.ExecuteNonQuery();
             }
         }
@@ -557,35 +560,70 @@ namespace LABCODE1
             }
         }
 
-        private void searchTextbox__TextChanged(object sender, EventArgs e)
+        //private void searchTextbox__TextChanged(object sender, EventArgs e)
+        //{
+        //    string searchValue = searchTextbox.Texts;
+
+        //    if (string.IsNullOrWhiteSpace(searchValue))
+        //    {
+        //        LoadAllDataDGVRETURNED();
+        //    }
+        //    else
+        //    {
+        //        int i = 0;
+        //        dgvReturned.Rows.Clear();
+
+        //        cmd = new MySqlCommand("SELECT * FROM lab_logs WHERE name LIKE @searchValue OR year_sec LIKE @searchValue OR year_sec LIKE @searchValue " +
+        //            "               OR eqp_name LIKE @searchValue OR remarks LIKE @searchValue", con);
+        //        cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
+
+        //        con.Open();
+        //        dr = cmd.ExecuteReader();
+
+        //        while (dr.Read())
+        //        {
+        //            ++i;
+        //            dgvReturned.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
+        //                dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString(),
+        //                dr[9].ToString(), dr[10].ToString());
+        //        }
+        //        dr.Close();
+        //        con.Close();
+        //    }
+        //}
+
+        private void searchTextbox_KeyDown(object sender, KeyEventArgs e)
         {
-            string searchValue = searchTextbox.Texts;
-
-            if (string.IsNullOrWhiteSpace(searchValue))
+            if (e.KeyCode == Keys.Enter)
             {
-                LoadAllDataDGVRETURNED();
-            }
-            else
-            {
-                int i = 0;
-                dgvReturned.Rows.Clear();
+                string searchValue = searchTextbox.Texts;
 
-                cmd = new SqlCommand("SELECT * FROM lab_logs WHERE name LIKE @searchValue OR year_sec LIKE @searchValue OR year_sec LIKE @searchValue " +
-                    "               OR eqp_name LIKE @searchValue OR remarks LIKE @searchValue", con);
-                cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
-
-                con.Open();
-                dr = cmd.ExecuteReader();
-
-                while (dr.Read())
+                if (string.IsNullOrWhiteSpace(searchValue))
                 {
-                    ++i;
-                    dgvReturned.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
-                        dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString(),
-                        dr[9].ToString(), dr[10].ToString());
+                    LoadAllDataDGVRETURNED();
                 }
-                dr.Close();
-                con.Close();
+                else
+                {
+                    int i = 0;
+                    dgvReturned.Rows.Clear();
+
+                    cmd = new MySqlCommand("SELECT * FROM lab_logs WHERE name LIKE @searchValue OR year_sec LIKE @searchValue OR year_sec LIKE @searchValue " +
+                        "               OR eqp_name LIKE @searchValue OR remarks LIKE @searchValue", con);
+                    cmd.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%"); // Use '%' for partial matches
+
+                    con.Open();
+                    dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        ++i;
+                        dgvReturned.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
+                            dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString(),
+                            dr[9].ToString(), dr[10].ToString());
+                    }
+                    dr.Close();
+                    con.Close();
+                }
             }
         }
     }

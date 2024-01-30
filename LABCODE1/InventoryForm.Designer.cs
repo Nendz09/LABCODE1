@@ -58,8 +58,10 @@
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.cmbCateg = new System.Windows.Forms.ComboBox();
             this.searchSizeCalibration = new LABCODE1.UserTextbox();
             this.userTextbox1 = new LABCODE1.UserTextbox();
+            this.countLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExportPDF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
@@ -372,14 +374,15 @@
             // 
             this.cmbStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Items.AddRange(new object[] {
             "Borrowed",
             "Available",
             "Unavailable"});
-            this.cmbStatus.Location = new System.Drawing.Point(72, 3);
+            this.cmbStatus.Location = new System.Drawing.Point(145, 3);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(149, 26);
+            this.cmbStatus.Size = new System.Drawing.Size(115, 28);
             this.cmbStatus.TabIndex = 7;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
             // 
@@ -388,22 +391,37 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 7);
+            this.label2.Location = new System.Drawing.Point(4, 8);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 18);
+            this.label2.Size = new System.Drawing.Size(134, 18);
             this.label2.TabIndex = 35;
-            this.label2.Text = "Status:";
+            this.label2.Text = "Status/Category:";
             // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
             this.flowLayoutPanel2.Controls.Add(this.label2);
             this.flowLayoutPanel2.Controls.Add(this.cmbStatus);
+            this.flowLayoutPanel2.Controls.Add(this.cmbCateg);
             this.flowLayoutPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(579, 54);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(561, 54);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(264, 31);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(472, 32);
             this.flowLayoutPanel2.TabIndex = 36;
+            // 
+            // cmbCateg
+            // 
+            this.cmbCateg.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmbCateg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCateg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCateg.FormattingEnabled = true;
+            this.cmbCateg.Location = new System.Drawing.Point(266, 3);
+            this.cmbCateg.Name = "cmbCateg";
+            this.cmbCateg.Size = new System.Drawing.Size(149, 28);
+            this.cmbCateg.TabIndex = 37;
+            this.cmbCateg.DropDown += new System.EventHandler(this.cmbCateg_DropDown);
+            this.cmbCateg.SelectedIndexChanged += new System.EventHandler(this.cmbCateg_SelectedIndexChanged);
             // 
             // searchSizeCalibration
             // 
@@ -414,7 +432,7 @@
             this.searchSizeCalibration.BorderSize = 2;
             this.searchSizeCalibration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchSizeCalibration.ForeColor = System.Drawing.Color.Black;
-            this.searchSizeCalibration.Location = new System.Drawing.Point(376, 54);
+            this.searchSizeCalibration.Location = new System.Drawing.Point(358, 54);
             this.searchSizeCalibration.Margin = new System.Windows.Forms.Padding(4);
             this.searchSizeCalibration.Multiline = false;
             this.searchSizeCalibration.Name = "searchSizeCalibration";
@@ -426,7 +444,7 @@
             this.searchSizeCalibration.TabIndex = 6;
             this.searchSizeCalibration.Texts = "";
             this.searchSizeCalibration.UnderlinedStyle = false;
-            this.searchSizeCalibration._TextChanged += new System.EventHandler(this.searchSizeCalibration__TextChanged);
+            this.searchSizeCalibration.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchSizeCalibration_KeyDown);
             // 
             // userTextbox1
             // 
@@ -445,11 +463,22 @@
             this.userTextbox1.PasswordChar = false;
             this.userTextbox1.PlaceholderColor = System.Drawing.Color.Gray;
             this.userTextbox1.PlaceholderText = "Search Equipment Name or ID";
-            this.userTextbox1.Size = new System.Drawing.Size(295, 31);
+            this.userTextbox1.Size = new System.Drawing.Size(277, 31);
             this.userTextbox1.TabIndex = 3;
             this.userTextbox1.Texts = "";
             this.userTextbox1.UnderlinedStyle = false;
-            this.userTextbox1._TextChanged += new System.EventHandler(this.userTextbox1__TextChanged);
+            this.userTextbox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userTextbox1_KeyDown);
+            // 
+            // countLabel
+            // 
+            this.countLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.countLabel.AutoSize = true;
+            this.countLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.countLabel.Location = new System.Drawing.Point(78, 460);
+            this.countLabel.Name = "countLabel";
+            this.countLabel.Size = new System.Drawing.Size(62, 24);
+            this.countLabel.TabIndex = 38;
+            this.countLabel.Text = "count";
             // 
             // InventoryForm
             // 
@@ -459,6 +488,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(841, 606);
+            this.Controls.Add(this.countLabel);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.searchSizeCalibration);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -486,6 +516,7 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -519,5 +550,7 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.ComboBox cmbCateg;
+        public System.Windows.Forms.Label countLabel;
     }
 }

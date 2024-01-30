@@ -12,16 +12,20 @@ using Microsoft.VisualBasic;
 using ZXing;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using MySql.Data.MySqlClient;
 
 namespace LABCODE1
 {
     public partial class InventoryModuleForm : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
 
-        SqlDataReader dr;
+
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
         DashboardForm dbForm = new DashboardForm();
         //DashboardForm dbForm;
@@ -93,8 +97,13 @@ namespace LABCODE1
                             {
                                 for (int i = 0; i < quantity; i++)
                                 {
-                                    cmd = new SqlCommand($@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
-                                                            VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks); SELECT SCOPE_IDENTITY();", con);
+                                    //cmd = new MySqlCommand($@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
+                                    //                        VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks); SELECT SCOPE_IDENTITY();", con);
+
+                                    cmd = new MySqlCommand(@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
+                                                  VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks);
+                                                  SELECT LAST_INSERT_ID();", con);
+
                                     cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                                     cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
                                     cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
@@ -108,7 +117,7 @@ namespace LABCODE1
                                     byte[] barcodeImageBytes = ImageToByteArray(barcodeImage);//generated barcode image into byte varbinary
 
                                     //update row with column eqp_barcode_img
-                                    cmd = new SqlCommand($@"UPDATE lab_eqpment SET eqp_barcode_img = @eqp_barcode_img WHERE eqp_id = @eqp_id", con);
+                                    cmd = new MySqlCommand($@"UPDATE lab_eqpment SET eqp_barcode_img = @eqp_barcode_img WHERE eqp_id = @eqp_id", con);
                                     cmd.Parameters.AddWithValue("@eqp_id", incrementedID);
                                     cmd.Parameters.AddWithValue("@eqp_barcode_img", barcodeImageBytes);
 
@@ -128,8 +137,13 @@ namespace LABCODE1
                                 string concatenateQtyGram = txtQuantity.Text + " " + cmbGram.Text;
                                 string eqpName = txtEquipment.Text;
 
-                                cmd = new SqlCommand($@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
-                                                        VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks); SELECT SCOPE_IDENTITY();", con);
+                                //cmd = new MySqlCommand($@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
+                                //                        VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks); SELECT SCOPE_IDENTITY();", con);
+
+                                cmd = new MySqlCommand(@"INSERT INTO lab_eqpment(eqp_name, eqp_categ, eqp_size, status, acq_remarks) 
+                                              VALUES (@eqp_name, @eqp_categ, @eqp_size, 'Available', @acq_remarks);
+                                              SELECT LAST_INSERT_ID();", con);
+
                                 cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                                 cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
                                 cmd.Parameters.AddWithValue("@eqp_size", concatenateQtyGram);
@@ -143,7 +157,7 @@ namespace LABCODE1
                                 byte[] barcodeImageBytes = ImageToByteArray(barcodeImage);//convert barcode image into byte to insert in varbinary 
 
                                 //update row with column eqp_barcode_img
-                                cmd = new SqlCommand($@"UPDATE lab_eqpment SET eqp_barcode_img = @eqp_barcode_img WHERE eqp_id = @eqp_id", con);
+                                cmd = new MySqlCommand($@"UPDATE lab_eqpment SET eqp_barcode_img = @eqp_barcode_img WHERE eqp_id = @eqp_id", con);
                                 cmd.Parameters.AddWithValue("@eqp_id", incrementedID);
                                 cmd.Parameters.AddWithValue("@eqp_barcode_img", barcodeImageBytes);
 
@@ -213,7 +227,7 @@ namespace LABCODE1
 
                     //update sa lab_eqpment
                     //cmd = new SqlCommand("UPDATE lab_eqpment SET eqp_name=@eqp_name, eqp_categ=@eqp_categ, eqp_size=@eqp_size, status=@status WHERE eqp_id=@eqp_id ", con);
-                    cmd = new SqlCommand("UPDATE lab_eqpment SET eqp_name=@eqp_name, eqp_categ=@eqp_categ, eqp_size=@eqp_size, acq_remarks=@acq_remarks WHERE eqp_id=@eqp_id ", con);
+                    cmd = new MySqlCommand("UPDATE lab_eqpment SET eqp_name=@eqp_name, eqp_categ=@eqp_categ, eqp_size=@eqp_size, acq_remarks=@acq_remarks WHERE eqp_id=@eqp_id ", con);
                     cmd.Parameters.AddWithValue("@eqp_id", txtEqpID.Text);
                     cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                     cmd.Parameters.AddWithValue("@eqp_categ", cmbCtg.Text);
@@ -223,7 +237,7 @@ namespace LABCODE1
                     cmd.ExecuteNonQuery();
 
                     //update sa lab_borrows
-                    cmd = new SqlCommand("UPDATE lab_borrows SET eqp_name=@eqp_name, eqp_size=@eqp_size WHERE eqp_id=@eqp_id ", con);
+                    cmd = new MySqlCommand("UPDATE lab_borrows SET eqp_name=@eqp_name, eqp_size=@eqp_size WHERE eqp_id=@eqp_id ", con);
                     cmd.Parameters.AddWithValue("@eqp_id", txtEqpID.Text);
                     cmd.Parameters.AddWithValue("@eqp_name", txtEquipment.Text);
                     cmd.Parameters.AddWithValue("@eqp_size", cmbSize.Text);
@@ -450,14 +464,14 @@ namespace LABCODE1
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                using (MySqlConnection con = DbConnection.GetConnection())
                 {
                     string selectQuery = "SELECT categ_name FROM lab_categ";
                     con.Open();
                     cmbCtg.Items.Clear();//clear to prevent loop
 
-                    cmd = new SqlCommand(selectQuery, con);
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    cmd = new MySqlCommand(selectQuery, con);
+                    MySqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         string categName = $"{dr["categ_name"]}";

@@ -46,19 +46,28 @@ namespace LABCODE1
         {
             try
             {
+                AccountForm accForm = new AccountForm();
                 cmd = new MySqlCommand("SELECT * FROM lab_user WHERE username=@username AND password=@password", con);
                 cmd.Parameters.AddWithValue("@username", username_txt.Text);
                 cmd.Parameters.AddWithValue("@password", pass_txt.Text);
                 con.Open();
                 dr = cmd.ExecuteReader();
-                dr.Read();
+
                 if (dr.HasRows)
                 {
-                    MessageBox.Show("Welcome!", "ACCESS GRANTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm main = new MainForm();
-                    this.Hide();
+                    dr.Read();
+                    string fullname = dr["fullname"].ToString();
+                    string username = dr["username"].ToString();
+                    string pass = dr["password"].ToString();
+                    accForm.labelFullname.Text = fullname;
+                    accForm.labelUsername.Text = username;
+                    accForm.labelPassword.Text = pass;
+                    MessageBox.Show($"Welcome {fullname}!", "ACCESS GRANTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    MainForm main = new MainForm(accForm);
                     main.ShowDialog();
-                    //this.Dispose();
+                    this.Hide();
+                    
                 }
                 else
                 {
@@ -68,9 +77,9 @@ namespace LABCODE1
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 }

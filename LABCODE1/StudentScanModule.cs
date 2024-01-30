@@ -21,16 +21,21 @@ using System.IO;
 using Irony.Parsing;
 using System.Globalization;
 using DocumentFormat.OpenXml.Wordprocessing;
+using MySql.Data.MySqlClient;
 
 namespace LABCODE1
 {
     public partial class StudentScanModule : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
 
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
+
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
+
         BarcodeReader reader = new BarcodeReader();
 
         //DateTimePicker dtp = new DateTimePicker(); //current date??
@@ -198,7 +203,7 @@ namespace LABCODE1
             con.Open();
             if (int.TryParse(txt_Barcode.Text, out int studentID))
             {
-                cmd = new SqlCommand("SELECT * FROM lab_students WHERE student_id = @studentID", con);
+                cmd = new MySqlCommand("SELECT * FROM lab_students WHERE student_id = @studentID", con);
                 cmd.Parameters.AddWithValue("@studentID", studentID);
 
                 dr = cmd.ExecuteReader();
@@ -243,13 +248,13 @@ namespace LABCODE1
 
             try
             {
-                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True"))
+                using (MySqlConnection con = DbConnection.GetConnection())
                 {
                     if (int.TryParse(txt_BarcodeItem.Text, out int itemID)) 
                     {
                         string query = "SELECT eqp_name FROM lab_eqpment WHERE eqp_id = @eqp_id and status = 'Available' ";
 
-                        using (SqlCommand cmd = new SqlCommand(query, con))
+                        using (MySqlCommand cmd = new MySqlCommand(query, con))
                         {
                             cmd.Parameters.AddWithValue("@eqp_id", itemID);
                             con.Open();
@@ -282,9 +287,9 @@ namespace LABCODE1
         private void LoadItemDescription() 
         {
             string labelItemName = label_itemName.Text;
-            string queryDescription = "SELECT desc_eqp FROM lab_eqpDetails WHERE name_eqp = @nameEquip";
+            string queryDescription = "SELECT desc_eqp FROM lab_eqpdetails WHERE name_eqp = @nameEquip";
 
-            SqlCommand cmdDesc = new SqlCommand(queryDescription, con);
+            MySqlCommand cmdDesc = new MySqlCommand(queryDescription, con);
             cmdDesc.Parameters.AddWithValue("@nameEquip", labelItemName);
 
             try
@@ -625,7 +630,7 @@ namespace LABCODE1
             string query = "UPDATE lab_eqpment SET status = 'Borrowed' WHERE eqp_id IN (" + string.Join(",", itemIds) + ")"; //concatenation - string.Join(",", itemIds)
 
 
-            cmd = new SqlCommand(query, con);
+            cmd = new MySqlCommand(query, con);
             cmd.ExecuteNonQuery();
         }
 
@@ -654,7 +659,7 @@ namespace LABCODE1
                     MessageBox.Show($"Calculated Return Date Time: {formattedReturnDateTime}");
 
                     // Continue with your code...
-                    cmd = new SqlCommand(@"INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) 
+                    cmd = new MySqlCommand(@"INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) 
                                 VALUES(@date_borrow, @student_id, @name, @year_sec, @eqp_id, @eqp_name, @date_return, @eqp_size)", con);
                     cmd.Parameters.AddWithValue("@date_borrow", dateOfBorrow);
                     cmd.Parameters.AddWithValue("@student_id", txt_Barcode.Text);
@@ -824,7 +829,7 @@ namespace LABCODE1
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT student_pic FROM lab_students WHERE student_id = @StudentID", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT student_pic FROM lab_students WHERE student_id = @StudentID", con);
                 cmd.Parameters.AddWithValue("@StudentID", studentID);
                 byte[] imageData = (byte[])cmd.ExecuteScalar();
 
@@ -855,7 +860,7 @@ namespace LABCODE1
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT img_eqp FROM lab_eqpDetails WHERE name_eqp = @eqpName", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT img_eqp FROM lab_eqpdetails WHERE name_eqp = @eqpName", con);
                 cmd.Parameters.AddWithValue("@eqpName", itemName);
                 byte[] imageData = (byte[])cmd.ExecuteScalar();
 
@@ -906,7 +911,7 @@ namespace LABCODE1
                         try
                         {
                             con.Open();
-                            cmd = new SqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
+                            cmd = new MySqlCommand("SELECT eqp_id, eqp_name, eqp_size FROM lab_eqpment WHERE eqp_id = @equipmentID AND status = 'Available'", con);
                             cmd.Parameters.AddWithValue("@equipmentID", equipmentID);
 
                             dr = cmd.ExecuteReader();

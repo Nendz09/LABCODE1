@@ -437,6 +437,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountForm.Designer.cs">
+      <DependentUpon>AccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountFormDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountFormDetails.Designer.cs">
+      <DependentUpon>AccountFormDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -577,6 +589,12 @@
     <Compile Include="WelcomeForm.Designer.cs">
       <DependentUpon>WelcomeForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AccountForm.resx">
+      <DependentUpon>AccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountFormDetails.resx">
+      <DependentUpon>AccountFormDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddCategory.resx">
       <DependentUpon>AddCategory.cs</DependentUpon>
     </EmbeddedResource>

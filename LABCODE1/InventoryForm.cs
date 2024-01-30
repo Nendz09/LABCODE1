@@ -19,6 +19,7 @@ using PdfSharp.Pdf;
 using PdfSharp.Drawing;
 using System.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
+using MySql.Data.MySqlClient;
 //using iText.IO.Image;
 //using iText.Kernel.Pdf;
 //using System.Diagnostics;
@@ -33,11 +34,13 @@ namespace LABCODE1
 {
     public partial class InventoryForm : Form
     {
-        //string constring = System.Configuration.ConfigurationManager.ConnectionStrings["connection_string"].ConnectionString;
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Admin\Documents\Inventory_Labcode.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader dr;
+        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Inventory_Labcode.mdf;Integrated Security=True");
+        //SqlCommand cmd = new SqlCommand();
+        //SqlDataReader dr;
+
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
         DashboardForm dbForm = new DashboardForm();
 
@@ -87,9 +90,10 @@ namespace LABCODE1
 
 
             //CLICKABLE PAGE
-            cmd = new SqlCommand("SELECT COUNT(*) FROM lab_eqpment", con);
+            cmd = new MySqlCommand("SELECT COUNT(*) FROM lab_eqpment", con);
             con.Open();
-            totalRecords = (int)cmd.ExecuteScalar();
+            totalRecords = Convert.ToInt32(cmd.ExecuteScalar());
+            //totalRecords = (int)cmd.ExecuteScalar();
             con.Close();
 
 
@@ -106,8 +110,8 @@ namespace LABCODE1
             {
                 LoadDataSearchValues();
             }
+            totalCountLabelAllQuery();
 
-            
         }
         private void LoadData()
         {
@@ -117,9 +121,15 @@ namespace LABCODE1
             int endIndex = currentPage * recordsPerPage;
 
            
-            string query = $@"SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY eqp_id) AS RowNum FROM lab_eqpment) 
-                              AS Temp WHERE RowNum BETWEEN {startIndex} AND {endIndex};";
-            cmd = new SqlCommand(query, con);
+            //string query = $@"SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY eqp_id) AS RowNum FROM lab_eqpment) 
+            //                  AS Temp WHERE RowNum BETWEEN {startIndex} AND {endIndex};";
+
+            string query = $@"SELECT *
+                            FROM lab_eqpment
+                            ORDER BY eqp_id
+                            LIMIT {startIndex - 1}, {recordsPerPage};";
+
+            cmd = new MySqlCommand(query, con);
             con.Open();
             dr = cmd.ExecuteReader();
 
@@ -132,6 +142,9 @@ namespace LABCODE1
 
                 byte[] barcodeImageBytes = (byte[])dr["eqp_barcode_img"];
                 Image barcodeImage = ByteArrayToImage(barcodeImageBytes);
+
+                //AUTO SIZE
+                dgvLab.Columns["Column2"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
                 dgvLab.Rows.Add(/*barcodeImage,*/ barcodeImage, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), 
                     dr[3].ToString(), dr[4].ToString(), dr[5].ToString());
@@ -189,7 +202,7 @@ namespace LABCODE1
             string searchCateg = searchSizeCalibration.Texts;
 
             /*The Math.Ceiling method is used to round up the result to the nearest whole number. 
-             * This ensures that even if there is a fraction of a page, it is counted as a whole page.*/
+             *this ensures that even if there is a fraction of a page, it is counted as a whole page.*/
             if (currentPage < (int)Math.Ceiling((double)totalRecords / recordsPerPage))
             {
                 currentPage++;
@@ -290,7 +303,7 @@ namespace LABCODE1
                 {
                     con.Open();
                     //cmd = new SqlCommand("DELETE FROM lab_eqpment WHERE eqp_id LIKE'" + dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString() + "'", con);
-                    cmd = new SqlCommand("DELETE FROM lab_eqpment WHERE eqp_id = @EquipmentID", con);
+                    cmd = new MySqlCommand("DELETE FROM lab_eqpment WHERE eqp_id = @EquipmentID", con);
                     cmd.Parameters.AddWithValue("@EquipmentID", dgvLab.Rows[e.RowIndex].Cells[1].Value.ToString());
 
                     //dashboard
@@ -379,7 +392,7 @@ namespace LABCODE1
                 string updateQuery = $@"UPDATE lab_logs SET replacement = 'Replaced', 
                                                             actual_date_return = @newDate 
                                     WHERE eqp_id = @EquipmentID";
-                cmd = new SqlCommand(updateQuery, con);
+                cmd = new MySqlCommand(updateQuery, con);
                 cmd.Parameters.AddWithValue("@EquipmentID", eqpID);
                 cmd.Parameters.AddWithValue("@newDate", new_date);
                 cmd.ExecuteNonQuery();
@@ -398,7 +411,7 @@ namespace LABCODE1
             {
                 string updateQuery = "UPDATE lab_eqpment SET status = 'Available' WHERE eqp_id = @EquipmentID";
                 con.Open();
-                cmd = new SqlCommand(updateQuery, con);
+                cmd = new MySqlCommand(updateQuery, con);
                 cmd.Parameters.AddWithValue("@EquipmentID", eqpID);
                 cmd.ExecuteNonQuery();
             }
@@ -420,7 +433,7 @@ namespace LABCODE1
             {
                 con.Open();
                 string selectQuery = @"SELECT name, year_sec FROM lab_borrows WHERE eqp_id = @eqp_id";
-                cmd = new SqlCommand(selectQuery, con);
+                cmd = new MySqlCommand(selectQuery, con);
                 cmd.Parameters.AddWithValue("@eqp_id", eqpID);
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -448,7 +461,7 @@ namespace LABCODE1
             {
                 con.Open();
                 string selectQuery = @"SELECT name, year_sec FROM lab_logs WHERE eqp_id = @eqp_id";
-                cmd = new SqlCommand(selectQuery, con);
+                cmd = new MySqlCommand(selectQuery, con);
                 cmd.Parameters.AddWithValue("@eqp_id", eqpID);
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -469,30 +482,43 @@ namespace LABCODE1
 
 
         //SEARCH EQUIPMENT NAME ONLY
-        private void userTextbox1__TextChanged(object sender, EventArgs e)
+        private void userTextbox1_KeyDown(object sender, KeyEventArgs e)
         {
-            combinedSearch();
+            if (e.KeyCode == Keys.Enter)
+            {
+                combinedSearch();
+            }
         }
-
         //SEARCH SIZE AND CALIBRATION
-        private void searchSizeCalibration__TextChanged(object sender, EventArgs e)
+        private void searchSizeCalibration_KeyDown(object sender, KeyEventArgs e)
         {
-            combinedSearch();
+            if (e.KeyCode == Keys.Enter)
+            {
+                combinedSearch();
+            }
         }
         //SEARCH STATUS
         private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             combinedSearch();
         }
+        //SEARCH CATEG
+        private void cmbCateg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            combinedSearch();
+        }
         //SEARCH VALUE EQPNAME + EQPSIZE-CALIBRATION
-
         private void combinedSearch() 
         {
             string searchEqpname = userTextbox1.Texts;
             string searchCalibSize = searchSizeCalibration.Texts;
-            string searchStatus = cmbStatus.Text;   
+            string searchStatus = cmbStatus.Text;  
+            string searchCateg = cmbCateg.Text;
 
-            if (string.IsNullOrWhiteSpace(searchEqpname) && string.IsNullOrWhiteSpace(searchCalibSize) && string.IsNullOrWhiteSpace(searchStatus))
+            if (string.IsNullOrWhiteSpace(searchEqpname) &&
+                string.IsNullOrWhiteSpace(searchCalibSize) && 
+                string.IsNullOrWhiteSpace(searchStatus) &&
+                string.IsNullOrWhiteSpace(searchCateg))
             {
                 LoadEquipment();
             }
@@ -501,14 +527,16 @@ namespace LABCODE1
                 int i = 0;
                 dgvLab.Rows.Clear();
 
-                cmd = new SqlCommand($@"SELECT * FROM lab_eqpment 
+                cmd = new MySqlCommand($@"SELECT * FROM lab_eqpment 
                                     WHERE (eqp_size LIKE @searchValueCalibsize OR eqp_categ LIKE @searchValueCalibsize)
                                     AND (eqp_name LIKE @searchValueName OR eqp_id LIKE @searchValueName)
-                                    AND (status LIKE @searchValueStatus)", con);
+                                    AND (status LIKE @searchValueStatus)
+                                    AND (eqp_categ LIKE @searchCateg)", con);
 
                 cmd.Parameters.AddWithValue("@searchValueName", "%" + searchEqpname + "%");
                 cmd.Parameters.AddWithValue("@searchValueCalibsize", "%" + searchCalibSize + "%");
-                cmd.Parameters.AddWithValue("@searchValueStatus", "%" + searchStatus + "%");// Use '%' for partial matches
+                cmd.Parameters.AddWithValue("@searchValueStatus", "%" + searchStatus + "%");
+                cmd.Parameters.AddWithValue("@searchCateg", "%" + searchCateg + "%");// Use '%' for partial matches
 
                 con.Open();
                 dr = cmd.ExecuteReader();
@@ -521,8 +549,11 @@ namespace LABCODE1
                     Image barcodeImage = ByteArrayToImage(barcodeImageBytes);
                     dgvLab.Rows.Add(barcodeImage, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
                 }
+                dgvLab.Focus();
                 dr.Close();
                 con.Close();
+
+                totalCountLabel();
             }
         }
         //LOAD DATA OF SEARCH VALUES
@@ -541,7 +572,7 @@ namespace LABCODE1
                             WHERE (eqp_size LIKE @searchValueCalibsize OR eqp_categ LIKE @searchValueCalibsize)
                             AND (eqp_name LIKE @searchValueName OR eqp_id LIKE @searchValueName)) 
                             AS Temp WHERE RowNum BETWEEN {startIndex} AND {endIndex};";
-            cmd = new SqlCommand(query, con);
+            cmd = new MySqlCommand(query, con);
             cmd.Parameters.AddWithValue("@searchValueName", "%" + searchEqpname + "%");
             cmd.Parameters.AddWithValue("@searchValueCalibsize", "%" + searchCalibSize + "%");
             con.Open();
@@ -642,7 +673,7 @@ namespace LABCODE1
             dgvLab.Rows.Clear();
 
             string query = "SELECT eqp_id, eqp_name, eqp_categ, eqp_size, status, acq_remarks, eqp_barcode_img FROM lab_eqpment ORDER BY eqp_id;";
-            cmd = new SqlCommand(query, con);
+            cmd = new MySqlCommand(query, con);
 
 
             try
@@ -858,6 +889,49 @@ namespace LABCODE1
             }
         }
 
-        
+        private void cmbCateg_DropDown(object sender, EventArgs e)
+        {
+            cmbCategLoad();
+        }
+
+        private void cmbCategLoad()
+        {
+            try
+            {
+                using (MySqlConnection con = DbConnection.GetConnection())
+                {
+                    string selectQuery = "SELECT categ_name FROM lab_categ";
+                    con.Open();
+                    cmbCateg.Items.Clear();//clear to prevent loop
+
+                    cmd = new MySqlCommand(selectQuery, con);
+                    MySqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        string categName = $"{dr["categ_name"]}";
+                        cmbCateg.Items.Add(categName);
+                    }
+                    dr.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading items: " + ex.Message);
+            }
+        }
+
+        private void totalCountLabel()
+        {
+            int totalCount = dgvLab.Rows.Count; // Total count based on the number of rows in the DataGridView
+            countLabel.Text = $"Total Count: {totalCount}";
+        }
+        private void totalCountLabelAllQuery()
+        {
+            cmd = new MySqlCommand("SELECT COUNT(*) FROM lab_eqpment", con);
+            con.Open();
+            string totalCount = cmd.ExecuteScalar().ToString();
+            countLabel.Text = $"Total Count: {totalCount}";
+            con.Close();
+        }
     }
 }

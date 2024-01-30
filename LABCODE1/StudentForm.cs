@@ -110,8 +110,14 @@ namespace LABCODE1
             int endIndex = currentPage * recordsPerPage;
 
 
-            string query = $@"SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY student_id) AS RowNum FROM lab_students) 
-                              AS Temp WHERE RowNum BETWEEN {startIndex} AND {endIndex};";
+            //string query = $@"SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY student_id) AS RowNum FROM lab_students) 
+            //                  AS Temp WHERE RowNum BETWEEN {startIndex} AND {endIndex};";
+
+            string query = $@"SELECT *
+                            FROM lab_students
+                            ORDER BY student_id
+                            LIMIT {startIndex - 1}, {endIndex};";
+
             cmd = new MySqlCommand(query, con);
             con.Open();
             dr = cmd.ExecuteReader();
@@ -523,6 +529,8 @@ namespace LABCODE1
                         ++i;
                         dgvStudents.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
                     }
+                    searchTextbox.Texts = "";
+                    dgvStudents.Focus();
                     dr.Close();
                     con.Close();
                 }
