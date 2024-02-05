@@ -9,12 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
 
 
 namespace LABCODE1
 {
     public partial class TRY : Form
     {
+        MySqlConnection con = DbConnection.GetConnection();
+        MySqlCommand cmd = new MySqlCommand();
+        MySqlDataReader dr;
 
 
         public TRY()
@@ -43,6 +47,32 @@ namespace LABCODE1
             catch (Exception ex)
             {
                 MessageBox.Show($"Not connected. Error: {ex.Message}");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+
+
+            try
+            {
+                CrystalReport1 report = new CrystalReport1(); // Replace with your report class name
+
+                // Set report parameters or data source if needed
+                // Example: report.SetDataSource(yourDataTable);
+
+                //report.SetDatabaseLogon("inv_labcode_ODBC", "4=yyfZ*eM", "srv1153.hstgr.io", "u955379966_inv_labcode");
+                
+
+
+                printReport viewerForm = new printReport();
+                viewerForm.crystalReportViewer1.ReportSource = report;
+                viewerForm.ShowDialog();
+            }
+            catch (LogOnException logonEx)
+            {
+                MessageBox.Show($"Crystal Reports Logon Error: {logonEx.Message}");
             }
         }
     }
