@@ -15,18 +15,18 @@ namespace LABCODE1
         static void Main()
         {
             //run main form
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            AccountForm accountForm = new AccountForm();
-            MainForm mainForm = new MainForm(accountForm);
-            Application.Run(mainForm);
-
-
-
-
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainForm());
+            //AccountForm accountForm = new AccountForm();
+            //MainForm mainForm = new MainForm(accountForm);
+            //Application.Run(mainForm);
+
+
+
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new LoginForm());
         }
 
     }

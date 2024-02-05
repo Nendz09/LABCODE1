@@ -22,6 +22,9 @@ namespace LABCODE1
         MySqlCommand cmd = new MySqlCommand();
         MySqlDataReader dr;
 
+
+        
+
         public LoginForm()
         {
             InitializeComponent();
@@ -59,26 +62,33 @@ namespace LABCODE1
                     string fullname = dr["fullname"].ToString();
                     string username = dr["username"].ToString();
                     string pass = dr["password"].ToString();
-                    accForm.labelFullname.Text = fullname;
-                    accForm.labelUsername.Text = username;
-                    accForm.labelPassword.Text = pass;
+                    UserInfo.Fullname = fullname;
+                    UserInfo.Username = username;
+                    UserInfo.Password = pass;
+                    //accForm.labelFullname.Text = fullname;
+                    //accForm.labelUsername.Text = username;
+                    //accForm.labelPassword.Text = pass;
                     MessageBox.Show($"Welcome {fullname}!", "ACCESS GRANTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    MainForm main = new MainForm(accForm);
-                    
+                    MainForm main = new MainForm(/*accForm*/);
+
                     main.ShowDialog();
                     this.Hide();
-                    
+
                 }
                 else
                 {
                     MessageBox.Show("INVALID USERNAME AND PASSWORD", "ACCESS DENIED", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                con.Close();
+                //con.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally 
+            {
+                con.Close();
             }
         }
 

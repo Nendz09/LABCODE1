@@ -13,12 +13,12 @@ namespace LABCODE1
 {
     public partial class MainForm : Form
     {
-        private AccountForm _accountForm;
+        //private AccountForm _accountForm;
 
-        public MainForm(AccountForm accountForm)
+        public MainForm(/*AccountForm accountForm*/)
         {
             InitializeComponent();
-            _accountForm = accountForm;
+            //_accountForm = accountForm;
         }
 
         //show the subForm in this MainForm by clicking the btn
@@ -77,7 +77,14 @@ namespace LABCODE1
 
         private void btnAccountMainPanel_Click(object sender, EventArgs e)
         {
-            openChildForm(_accountForm);
+            //openChildForm(_accountForm);
+
+            AccountForm accountForm = new AccountForm();
+            accountForm.labelFullname.Text = UserInfo.Fullname;
+            accountForm.labelUsername.Text = UserInfo.Username;
+            accountForm.labelPassword.Text = UserInfo.Password;
+
+            openChildForm(accountForm);
         }
     }
 }

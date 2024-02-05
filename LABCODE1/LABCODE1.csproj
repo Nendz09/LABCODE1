@@ -577,6 +577,7 @@
     <Compile Include="UserButtonMainPanel.Designer.cs">
       <DependentUpon>UserButtonMainPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserInfo.cs" />
     <Compile Include="UserTextbox.cs">
       <SubType>UserControl</SubType>
     </Compile>
