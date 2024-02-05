@@ -40,6 +40,7 @@
             this.txt_userfullname = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
+            this.label_StdExists = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -75,6 +76,7 @@
             this.txt_username.Name = "txt_username";
             this.txt_username.Size = new System.Drawing.Size(312, 29);
             this.txt_username.TabIndex = 51;
+            this.txt_username.TextChanged += new System.EventHandler(this.txt_username_TextChanged);
             // 
             // label2
             // 
@@ -119,6 +121,7 @@
             this.btnSave.TabIndex = 48;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panel1
             // 
@@ -174,11 +177,25 @@
             this.pictureBoxClose.TabStop = false;
             this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
+            // label_StdExists
+            // 
+            this.label_StdExists.AutoSize = true;
+            this.label_StdExists.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_StdExists.ForeColor = System.Drawing.Color.Red;
+            this.label_StdExists.Location = new System.Drawing.Point(194, 156);
+            this.label_StdExists.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_StdExists.Name = "label_StdExists";
+            this.label_StdExists.Size = new System.Drawing.Size(172, 15);
+            this.label_StdExists.TabIndex = 56;
+            this.label_StdExists.Text = "*Username Already Exists";
+            this.label_StdExists.Visible = false;
+            // 
             // AccountFormDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 500);
+            this.Controls.Add(this.label_StdExists);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txt_userfullname);
             this.Controls.Add(this.txt_userpass);
@@ -213,5 +230,6 @@
         public System.Windows.Forms.TextBox txt_userpass;
         public System.Windows.Forms.TextBox txt_userfullname;
         private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label_StdExists;
     }
 }

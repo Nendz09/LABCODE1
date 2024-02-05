@@ -626,5 +626,15 @@ namespace LABCODE1
                 }
             }
         }
+
+        private void dgvReturned_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            AccountForm accForm = new AccountForm();
+
+            string fullname = accForm.GetFullname();
+            MessageBox.Show(fullname);
+
+        }
     }
 }

@@ -13,6 +13,11 @@ namespace LABCODE1
 {
     public partial class AccountForm : Form
     {
+        public string Fullname
+        {
+            get { return labelFullname.Text; }
+        }
+
         MySqlConnection con = DbConnection.GetConnection();
         MySqlCommand cmd = new MySqlCommand();
         MySqlDataReader dr;
@@ -43,6 +48,20 @@ namespace LABCODE1
             accDetails.btnSave.Enabled = false;
 
             accDetails.ShowDialog();
+        }
+
+        private void userButton2_Click(object sender, EventArgs e)
+        {
+            AccountFormDetails accDetails = new AccountFormDetails();
+
+            accDetails.btnUpdate.Enabled = false;
+
+            accDetails.ShowDialog();
+        }
+
+        public string GetFullname()
+        {
+            return labelFullname.Text;
         }
     }
 }

@@ -645,18 +645,18 @@ namespace LABCODE1
                 string durationString = dgvItemBorrow.Rows[i].Cells["Duration"].Value.ToString();
                 int selectedDuration = Convert.ToInt32(new string(durationString.Where(char.IsDigit).ToArray()));
 
-                MessageBox.Show($"Original Date Of Return String: {dateOfReturn}");
+                //MessageBox.Show($"Original Date Of Return String: {dateOfReturn}");
 
                 // Try to parse the date string
                 if (DateTime.TryParseExact(dateOfBorrow, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture, 
                     DateTimeStyles.None, out DateTime borrowDateTime))
                 {
-                    MessageBox.Show($"Date Of Borrow: {borrowDateTime}");
+                    //MessageBox.Show($"Date Of Borrow: {borrowDateTime}");
 
                     // Calculate return date and time
                     DateTime returnDateTime = borrowDateTime.AddHours(selectedDuration);
                     string formattedReturnDateTime = returnDateTime.ToString("yyyy-MM-dd HH:mm");
-                    MessageBox.Show($"Calculated Return Date Time: {formattedReturnDateTime}");
+                    //MessageBox.Show($"Calculated Return Date Time: {formattedReturnDateTime}");
 
                     // Continue with your code...
                     cmd = new MySqlCommand(@"INSERT INTO lab_borrows(date_borrow, student_id, name, year_sec, eqp_id, eqp_name, date_return, eqp_size) 

@@ -73,9 +73,9 @@
             this.userButton1.Image = ((System.Drawing.Image)(resources.GetObject("userButton1.Image")));
             this.userButton1.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton1.ImageHover")));
             this.userButton1.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton1.ImageNormal")));
-            this.userButton1.Location = new System.Drawing.Point(32, 285);
+            this.userButton1.Location = new System.Drawing.Point(18, 310);
             this.userButton1.Name = "userButton1";
-            this.userButton1.Size = new System.Drawing.Size(226, 105);
+            this.userButton1.Size = new System.Drawing.Size(267, 124);
             this.userButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.userButton1.TabIndex = 5;
             this.userButton1.TabStop = false;
@@ -103,12 +103,13 @@
             this.userButton2.Image = ((System.Drawing.Image)(resources.GetObject("userButton2.Image")));
             this.userButton2.ImageHover = ((System.Drawing.Image)(resources.GetObject("userButton2.ImageHover")));
             this.userButton2.ImageNormal = ((System.Drawing.Image)(resources.GetObject("userButton2.ImageNormal")));
-            this.userButton2.Location = new System.Drawing.Point(291, 285);
+            this.userButton2.Location = new System.Drawing.Point(291, 310);
             this.userButton2.Name = "userButton2";
-            this.userButton2.Size = new System.Drawing.Size(226, 105);
+            this.userButton2.Size = new System.Drawing.Size(267, 124);
             this.userButton2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.userButton2.TabIndex = 7;
             this.userButton2.TabStop = false;
+            this.userButton2.Click += new System.EventHandler(this.userButton2_Click);
             // 
             // AccountForm
             // 

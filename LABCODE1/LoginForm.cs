@@ -65,6 +65,7 @@ namespace LABCODE1
                     MessageBox.Show($"Welcome {fullname}!", "ACCESS GRANTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     MainForm main = new MainForm(accForm);
+                    
                     main.ShowDialog();
                     this.Hide();
                     

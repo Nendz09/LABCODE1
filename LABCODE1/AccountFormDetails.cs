@@ -78,5 +78,72 @@ namespace LABCODE1
             }
             
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txt_username.Text) || string.IsNullOrEmpty(txt_userpass.Text) || string.IsNullOrEmpty(txt_userfullname.Text))
+                {
+                    MessageBox.Show("Please fill out all required fields before saving.");
+                }
+                else
+                {
+                    if (MessageBox.Show("Are you sure you want to save this account?", "Saving Account", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        using (MySqlConnection con = DbConnection.GetConnection())
+                        {
+                            cmd = new MySqlCommand(@"INSERT INTO lab_user(username, password, fullname) 
+                                            VALUES (@username, @password, @fullname)", con);
+                            cmd.Parameters.AddWithValue("@username", txt_username.Text);
+                            cmd.Parameters.AddWithValue("@password", txt_userpass.Text);
+                            cmd.Parameters.AddWithValue("@fullname", txt_userfullname.Text);
+                            
+
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            
+                            MessageBox.Show("Account has been saved.");
+
+                            //dashboard
+                            string name = txt_userfullname.Text;
+                            string msg = $"You added a new account: {name}";
+                            dbForm.InsertRecentActivities(msg);
+
+                            this.Dispose();
+                        }
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txt_username_TextChanged(object sender, EventArgs e)
+        {
+            using (MySqlConnection con = DbConnection.GetConnection())
+            {
+                con.Open();
+                try
+                {
+                    cmd = new MySqlCommand("SELECT COUNT(*) FROM lab_user WHERE username = @username", con);
+                    cmd.Parameters.AddWithValue("@username", txt_username.Text);
+
+                    
+
+                    int usernameCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    label_StdExists.Visible = usernameCount > 0;
+                    btnSave.Enabled = usernameCount == 0;
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }

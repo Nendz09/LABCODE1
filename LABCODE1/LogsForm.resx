@@ -2434,6 +2434,9 @@
         71Fdqb5UZ0XJAQAAAPTEeef9P5GJk8r7b7QJAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="logsTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="btnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAPoAAABLCAYAAABZeprtAAAABGdBTUEAALGPC/xhBQAADTlJREFUeF7t
@@ -5936,9 +5939,6 @@
         r1K5UbrhXeBh4GV8W0OVRiL/H/KlltC6WbYnAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="logsTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABVsAAAKOCAYAAAC4DcluAAAABGdBTUEAALGPC/xhBQAA/8dJREFUeF7s
