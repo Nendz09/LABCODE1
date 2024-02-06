@@ -57,13 +57,21 @@ namespace LABCODE1
 
             try
             {
-                CrystalReport1 report = new CrystalReport1(); // Replace with your report class name
+                CrystalReport2 report = new CrystalReport2(); // Replace with your report class name
 
                 // Set report parameters or data source if needed
                 // Example: report.SetDataSource(yourDataTable);
 
                 //report.SetDatabaseLogon("inv_labcode_ODBC", "4=yyfZ*eM", "srv1153.hstgr.io", "u955379966_inv_labcode");
-                
+
+
+
+                //printReport viewerForm = new printReport();
+                //viewerForm.crystalReportViewer1.ReportSource = report;
+                //viewerForm.ShowDialog();
+
+                //string connectionString = "DRIVER={MySQL ODBC 8.3 ANSI Driver}; SERVER=srv1153.hstgr.io; DATABASE=u955379966_inv_labcode; UID=u955379966_inv_labcode; PASSWORD=4=yyfZ*eM; OPTION=3";
+                //report.SetDatabaseLogon("inv_labcode_ODBC", "4=yyfZ*eM", connectionString);
 
 
                 printReport viewerForm = new printReport();
@@ -72,8 +80,9 @@ namespace LABCODE1
             }
             catch (LogOnException logonEx)
             {
-                MessageBox.Show($"Crystal Reports Logon Error: {logonEx.Message}");
+                MessageBox.Show($"Crystal Reports Logon Error: {logonEx.Message}\nDetails: {logonEx.InnerException?.Message}");
             }
+
         }
     }
 }
