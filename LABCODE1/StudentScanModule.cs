@@ -198,47 +198,47 @@ namespace LABCODE1
 
         private void txt_Barcode_TextChanged(object sender, EventArgs e)
         {
-            string stringStudentID = txt_Barcode.Text;
-            LoadStudentPicture(stringStudentID);
-            con.Open();
-            if (int.TryParse(txt_Barcode.Text, out int studentID))
-            {
-                cmd = new MySqlCommand("SELECT * FROM lab_students WHERE student_id = @studentID", con);
-                cmd.Parameters.AddWithValue("@studentID", studentID);
+            //string stringStudentID = txt_Barcode.Text;
+            //LoadStudentPicture(stringStudentID);
+            //con.Open();
+            //if (int.TryParse(txt_Barcode.Text, out int studentID))
+            //{
+            //    cmd = new MySqlCommand("SELECT * FROM lab_students WHERE student_id = @studentID", con);
+            //    cmd.Parameters.AddWithValue("@studentID", studentID);
 
-                dr = cmd.ExecuteReader();
-                if (dr.Read())
-                {
+            //    dr = cmd.ExecuteReader();
+            //    if (dr.Read())
+            //    {
                     
-                    label_studentSection.Text = dr["year_sec"].ToString();
-                    label_studentName.Text = dr["full_name"].ToString();
-                    label_studentID.Text = dr["student_id"].ToString();
+            //        label_studentSection.Text = dr["year_sec"].ToString();
+            //        label_studentName.Text = dr["full_name"].ToString();
+            //        label_studentID.Text = dr["student_id"].ToString();
 
-                    LoadStudentPicture(stringStudentID);
+            //        LoadStudentPicture(stringStudentID);
 
-                    txt_Barcode.Enabled = false;
-                    btnProceed.Enabled = true;
-                    clearStudentID.Enabled = true;
+            //        txt_Barcode.Enabled = false;
+            //        btnProceed.Enabled = true;
+            //        clearStudentID.Enabled = true;
 
-                    txt_BarcodeItem.Enabled = true;
-                    txt_BarcodeItem.Focus();
-                }
-                else
-                {
-                    label_studentName.Text = "No student found";
-                    label_studentSection.Text = "";
-                    studentPicture.Image = Properties.Resources.user_ddefault; 
-                }
-                dr.Close();
-            }
-            else
-            {
-                studentPicture.Image = Properties.Resources.user_ddefault;
-                label_studentName.Text = "Invalid Student ID \n or NOT a number";
-                label_studentSection.Text = "";
-                label_studentID.Text = "";
-            }
-            con.Close();
+            //        txt_BarcodeItem.Enabled = true;
+            //        txt_BarcodeItem.Focus();
+            //    }
+            //    else
+            //    {
+            //        label_studentName.Text = "No student found";
+            //        label_studentSection.Text = "";
+            //        studentPicture.Image = Properties.Resources.user_ddefault; 
+            //    }
+            //    dr.Close();
+            //}
+            //else
+            //{
+            //    studentPicture.Image = Properties.Resources.user_ddefault;
+            //    label_studentName.Text = "Invalid Student ID \n or NOT a number";
+            //    label_studentSection.Text = "";
+            //    label_studentID.Text = "";
+            //}
+            //con.Close();
         }
 
         private void txt_BarcodeItem_TextChanged(object sender, EventArgs e)
@@ -959,6 +959,54 @@ namespace LABCODE1
         private void dgvItemBorrow_SelectionChanged(object sender, EventArgs e)
         {
             this.dgvItemBorrow.ClearSelection();
+        }
+
+        private void txt_Barcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string stringStudentID = txt_Barcode.Text;
+                LoadStudentPicture(stringStudentID);
+                con.Open();
+                if (int.TryParse(txt_Barcode.Text, out int studentID))
+                {
+                    cmd = new MySqlCommand("SELECT * FROM lab_students WHERE student_id = @studentID", con);
+                    cmd.Parameters.AddWithValue("@studentID", studentID);
+
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+
+                        label_studentSection.Text = dr["year_sec"].ToString();
+                        label_studentName.Text = dr["full_name"].ToString();
+                        label_studentID.Text = dr["student_id"].ToString();
+
+                        LoadStudentPicture(stringStudentID);
+
+                        txt_Barcode.Enabled = false;
+                        btnProceed.Enabled = true;
+                        clearStudentID.Enabled = true;
+
+                        txt_BarcodeItem.Enabled = true;
+                        txt_BarcodeItem.Focus();
+                    }
+                    else
+                    {
+                        label_studentName.Text = "No student found";
+                        label_studentSection.Text = "";
+                        studentPicture.Image = Properties.Resources.user_ddefault;
+                    }
+                    dr.Close();
+                }
+                else
+                {
+                    studentPicture.Image = Properties.Resources.user_ddefault;
+                    label_studentName.Text = "Invalid Student ID \n or NOT a number";
+                    label_studentSection.Text = "";
+                    label_studentID.Text = "";
+                }
+                con.Close();
+            }
         }
 
 

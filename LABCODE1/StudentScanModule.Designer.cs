@@ -44,6 +44,7 @@ namespace LABCODE1
             this.col_itemid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.dateLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
@@ -59,7 +60,6 @@ namespace LABCODE1
             this.itemPicture = new System.Windows.Forms.PictureBox();
             this.studentPicture = new System.Windows.Forms.PictureBox();
             this.clearStudentID = new LABCODE1.UserButton();
-            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemBorrow)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -89,6 +89,7 @@ namespace LABCODE1
             this.txt_Barcode.Size = new System.Drawing.Size(245, 26);
             this.txt_Barcode.TabIndex = 3;
             this.txt_Barcode.TextChanged += new System.EventHandler(this.txt_Barcode_TextChanged);
+            this.txt_Barcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Barcode_KeyDown);
             this.txt_Barcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Barcode_KeyPress);
             // 
             // label_studentName
@@ -199,6 +200,15 @@ namespace LABCODE1
             this.col_size.HeaderText = "Size/Calibration";
             this.col_size.Name = "col_size";
             this.col_size.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Delete.HeaderText = "";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Width = 5;
             // 
             // dateLabel
             // 
@@ -317,7 +327,6 @@ namespace LABCODE1
             this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Width = 5;
             // 
             // itemPicture
             // 
@@ -358,15 +367,6 @@ namespace LABCODE1
             this.clearStudentID.TabIndex = 24;
             this.clearStudentID.TabStop = false;
             this.clearStudentID.Click += new System.EventHandler(this.clearStudentID_Click_1);
-            // 
-            // Delete
-            // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Delete.HeaderText = "";
-            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Width = 5;
             // 
             // pictureBoxClose
             // 

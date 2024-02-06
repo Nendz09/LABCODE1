@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExportPDF = new LABCODE1.UserButton();
             this.btnExport = new LABCODE1.UserButton();
@@ -62,6 +62,7 @@
             this.searchSizeCalibration = new LABCODE1.UserTextbox();
             this.userTextbox1 = new LABCODE1.UserTextbox();
             this.countLabel = new System.Windows.Forms.Label();
+            this.reportBtn = new LABCODE1.UserButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExportPDF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
@@ -71,11 +72,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reportBtn)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
+            this.panel1.Controls.Add(this.reportBtn);
             this.panel1.Controls.Add(this.btnExportPDF);
             this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.btnAdd);
@@ -480,6 +483,21 @@
             this.countLabel.TabIndex = 38;
             this.countLabel.Text = "count";
             // 
+            // reportBtn
+            // 
+            this.reportBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.reportBtn.Image = ((System.Drawing.Image)(resources.GetObject("reportBtn.Image")));
+            this.reportBtn.ImageHover = ((System.Drawing.Image)(resources.GetObject("reportBtn.ImageHover")));
+            this.reportBtn.ImageNormal = ((System.Drawing.Image)(resources.GetObject("reportBtn.ImageNormal")));
+            this.reportBtn.Location = new System.Drawing.Point(306, -3);
+            this.reportBtn.Name = "reportBtn";
+            this.reportBtn.Size = new System.Drawing.Size(126, 56);
+            this.reportBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.reportBtn.TabIndex = 6;
+            this.reportBtn.TabStop = false;
+            this.reportBtn.Click += new System.EventHandler(this.reportBtn_Click);
+            // 
             // InventoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -515,6 +533,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnNext1)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reportBtn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -552,5 +571,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.ComboBox cmbCateg;
         public System.Windows.Forms.Label countLabel;
+        public UserButton reportBtn;
     }
 }

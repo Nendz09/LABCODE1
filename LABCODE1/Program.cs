@@ -26,7 +26,7 @@ namespace LABCODE1
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TRY());
+            Application.Run(new MainForm());
         }
 
     }

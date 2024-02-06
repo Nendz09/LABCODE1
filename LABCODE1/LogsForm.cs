@@ -629,12 +629,96 @@ namespace LABCODE1
 
         private void dgvReturned_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //AccountForm accForm = new AccountForm();
+            //string fullname = accForm.GetFullname();
+            //MessageBox.Show(fullname);
 
-            AccountForm accForm = new AccountForm();
+            // Check if the clicked cell is in the specified column and its value is "Yes"
+            if (dgvReturned.Rows[e.RowIndex].Cells[9].Value.ToString() == "Yes")
+            {
+                string studentId = dgvReturned.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string studentName = dgvReturned.Rows[e.RowIndex].Cells[3].Value.ToString();
+                string eqpName = dgvReturned.Rows[e.RowIndex].Cells[6].Value.ToString();
+                string eqpID = dgvReturned.Rows[e.RowIndex].Cells[5].Value.ToString();
+                string yearSec = dgvReturned.Rows[e.RowIndex].Cells[4].Value.ToString();
+                // Show the details or perform your specific action
+                //MessageBox.Show($"Details: {studentId} {studentName} {eqpName} {eqpID}");
+                if (MessageBox.Show($@"The item {eqpName} will be replaced by {studentName} from {yearSec}. Proceed?",
+                        "Item Replacement", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    returnedItemReplacement(eqpID);
+                    returnItem_EquipmentStatus(eqpID);
 
-            string fullname = accForm.GetFullname();
-            MessageBox.Show(fullname);
+                    //dashboard
+                    string msg = $"{studentId}: {studentName} from {yearSec} replaced the item: {eqpName}.";
+                    dbForm.InsertRecentActivities(msg);
+                }
+            }
+            LoadAllDataDGVRETURNED();
 
+        }
+
+        private void dgvBorrowed_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                ReturnRemarksForm returnRemarks = new ReturnRemarksForm();
+                returnRemarks.borrowDate.Text = dgvBorrowed.Rows[e.RowIndex].Cells[0].Value.ToString();
+                returnRemarks.txt_itemId.Text = dgvBorrowed.Rows[e.RowIndex].Cells[4].Value.ToString();
+                returnRemarks.txt_itemName.Text = dgvBorrowed.Rows[e.RowIndex].Cells[5].Value.ToString();
+                returnRemarks.txt_itemSize.Text = dgvBorrowed.Rows[e.RowIndex].Cells[6].Value.ToString();
+                returnRemarks.txt_studId.Text = dgvBorrowed.Rows[e.RowIndex].Cells[1].Value.ToString();
+                returnRemarks.txt_studName.Text = dgvBorrowed.Rows[e.RowIndex].Cells[2].Value.ToString();
+                returnRemarks.txt_studSec.Text = dgvBorrowed.Rows[e.RowIndex].Cells[3].Value.ToString();
+                returnRemarks.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        //Replacement
+        private void returnedItemReplacement(string eqpID)
+        {
+            string new_date;
+            new_date = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            try
+            {
+                con.Open();
+                string updateQuery = $@"UPDATE lab_logs SET replacement = 'Replaced', 
+                                                            actual_date_return = @newDate 
+                                    WHERE eqp_id = @EquipmentID";
+                cmd = new MySqlCommand(updateQuery, con);
+                cmd.Parameters.AddWithValue("@EquipmentID", eqpID);
+                cmd.Parameters.AddWithValue("@newDate", new_date);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally { con.Close(); }
+        }
+        //update equipments status for replacement
+        public void returnItem_EquipmentStatus(string eqpID)
+        {
+            try
+            {
+                string updateQuery = "UPDATE lab_eqpment SET status = 'Available' WHERE eqp_id = @EquipmentID";
+                con.Open();
+                cmd = new MySqlCommand(updateQuery, con);
+                cmd.Parameters.AddWithValue("@EquipmentID", eqpID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally { con.Close(); };
         }
     }
 }

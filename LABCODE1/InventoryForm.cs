@@ -20,6 +20,7 @@ using PdfSharp.Drawing;
 using System.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
 using MySql.Data.MySqlClient;
+using CrystalDecisions.CrystalReports.Engine;
 //using iText.IO.Image;
 //using iText.Kernel.Pdf;
 //using System.Diagnostics;
@@ -330,18 +331,7 @@ namespace LABCODE1
 
                     MessageBox.Show($"The item {eqpName} is currently using by {nameBorrower} from {yearSec}. Cannot be replaced.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    //con.Open();
-                    //cmd = new SqlCommand("SELECT full_name FROM lab_students WHERE eqp_id = @EquipmentID", con);
-                    //cmd.Parameters.AddWithValue("@EquipmentID", dgvLab.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    //cmd.ExecuteNonQuery();
-                    //con.Close();
-
-
-                    //if (MessageBox.Show("The student '' will replace this item. Proceed?", "Item Replacement",  MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) 
-                    //{
-
-                    //}
-                    //MessageBox.Show("cannot be replaced");
+                   
                 }
                 else if (status == "Available") 
                 {
@@ -932,6 +922,37 @@ namespace LABCODE1
             string totalCount = cmd.ExecuteScalar().ToString();
             countLabel.Text = $"Total Count: {totalCount}";
             con.Close();
+        }
+
+        private void reportBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CrystalReport2 report = new CrystalReport2(); // Replace with your report class name
+
+                // Set report parameters or data source if needed
+                // Example: report.SetDataSource(yourDataTable);
+
+                //report.SetDatabaseLogon("inv_labcode_ODBC", "4=yyfZ*eM", "srv1153.hstgr.io", "u955379966_inv_labcode");
+
+
+
+                //printReport viewerForm = new printReport();
+                //viewerForm.crystalReportViewer1.ReportSource = report;
+                //viewerForm.ShowDialog();
+
+                //string connectionString = "DRIVER={MySQL ODBC 8.3 ANSI Driver}; SERVER=srv1153.hstgr.io; DATABASE=u955379966_inv_labcode; UID=u955379966_inv_labcode; PASSWORD=4=yyfZ*eM; OPTION=3";
+                //report.SetDatabaseLogon("inv_labcode_ODBC", "4=yyfZ*eM", connectionString);
+
+
+                printReport viewerForm = new printReport();
+                viewerForm.crystalReportViewer1.ReportSource = report;
+                viewerForm.ShowDialog();
+            }
+            catch (LogOnException logonEx)
+            {
+                MessageBox.Show($"Crystal Reports Logon Error: {logonEx.Message}\nDetails: {logonEx.InnerException?.Message}");
+            }
         }
     }
 }
