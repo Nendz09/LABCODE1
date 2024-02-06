@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 
 namespace LABCODE1
@@ -42,6 +43,24 @@ namespace LABCODE1
                 {
                     conn.Open();
                     MessageBox.Show("Connected");
+                }
+                CrystalReport2 reportDocument = new CrystalReport2();
+
+                // ...
+
+                // Iterate through each table in the report
+                foreach (Table table in reportDocument.Database.Tables)
+                {
+                    TableLogOnInfo tableLogOnInfo = table.LogOnInfo;
+
+                    // Retrieve the login information
+                    string serverName = tableLogOnInfo.ConnectionInfo.ServerName;
+                    string databaseName = tableLogOnInfo.ConnectionInfo.DatabaseName;
+                    string userName = tableLogOnInfo.ConnectionInfo.UserID;
+                    string password = tableLogOnInfo.ConnectionInfo.Password;
+
+                    // Print or log the login information
+                    Console.WriteLine($"Server: {serverName}, Database: {databaseName}, User: {userName}, Password: {password}");
                 }
             }
             catch (Exception ex)
@@ -84,5 +103,30 @@ namespace LABCODE1
             }
 
         }
+
+        private void refresh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CrystalReport2 report = new CrystalReport2(); // Replace with your report class name
+
+                // Set report parameters or data source if needed
+                // Example: report.SetDataSource(yourDataTable);
+
+                // Refresh the report
+                report.Refresh();
+
+                
+            }
+            catch (LogOnException logonEx)
+            {
+                MessageBox.Show($"Crystal Reports Logon Error: {logonEx.Message}\nDetails: {logonEx.InnerException?.Message}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}\nDetails: {ex.StackTrace}");
+            }
+        }
+
     }
 }

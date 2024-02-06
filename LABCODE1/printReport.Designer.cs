@@ -30,6 +30,7 @@
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.crystalReport12 = new LABCODE1.CrystalReport1();
+            this.refresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -43,11 +44,22 @@
             this.crystalReportViewer1.Size = new System.Drawing.Size(800, 450);
             this.crystalReportViewer1.TabIndex = 0;
             // 
+            // refresh
+            // 
+            this.refresh.Location = new System.Drawing.Point(93, 216);
+            this.refresh.Name = "refresh";
+            this.refresh.Size = new System.Drawing.Size(75, 23);
+            this.refresh.TabIndex = 3;
+            this.refresh.Text = "refresh";
+            this.refresh.UseVisualStyleBackColor = true;
+            this.refresh.Click += new System.EventHandler(this.refresh_Click);
+            // 
             // printReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.refresh);
             this.Controls.Add(this.crystalReportViewer1);
             this.Name = "printReport";
             this.Text = "printReport";
@@ -58,5 +70,6 @@
         #endregion
         public CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
         public CrystalReport1 crystalReport12;
+        private System.Windows.Forms.Button refresh;
     }
 }
