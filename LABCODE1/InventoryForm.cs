@@ -294,6 +294,20 @@ namespace LABCODE1
                 inventoryModule.btnUpdate.Enabled = true;
                 inventoryModule.txtEqpID.Enabled = false;
 
+
+
+                //object cellValue = dgvLab.Rows[e.RowIndex].Cells[6].Value;
+                //if (cellValue != null)
+                //{
+                //    inventoryModule.txtRemarks.Text = cellValue.ToString();
+                //}
+                //else
+                //{
+                //    inventoryModule.txtRemarks.Text = string.Empty; // or any default value
+                //}
+
+
+
                 inventoryModule.ShowDialog();
             }
             else if (colName == "Delete")
@@ -537,7 +551,7 @@ namespace LABCODE1
 
                     byte[] barcodeImageBytes = (byte[])dr["eqp_barcode_img"];
                     Image barcodeImage = ByteArrayToImage(barcodeImageBytes);
-                    dgvLab.Rows.Add(barcodeImage, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+                    dgvLab.Rows.Add(barcodeImage, dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString());
                 }
                 dgvLab.Focus();
                 dr.Close();

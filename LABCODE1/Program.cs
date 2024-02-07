@@ -20,13 +20,11 @@ namespace LABCODE1
             //AccountForm accountForm = new AccountForm();
             //MainForm mainForm = new MainForm(accountForm);
             //Application.Run(mainForm);
-
-
-
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new WelcomeForm());
         }
 
     }

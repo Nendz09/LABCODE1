@@ -531,19 +531,34 @@ namespace LABCODE1
         }
 
         //DELETE RETURN LOGS (RESEEDING)
-        private void DeleteWithReseeding() 
+        //private void DeleteWithReseeding() 
+        //{
+        //    using (MySqlConnection con = DbConnection.GetConnection())
+        //    {
+        //        con.Open();
+        //        string deleteQuery = "DELETE FROM lab_logs;";
+        //        string reseedQuery = "DBCC CHECKIDENT ('lab_logs', RESEED, 0);";
+        //        string combineDeleteReseedQuery = deleteQuery + reseedQuery;
+
+        //        cmd = new MySqlCommand(combineDeleteReseedQuery, con);
+        //        cmd.ExecuteNonQuery();
+        //    }
+        //}
+
+        private void DeleteWithReseeding()
         {
             using (MySqlConnection con = DbConnection.GetConnection())
             {
                 con.Open();
-                string deleteQuery = "DELETE FROM lab_logs;";
-                string reseedQuery = "DBCC CHECKIDENT ('lab_logs', RESEED, 0);";
-                string combineDeleteReseedQuery = deleteQuery + reseedQuery;
+                string truncateQuery = "TRUNCATE TABLE lab_logs;";
+                string reseedQuery = "ALTER TABLE lab_logs AUTO_INCREMENT = 1;";
+                string combineTruncateReseedQuery = truncateQuery + reseedQuery;
 
-                cmd = new MySqlCommand(combineDeleteReseedQuery, con);
+                cmd = new MySqlCommand(combineTruncateReseedQuery, con);
                 cmd.ExecuteNonQuery();
             }
         }
+
 
         //THIS EXPORT IS FOR RETURN LOGS ONLY
         private void btnExport_Click(object sender, EventArgs e)
@@ -654,7 +669,7 @@ namespace LABCODE1
                     dbForm.InsertRecentActivities(msg);
                 }
             }
-            LoadAllDataDGVRETURNED();
+            LoadReturns();
 
         }
 
@@ -677,6 +692,7 @@ namespace LABCODE1
             {
                 MessageBox.Show(ex.Message);
             }
+            LoadBorrows();
         }
 
 
