@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.crystalReport12 = new LABCODE1.CrystalReport1();
             this.refresh = new System.Windows.Forms.Button();
+            this.crysaltReport11 = new LABCODE1.CrystalReport1();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -46,7 +46,7 @@
             // 
             // refresh
             // 
-            this.refresh.Location = new System.Drawing.Point(93, 216);
+            this.refresh.Location = new System.Drawing.Point(84, 47);
             this.refresh.Name = "refresh";
             this.refresh.Size = new System.Drawing.Size(75, 23);
             this.refresh.TabIndex = 3;
@@ -69,7 +69,7 @@
 
         #endregion
         public CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        public CrystalReport1 crystalReport12;
         private System.Windows.Forms.Button refresh;
+        private CrystalReport1 crysaltReport11;
     }
 }

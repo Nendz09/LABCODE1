@@ -23,7 +23,18 @@ namespace LABCODE1
         private DataTable GetDataFromDatabase()
         {
             // Replace the following with your actual database connection and query logic
-            string query = " SELECT lab_eqpment1.eqp_name, lab_eqpment1.eqp_size\r\n FROM   u955379966_inv_labcode.lab_eqpment lab_eqpment1\r\n ORDER BY lab_eqpment1.eqp_name, lab_eqpment1.eqp_size\r\n";
+            //string query = " SELECT Command_4.eqp_name, Command_4.eqp_size, Command_4.eqp_remarks\r\nFROM  u955379966_inv_labcode.lab_eqpment lab_eqpment1\r\nGROUP BY Command_4.eqp_name, Command_4.eqp_size, Command_4.eqp_remarks\r\nORDER BY Command_4.eqp_name, Command_4.eqp_size, Command_4.eqp_remarks;\r\n";
+            string query = "SELECT lab_eqpment1.eqp_name, lab_eqpment1.eqp_size, lab_eqpment1.acq_remarks, " +
+               "(SELECT COUNT(*) FROM u955379966_inv_labcode.lab_eqpment Command_4 " +
+               "WHERE lab_eqpment1.eqp_name = Command_4.eqp_name AND " +
+               "lab_eqpment1.eqp_size = Command_4.eqp_size AND " +
+               "lab_eqpment1.acq_remarks = Command_4.acq_remarks) AS quantity " +
+               "FROM u955379966_inv_labcode.lab_eqpment lab_eqpment1 " +
+               "GROUP BY lab_eqpment1.eqp_name, lab_eqpment1.eqp_size, lab_eqpment1.acq_remarks " +
+               "ORDER BY lab_eqpment1.eqp_name, lab_eqpment1.eqp_size, lab_eqpment1.acq_remarks;";
+
+
+
             //string query = " SELECT * FROM lab_eqpment1";
 
             using (MySqlConnection con = DbConnection.GetConnection())
@@ -44,7 +55,7 @@ namespace LABCODE1
         {
             try
             {
-                CrystalReport2 report = new CrystalReport2(); // Replace with your report class name
+                CrystalReport1 report = new CrystalReport1(); // Replace with your report class name
 
                 // Get data from the database
                 DataTable yourDataTable = GetDataFromDatabase();

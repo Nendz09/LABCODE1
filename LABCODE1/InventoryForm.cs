@@ -942,7 +942,7 @@ namespace LABCODE1
         {
             try
             {
-                CrystalReport2 report = new CrystalReport2(); // Replace with your report class name
+                CrystalReport1 report = new CrystalReport1(); // Replace with your report class name
 
                 // Set report parameters or data source if needed
                 // Example: report.SetDataSource(yourDataTable);
